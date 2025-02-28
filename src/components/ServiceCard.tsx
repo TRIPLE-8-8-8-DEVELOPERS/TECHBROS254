@@ -12,6 +12,7 @@ interface ServiceCardProps {
 const ServiceCard = ({ icon: Icon, title, description, index = 0 }: ServiceCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,12 +47,19 @@ const ServiceCard = ({ icon: Icon, title, description, index = 0 }: ServiceCardP
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="w-12 h-12 rounded-xl bg-tech-50 flex items-center justify-center mb-4">
-        <Icon size={24} className="text-tech-400" />
+      <div 
+        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
+          isHovered ? "bg-tech-400 text-white" : "bg-tech-50 text-tech-400"
+        }`}
+      >
+        <Icon size={24} className="transition-transform duration-300" />
       </div>
       <h3 className="text-xl font-semibold mb-2 text-left">{title}</h3>
       <p className="text-sm text-gray-600 text-left">{description}</p>
+      <div className={`w-0 h-0.5 bg-tech-400 mt-4 transition-all duration-500 ${isHovered ? "w-full" : ""}`}></div>
     </div>
   );
 };

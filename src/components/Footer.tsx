@@ -1,13 +1,14 @@
 
 import { ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const FooterLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
-  <a 
-    href={href} 
+const FooterLink = ({ to, children }: { to: string, children: React.ReactNode }) => (
+  <Link 
+    to={to} 
     className="text-gray-500 hover:text-tech-400 transition-colors duration-300"
   >
     {children}
-  </a>
+  </Link>
 );
 
 const Footer = () => {
@@ -18,15 +19,28 @@ const Footer = () => {
     });
   };
 
+  const handleHashLink = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(path);
+      if (element) {
+        window.scrollTo({
+          top: element.getBoundingClientRect().top + window.pageYOffset - 100,
+          behavior: "smooth",
+        });
+      }
+    }
+  };
+
   return (
     <footer className="bg-gray-50 py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           <div className="md:col-span-1">
-            <a href="#home" className="flex items-center mb-4">
+            <Link to="/" className="flex items-center mb-4">
               <img src="/logo.svg" alt="TechBros" className="h-8 logo-spin" />
               <span className="ml-2 font-semibold text-lg">TechBros</span>
-            </a>
+            </Link>
             <p className="text-gray-500 text-sm text-left">
               Leading technology solutions provider helping businesses transform, scale, and thrive in the digital landscape.
             </p>
@@ -35,21 +49,23 @@ const Footer = () => {
           <div className="md:col-span-1">
             <h4 className="font-medium text-lg mb-4 text-left">Services</h4>
             <ul className="space-y-2 text-left">
-              <li><FooterLink href="#services">Software Development</FooterLink></li>
-              <li><FooterLink href="#services">Web Development</FooterLink></li>
-              <li><FooterLink href="#services">Mobile App Development</FooterLink></li>
-              <li><FooterLink href="#services">Cloud Solutions</FooterLink></li>
-              <li><FooterLink href="#services">IT Consulting</FooterLink></li>
+              <li><FooterLink to="/#services">Software Development</FooterLink></li>
+              <li><FooterLink to="/#services">Web Development</FooterLink></li>
+              <li><FooterLink to="/#services">Mobile App Development</FooterLink></li>
+              <li><FooterLink to="/#services">Cloud Solutions</FooterLink></li>
+              <li><FooterLink to="/#services">IT Consulting</FooterLink></li>
             </ul>
           </div>
           
           <div className="md:col-span-1">
             <h4 className="font-medium text-lg mb-4 text-left">Company</h4>
             <ul className="space-y-2 text-left">
-              <li><FooterLink href="#about">About Us</FooterLink></li>
-              <li><FooterLink href="#portfolio">Portfolio</FooterLink></li>
-              <li><FooterLink href="#services">Services</FooterLink></li>
-              <li><FooterLink href="#contact">Contact</FooterLink></li>
+              <li><FooterLink to="/#about">About Us</FooterLink></li>
+              <li><FooterLink to="/team">Our Team</FooterLink></li>
+              <li><FooterLink to="/#portfolio">Portfolio</FooterLink></li>
+              <li><FooterLink to="/blog">Blog</FooterLink></li>
+              <li><FooterLink to="/pricing">Pricing</FooterLink></li>
+              <li><FooterLink to="/#contact">Contact</FooterLink></li>
             </ul>
           </div>
           
@@ -57,8 +73,8 @@ const Footer = () => {
             <h4 className="font-medium text-lg mb-4 text-left">Contact</h4>
             <ul className="space-y-2 text-left">
               <li className="text-gray-500">350 Fifth Avenue, New York, NY 10118, USA</li>
-              <li><FooterLink href="mailto:contact@techbros.com">contact@techbros.com</FooterLink></li>
-              <li><FooterLink href="tel:+12125551234">+1 (212) 555-1234</FooterLink></li>
+              <li><a href="mailto:contact@techbros.com" className="text-gray-500 hover:text-tech-400 transition-colors duration-300">contact@techbros.com</a></li>
+              <li><a href="tel:+12125551234" className="text-gray-500 hover:text-tech-400 transition-colors duration-300">+1 (212) 555-1234</a></li>
             </ul>
           </div>
         </div>
