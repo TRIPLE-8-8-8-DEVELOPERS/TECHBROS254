@@ -83,11 +83,11 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h4 className="font-medium text-lg mb-4 text-gray-800">Services</h4>
             <ul className="space-y-3">
-              <li><FooterLink to="/#services">Software Development</FooterLink></li>
-              <li><FooterLink to="/#services">Web Development</FooterLink></li>
-              <li><FooterLink to="/#services">Mobile App Development</FooterLink></li>
-              <li><FooterLink to="/#services">Cloud Solutions</FooterLink></li>
-              <li><FooterLink to="/#services">IT Consulting</FooterLink></li>
+              <li><FooterLink to="/services/custom-software-development">Software Development</FooterLink></li>
+              <li><FooterLink to="/services/web-development">Web Development</FooterLink></li>
+              <li><FooterLink to="/services/mobile-app-development">Mobile App Development</FooterLink></li>
+              <li><FooterLink to="/services/cloud-solutions">Cloud Solutions</FooterLink></li>
+              <li><FooterLink to="/services/it-consulting">IT Consulting</FooterLink></li>
             </ul>
           </div>
           
@@ -123,7 +123,7 @@ const Footer = () => {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <a href="mailto:contact@techbros.com" className="text-gray-600 hover:text-tech-500 transition-colors">contact@techbros.com</a>
+                <a href="mailto:techbroske@gmail.com" className="text-gray-600 hover:text-tech-500 transition-colors">techbroske@gmail.com</a>
               </p>
             </div>
             

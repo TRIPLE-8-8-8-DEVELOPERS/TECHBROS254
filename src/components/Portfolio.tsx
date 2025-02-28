@@ -1,39 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
-import CaseStudyCard from "./CaseStudyCard";
-
-const caseStudies = [
-  {
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format",
-    title: "Financial App Redesign",
-    category: "Mobile App"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=800&auto=format",
-    title: "E-commerce Platform",
-    category: "Web Development"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format",
-    title: "Healthcare Management System",
-    category: "Software Development"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&auto=format",
-    title: "Real-time Analytics Dashboard",
-    category: "Data Visualization"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format",
-    title: "Supply Chain Management",
-    category: "Enterprise Solution"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&auto=format",
-    title: "Secure Banking Portal",
-    category: "Cybersecurity"
-  }
-];
+import ProjectCard from "./ProjectCard";
+import { projects } from "../data/projects";
 
 const Portfolio = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,30 +33,35 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <section id="portfolio" ref={sectionRef} className="section-padding bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="portfolio" ref={sectionRef} className="section-padding relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute -top-20 -left-20 w-96 h-96 bg-tech-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+
+      <div className="container mx-auto px-4 relative">
         <div 
           ref={titleRef}
           className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${
             titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="text-sm font-medium text-triple-600 uppercase tracking-wider mb-2 inline-block">
+          <span className="text-sm font-medium text-tech-600 uppercase tracking-wider mb-2 inline-block before-dash">
             Our Work
           </span>
-          <h2 className="section-title">Featured Projects</h2>
+          <h2 className="section-title">Featured <span className="title-highlight">Projects</span></h2>
           <p className="text-gray-600 mt-4 text-pretty">
             Explore our portfolio of successful projects across various industries, demonstrating our expertise and the measurable impact we've delivered.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map((project, index) => (
-            <CaseStudyCard
-              key={index}
-              image={project.image}
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              image={project.mainImage}
               title={project.title}
               category={project.category}
+              slug={project.slug}
               index={index}
             />
           ))}
@@ -99,7 +72,7 @@ const Portfolio = () => {
           }`}>
           <a 
             href="#contact"
-            className="inline-flex items-center text-triple-800 font-medium hover:text-triple-900 transition-all duration-300 text-underline"
+            className="inline-flex items-center text-tech-800 font-medium hover:text-tech-900 transition-all duration-300 text-underline"
             onClick={(e) => {
               e.preventDefault();
               const contactSection = document.querySelector("#contact");
