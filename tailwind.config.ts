@@ -84,7 +84,8 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ["Inter", "system-ui", "sans-serif"],
+				sans: ["Outfit", "system-ui", "sans-serif"],
+				display: ["Poppins", "sans-serif"],
 				mono: ["Roboto Mono", "monospace"],
 			},
 			borderRadius: {
@@ -128,6 +129,15 @@ export default {
 				"rotate-center": {
 					from: { transform: "rotate(0deg)" },
 					to: { transform: "rotate(360deg)" },
+				},
+				"float": {
+					"0%, 100%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(-10px)" }
+				},
+				"gradient-animation": {
+					"0%": { backgroundPosition: "0% 50%" },
+					"50%": { backgroundPosition: "100% 50%" },
+					"100%": { backgroundPosition: "0% 50%" }
 				}
 			},
 			animation: {
@@ -140,6 +150,8 @@ export default {
 				"text-reveal": "text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
 				"pulse-slow": "pulse-slow 3s ease-in-out infinite",
 				"rotate-center": "rotate-center 8s linear infinite",
+				"float": "float 6s ease-in-out infinite",
+				"gradient-x": "gradient-animation 15s ease infinite"
 			},
 			transitionDuration: {
 				'400': '400ms',
@@ -151,6 +163,9 @@ export default {
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'hero-pattern': 'url("/images/hero-bg.png")',
+				'gradient-tech': 'linear-gradient(135deg, #9b87f5 0%, #7b5ffc 100%)',
+				'gradient-tech-animate': 'linear-gradient(135deg, #9b87f5 0%, #7b5ffc 50%, #a777e3 100%)',
 			}
 		}
 	},

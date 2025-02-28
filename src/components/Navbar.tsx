@@ -70,27 +70,31 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "py-3 glass shadow-sm"
+          ? "py-3 glass shadow-md"
           : "py-6 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <img src="/logo.svg" alt="TechBros" className="h-8 logo-spin" />
-          <span className={`ml-2 font-semibold text-lg transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>
-            TechBros
-          </span>
+        <Link to="/" className="flex items-center group">
+          <div className="relative">
+            <img src="/logo.svg" alt="TechBros" className="h-10 transition-all duration-500 group-hover:scale-110" />
+          </div>
+          <div className="ml-3">
+            <span className={`font-display font-bold text-2xl transition-opacity duration-500 bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent ${isScrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>
+              TechBros
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.path}
-              className="text-tech-600 hover:text-tech-800 transition-colors duration-300 text-sm font-medium link-hover"
+              className="text-gray-700 hover:text-tech-500 transition-colors duration-300 text-sm font-medium link-hover"
               onClick={(e) => handleNavClick(e, link.path)}
             >
               {link.name}
@@ -98,7 +102,7 @@ const Navbar = () => {
           ))}
           <Link 
             to="/#contact" 
-            className="bg-tech-400 text-white px-5 py-2 rounded-full transition-all duration-300 text-sm hover:bg-tech-500 hover:shadow-md"
+            className="bg-gradient-tech text-white px-6 py-2.5 rounded-full transition-all duration-300 text-sm hover:shadow-lg font-medium"
             onClick={(e) => handleNavClick(e, "/#contact")}
           >
             Get Started
@@ -107,7 +111,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-tech-600 focus:outline-none"
+          className="md:hidden text-gray-700 focus:outline-none"
           onClick={toggleMenu}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
@@ -124,23 +128,25 @@ const Navbar = () => {
         <div className="container mx-auto px-4 py-8 h-full flex flex-col">
           <div className="flex justify-between items-center mb-8">
             <Link to="/" className="flex items-center" onClick={closeMenu}>
-              <img src="/logo.svg" alt="TechBros" className="h-8" />
-              <span className="ml-2 font-semibold text-lg">TechBros</span>
+              <img src="/logo.svg" alt="TechBros" className="h-10" />
+              <span className="ml-3 font-display font-bold text-2xl bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent">
+                TechBros
+              </span>
             </Link>
             <button 
-              className="text-tech-600 focus:outline-none"
+              className="text-gray-700 focus:outline-none"
               onClick={closeMenu}
               aria-label="Close menu"
             >
               <X size={24} />
             </button>
           </div>
-          <nav className="flex flex-col space-y-6 mt-10">
+          <nav className="flex flex-col space-y-8 mt-10">
             {navLinks.map((link, index) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-2xl font-medium text-tech-600 hover:text-tech-800 transition-all stagger-item ${isOpen ? "revealed" : ""} stagger-delay-${index + 1}`}
+                className={`text-2xl font-medium text-gray-700 hover:text-tech-500 transition-all stagger-item ${isOpen ? "revealed" : ""} stagger-delay-${index + 1}`}
                 onClick={(e) => handleNavClick(e, link.path)}
               >
                 {link.name}
@@ -150,7 +156,7 @@ const Navbar = () => {
           <div className="mt-auto mb-8">
             <Link
               to="/#contact"
-              className="inline-block bg-tech-400 text-white px-8 py-3 rounded-full text-lg font-medium transition-all hover:bg-tech-500 hover:shadow-lg stagger-item stagger-delay-5"
+              className="inline-block bg-gradient-tech text-white px-8 py-4 rounded-full text-lg font-medium transition-all hover:shadow-lg stagger-item stagger-delay-5"
               onClick={(e) => handleNavClick(e, "/#contact")}
             >
               Get Started

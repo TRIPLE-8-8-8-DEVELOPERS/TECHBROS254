@@ -1,7 +1,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import AnimatedText from "./AnimatedText";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,67 +37,108 @@ const Hero = () => {
     <div 
       id="home" 
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-gray-50"
     >
-      {/* Background image with overlay */}
+      {/* Background with gradient overlay and pattern */}
       <div 
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 bg-gradient-to-b from-white to-tech-50"
         style={{ 
-          backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=1920&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=1920&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          opacity: 0.05,
           transform: `translateY(${parallaxY}px)`
         }}
       ></div>
 
+      {/* Geometric shapes for visual interest */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-tech-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+      <div className="absolute bottom-10 left-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: "-2s" }}></div>
+      <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: "-4s" }}></div>
+
       {/* Hero content */}
-      <div className="container mx-auto px-4 z-10 text-center mt-24">
-        <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-block mb-4 px-4 py-1 bg-tech-100 rounded-full">
-            <span className="text-sm font-medium text-tech-600">Innovating the Digital Future</span>
+      <div className="container mx-auto px-4 z-10 pt-20 md:pt-0">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div className="md:col-span-7 text-center md:text-left">
+            <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="inline-block mb-6 px-4 py-1.5 bg-tech-50 border border-tech-200 rounded-full">
+                <span className="text-sm font-medium text-tech-600">Innovating the Digital Future</span>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <h1 className="hero-text mb-4">
+                <span className="text-gradient">TechBros</span> - Leading<br />Technology Solutions
+              </h1>
+              <div className={`max-w-2xl mx-auto md:mx-0 transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <p className="text-xl text-gray-600 text-pretty">
+                  We help businesses transform, scale, and thrive in the digital landscape by leveraging cutting-edge technologies and innovative strategies.
+                </p>
+              </div>
+            </div>
+
+            <div className={`flex flex-wrap justify-center md:justify-start gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <a 
+                href="#services" 
+                className="px-8 py-4 bg-gradient-tech text-white rounded-full hover:opacity-90 transition-all duration-300 hover:shadow-lg font-medium flex items-center"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScrollDown();
+                }}
+              >
+                Explore Services
+                <ArrowRight size={18} className="ml-2" />
+              </a>
+              <a 
+                href="#contact" 
+                className="px-8 py-4 bg-white border border-tech-200 text-tech-600 rounded-full hover:border-tech-300 transition-all duration-300 hover:shadow-md font-medium"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const contactSection = document.querySelector("#contact");
+                  if (contactSection) {
+                    window.scrollTo({
+                      top: contactSection.getBoundingClientRect().top + window.pageYOffset - 100,
+                      behavior: "smooth",
+                    });
+                  }
+                }}
+              >
+                Contact Us
+              </a>
+            </div>
+
+            {/* Statistics */}
+            <div className={`mt-12 grid grid-cols-3 gap-4 max-w-lg mx-auto md:mx-0 py-6 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="text-center md:text-left">
+                <h3 className="text-3xl font-bold text-tech-500">150+</h3>
+                <p className="text-sm text-gray-600">Clients Worldwide</p>
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-3xl font-bold text-tech-500">98%</h3>
+                <p className="text-sm text-gray-600">Satisfaction Rate</p>
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-3xl font-bold text-tech-500">10+</h3>
+                <p className="text-sm text-gray-600">Years Experience</p>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="max-w-4xl mx-auto mb-6">
-          <AnimatedText
-            text="Leading Technology Solutions Provider"
-            className="hero-text mb-4"
-          />
-        </div>
-
-        <div className={`max-w-2xl mx-auto mb-12 transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className="text-lg text-gray-600 text-pretty">
-            We help businesses transform, scale, and thrive in the digital landscape by leveraging cutting-edge technologies and innovative strategies.
-          </p>
-        </div>
-
-        <div className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <a 
-            href="#services" 
-            className="px-8 py-3 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 hover:shadow-lg"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollDown();
-            }}
-          >
-            Explore Services
-          </a>
-          <a 
-            href="#contact" 
-            className="px-8 py-3 bg-white border border-tech-200 text-tech-600 rounded-full hover:border-tech-300 transition-all duration-300 hover:shadow-md"
-            onClick={(e) => {
-              e.preventDefault();
-              const contactSection = document.querySelector("#contact");
-              if (contactSection) {
-                window.scrollTo({
-                  top: contactSection.getBoundingClientRect().top + window.pageYOffset - 100,
-                  behavior: "smooth",
-                });
-              }
-            }}
-          >
-            Contact Us
-          </a>
+          {/* Hero Image */}
+          <div className="md:col-span-5 hidden md:block">
+            <div className={`transition-all duration-1000 delay-700 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="relative">
+                <div className="absolute -inset-0.5 bg-gradient-tech-animate rounded-3xl blur opacity-30 animate-gradient-x"></div>
+                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&w=800&q=80" 
+                    alt="Tech Innovation"
+                    className="w-full h-auto rounded-3xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -106,7 +147,7 @@ const Hero = () => {
         <button 
           onClick={handleScrollDown}
           aria-label="Scroll down"
-          className="w-10 h-10 rounded-full border border-tech-200 flex items-center justify-center hover:border-tech-300 transition-all duration-300"
+          className="w-12 h-12 rounded-full gradient-border flex items-center justify-center hover:shadow-md transition-all duration-300"
         >
           <ChevronDown size={20} className="text-tech-600" />
         </button>

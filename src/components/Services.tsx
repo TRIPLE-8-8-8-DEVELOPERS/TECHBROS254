@@ -46,24 +46,28 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-padding bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="services" ref={sectionRef} className="section-padding relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute -top-20 -right-20 w-96 h-96 bg-tech-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      
+      <div className="container mx-auto px-4 relative">
         <div 
           ref={titleRef}
           className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${
             titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="text-sm font-medium text-tech-600 uppercase tracking-wider mb-2 inline-block">
+          <span className="text-sm font-medium text-tech-600 uppercase tracking-wider mb-2 inline-block before-dash">
             Our Expertise
           </span>
-          <h2 className="section-title">Our Core Services</h2>
-          <p className="text-gray-600 mt-4 text-pretty">
+          <h2 className="section-title">Transforming Businesses with <span className="title-highlight">Technology</span></h2>
+          <p className="text-gray-600 mt-6 text-lg text-pretty">
             We provide a comprehensive suite of services that cater to businesses of all sizes, from startups to enterprises, combining technical expertise with strategic insight.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {serviceItems.map((service, index) => (
             <ServiceCard
               key={service.id}

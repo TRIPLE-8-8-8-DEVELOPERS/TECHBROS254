@@ -1,41 +1,39 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --background: 260 30% 99%;
+    --foreground: 270 5% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card-foreground: 270 5% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover-foreground: 270 5% 10%;
 
-    --primary: 0 0% 15%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 255 88% 75%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 15%;
+    --secondary: 260 30% 96%;
+    --secondary-foreground: 270 5% 15%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 260 30% 96%;
+    --muted-foreground: 270 5% 45%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 260 50% 96%;
+    --accent-foreground: 270 5% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 15%;
+    --border: 270 5% 90%;
+    --input: 270 5% 90%;
+    --ring: 255 88% 75%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -85,19 +83,19 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-16 md:py-28 lg:py-32;
   }
 
   .hero-text {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+    @apply text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight font-display;
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-4 md:mb-6;
+    @apply text-3xl md:text-4xl font-bold mb-4 md:mb-6 font-display;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-500 hover:shadow-lg hover:-translate-y-2;
   }
 
   .link-hover {
@@ -105,7 +103,7 @@
   }
 
   .text-gradient {
-    @apply bg-gradient-to-b from-triple-700 to-triple-900 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent;
   }
 
   .scrollbar-hidden {
@@ -126,5 +124,46 @@
   .animate-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .gradient-border {
+    position: relative;
+    border-radius: var(--radius);
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #9b87f5 0%, #7b5ffc 100%) border-box;
+    border: 2px solid transparent;
+  }
+
+  .gradient-border-hover {
+    position: relative;
+    border-radius: var(--radius);
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(to right, transparent 0%, transparent 100%) border-box;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+  }
+
+  .gradient-border-hover:hover {
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #9b87f5 0%, #7b5ffc 100%) border-box;
+    border: 2px solid transparent;
+  }
+
+  .title-highlight {
+    @apply relative inline-block;
+  }
+
+  .title-highlight:after {
+    content: '';
+    @apply absolute w-full h-3 bg-tech-200/50 -bottom-1 left-0 -z-10 rounded;
+  }
+
+  .before-dash {
+    @apply relative pl-6;
+  }
+
+  .before-dash:before {
+    content: '';
+    @apply absolute left-0 top-1/2 w-4 h-0.5 bg-tech-400 -translate-y-1/2;
   }
 }

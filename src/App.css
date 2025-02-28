@@ -6,21 +6,21 @@
 }
 
 .logo-spin {
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .logo-spin:hover {
   filter: brightness(1.1);
-  transform: rotate(3deg) scale(1.05);
+  transform: rotate(5deg) scale(1.1);
 }
 
 .service-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
 .parallax-bg {
@@ -100,10 +100,78 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
-  background: #333;
+  height: 3px;
+  background: linear-gradient(to right, #9b87f5, #7b5ffc);
   z-index: 1000;
   transition: width 0.05s ease-out;
+}
+
+/* Custom animations */
+.animated-gradient-border {
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.animated-gradient-border::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: #9b87f5;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: conic-gradient(transparent, #7b5ffc, transparent 30%);
+  animation: rotate 4s linear infinite;
+}
+
+.animated-gradient-border::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 2px;
+  top: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background: white;
+  border-radius: 8px;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* Card hover effects */
+.hover-card-effect {
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.hover-card-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #9b87f5 0%, #7b5ffc 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hover-card-effect:hover::before {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion) {
