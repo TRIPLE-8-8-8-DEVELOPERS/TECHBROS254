@@ -6,6 +6,11 @@ import Services from "../components/Services";
 import About from "../components/About";
 import Portfolio from "../components/Portfolio";
 import Testimonials from "../components/Testimonials";
+import Technologies from "../components/Technologies";
+import Process from "../components/Process";
+import Partners from "../components/Partners";
+import FAQ from "../components/FAQ";
+import CTABanner from "../components/CTABanner";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
@@ -44,10 +49,15 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <Partners />
         <Services />
+        <Process />
         <About />
+        <Technologies />
         <Portfolio />
+        <CTABanner />
         <Testimonials />
+        <FAQ />
         <Contact />
       </main>
       <Footer />
