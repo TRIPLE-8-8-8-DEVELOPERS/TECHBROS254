@@ -1,7 +1,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import AnimatedText from "./AnimatedText";
-import { ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, ArrowRight, Briefcase } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -105,6 +106,18 @@ const Hero = () => {
               >
                 Contact Us
               </a>
+            </div>
+
+            {/* We're Hiring Banner */}
+            <div className={`mt-8 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <Link to="/careers" className="inline-flex items-center px-4 py-2 bg-tech-100 border border-tech-200 rounded-full text-tech-700 hover:bg-tech-200 transition-all group">
+                <div className="w-8 h-8 rounded-full bg-tech-400 flex items-center justify-center mr-2 text-white">
+                  <Briefcase size={16} />
+                </div>
+                <span className="font-medium">We're Hiring!</span>
+                <span className="text-sm ml-2">Join our team</span>
+                <ArrowRight size={16} className="ml-2 transform transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
 
             {/* Statistics */}

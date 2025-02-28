@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Briefcase } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Team", path: "/team" },
   { name: "Blog", path: "/blog" },
   { name: "Pricing", path: "/pricing" },
+  { name: "Careers", path: "/careers" },
   { name: "Contact", path: "/#contact" },
 ];
 
@@ -94,9 +95,14 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className="text-gray-700 hover:text-tech-500 transition-colors duration-300 text-sm font-medium link-hover"
+              className={`text-gray-700 hover:text-tech-500 transition-colors duration-300 text-sm font-medium link-hover ${
+                link.name === "Careers" ? "flex items-center" : ""
+              }`}
               onClick={(e) => handleNavClick(e, link.path)}
             >
+              {link.name === "Careers" && (
+                <Briefcase size={16} className="mr-1.5 text-tech-500" />
+              )}
               {link.name}
             </Link>
           ))}
@@ -146,9 +152,16 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-2xl font-medium text-gray-700 hover:text-tech-500 transition-all stagger-item ${isOpen ? "revealed" : ""} stagger-delay-${index + 1}`}
+                className={`text-2xl font-medium text-gray-700 hover:text-tech-500 transition-all stagger-item ${
+                  isOpen ? "revealed" : ""
+                } stagger-delay-${index + 1} ${
+                  link.name === "Careers" ? "flex items-center" : ""
+                }`}
                 onClick={(e) => handleNavClick(e, link.path)}
               >
+                {link.name === "Careers" && (
+                  <Briefcase size={24} className="mr-2 text-tech-500" />
+                )}
                 {link.name}
               </Link>
             ))}
