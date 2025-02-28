@@ -50,12 +50,12 @@ const About = () => {
               contentVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
             }`}
           >
-            <span className="text-sm font-medium text-triple-600 uppercase tracking-wider mb-2 inline-block">
+            <span className="text-sm font-medium text-tech-500 uppercase tracking-wider mb-2 inline-block">
               Who We Are
             </span>
             <h2 className="section-title mb-6">Leading Technology Solutions Provider</h2>
             <p className="text-gray-600 mb-6 text-pretty">
-              TRIPLE888DEVELOPERS is a leading technology solutions provider specializing in various domains of software development and digital transformation. Headquartered in New York, we help businesses transform, scale, and thrive in the digital landscape by leveraging cutting-edge technologies and innovative strategies.
+              TechBros is a leading technology solutions provider specializing in various domains of software development and digital transformation. Headquartered in New York, we help businesses transform, scale, and thrive in the digital landscape by leveraging cutting-edge technologies and innovative strategies.
             </p>
             <p className="text-gray-600 mb-8 text-pretty">
               With a team of highly skilled developers, designers, engineers, and strategists, we create tailor-made solutions that drive efficiency, enhance user experience, and foster business growth. Our approach is centered around collaboration, innovation, and technical excellence, ensuring that every project we undertake meets the highest standards.
@@ -70,7 +70,7 @@ const About = () => {
                   }`}
                   style={{ transitionDelay: `${100 + index * 100}ms` }}
                 >
-                  <CheckCircle size={18} className="text-triple-800 mr-2 flex-shrink-0" />
+                  <CheckCircle size={18} className="text-tech-400 mr-2 flex-shrink-0" />
                   <span className="text-gray-700">{value}</span>
                 </div>
               ))}
@@ -82,8 +82,8 @@ const About = () => {
               contentVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
             }`}
           >
-            <div className="absolute w-full h-full bg-triple-900/5 z-10 rounded-2xl"></div>
-            <div className="absolute -right-6 -bottom-6 w-4/5 h-4/5 border-2 border-triple-200 rounded-2xl"></div>
+            <div className="absolute w-full h-full bg-tech-900/5 z-10 rounded-2xl"></div>
+            <div className="absolute -right-6 -bottom-6 w-4/5 h-4/5 border-2 border-tech-200 rounded-2xl"></div>
             <div className="absolute left-0 top-0 w-full h-full">
               <img 
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1920&auto=format" 

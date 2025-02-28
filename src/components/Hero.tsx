@@ -43,7 +43,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 z-0 opacity-40"
         style={{ 
-          backgroundImage: "radial-gradient(circle at 20% 20%, rgba(200, 200, 200, 0.2) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(200, 200, 200, 0.2) 0%, transparent 40%)",
+          backgroundImage: "radial-gradient(circle at 20% 20%, rgba(155, 135, 245, 0.2) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(155, 135, 245, 0.2) 0%, transparent 40%)",
           transform: `translateY(${parallaxY}px)`
         }}
       ></div>
@@ -51,8 +51,8 @@ const Hero = () => {
       {/* Hero content */}
       <div className="container mx-auto px-4 z-10 text-center mt-24">
         <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-block mb-4 px-4 py-1 bg-triple-100 rounded-full">
-            <span className="text-sm font-medium text-triple-800">Innovating the Digital Future</span>
+          <div className="inline-block mb-4 px-4 py-1 bg-tech-100 rounded-full">
+            <span className="text-sm font-medium text-tech-600">Innovating the Digital Future</span>
           </div>
         </div>
 
@@ -72,7 +72,7 @@ const Hero = () => {
         <div className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <a 
             href="#services" 
-            className="px-8 py-3 bg-triple-800 text-white rounded-full hover:bg-triple-900 transition-all duration-300 hover:shadow-lg"
+            className="px-8 py-3 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 hover:shadow-lg"
             onClick={(e) => {
               e.preventDefault();
               handleScrollDown();
@@ -82,7 +82,7 @@ const Hero = () => {
           </a>
           <a 
             href="#contact" 
-            className="px-8 py-3 bg-white border border-triple-200 text-triple-800 rounded-full hover:border-triple-300 transition-all duration-300 hover:shadow-md"
+            className="px-8 py-3 bg-white border border-tech-200 text-tech-600 rounded-full hover:border-tech-300 transition-all duration-300 hover:shadow-md"
             onClick={(e) => {
               e.preventDefault();
               const contactSection = document.querySelector("#contact");
@@ -104,9 +104,9 @@ const Hero = () => {
         <button 
           onClick={handleScrollDown}
           aria-label="Scroll down"
-          className="w-10 h-10 rounded-full border border-triple-200 flex items-center justify-center hover:border-triple-300 transition-all duration-300"
+          className="w-10 h-10 rounded-full border border-tech-200 flex items-center justify-center hover:border-tech-300 transition-all duration-300"
         >
-          <ChevronDown size={20} className="text-triple-800" />
+          <ChevronDown size={20} className="text-tech-600" />
         </button>
       </div>
     </div>

@@ -51,9 +51,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <a href="#home" className="flex items-center">
-          <img src="/logo.svg" alt="TRIPLE888DEVELOPERS" className="h-8 logo-spin" />
+          <img src="/logo.svg" alt="TechBros" className="h-8 logo-spin" />
           <span className={`ml-2 font-semibold text-lg transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 md:opacity-100'}`}>
-            TRIPLE888DEVELOPERS
+            TechBros
           </span>
         </a>
 
@@ -63,7 +63,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.path}
-              className="text-triple-800 hover:text-black transition-colors duration-300 text-sm font-medium link-hover"
+              className="text-tech-600 hover:text-tech-800 transition-colors duration-300 text-sm font-medium link-hover"
               onClick={(e) => {
                 e.preventDefault();
                 const element = document.querySelector(link.path);
@@ -80,7 +80,7 @@ const Navbar = () => {
           ))}
           <a 
             href="#contact" 
-            className="bg-triple-800 text-white px-5 py-2 rounded-full transition-all duration-300 text-sm hover:bg-triple-900 hover:shadow-md"
+            className="bg-tech-400 text-white px-5 py-2 rounded-full transition-all duration-300 text-sm hover:bg-tech-500 hover:shadow-md"
             onClick={(e) => {
               e.preventDefault();
               const element = document.querySelector("#contact");
@@ -98,7 +98,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-triple-800 focus:outline-none"
+          className="md:hidden text-tech-600 focus:outline-none"
           onClick={toggleMenu}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
@@ -115,11 +115,11 @@ const Navbar = () => {
         <div className="container mx-auto px-4 py-8 h-full flex flex-col">
           <div className="flex justify-between items-center mb-8">
             <a href="#home" className="flex items-center">
-              <img src="/logo.svg" alt="TRIPLE888DEVELOPERS" className="h-8" />
-              <span className="ml-2 font-semibold text-lg">TRIPLE888DEVELOPERS</span>
+              <img src="/logo.svg" alt="TechBros" className="h-8" />
+              <span className="ml-2 font-semibold text-lg">TechBros</span>
             </a>
             <button 
-              className="text-triple-800 focus:outline-none"
+              className="text-tech-600 focus:outline-none"
               onClick={closeMenu}
               aria-label="Close menu"
             >
@@ -131,7 +131,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.path}
-                className={`text-2xl font-medium text-triple-800 hover:text-triple-900 transition-all stagger-item ${isOpen ? "revealed" : ""} stagger-delay-${index + 1}`}
+                className={`text-2xl font-medium text-tech-600 hover:text-tech-800 transition-all stagger-item ${isOpen ? "revealed" : ""} stagger-delay-${index + 1}`}
                 onClick={(e) => {
                   e.preventDefault();
                   closeMenu();
@@ -153,7 +153,7 @@ const Navbar = () => {
           <div className="mt-auto mb-8">
             <a
               href="#contact"
-              className="inline-block bg-triple-800 text-white px-8 py-3 rounded-full text-lg font-medium transition-all hover:bg-triple-900 hover:shadow-lg stagger-item stagger-delay-5"
+              className="inline-block bg-tech-400 text-white px-8 py-3 rounded-full text-lg font-medium transition-all hover:bg-tech-500 hover:shadow-lg stagger-item stagger-delay-5"
               onClick={(e) => {
                 e.preventDefault();
                 closeMenu();

@@ -76,7 +76,7 @@ const Contact = () => {
             contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="text-sm font-medium text-triple-600 uppercase tracking-wider mb-2 inline-block">
+          <span className="text-sm font-medium text-tech-500 uppercase tracking-wider mb-2 inline-block">
             Get in Touch
           </span>
           <h2 className="section-title">Contact Us</h2>
@@ -94,27 +94,27 @@ const Contact = () => {
                 <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <Mail className="w-5 h-5 text-triple-800 mt-1 mr-3" />
+                    <Mail className="w-5 h-5 text-tech-400 mt-1 mr-3" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <a href="mailto:contact@triple888dev.com" className="text-gray-600 hover:text-triple-800 transition-colors">
-                        contact@triple888dev.com
+                      <a href="mailto:contact@techbros.com" className="text-gray-600 hover:text-tech-500 transition-colors">
+                        contact@techbros.com
                       </a>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <Phone className="w-5 h-5 text-triple-800 mt-1 mr-3" />
+                    <Phone className="w-5 h-5 text-tech-400 mt-1 mr-3" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <a href="tel:+12125551234" className="text-gray-600 hover:text-triple-800 transition-colors">
+                      <a href="tel:+12125551234" className="text-gray-600 hover:text-tech-500 transition-colors">
                         +1 (212) 555-1234
                       </a>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <MapPin className="w-5 h-5 text-triple-800 mt-1 mr-3" />
+                    <MapPin className="w-5 h-5 text-tech-400 mt-1 mr-3" />
                     <div>
                       <p className="font-medium">Office</p>
                       <p className="text-gray-600">
@@ -153,7 +153,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-triple-200 focus:border-transparent transition-all"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent transition-all"
                     placeholder="Your name"
                   />
                 </div>
@@ -169,7 +169,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-triple-200 focus:border-transparent transition-all"
+                    className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent transition-all"
                     placeholder="Your email"
                   />
                 </div>
@@ -186,7 +186,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-triple-200 focus:border-transparent transition-all"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent transition-all"
                   placeholder="How can we help you?"
                 />
               </div>
@@ -202,7 +202,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-triple-200 focus:border-transparent transition-all"
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent transition-all"
                   placeholder="Tell us about your project or inquiry..."
                 ></textarea>
               </div>
@@ -210,7 +210,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-triple-800 text-white rounded-lg hover:bg-triple-900 transition-all duration-300 flex items-center justify-center"
+                className="w-full px-6 py-3 bg-tech-400 text-white rounded-lg hover:bg-tech-500 transition-all duration-300 flex items-center justify-center"
               >
                 {isSubmitting ? (
                   <div className="flex items-center">

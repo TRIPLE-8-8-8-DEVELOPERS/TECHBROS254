@@ -47,8 +47,8 @@ const ServiceCard = ({ icon: Icon, title, description, index = 0 }: ServiceCardP
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="w-12 h-12 rounded-xl bg-triple-50 flex items-center justify-center mb-4">
-        <Icon size={24} className="text-triple-800" />
+      <div className="w-12 h-12 rounded-xl bg-tech-50 flex items-center justify-center mb-4">
+        <Icon size={24} className="text-tech-400" />
       </div>
       <h3 className="text-xl font-semibold mb-2 text-left">{title}</h3>
       <p className="text-sm text-gray-600 text-left">{description}</p>
