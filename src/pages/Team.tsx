@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
-import { Mail, Linkedin, Twitter, Github } from "lucide-react";
+import { Mail, Linkedin, Twitter, Github, ArrowRight, Briefcase } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface TeamMember {
   id: number;
@@ -122,6 +123,8 @@ const teamMembers: TeamMember[] = [
 
 const Team = () => {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const joinTeamRef = useRef<HTMLDivElement>(null);
+  const [joinSectionVisible, setJoinSectionVisible] = useState(false);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -143,6 +146,22 @@ const Team = () => {
     cardsRef.current.forEach((card) => {
       if (card) observer.observe(card);
     });
+
+    if (joinTeamRef.current) {
+      const joinSectionObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setJoinSectionVisible(true);
+            joinSectionObserver.disconnect();
+          }
+        },
+        {
+          threshold: 0.1
+        }
+      );
+      
+      joinSectionObserver.observe(joinTeamRef.current);
+    }
 
     return () => {
       cardsRef.current.forEach((card) => {
@@ -250,9 +269,17 @@ const Team = () => {
         </section>
 
         {/* Join Our Team Section */}
-        <section className="py-16 bg-tech-50">
+        <section ref={joinTeamRef} className="py-16 bg-tech-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+            <div 
+              className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+                joinSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
+            >
+              <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-tech-100 text-tech-600 font-medium text-sm">
+                <Briefcase size={16} className="mr-2" />
+                We're Hiring!
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Join Our Team</h2>
               <p className="text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
                 We're always looking for talented individuals to join our team. If you're passionate about technology and innovation, we'd love to hear from you.
@@ -275,12 +302,13 @@ const Team = () => {
                 </div>
               </div>
               
-              <a 
-                href="/careers" 
-                className="inline-block px-8 py-4 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 font-medium"
+              <Link 
+                to="/careers" 
+                className="inline-flex items-center px-8 py-4 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 font-medium group"
               >
                 View Open Positions
-              </a>
+                <ArrowRight size={18} className="ml-2 transition-transform duration-300 transform group-hover:translate-x-1" />
+              </Link>
             </div>
           </div>
         </section>
