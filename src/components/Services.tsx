@@ -8,6 +8,19 @@ const Services = () => {
   const titleRef = useRef<HTMLDivElement>(null);
   const [titleVisible, setTitleVisible] = useState(false);
 
+  // Service images
+  const serviceImages = {
+    "custom-software-development": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&w=600&q=80",
+    "web-development": "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&w=600&q=80",
+    "mobile-app-development": "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&w=600&q=80",
+    "cloud-solutions": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&w=600&q=80",
+    "it-consulting": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&w=600&q=80",
+    "e-commerce-solutions": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&w=600&q=80",
+    "ai-machine-learning": "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&w=600&q=80",
+    "cybersecurity": "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&w=600&q=80",
+    "digital-marketing": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&w=600&q=80"
+  };
+
   useEffect(() => {
     const titleObserver = new IntersectionObserver(
       ([entry]) => {
@@ -59,6 +72,7 @@ const Services = () => {
               description={service.description}
               slug={service.slug}
               index={index}
+              image={serviceImages[service.slug as keyof typeof serviceImages]}
             />
           ))}
         </div>
