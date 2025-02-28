@@ -39,11 +39,13 @@ const Hero = () => {
       ref={heroRef}
       className="min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
-      {/* Background decorative elements */}
+      {/* Background image with overlay */}
       <div 
-        className="absolute inset-0 z-0 opacity-40"
+        className="absolute inset-0 z-0"
         style={{ 
-          backgroundImage: "radial-gradient(circle at 20% 20%, rgba(155, 135, 245, 0.2) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(155, 135, 245, 0.2) 0%, transparent 40%)",
+          backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=1920&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           transform: `translateY(${parallaxY}px)`
         }}
       ></div>

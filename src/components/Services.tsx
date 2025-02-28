@@ -1,55 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import ServiceCard from "./ServiceCard";
-import { Code, Globe, Smartphone, Cloud, LineChart, ShieldCheck, ShoppingCart, BrainCircuit, BarChart3 } from "lucide-react";
-
-const services = [
-  {
-    icon: Code,
-    title: "Custom Software Development",
-    description: "Scalable, high-performance applications tailored to your business needs and goals."
-  },
-  {
-    icon: Globe,
-    title: "Web Development",
-    description: "Professional, responsive, and high-converting websites and web applications."
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Development",
-    description: "Cross-platform and native app solutions for seamless mobile experiences."
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Solutions",
-    description: "Secure cloud integration, migration, and optimization services for your business."
-  },
-  {
-    icon: LineChart,
-    title: "IT Consulting",
-    description: "Strategic guidance for digital transformation and tech infrastructure optimization."
-  },
-  {
-    icon: ShoppingCart,
-    title: "E-commerce Solutions",
-    description: "Custom online stores, marketplace integration, and payment solutions."
-  },
-  {
-    icon: BrainCircuit,
-    title: "AI & Machine Learning",
-    description: "Predictive analytics, automation, and intelligent business solutions."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Cybersecurity",
-    description: "Advanced security solutions to safeguard your business assets and data."
-  },
-  {
-    icon: BarChart3,
-    title: "Digital Marketing",
-    description: "SEO, social media, PPC, and content marketing for business growth."
-  }
-];
+import { serviceItems } from "../data/services";
 
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -89,7 +41,7 @@ const Services = () => {
             titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="text-sm font-medium text-triple-600 uppercase tracking-wider mb-2 inline-block">
+          <span className="text-sm font-medium text-tech-600 uppercase tracking-wider mb-2 inline-block">
             Our Expertise
           </span>
           <h2 className="section-title">Our Core Services</h2>
@@ -99,12 +51,13 @@ const Services = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {serviceItems.map((service, index) => (
             <ServiceCard
-              key={index}
+              key={service.id}
               icon={service.icon}
               title={service.title}
               description={service.description}
+              slug={service.slug}
               index={index}
             />
           ))}
