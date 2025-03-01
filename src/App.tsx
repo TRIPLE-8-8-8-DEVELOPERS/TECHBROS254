@@ -29,6 +29,12 @@ import FlexibleWorkPage from "./pages/perks/FlexibleWorkPage";
 import LearningDevelopmentPage from "./pages/perks/LearningDevelopmentPage";
 import ModernOfficePage from "./pages/perks/ModernOfficePage";
 import TeamEventsPage from "./pages/perks/TeamEventsPage";
+import WorkFromAnywherePage from "./pages/perks/WorkFromAnywherePage";
+import VacationTimePage from "./pages/perks/VacationTimePage";
+import ParentalBenefitsPage from "./pages/perks/ParentalBenefitsPage";
+import FinancialWellnessPage from "./pages/perks/FinancialWellnessPage";
+import RecognitionProgramsPage from "./pages/perks/RecognitionProgramsPage";
+import FoodRefreshmentsPage from "./pages/perks/FoodRefreshmentsPage";
 
 function App() {
   return (
@@ -66,6 +72,12 @@ function App() {
         <Route path="/perks/learning-development" element={<LearningDevelopmentPage />} />
         <Route path="/perks/modern-office" element={<ModernOfficePage />} />
         <Route path="/perks/team-events" element={<TeamEventsPage />} />
+        <Route path="/perks/work-from-anywhere" element={<WorkFromAnywherePage />} />
+        <Route path="/perks/vacation-time" element={<VacationTimePage />} />
+        <Route path="/perks/parental-benefits" element={<ParentalBenefitsPage />} />
+        <Route path="/perks/financial-wellness" element={<FinancialWellnessPage />} />
+        <Route path="/perks/recognition-programs" element={<RecognitionProgramsPage />} />
+        <Route path="/perks/food-refreshments" element={<FoodRefreshmentsPage />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>
