@@ -38,7 +38,7 @@ const Hero = () => {
     <div 
       id="home" 
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-gray-50"
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-gradient-to-br from-vibrant-purple/5 to-vibrant-pink/5"
     >
       {/* Background with gradient overlay and pattern */}
       <div 
@@ -52,24 +52,24 @@ const Hero = () => {
         }}
       ></div>
 
-      {/* Geometric shapes for visual interest */}
-      <div className="absolute top-20 right-10 w-64 h-64 bg-tech-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
-      <div className="absolute bottom-10 left-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: "-2s" }}></div>
-      <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: "-4s" }}></div>
+      {/* Geometric shapes for visual interest with vibrant colors */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-vibrant-purple/30 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+      <div className="absolute bottom-10 left-10 w-72 h-72 bg-vibrant-blue/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: "-2s" }}></div>
+      <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-vibrant-pink/30 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: "-4s" }}></div>
 
       {/* Hero content */}
       <div className="container mx-auto px-4 z-10 pt-20 md:pt-0">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 text-center md:text-left">
             <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="inline-block mb-6 px-4 py-1.5 bg-tech-50 border border-tech-200 rounded-full">
-                <span className="text-sm font-medium text-tech-600">Innovating the Digital Future</span>
+              <div className="inline-block mb-6 px-4 py-1.5 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full">
+                <span className="text-sm font-medium text-vibrant-purple font-accent">Innovating the Digital Future</span>
               </div>
             </div>
 
             <div className="mb-6">
-              <h1 className="hero-text mb-4">
-                <span className="text-gradient">TechBros</span> - Leading<br />Technology Solutions
+              <h1 className="hero-text mb-4 font-feature">
+                <span className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent">TechBros</span> - Leading<br />Technology Solutions
               </h1>
               <div className={`max-w-2xl mx-auto md:mx-0 transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 <p className="text-xl text-gray-600 text-pretty">
@@ -81,7 +81,7 @@ const Hero = () => {
             <div className={`flex flex-wrap justify-center md:justify-start gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <a 
                 href="#services" 
-                className="px-8 py-4 bg-gradient-tech text-white rounded-full hover:opacity-90 transition-all duration-300 hover:shadow-lg font-medium flex items-center"
+                className="px-8 py-4 bg-gradient-to-r from-vibrant-purple to-vibrant-pink text-white rounded-full hover:opacity-90 transition-all duration-300 hover:shadow-lg font-medium flex items-center"
                 onClick={(e) => {
                   e.preventDefault();
                   handleScrollDown();
@@ -92,7 +92,7 @@ const Hero = () => {
               </a>
               <a 
                 href="#contact" 
-                className="px-8 py-4 bg-white border border-tech-200 text-tech-600 rounded-full hover:border-tech-300 transition-all duration-300 hover:shadow-md font-medium"
+                className="px-8 py-4 bg-white border border-vibrant-purple/20 text-vibrant-purple rounded-full hover:border-vibrant-purple/40 transition-all duration-300 hover:shadow-md font-medium"
                 onClick={(e) => {
                   e.preventDefault();
                   const contactSection = document.querySelector("#contact");
@@ -110,8 +110,8 @@ const Hero = () => {
 
             {/* We're Hiring Banner */}
             <div className={`mt-8 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <Link to="/careers" className="inline-flex items-center px-4 py-2 bg-tech-100 border border-tech-200 rounded-full text-tech-700 hover:bg-tech-200 transition-all group">
-                <div className="w-8 h-8 rounded-full bg-tech-400 flex items-center justify-center mr-2 text-white">
+              <Link to="/careers" className="inline-flex items-center px-4 py-2 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full text-vibrant-purple hover:bg-vibrant-purple/20 transition-all group">
+                <div className="w-8 h-8 rounded-full bg-vibrant-purple flex items-center justify-center mr-2 text-white">
                   <Briefcase size={16} />
                 </div>
                 <span className="font-medium">We're Hiring!</span>
@@ -123,15 +123,15 @@ const Hero = () => {
             {/* Statistics */}
             <div className={`mt-12 grid grid-cols-3 gap-4 max-w-lg mx-auto md:mx-0 py-6 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-tech-500">150+</h3>
+                <h3 className="text-3xl font-bold text-vibrant-purple font-feature">150+</h3>
                 <p className="text-sm text-gray-600">Clients Worldwide</p>
               </div>
               <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-tech-500">98%</h3>
+                <h3 className="text-3xl font-bold text-vibrant-purple font-feature">98%</h3>
                 <p className="text-sm text-gray-600">Satisfaction Rate</p>
               </div>
               <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-tech-500">10+</h3>
+                <h3 className="text-3xl font-bold text-vibrant-purple font-feature">10+</h3>
                 <p className="text-sm text-gray-600">Years Experience</p>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Hero = () => {
           <div className="md:col-span-5 hidden md:block">
             <div className={`transition-all duration-1000 delay-700 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="relative">
-                <div className="absolute -inset-0.5 bg-gradient-tech-animate rounded-3xl blur opacity-30 animate-gradient-x"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-vibrant-purple to-vibrant-pink rounded-3xl blur opacity-30 animate-gradient-x"></div>
                 <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl">
                   <img 
                     src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&w=800&q=80" 
@@ -160,9 +160,9 @@ const Hero = () => {
         <button 
           onClick={handleScrollDown}
           aria-label="Scroll down"
-          className="w-12 h-12 rounded-full gradient-border flex items-center justify-center hover:shadow-md transition-all duration-300"
+          className="w-12 h-12 rounded-full bg-white border border-vibrant-purple/20 flex items-center justify-center hover:shadow-md transition-all duration-300"
         >
-          <ChevronDown size={20} className="text-tech-600" />
+          <ChevronDown size={20} className="text-vibrant-purple" />
         </button>
       </div>
     </div>

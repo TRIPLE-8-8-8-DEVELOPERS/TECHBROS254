@@ -29,6 +29,60 @@ const ServiceCard = ({
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const categoryColors: Record<string, { bg: string, text: string, hover: string, border: string }> = {
+    "Development": { 
+      bg: "bg-vibrant-purple/10", 
+      text: "text-vibrant-purple", 
+      hover: "hover:bg-vibrant-purple/20",
+      border: "border-vibrant-purple/20" 
+    },
+    "Infrastructure": { 
+      bg: "bg-vibrant-blue/10", 
+      text: "text-vibrant-blue", 
+      hover: "hover:bg-vibrant-blue/20",
+      border: "border-vibrant-blue/20" 
+    },
+    "Consulting": { 
+      bg: "bg-teal-100", 
+      text: "text-teal-700", 
+      hover: "hover:bg-teal-200",
+      border: "border-teal-200" 
+    },
+    "E-commerce": { 
+      bg: "bg-orange-100", 
+      text: "text-orange-700", 
+      hover: "hover:bg-orange-200",
+      border: "border-orange-200" 
+    },
+    "AI & Data": { 
+      bg: "bg-indigo-100", 
+      text: "text-indigo-700", 
+      hover: "hover:bg-indigo-200",
+      border: "border-indigo-200" 
+    },
+    "Security": { 
+      bg: "bg-red-100", 
+      text: "text-red-700", 
+      hover: "hover:bg-red-200",
+      border: "border-red-200" 
+    },
+    "Marketing": { 
+      bg: "bg-vibrant-pink/10", 
+      text: "text-vibrant-pink", 
+      hover: "hover:bg-vibrant-pink/20",
+      border: "border-vibrant-pink/20" 
+    },
+  };
+
+  const defaultColor = { 
+    bg: "bg-tech-50", 
+    text: "text-tech-600", 
+    hover: "hover:bg-tech-100",
+    border: "border-tech-200" 
+  };
+
+  const colorConfig = category ? (categoryColors[category] || defaultColor) : defaultColor;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -67,7 +121,7 @@ const ServiceCard = ({
     >
       <Link to={`/services/${slug}`} className="block">
         {image && (
-          <div className="h-48 overflow-hidden">
+          <div className="h-52 overflow-hidden">
             <img 
               src={image} 
               alt={title}
@@ -81,27 +135,29 @@ const ServiceCard = ({
           {category && (
             <Badge 
               variant="outline" 
-              className="mb-3 bg-tech-50 text-tech-600 hover:bg-tech-100 border-tech-200"
+              className={`mb-3 ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border}`}
             >
               {category}
             </Badge>
           )}
           <div 
             className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
-              isHovered ? "bg-tech-400 text-white" : "bg-tech-50 text-tech-400"
+              isHovered 
+                ? `${colorConfig.text} bg-white border-2 ${colorConfig.border}` 
+                : `${colorConfig.bg} ${colorConfig.text}`
             }`}
           >
-            <Icon size={24} className="transition-transform duration-300" />
+            <Icon size={24} className={`transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
           </div>
-          <h3 className="text-xl font-semibold mb-2 text-left">{title}</h3>
+          <h3 className="text-xl font-semibold mb-2 text-left font-feature">{title}</h3>
           <p className="text-sm text-gray-600 text-left">{description}</p>
           
           <div className="mt-5 flex justify-between items-center">
-            <div className={`w-0 h-0.5 bg-tech-400 transition-all duration-500 ${isHovered ? "w-1/2" : ""}`}></div>
+            <div className={`w-0 h-0.5 ${colorConfig.bg} transition-all duration-500 ${isHovered ? "w-1/2" : ""}`}></div>
             <Button 
               variant="ghost" 
               size="sm" 
-              className={`text-tech-600 p-0 hover:bg-transparent hover:text-tech-800 transition-all duration-300 ${
+              className={`${colorConfig.text} p-0 hover:bg-transparent hover:text-tech-800 transition-all duration-300 ${
                 isHovered ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
               }`}
             >

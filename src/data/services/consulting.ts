@@ -15,7 +15,7 @@ export const consultingServices: ServiceDetail[] = [
       "Our experienced consultants bring industry-specific expertise and a deep understanding of emerging technologies to provide valuable insights and practical recommendations. Whether you're planning a digital transformation initiative, implementing new systems, or optimizing existing infrastructure, we provide the strategic direction needed for success.",
       "We take a holistic approach to IT consulting, considering not just technology but also people, processes, and business objectives. Our recommendations are pragmatic, focused on delivering measurable business value, and designed to be implemented successfully within your organization."
     ],
-    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&w=1200&q=80",
     keyFeatures: [
       {
         title: "Digital Transformation",
@@ -83,7 +83,7 @@ export const consultingServices: ServiceDetail[] = [
         title: "Digital Transformation",
         description: "Strategic guidance to help organizations evolve with digital technology, reinvent business models, and adapt to changing market conditions.",
         icon: TrendingUp,
-        image: "https://images.unsplash.com/photo-1525953495391-61c1152dcb66?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&w=600&q=80"
       },
       {
         id: 502,
@@ -91,7 +91,7 @@ export const consultingServices: ServiceDetail[] = [
         title: "Technology Strategy",
         description: "Development of comprehensive technology roadmaps aligned with your business goals to drive innovation, efficiency, and competitive advantage.",
         icon: Presentation,
-        image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=600&q=80"
       },
       {
         id: 503,
@@ -99,7 +99,7 @@ export const consultingServices: ServiceDetail[] = [
         title: "Business Process Optimization",
         description: "Streamlining and improving your operational workflows to increase efficiency, reduce costs, and enhance overall business performance.",
         icon: BarChart,
-        image: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1589461766104-0d30f3f7782d?auto=format&w=600&q=80"
       },
       {
         id: 504,
@@ -107,7 +107,7 @@ export const consultingServices: ServiceDetail[] = [
         title: "Change Management",
         description: "Guiding your organization through technological and operational changes with strategies for minimizing disruption and maximizing adoption.",
         icon: Briefcase,
-        image: "https://images.unsplash.com/photo-1529119513315-e46523825d2d?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1600880292-31b5aa28a60b?auto=format&w=600&q=80"
       }
     ]
   }

@@ -15,7 +15,7 @@ export const securityServices: ServiceDetail[] = [
       "We take a proactive approach to cybersecurity, identifying and addressing potential vulnerabilities before they can be exploited. Our team of security experts stays current with the latest threats and security technologies to ensure your systems remain protected in an ever-changing threat landscape.",
       "From small businesses to large enterprises, we tailor our security solutions to match your specific industry requirements, compliance needs, and risk profile. We focus on implementing robust security measures while maintaining system performance and user experience."
     ],
-    image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1614064548237-096ef3ff452b?auto=format&w=1200&q=80",
     keyFeatures: [
       {
         title: "Security Assessment",
@@ -83,7 +83,7 @@ export const securityServices: ServiceDetail[] = [
         title: "Network Security",
         description: "Protect your organization's network infrastructure against unauthorized access, misuse, and cyber attacks with advanced security solutions.",
         icon: Shield,
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&w=600&q=80"
       },
       {
         id: 802,
@@ -91,7 +91,7 @@ export const securityServices: ServiceDetail[] = [
         title: "Data Protection",
         description: "Comprehensive data security solutions including encryption, access controls, and backup strategies to safeguard your sensitive information.",
         icon: Lock,
-        image: "https://images.unsplash.com/photo-1614064643083-5dc8ed0b6cc0?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1639322537231-2f206e06af84?auto=format&w=600&q=80"
       },
       {
         id: 803,
@@ -99,7 +99,7 @@ export const securityServices: ServiceDetail[] = [
         title: "Security Audits & Assessments",
         description: "Thorough evaluation of your security posture to identify vulnerabilities, compliance gaps, and areas requiring improvement.",
         icon: FileCheck,
-        image: "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1614064642761-54893b236e90?auto=format&w=600&q=80"
       },
       {
         id: 804,
@@ -107,7 +107,7 @@ export const securityServices: ServiceDetail[] = [
         title: "Incident Response",
         description: "Rapid detection, investigation, and recovery from security breaches to minimize damage and restore normal operations quickly.",
         icon: AlertTriangle,
-        image: "https://images.unsplash.com/photo-1616066026363-e76972c8a7c7?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1591696331111-ef9586a5b17a?auto=format&w=600&q=80"
       }
     ]
   }

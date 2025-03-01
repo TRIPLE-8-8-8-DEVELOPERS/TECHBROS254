@@ -1,35 +1,25 @@
 
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
-import { serviceItems } from "../data/services";
+import { serviceDetails } from "../data/services";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
+import { ChevronRight } from "lucide-react";
 
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const [titleVisible, setTitleVisible] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [showSubcategories, setShowSubcategories] = useState<string | null>(null);
 
   // Extract unique categories
-  const categories = ["all", ...Array.from(new Set(serviceItems.map(item => item.category || "uncategorized")))];
+  const categories = ["all", ...Array.from(new Set(serviceDetails.map(item => item.category || "uncategorized")))];
 
   // Filter services based on selected category
   const filteredServices = selectedCategory === "all" 
-    ? serviceItems 
-    : serviceItems.filter(service => service.category === selectedCategory);
-
-  // Service images
-  const serviceImages = {
-    "custom-software-development": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&w=600&q=80",
-    "web-development": "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&w=600&q=80",
-    "mobile-app-development": "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&w=600&q=80",
-    "cloud-solutions": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&w=600&q=80",
-    "it-consulting": "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&w=600&q=80",
-    "e-commerce-solutions": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&w=600&q=80",
-    "ai-machine-learning": "https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&w=600&q=80",
-    "cybersecurity": "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&w=600&q=80",
-    "digital-marketing": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&w=600&q=80"
-  };
+    ? serviceDetails 
+    : serviceDetails.filter(service => service.category === selectedCategory);
 
   useEffect(() => {
     const titleObserver = new IntersectionObserver(
@@ -57,9 +47,9 @@ const Services = () => {
 
   return (
     <section id="services" ref={sectionRef} className="section-padding relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute -top-20 -right-20 w-96 h-96 bg-tech-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-      <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+      {/* Background elements with more vibrant colors */}
+      <div className="absolute -top-20 -right-20 w-96 h-96 bg-vibrant-purple/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
+      <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-vibrant-pink/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
       
       <div className="container mx-auto px-4 relative">
         <div 
@@ -68,10 +58,10 @@ const Services = () => {
             titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <span className="text-sm font-medium text-tech-600 uppercase tracking-wider mb-2 inline-block before-dash">
+          <span className="text-sm font-medium text-vibrant-purple uppercase tracking-wider mb-2 inline-block before-dash font-accent">
             Our Expertise
           </span>
-          <h2 className="section-title">Transforming Businesses with <span className="title-highlight">Technology</span></h2>
+          <h2 className="section-title font-feature">Transforming Businesses with <span className="title-highlight">Technology</span></h2>
           <p className="text-gray-600 mt-6 text-lg text-pretty">
             We provide a comprehensive suite of services that cater to businesses of all sizes, from startups to enterprises, combining technical expertise with strategic insight.
           </p>
@@ -80,12 +70,12 @@ const Services = () => {
         {/* Category Filters */}
         <div className="mb-10 flex justify-center">
           <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full max-w-3xl">
-            <TabsList className="w-full flex flex-wrap justify-center bg-tech-50 p-2">
+            <TabsList className="w-full flex flex-wrap justify-center bg-vibrant-purple/10 p-2">
               {categories.map((category) => (
                 <TabsTrigger 
                   key={category} 
                   value={category}
-                  className="capitalize data-[state=active]:bg-tech-100 data-[state=active]:text-tech-800"
+                  className="capitalize font-accent data-[state=active]:bg-vibrant-purple data-[state=active]:text-white"
                 >
                   {category === "all" ? "All Services" : category}
                 </TabsTrigger>
@@ -96,16 +86,48 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredServices.map((service, index) => (
-            <ServiceCard
-              key={service.id}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              slug={service.slug}
-              index={index}
-              image={serviceImages[service.slug as keyof typeof serviceImages]}
-              category={service.category}
-            />
+            <div key={service.id}>
+              <ServiceCard
+                icon={service.icon}
+                title={service.title}
+                description={service.shortDescription}
+                slug={service.slug}
+                index={index}
+                image={service.image}
+                category={service.category}
+              />
+              
+              {/* Subcategories section */}
+              {service.subcategories && service.subcategories.length > 0 && (
+                <div className="mt-4">
+                  <button 
+                    onClick={() => setShowSubcategories(showSubcategories === service.slug ? null : service.slug)}
+                    className="flex items-center text-sm font-medium text-vibrant-purple hover:text-vibrant-purple/80 transition-colors"
+                  >
+                    <ChevronRight 
+                      size={16} 
+                      className={`mr-1 transition-transform ${showSubcategories === service.slug ? 'rotate-90' : ''}`} 
+                    />
+                    {showSubcategories === service.slug ? 'Hide subcategories' : 'View subcategories'}
+                  </button>
+                  
+                  {showSubcategories === service.slug && (
+                    <div className="mt-2 ml-6 space-y-2 animate-fade-in">
+                      {service.subcategories.map((subcat) => (
+                        <Link 
+                          key={subcat.id}
+                          to={`/services/${service.slug}/${subcat.slug}`}
+                          className="flex items-center p-2 rounded-md hover:bg-vibrant-purple/10 transition-colors"
+                        >
+                          {subcat.icon && <subcat.icon size={16} className="mr-2 text-vibrant-purple" />}
+                          <span className="text-sm font-medium">{subcat.title}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>

@@ -70,22 +70,31 @@ export default {
 					ring: "hsl(var(--sidebar-ring))"
 				},
 				tech: {
-					DEFAULT: "#9b87f5",
+					DEFAULT: "#8B5CF6",
 					50: "#F5F3FF",
 					100: "#E5DEFF",
 					200: "#d6bcfa",
 					300: "#b197fc",
 					400: "#9b87f5",
-					500: "#7E69AB",
-					600: "#6E59A5",
+					500: "#8B5CF6",
+					600: "#7E69AB",
 					700: "#403E43",
 					800: "#221F26",
 					900: "#1A1F2C",
+				},
+				// Add vibrant accent colors
+				vibrant: {
+					purple: "#8B5CF6",
+					pink: "#D946EF",
+					orange: "#F97316",
+					blue: "#0EA5E9",
 				}
 			},
 			fontFamily: {
 				sans: ["Outfit", "system-ui", "sans-serif"],
 				display: ["Poppins", "sans-serif"],
+				accent: ["Montserrat", "sans-serif"],
+				feature: ["Rubik", "sans-serif"],
 				mono: ["Roboto Mono", "monospace"],
 			},
 			borderRadius: {
