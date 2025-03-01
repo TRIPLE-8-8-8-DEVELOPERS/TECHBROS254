@@ -1,5 +1,5 @@
 
-import { BarChart, Briefcase, LineChart, PresentationChart, TrendingUp } from "lucide-react";
+import { BarChart, Briefcase, LineChart, Presentation, TrendingUp } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const consultingServices: ServiceDetail[] = [
@@ -90,7 +90,7 @@ export const consultingServices: ServiceDetail[] = [
         slug: "technology-strategy",
         title: "Technology Strategy",
         description: "Development of comprehensive technology roadmaps aligned with your business goals to drive innovation, efficiency, and competitive advantage.",
-        icon: PresentationChart,
+        icon: Presentation,
         image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&w=600&q=80"
       },
       {
