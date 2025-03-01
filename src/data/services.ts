@@ -312,8 +312,8 @@ export const serviceDetails: ServiceDetail[] = [
     ],
     technologies: ["AWS", "Microsoft Azure", "Google Cloud", "Docker", "Kubernetes", "Terraform", "CloudFormation", "Lambda", "S3", "EC2"],
     showcaseImages: [
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1451187522-43269d4ea984?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1504639725-87deedd944c3?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1579403124614-197f69d8187b?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&w=600&q=80"
     ],
@@ -388,7 +388,7 @@ export const serviceDetails: ServiceDetail[] = [
     showcaseImages: [
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1573497491765-dccce02b29df?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1600880292-0b7de84388bd?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&w=600&q=80"
     ],
     relatedServices: ["digital-strategy", "cloud-solutions", "cybersecurity"]
@@ -649,3 +649,53 @@ export const serviceDetails: ServiceDetail[] = [
         title: "Email Marketing",
         description: "Personalized email campaigns that nurture leads and drive conversions"
       },
+      {
+        title: "Analytics & Reporting",
+        description: "Comprehensive tracking and analysis of marketing performance"
+      }
+    ],
+    processSteps: [
+      {
+        title: "Discovery & Analysis",
+        description: "Understanding your business, audience, competitors, and current digital presence."
+      },
+      {
+        title: "Strategy Development",
+        description: "Creating a tailored marketing plan with specific goals and metrics."
+      },
+      {
+        title: "Implementation",
+        description: "Executing campaigns across selected digital channels."
+      },
+      {
+        title: "Monitoring & Optimization",
+        description: "Continuous tracking and refinement of campaign performance."
+      },
+      {
+        title: "Reporting & Analysis",
+        description: "Regular reports with insights and recommendations for improvement."
+      },
+      {
+        title: "Strategy Refinement",
+        description: "Evolving your marketing approach based on results and changing market conditions."
+      }
+    ],
+    technologies: ["SEO Tools", "Google Ads", "Social Media Platforms", "Email Marketing Software", "Content Management Systems", "Analytics Platforms"],
+    showcaseImages: [
+      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&w=600&q=80"
+    ],
+    relatedServices: ["web-development", "content-creation", "brand-strategy"]
+  }
+];
+
+export const serviceItems = serviceDetails.map(service => ({
+  id: service.id,
+  icon: service.icon,
+  title: service.title,
+  description: service.shortDescription,
+  slug: service.slug,
+  category: service.category
+}));
