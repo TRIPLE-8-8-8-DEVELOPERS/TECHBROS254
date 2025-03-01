@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -112,42 +111,42 @@ const PerksPage = () => {
       title: "Work From Anywhere",
       description: "Opportunity to work remotely from international locations for up to 4 weeks per year.",
       icon: <Laptop size={32} className="text-tech-500" />,
-      link: "/perks/flexible-work"
+      link: "/perks/work-from-anywhere"
     },
     {
       id: "vacation",
       title: "Generous Time Off",
       description: "Unlimited PTO, paid holidays, sabbaticals for long-term employees, and summer Fridays.",
       icon: <Palmtree size={32} className="text-tech-500" />,
-      link: "/perks/flexible-work"
+      link: "/perks/vacation-time"
     },
     {
       id: "parental",
       title: "Parental Benefits",
       description: "Paid parental leave for all parents, fertility benefits, and family-friendly policies.",
       icon: <Baby size={32} className="text-tech-500" />,
-      link: "/perks/flexible-work"
+      link: "/perks/parental-benefits"
     },
     {
       id: "financial",
       title: "Financial Wellness",
       description: "401(k) matching, financial planning resources, and employee stock purchase program.",
       icon: <Coins size={32} className="text-tech-500" />,
-      link: "/perks/compensation"
+      link: "/perks/financial-wellness"
     },
     {
       id: "recognition",
       title: "Recognition Programs",
       description: "Peer recognition platform, milestone celebrations, and performance-based rewards.",
       icon: <Award size={32} className="text-tech-500" />,
-      link: "/perks/team-events"
+      link: "/perks/recognition-programs"
     },
     {
       id: "food",
       title: "Food & Refreshments",
       description: "Free daily meals, snacks, beverages, and special catering for team events and celebrations.",
       icon: <Coffee size={32} className="text-tech-500" />,
-      link: "/perks/modern-office"
+      link: "/perks/food-refreshments"
     }
   ];
 
