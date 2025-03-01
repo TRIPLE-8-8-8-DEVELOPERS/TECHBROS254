@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import { ArrowRight } from "lucide-react";
 
 interface ServiceCardProps {
   icon: LucideIcon;
@@ -54,16 +56,16 @@ const ServiceCard = ({
   }, [index]);
 
   return (
-    <Link to={`/services/${slug}`}>
-      <div
-        ref={cardRef}
-        className={`service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-500 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        style={{ transitionDelay: `${index * 100}ms` }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+    <div
+      ref={cardRef}
+      className={`service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-500 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Link to={`/services/${slug}`} className="block">
         {image && (
           <div className="h-48 overflow-hidden">
             <img 
@@ -93,10 +95,22 @@ const ServiceCard = ({
           </div>
           <h3 className="text-xl font-semibold mb-2 text-left">{title}</h3>
           <p className="text-sm text-gray-600 text-left">{description}</p>
-          <div className={`w-0 h-0.5 bg-tech-400 mt-4 transition-all duration-500 ${isHovered ? "w-full" : ""}`}></div>
+          
+          <div className="mt-5 flex justify-between items-center">
+            <div className={`w-0 h-0.5 bg-tech-400 transition-all duration-500 ${isHovered ? "w-1/2" : ""}`}></div>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className={`text-tech-600 p-0 hover:bg-transparent hover:text-tech-800 transition-all duration-300 ${
+                isHovered ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
+              }`}
+            >
+              Learn more <ArrowRight className="ml-1 h-4 w-4" />
+            </Button>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

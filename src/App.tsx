@@ -17,6 +17,14 @@ import ServiceDetail from "./components/ServiceDetail";
 import ProjectDetail from "./components/ProjectDetail";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import ServicesPage from "./pages/ServicesPage";
+import DevelopmentServices from "./pages/services/DevelopmentServices";
+import InfrastructureServices from "./pages/services/InfrastructureServices";
+import ConsultingServices from "./pages/services/ConsultingServices";
+import EcommerceServices from "./pages/services/EcommerceServices";
+import AIDataServices from "./pages/services/AIDataServices";
+import SecurityServices from "./pages/services/SecurityServices";
+import MarketingServices from "./pages/services/MarketingServices";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +45,14 @@ const App = () => (
           <Route path="/perks" element={<PerksPage />} />
           <Route path="/benefits" element={<BenefitsPage />} />
           <Route path="/diversity" element={<DiversityPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/development" element={<DevelopmentServices />} />
+          <Route path="/services/infrastructure" element={<InfrastructureServices />} />
+          <Route path="/services/consulting" element={<ConsultingServices />} />
+          <Route path="/services/ecommerce" element={<EcommerceServices />} />
+          <Route path="/services/ai-data" element={<AIDataServices />} />
+          <Route path="/services/security" element={<SecurityServices />} />
+          <Route path="/services/marketing" element={<MarketingServices />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
