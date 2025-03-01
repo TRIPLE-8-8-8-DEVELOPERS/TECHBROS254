@@ -9,6 +9,7 @@ export interface ServiceDetail {
   shortDescription: string;
   description: string[];
   image: string;
+  category: string; // Add category property to the interface
   keyFeatures?: {
     title: string;
     description: string;
@@ -28,6 +29,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "custom-software-development",
     title: "Custom Software Development",
     icon: Code,
+    category: "Development", // Add category
     shortDescription: "Scalable, high-performance applications tailored to your business needs and goals.",
     description: [
       "At TechBros, we specialize in developing custom software solutions that perfectly align with your business requirements and objectives. Our expert team of developers, architects, and analysts work collaboratively to create robust, scalable, and secure applications that drive efficiency and growth.",
@@ -101,6 +103,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "web-development",
     title: "Web Development",
     icon: Globe,
+    category: "Development", // Add category
     shortDescription: "Professional, responsive, and high-converting websites and web applications.",
     description: [
       "Our web development services deliver stunning, functional websites that elevate your brand and drive business results. We combine cutting-edge technology with creative design to create web experiences that engage visitors and convert them into customers.",
@@ -174,6 +177,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "mobile-app-development",
     title: "Mobile App Development",
     icon: Smartphone,
+    category: "Development", // Add category
     shortDescription: "Cross-platform and native app solutions for seamless mobile experiences.",
     description: [
       "Our mobile app development services create powerful, intuitive applications that engage users and extend your brand's reach. We develop for both iOS and Android platforms, ensuring your app reaches the widest possible audience with a consistent user experience.",
@@ -247,6 +251,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "cloud-solutions",
     title: "Cloud Solutions",
     icon: Cloud,
+    category: "Infrastructure", // Add category
     shortDescription: "Secure cloud integration, migration, and optimization services for your business.",
     description: [
       "Our cloud solutions help businesses leverage the power of cloud computing for improved scalability, cost-efficiency, and operational agility. We offer comprehensive cloud services including migration, integration, optimization, and managed cloud services tailored to your specific needs.",
@@ -320,6 +325,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "it-consulting",
     title: "IT Consulting",
     icon: LineChart,
+    category: "Consulting", // Add category
     shortDescription: "Strategic guidance for digital transformation and tech infrastructure optimization.",
     description: [
       "Our IT consulting services provide strategic technology guidance to help businesses leverage digital solutions to achieve their goals. We work closely with your team to understand your business challenges, identify opportunities for improvement, and develop technology roadmaps that align with your objectives.",
@@ -393,6 +399,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "e-commerce-solutions",
     title: "E-commerce Solutions",
     icon: ShoppingCart,
+    category: "E-commerce", // Add category
     shortDescription: "Custom online stores, marketplace integration, and payment solutions.",
     description: [
       "Our e-commerce solutions help businesses establish and grow their online sales channels with custom-built online stores that deliver exceptional shopping experiences. We develop robust, scalable e-commerce platforms that drive conversions and build customer loyalty.",
@@ -466,6 +473,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "ai-machine-learning",
     title: "AI & Machine Learning",
     icon: BrainCircuit,
+    category: "AI & Data", // Add category
     shortDescription: "Predictive analytics, automation, and intelligent business solutions.",
     description: [
       "Our AI and Machine Learning services help businesses leverage the power of artificial intelligence to gain valuable insights, automate processes, and create intelligent products. We develop custom AI solutions that solve complex business problems and create competitive advantages.",
@@ -539,6 +547,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "cybersecurity",
     title: "Cybersecurity",
     icon: ShieldCheck,
+    category: "Security", // Add category
     shortDescription: "Advanced security solutions to safeguard your business assets and data.",
     description: [
       "Our cybersecurity services provide comprehensive protection for your digital assets against evolving threats and vulnerabilities. We offer end-to-end security solutions including risk assessment, security implementation, monitoring, and incident response.",
@@ -612,6 +621,7 @@ export const serviceDetails: ServiceDetail[] = [
     slug: "digital-marketing",
     title: "Digital Marketing",
     icon: BarChart3,
+    category: "Marketing", // Add category
     shortDescription: "SEO, social media, PPC, and content marketing for business growth.",
     description: [
       "Our digital marketing services help businesses increase their online visibility, attract qualified leads, and convert them into loyal customers. We develop comprehensive digital marketing strategies tailored to your specific business goals, target audience, and competitive landscape.",
@@ -687,5 +697,6 @@ export const serviceItems = serviceDetails.map(service => ({
   icon: service.icon,
   title: service.title,
   description: service.shortDescription,
-  slug: service.slug
+  slug: service.slug,
+  category: service.category // Add category to the mapped objects
 }));
