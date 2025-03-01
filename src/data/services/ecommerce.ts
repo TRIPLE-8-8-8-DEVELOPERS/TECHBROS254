@@ -10,7 +10,7 @@ const ecommerceServices: ServiceDetail[] = [
     category: "E-commerce",
     icon: ShoppingCart,
     shortDescription: "Custom e-commerce solutions tailored to your specific business needs and target audience.",
-    description: "We create custom e-commerce platforms that help you sell products online efficiently. Our solutions are designed to provide a seamless shopping experience for your customers and easy management for your team.",
+    description: ["We create custom e-commerce platforms that help you sell products online efficiently. Our solutions are designed to provide a seamless shopping experience for your customers and easy management for your team."],
     image: "https://images.unsplash.com/photo-1556742031-c6961e8560b0?auto=format&fit=crop&q=80",
     subcategories: [
       {
@@ -46,7 +46,7 @@ const ecommerceServices: ServiceDetail[] = [
     category: "E-commerce",
     icon: CreditCard,
     shortDescription: "Secure payment gateway integration and processing solutions for your online store.",
-    description: "We implement secure payment processing solutions that support multiple payment methods and currencies. Our integrations ensure a smooth checkout experience while maintaining the highest level of security.",
+    description: ["We implement secure payment processing solutions that support multiple payment methods and currencies. Our integrations ensure a smooth checkout experience while maintaining the highest level of security."],
     image: "https://images.unsplash.com/photo-1580519542036-c47de6d5f2ed?auto=format&fit=crop&q=80",
     subcategories: [
       {
@@ -82,7 +82,7 @@ const ecommerceServices: ServiceDetail[] = [
     category: "E-commerce",
     icon: TrendingUp,
     shortDescription: "Strategies and tools to increase traffic, improve conversion rates, and grow your online sales.",
-    description: "Our e-commerce marketing services help you attract more customers and increase sales. We use data-driven strategies to optimize your marketing efforts and maximize your ROI.",
+    description: ["Our e-commerce marketing services help you attract more customers and increase sales. We use data-driven strategies to optimize your marketing efforts and maximize your ROI."],
     image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&q=80",
     subcategories: [
       {
@@ -118,7 +118,7 @@ const ecommerceServices: ServiceDetail[] = [
     category: "E-commerce",
     icon: Package,
     shortDescription: "End-to-end order management and fulfillment solutions to streamline your operations.",
-    description: "We implement order fulfillment solutions that automate and streamline your order processing workflow. Our systems help you manage inventory, process orders efficiently, and provide a better customer experience.",
+    description: ["We implement order fulfillment solutions that automate and streamline your order processing workflow. Our systems help you manage inventory, process orders efficiently, and provide a better customer experience."],
     image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80",
     subcategories: [
       {

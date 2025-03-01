@@ -10,7 +10,7 @@ const developmentServices: ServiceDetail[] = [
     category: "Development",
     icon: Globe,
     shortDescription: "Custom web applications tailored to your business needs using the latest technologies.",
-    description: "Our web development team creates custom web applications that are fast, secure, and scalable. We use the latest web technologies to ensure your application is future-proof.",
+    description: ["Our web development team creates custom web applications that are fast, secure, and scalable. We use the latest web technologies to ensure your application is future-proof."],
     image: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?auto=format&fit=crop&q=80",
     subcategories: [
       {
@@ -46,7 +46,7 @@ const developmentServices: ServiceDetail[] = [
     category: "Development",
     icon: Smartphone,
     shortDescription: "Native and cross-platform mobile applications for iOS and Android.",
-    description: "We build high-performance mobile applications that provide a seamless user experience across all devices. Our team specializes in both native and cross-platform development.",
+    description: ["We build high-performance mobile applications that provide a seamless user experience across all devices. Our team specializes in both native and cross-platform development."],
     image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80",
     subcategories: [
       {
@@ -82,7 +82,7 @@ const developmentServices: ServiceDetail[] = [
     category: "Development",
     icon: Wrench,
     shortDescription: "Bespoke software solutions designed to address your specific business challenges.",
-    description: "We create custom software solutions that automate processes, improve efficiency, and help your business grow. Our development process ensures your software is maintainable and scalable.",
+    description: ["We create custom software solutions that automate processes, improve efficiency, and help your business grow. Our development process ensures your software is maintainable and scalable."],
     image: "https://images.unsplash.com/photo-1580894742597-87bc8789db3d?auto=format&fit=crop&q=80",
     subcategories: [
       {
