@@ -2,7 +2,7 @@
 import { LucideIcon } from "lucide-react";
 
 export interface ServiceDetail {
-  id: number;
+  id: string;
   slug: string;
   title: string;
   icon: any; // LucideIcon
@@ -25,7 +25,7 @@ export interface ServiceDetail {
 }
 
 export interface SubCategory {
-  id: number;
+  id: string;
   slug: string;
   title: string;
   description: string;
