@@ -4,7 +4,7 @@ import { ServiceDetail } from "./types";
 
 export const securityServices: ServiceDetail[] = [
   {
-    id: 8,
+    id: "cybersecurity",
     slug: "cybersecurity",
     title: "Cybersecurity",
     icon: ShieldCheck,
@@ -78,7 +78,7 @@ export const securityServices: ServiceDetail[] = [
     relatedServices: ["cloud-solutions", "it-consulting", "compliance-services"],
     subcategories: [
       {
-        id: 801,
+        id: "network-security",
         slug: "network-security",
         title: "Network Security",
         description: "Protect your organization's network infrastructure against unauthorized access, misuse, and cyber attacks with advanced security solutions.",
@@ -86,7 +86,7 @@ export const securityServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&w=600&q=80"
       },
       {
-        id: 802,
+        id: "data-protection",
         slug: "data-protection",
         title: "Data Protection",
         description: "Comprehensive data security solutions including encryption, access controls, and backup strategies to safeguard your sensitive information.",
@@ -94,7 +94,7 @@ export const securityServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1639322537231-2f206e06af84?auto=format&w=600&q=80"
       },
       {
-        id: 803,
+        id: "security-audits",
         slug: "security-audits",
         title: "Security Audits & Assessments",
         description: "Thorough evaluation of your security posture to identify vulnerabilities, compliance gaps, and areas requiring improvement.",
@@ -102,7 +102,7 @@ export const securityServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1614064642761-54893b236e90?auto=format&w=600&q=80"
       },
       {
-        id: 804,
+        id: "incident-response",
         slug: "incident-response",
         title: "Incident Response",
         description: "Rapid detection, investigation, and recovery from security breaches to minimize damage and restore normal operations quickly.",

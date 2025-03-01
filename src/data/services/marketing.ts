@@ -4,7 +4,7 @@ import { ServiceDetail } from "./types";
 
 export const marketingServices: ServiceDetail[] = [
   {
-    id: 9,
+    id: "digital-marketing",
     slug: "digital-marketing",
     title: "Digital Marketing",
     icon: BarChart3,
@@ -78,7 +78,7 @@ export const marketingServices: ServiceDetail[] = [
     relatedServices: ["web-development", "content-creation", "brand-strategy"],
     subcategories: [
       {
-        id: 901,
+        id: "search-engine-optimization",
         slug: "search-engine-optimization",
         title: "Search Engine Optimization",
         description: "Improve your website's visibility in search engine results to drive more organic traffic and potential customers to your business.",
@@ -86,7 +86,7 @@ export const marketingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1571715696756-5000d9c2c115?auto=format&w=600&q=80"
       },
       {
-        id: 902,
+        id: "social-media-marketing",
         slug: "social-media-marketing",
         title: "Social Media Marketing",
         description: "Engage with your audience and build brand awareness through strategic content and campaigns across social media platforms.",
@@ -94,7 +94,7 @@ export const marketingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&w=600&q=80"
       },
       {
-        id: 903,
+        id: "content-marketing",
         slug: "content-marketing",
         title: "Content Marketing",
         description: "Attract and retain customers through valuable, relevant content that establishes your brand as an industry authority.",
@@ -102,7 +102,7 @@ export const marketingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&w=600&q=80"
       },
       {
-        id: 904,
+        id: "email-marketing",
         slug: "email-marketing",
         title: "Email Marketing",
         description: "Nurture leads and drive conversions with targeted, personalized email campaigns that deliver the right message at the right time.",
@@ -110,7 +110,7 @@ export const marketingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&w=600&q=80"
       },
       {
-        id: 905,
+        id: "ppc-advertising",
         slug: "ppc-advertising",
         title: "PPC Advertising",
         description: "Drive immediate traffic and conversions with strategically targeted pay-per-click campaigns across search engines and social platforms.",

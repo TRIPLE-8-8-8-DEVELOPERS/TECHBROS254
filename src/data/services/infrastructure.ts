@@ -4,7 +4,7 @@ import { ServiceDetail } from "./types";
 
 export const infrastructureServices: ServiceDetail[] = [
   {
-    id: 4,
+    id: "cloud-solutions",
     slug: "cloud-solutions",
     title: "Cloud Solutions",
     icon: Cloud,
@@ -78,7 +78,7 @@ export const infrastructureServices: ServiceDetail[] = [
     relatedServices: ["custom-software-development", "cybersecurity", "it-consulting"],
     subcategories: [
       {
-        id: 401,
+        id: "aws-services",
         slug: "aws-services",
         title: "AWS Services",
         description: "Comprehensive Amazon Web Services solutions for scalable, reliable, and secure cloud infrastructure and applications.",
@@ -86,7 +86,7 @@ export const infrastructureServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&w=600&q=80"
       },
       {
-        id: 402,
+        id: "azure-services",
         slug: "azure-services",
         title: "Azure Services",
         description: "Microsoft Azure consulting and implementation to leverage the full potential of Microsoft's enterprise-grade cloud computing platform.",
@@ -94,7 +94,7 @@ export const infrastructureServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1614064642639-e398341ae7ea?auto=format&w=600&q=80"
       },
       {
-        id: 403,
+        id: "cloud-migration",
         slug: "cloud-migration",
         title: "Cloud Migration",
         description: "Seamless transition of your existing applications, databases, and IT infrastructure to optimal cloud environments with minimal disruption.",
@@ -102,7 +102,7 @@ export const infrastructureServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1606765962248-7ff407b51667?auto=format&w=600&q=80"
       },
       {
-        id: 404,
+        id: "cloud-security",
         slug: "cloud-security",
         title: "Cloud Security",
         description: "Advanced cloud security solutions that protect your data, applications, and infrastructure from threats while maintaining compliance.",
@@ -110,7 +110,7 @@ export const infrastructureServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&w=600&q=80"
       },
       {
-        id: 405,
+        id: "cloud-databases",
         slug: "cloud-databases",
         title: "Cloud Databases",
         description: "Scalable, high-performance database solutions in the cloud for optimal data management, analytics, and business intelligence.",

@@ -4,7 +4,7 @@ import { ServiceDetail } from "./types";
 
 export const consultingServices: ServiceDetail[] = [
   {
-    id: 5,
+    id: "it-consulting",
     slug: "it-consulting",
     title: "IT Consulting",
     icon: LineChart,
@@ -78,7 +78,7 @@ export const consultingServices: ServiceDetail[] = [
     relatedServices: ["digital-strategy", "cloud-solutions", "cybersecurity"],
     subcategories: [
       {
-        id: 501,
+        id: "digital-transformation",
         slug: "digital-transformation",
         title: "Digital Transformation",
         description: "Strategic guidance to help organizations evolve with digital technology, reinvent business models, and adapt to changing market conditions.",
@@ -86,7 +86,7 @@ export const consultingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&w=600&q=80"
       },
       {
-        id: 502,
+        id: "technology-strategy",
         slug: "technology-strategy",
         title: "Technology Strategy",
         description: "Development of comprehensive technology roadmaps aligned with your business goals to drive innovation, efficiency, and competitive advantage.",
@@ -94,7 +94,7 @@ export const consultingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=600&q=80"
       },
       {
-        id: 503,
+        id: "business-process-optimization",
         slug: "business-process-optimization",
         title: "Business Process Optimization",
         description: "Streamlining and improving your operational workflows to increase efficiency, reduce costs, and enhance overall business performance.",
@@ -102,7 +102,7 @@ export const consultingServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1589461766104-0d30f3f7782d?auto=format&w=600&q=80"
       },
       {
-        id: 504,
+        id: "change-management",
         slug: "change-management",
         title: "Change Management",
         description: "Guiding your organization through technological and operational changes with strategies for minimizing disruption and maximizing adoption.",

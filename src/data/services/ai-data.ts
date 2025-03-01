@@ -4,7 +4,7 @@ import { ServiceDetail } from "./types";
 
 export const aiDataServices: ServiceDetail[] = [
   {
-    id: 7,
+    id: "ai-machine-learning",
     slug: "ai-machine-learning",
     title: "AI & Machine Learning",
     icon: BrainCircuit,
@@ -78,7 +78,7 @@ export const aiDataServices: ServiceDetail[] = [
     relatedServices: ["custom-software-development", "data-analytics", "cloud-solutions"],
     subcategories: [
       {
-        id: 701,
+        id: "machine-learning",
         slug: "machine-learning",
         title: "Machine Learning",
         description: "Custom machine learning models and algorithms that enable your systems to learn from data and improve performance without explicit programming.",
@@ -86,7 +86,7 @@ export const aiDataServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?auto=format&w=600&q=80"
       },
       {
-        id: 702,
+        id: "natural-language-processing",
         slug: "natural-language-processing",
         title: "Natural Language Processing",
         description: "AI systems that can understand, interpret, and generate human language, powering chatbots, sentiment analysis, and content generation.",
@@ -94,7 +94,7 @@ export const aiDataServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1655720828018-7467e7029825?auto=format&w=600&q=80"
       },
       {
-        id: 703,
+        id: "data-analytics",
         slug: "data-analytics",
         title: "Data Analytics",
         description: "Advanced data analysis and visualization to extract actionable insights from your business data for better decision-making.",
@@ -102,7 +102,7 @@ export const aiDataServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=600&q=80"
       },
       {
-        id: 704,
+        id: "predictive-analytics",
         slug: "predictive-analytics",
         title: "Predictive Analytics",
         description: "Forecasting tools and models that analyze historical data to predict future outcomes and trends for proactive business planning.",
@@ -110,7 +110,7 @@ export const aiDataServices: ServiceDetail[] = [
         image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&w=600&q=80"
       },
       {
-        id: 705,
+        id: "big-data",
         slug: "big-data",
         title: "Big Data Solutions",
         description: "Comprehensive infrastructure and tools to collect, store, process, and analyze large volumes of structured and unstructured data.",
