@@ -1,10 +1,9 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ScrollProgress from "../../components/ScrollProgress";
-import { ArrowLeft, Building2, Coffee, Sofa, Wifi, Monitor, Utensils, Music, Palette, Plant } from "lucide-react";
+import { ArrowLeft, Building2, Coffee, Sofa, Wifi, Monitor, Utensils, Music, Palette, Leaf } from "lucide-react";
 
 const ModernOfficePage = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -141,7 +140,7 @@ const ModernOfficePage = () => {
                   
                   <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 md:col-span-2">
                     <div className="w-12 h-12 bg-tech-100 rounded-lg flex items-center justify-center mb-4">
-                      <Plant size={24} className="text-tech-600" />
+                      <Leaf size={24} className="text-tech-600" />
                     </div>
                     <h3 className="text-xl font-semibold mb-3">Biophilic Design</h3>
                     <p className="text-gray-600">
