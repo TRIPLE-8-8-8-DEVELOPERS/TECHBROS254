@@ -39,16 +39,24 @@ const SubCategoryDetail = () => {
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Hero Section */}
-        <section className="relative min-h-[40vh] flex items-center bg-tech-50">
-          <div className="container mx-auto px-4 py-16">
-            <Link to={`/services/${serviceSlug}`} className="inline-flex items-center text-tech-600 hover:text-tech-700 mb-6 transition-colors">
+        {/* Hero Section with Background Image */}
+        <section 
+          className="relative min-h-[50vh] flex items-center bg-gradient-to-r from-tech-700/90 to-tech-900/90 text-white"
+          style={{
+            backgroundImage: `url(${subcategory.image || 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80'})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundBlendMode: 'overlay',
+          }}
+        >
+          <div className="container mx-auto px-4 py-20">
+            <Link to={`/services/${serviceSlug}`} className="inline-flex items-center text-white hover:text-tech-100 mb-6 transition-colors">
               <ArrowLeft size={18} className="mr-2" />
               Back to {service.title}
             </Link>
             <div className={`max-w-3xl transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="mb-4 flex items-center gap-3">
-                <Badge variant="outline" className="bg-tech-100 text-tech-600">
+                <Badge variant="outline" className="bg-tech-100/20 text-white border-tech-100/30">
                   {service.category}
                 </Badge>
                 <span className="inline-block text-sm font-medium bg-tech-400/90 text-white px-4 py-1 rounded-full">
@@ -57,11 +65,11 @@ const SubCategoryDetail = () => {
               </div>
               
               <div className="flex items-center gap-4 mb-6">
-                {Icon && <Icon size={36} className="text-tech-500" />}
+                {Icon && <Icon size={36} className="text-tech-100" />}
                 <h1 className="text-4xl md:text-5xl font-bold">{subcategory.title}</h1>
               </div>
               
-              <p className="text-xl text-gray-700 mb-8 max-w-2xl">
+              <p className="text-xl text-gray-100 mb-8 max-w-2xl">
                 {subcategory.description}
               </p>
             </div>

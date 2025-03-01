@@ -1,118 +1,152 @@
 
-import { ShoppingCart, ShoppingBag, CreditCard, DollarSign } from "lucide-react";
+import { ShoppingCart, CreditCard, TrendingUp, Package, Store } from "lucide-react";
 import { ServiceDetail } from "./types";
 
-export const ecommerceServices: ServiceDetail[] = [
+const ecommerceServices: ServiceDetail[] = [
   {
-    id: 6,
-    slug: "e-commerce-solutions",
-    title: "E-commerce Solutions",
-    icon: ShoppingCart,
+    id: "ecommerce-development",
+    title: "E-commerce Development",
+    slug: "ecommerce-development",
     category: "E-commerce",
-    shortDescription: "Custom e-commerce platforms and solutions to help you sell online.",
-    description: [
-      "Our e-commerce solutions are designed to help businesses of all sizes establish and grow their online presence. We create custom, secure, and scalable online stores that offer seamless user experiences across all devices.",
-      "From small businesses to large enterprises, we build e-commerce platforms tailored to your specific needs, whether you're selling physical products, digital goods, or services. Our solutions integrate with payment gateways, shipping providers, and other third-party services to streamline your operations.",
-      "We focus on creating intuitive, conversion-optimized storefronts that engage your customers and drive sales, while also providing robust back-end systems for inventory management, order processing, and customer relationship management."
-    ],
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&w=1200&q=80",
+    icon: ShoppingCart,
+    shortDescription: "Custom e-commerce solutions tailored to your specific business needs and target audience.",
+    description: "We create custom e-commerce platforms that help you sell products online efficiently. Our solutions are designed to provide a seamless shopping experience for your customers and easy management for your team.",
+    image: "https://images.unsplash.com/photo-1556742031-c6961e8560b0?auto=format&fit=crop&q=80",
     subcategories: [
       {
-        id: 601,
-        slug: "online-store-development",
-        title: "Online Store Development",
-        description: "Custom online store design and development with seamless checkout experiences.",
-        icon: ShoppingBag,
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&w=600&q=80"
+        id: "shopify-development",
+        title: "Shopify Development",
+        slug: "shopify-development",
+        icon: Store,
+        description: "Custom Shopify store development and theme customization",
+        image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&q=80"
       },
       {
-        id: 602,
-        slug: "payment-gateway-integration",
+        id: "woocommerce-development",
+        title: "WooCommerce Development",
+        slug: "woocommerce-development",
+        icon: Store,
+        description: "WordPress-based e-commerce solutions with WooCommerce",
+        image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80"
+      },
+      {
+        id: "magento-development",
+        title: "Magento Development",
+        slug: "magento-development",
+        icon: Store,
+        description: "Enterprise-level e-commerce solutions with Magento",
+        image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&q=80"
+      }
+    ]
+  },
+  {
+    id: "payment-processing",
+    title: "Payment Processing",
+    slug: "payment-processing",
+    category: "E-commerce",
+    icon: CreditCard,
+    shortDescription: "Secure payment gateway integration and processing solutions for your online store.",
+    description: "We implement secure payment processing solutions that support multiple payment methods and currencies. Our integrations ensure a smooth checkout experience while maintaining the highest level of security.",
+    image: "https://images.unsplash.com/photo-1580519542036-c47de6d5f2ed?auto=format&fit=crop&q=80",
+    subcategories: [
+      {
+        id: "payment-gateway-integration",
         title: "Payment Gateway Integration",
-        description: "Secure payment processing solutions for your e-commerce business.",
+        slug: "payment-gateway-integration",
         icon: CreditCard,
-        image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&w=600&q=80"
+        description: "Integration with popular payment gateways such as Stripe, PayPal, and Square",
+        image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80"
       },
       {
-        id: 603,
-        slug: "marketplace-development",
-        title: "Marketplace Development",
-        description: "Multi-vendor marketplace platforms with advanced features and customizations.",
-        icon: ShoppingCart,
-        image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&w=600&q=80"
+        id: "subscription-billing",
+        title: "Subscription Billing",
+        slug: "subscription-billing",
+        icon: CreditCard,
+        description: "Recurring billing solutions for subscription-based business models",
+        image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80"
       },
       {
-        id: 604,
-        slug: "subscription-commerce",
-        title: "Subscription Commerce",
-        description: "Recurring billing and subscription management systems for your business.",
-        icon: DollarSign,
-        image: "https://images.unsplash.com/photo-1472289065668-ce650ac443d2?auto=format&w=600&q=80"
+        id: "multi-currency-support",
+        title: "Multi-Currency Support",
+        slug: "multi-currency-support",
+        icon: CreditCard,
+        description: "Support for international transactions with multiple currencies",
+        image: "https://images.unsplash.com/photo-1521409859178-122d3193e3b4?auto=format&fit=crop&q=80"
       }
-    ],
-    keyFeatures: [
+    ]
+  },
+  {
+    id: "ecommerce-marketing",
+    title: "E-commerce Marketing",
+    slug: "ecommerce-marketing",
+    category: "E-commerce",
+    icon: TrendingUp,
+    shortDescription: "Strategies and tools to increase traffic, improve conversion rates, and grow your online sales.",
+    description: "Our e-commerce marketing services help you attract more customers and increase sales. We use data-driven strategies to optimize your marketing efforts and maximize your ROI.",
+    image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&q=80",
+    subcategories: [
       {
-        title: "Custom Design",
-        description: "Unique and branded storefronts that reflect your business identity"
+        id: "seo-for-ecommerce",
+        title: "SEO for E-commerce",
+        slug: "seo-for-ecommerce",
+        icon: TrendingUp,
+        description: "Search engine optimization strategies specifically for online stores",
+        image: "https://images.unsplash.com/photo-1571721795195-a2b7d27b2434?auto=format&fit=crop&q=80"
       },
       {
-        title: "Mobile Optimization",
-        description: "Responsive design that works flawlessly across all devices"
+        id: "ppc-campaigns",
+        title: "PPC Campaigns",
+        slug: "ppc-campaigns",
+        icon: TrendingUp,
+        description: "Pay-per-click advertising campaigns on Google, Facebook, and Instagram",
+        image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80"
       },
       {
-        title: "Secure Payments",
-        description: "PCI-compliant payment processing to protect customer data"
-      },
+        id: "email-marketing",
+        title: "Email Marketing",
+        slug: "email-marketing",
+        icon: TrendingUp,
+        description: "Automated email campaigns to nurture leads and increase customer retention",
+        image: "https://images.unsplash.com/photo-1579275542618-a1dfed5f54ba?auto=format&fit=crop&q=80"
+      }
+    ]
+  },
+  {
+    id: "order-fulfillment",
+    title: "Order Fulfillment",
+    slug: "order-fulfillment",
+    category: "E-commerce",
+    icon: Package,
+    shortDescription: "End-to-end order management and fulfillment solutions to streamline your operations.",
+    description: "We implement order fulfillment solutions that automate and streamline your order processing workflow. Our systems help you manage inventory, process orders efficiently, and provide a better customer experience.",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80",
+    subcategories: [
       {
+        id: "inventory-management",
         title: "Inventory Management",
-        description: "Real-time tracking and management of product inventory"
+        slug: "inventory-management",
+        icon: Package,
+        description: "Real-time inventory tracking and management across multiple channels",
+        image: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&q=80"
       },
       {
-        title: "Order Processing",
-        description: "Streamlined workflow for handling orders from placement to fulfillment"
+        id: "shipping-integration",
+        title: "Shipping Integration",
+        slug: "shipping-integration",
+        icon: Package,
+        description: "Integration with shipping carriers for automated label generation and tracking",
+        image: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80"
       },
       {
-        title: "Customer Accounts",
-        description: "User registration, profiles, and order history tracking"
+        id: "returns-management",
+        title: "Returns Management",
+        slug: "returns-management",
+        icon: Package,
+        description: "Streamlined returns processing and customer service solutions",
+        image: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80"
       }
-    ],
-    processSteps: [
-      {
-        title: "Discovery",
-        description: "Understanding your business, products, and e-commerce needs."
-      },
-      {
-        title: "Strategy",
-        description: "Developing a comprehensive plan for your online store."
-      },
-      {
-        title: "Design",
-        description: "Creating intuitive and conversion-focused user interfaces."
-      },
-      {
-        title: "Development",
-        description: "Building your e-commerce platform with secure and scalable code."
-      },
-      {
-        title: "Testing",
-        description: "Ensuring functionality, usability, and security across all aspects."
-      },
-      {
-        title: "Launch",
-        description: "Going live with your new e-commerce solution."
-      },
-      {
-        title: "Support",
-        description: "Providing ongoing maintenance and optimization services."
-      }
-    ],
-    technologies: ["Shopify", "WooCommerce", "Magento", "BigCommerce", "Custom Solutions", "React", "Node.js", "PHP", "MongoDB", "PostgreSQL"],
-    showcaseImages: [
-      "https://images.unsplash.com/photo-1613905780946-26b73b6f6e11?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&w=600&q=80"
-    ],
-    relatedServices: ["web-development", "mobile-app-development", "digital-marketing"]
+    ]
   }
 ];
+
+export default ecommerceServices;
