@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
+import { Badge } from "./ui/badge";
 
 interface ServiceCardProps {
   icon: LucideIcon;
@@ -10,9 +11,18 @@ interface ServiceCardProps {
   index?: number;
   slug: string;
   image?: string;
+  category?: string;
 }
 
-const ServiceCard = ({ icon: Icon, title, description, index = 0, slug, image }: ServiceCardProps) => {
+const ServiceCard = ({ 
+  icon: Icon, 
+  title, 
+  description, 
+  index = 0, 
+  slug, 
+  image,
+  category 
+}: ServiceCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -66,6 +76,14 @@ const ServiceCard = ({ icon: Icon, title, description, index = 0, slug, image }:
           </div>
         )}
         <div className="p-6">
+          {category && (
+            <Badge 
+              variant="outline" 
+              className="mb-3 bg-tech-50 text-tech-600 hover:bg-tech-100 border-tech-200"
+            >
+              {category}
+            </Badge>
+          )}
           <div 
             className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
               isHovered ? "bg-tech-400 text-white" : "bg-tech-50 text-tech-400"

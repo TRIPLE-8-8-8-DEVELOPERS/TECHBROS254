@@ -1,24 +1,54 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Check, ChevronDown } from "lucide-react";
+import { ArrowLeft, Check, ChevronDown, Tag } from "lucide-react";
 import { serviceDetails } from "../data/services";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
+import { Badge } from "./ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   
   const service = serviceDetails.find(s => s.slug === slug);
+  
+  // Extract all unique categories
+  const allCategories = ["all", ...Array.from(new Set(serviceDetails.map(item => item.category || "uncategorized")))];
+  
+  // Get related services by category or from the service's relatedServices array
+  const getRelatedServices = () => {
+    if (selectedCategory !== "all") {
+      return serviceDetails
+        .filter(s => s.slug !== slug && s.category === selectedCategory)
+        .slice(0, 3);
+    }
+    
+    if (service?.relatedServices) {
+      return service.relatedServices
+        .map(relatedSlug => serviceDetails.find(s => s.slug === relatedSlug))
+        .filter(Boolean) as typeof serviceDetails;
+    }
+    
+    return [];
+  };
+  
+  const relatedServices = getRelatedServices();
   
   useEffect(() => {
     if (!service) {
       navigate("/services");
       return;
+    }
+    
+    // Set the initial category to the service's category
+    if (service.category) {
+      setSelectedCategory(service.category);
     }
     
     setIsLoaded(true);
@@ -59,10 +89,19 @@ const ServiceDetail = () => {
               Back to Services
             </Link>
             <div className={`max-w-3xl transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="mb-4">
+              <div className="mb-4 flex items-center gap-3">
                 <span className="inline-block text-sm font-medium bg-tech-400/90 px-4 py-1 rounded-full">
                   Service
                 </span>
+                {service.category && (
+                  <Badge 
+                    variant="outline" 
+                    className="bg-white/10 text-white hover:bg-white/20 border-white/30"
+                  >
+                    <Tag size={14} className="mr-1" />
+                    {service.category}
+                  </Badge>
+                )}
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">{service.title}</h1>
               <p className="text-xl text-white/90 mb-8 max-w-2xl">
@@ -268,13 +307,34 @@ const ServiceDetail = () => {
         </section>
 
         {/* Related Services */}
-        {service.relatedServices && (
+        {(service.relatedServices || service.category) && (
           <section className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold mb-10 text-center">Related Services</h2>
+              <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+                <h2 className="text-3xl font-bold text-center md:text-left">Related Services</h2>
+                
+                {/* Category Filters */}
+                <Tabs
+                  value={selectedCategory}
+                  onValueChange={setSelectedCategory}
+                  className="mt-4 md:mt-0"
+                >
+                  <TabsList className="bg-tech-50">
+                    {allCategories.map((category) => (
+                      <TabsTrigger 
+                        key={category} 
+                        value={category}
+                        className="capitalize data-[state=active]:bg-tech-100 data-[state=active]:text-tech-800"
+                      >
+                        {category === "all" ? "All" : category}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                </Tabs>
+              </div>
+              
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {service.relatedServices.map((relatedSlug, index) => {
-                  const relatedService = serviceDetails.find(s => s.slug === relatedSlug);
+                {relatedServices.map((relatedService, index) => {
                   if (!relatedService) return null;
                   
                   return (
@@ -291,6 +351,14 @@ const ServiceDetail = () => {
                         />
                       </div>
                       <div className="p-6">
+                        {relatedService.category && (
+                          <Badge 
+                            variant="outline" 
+                            className="mb-3 bg-tech-50 text-tech-600 hover:bg-tech-100 border-tech-200"
+                          >
+                            {relatedService.category}
+                          </Badge>
+                        )}
                         <h3 className="text-xl font-bold mb-2">{relatedService.title}</h3>
                         <p className="text-gray-600 line-clamp-2">{relatedService.shortDescription}</p>
                       </div>

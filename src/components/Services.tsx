@@ -2,11 +2,21 @@
 import { useState, useEffect, useRef } from "react";
 import ServiceCard from "./ServiceCard";
 import { serviceItems } from "../data/services";
+import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const [titleVisible, setTitleVisible] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  // Extract unique categories
+  const categories = ["all", ...Array.from(new Set(serviceItems.map(item => item.category || "uncategorized")))];
+
+  // Filter services based on selected category
+  const filteredServices = selectedCategory === "all" 
+    ? serviceItems 
+    : serviceItems.filter(service => service.category === selectedCategory);
 
   // Service images
   const serviceImages = {
@@ -67,8 +77,25 @@ const Services = () => {
           </p>
         </div>
 
+        {/* Category Filters */}
+        <div className="mb-10 flex justify-center">
+          <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full max-w-3xl">
+            <TabsList className="w-full flex flex-wrap justify-center bg-tech-50 p-2">
+              {categories.map((category) => (
+                <TabsTrigger 
+                  key={category} 
+                  value={category}
+                  className="capitalize data-[state=active]:bg-tech-100 data-[state=active]:text-tech-800"
+                >
+                  {category === "all" ? "All Services" : category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {serviceItems.map((service, index) => (
+          {filteredServices.map((service, index) => (
             <ServiceCard
               key={service.id}
               icon={service.icon}
@@ -77,6 +104,7 @@ const Services = () => {
               slug={service.slug}
               index={index}
               image={serviceImages[service.slug as keyof typeof serviceImages]}
+              category={service.category}
             />
           ))}
         </div>
