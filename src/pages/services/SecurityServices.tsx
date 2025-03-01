@@ -12,6 +12,8 @@ const SecurityServices = () => {
   
   // Filter services by Security category
   const services = serviceDetails.filter(service => service.category === "Security");
+  // Get all subcategories
+  const allSubcategories = services.flatMap(service => service.subcategories || []);
   
   useEffect(() => {
     setIsLoaded(true);
@@ -62,6 +64,56 @@ const SecurityServices = () => {
                 />
               ))}
             </div>
+            
+            {/* Subcategories Section */}
+            {allSubcategories.length > 0 && (
+              <div className="mt-20">
+                <h2 className="text-3xl font-bold mb-10 text-center">Specialized Security Services</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {allSubcategories.map((subcategory, index) => {
+                    const parentService = services.find(service => 
+                      service.subcategories?.some(sub => sub.id === subcategory.id)
+                    );
+                    const Icon = subcategory.icon;
+                    
+                    return (
+                      <Link 
+                        key={subcategory.id}
+                        to={`/services/${parentService?.slug}/${subcategory.slug}`}
+                        className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-red-200"
+                      >
+                        {subcategory.image && (
+                          <div className="h-40 overflow-hidden">
+                            <img 
+                              src={subcategory.image} 
+                              alt={subcategory.title}
+                              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                            />
+                          </div>
+                        )}
+                        <div className="p-6">
+                          <div className="flex items-center mb-3">
+                            {Icon && (
+                              <div className="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center mr-3 group-hover:bg-red-100 transition-colors">
+                                <Icon size={18} />
+                              </div>
+                            )}
+                            <h3 className="font-bold">{subcategory.title}</h3>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">{subcategory.description}</p>
+                          <div className="flex items-center text-red-500 text-sm font-medium">
+                            Learn more 
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </section>
       </main>
