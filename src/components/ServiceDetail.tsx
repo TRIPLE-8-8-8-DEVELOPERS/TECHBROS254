@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
 import { Badge } from "./ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
+import SubCategoryList from "./SubCategoryList";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -133,6 +134,14 @@ const ServiceDetail = () => {
                     </p>
                   ))}
                 </div>
+                
+                {/* Add SubCategoryList component here */}
+                {service.subcategories && service.subcategories.length > 0 && (
+                  <SubCategoryList 
+                    serviceSlug={service.slug} 
+                    subcategories={service.subcategories} 
+                  />
+                )}
                 
                 {service.keyFeatures && (
                   <div className="mt-12">

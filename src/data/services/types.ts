@@ -10,6 +10,7 @@ export interface ServiceDetail {
   description: string[];
   image: string;
   category: string;
+  subcategories?: SubCategory[];
   keyFeatures?: {
     title: string;
     description: string;
@@ -21,4 +22,13 @@ export interface ServiceDetail {
   technologies?: string[];
   showcaseImages?: string[];
   relatedServices?: string[];
+}
+
+export interface SubCategory {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  icon?: any; // LucideIcon
+  image?: string;
 }
