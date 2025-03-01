@@ -1,5 +1,5 @@
 
-import { Cloud } from "lucide-react";
+import { Cloud, Database, Server, Shield, Workflow } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const infrastructureServices: ServiceDetail[] = [
@@ -75,6 +75,48 @@ export const infrastructureServices: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1579403124614-197f69d8187b?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&w=600&q=80"
     ],
-    relatedServices: ["custom-software-development", "cybersecurity", "it-consulting"]
+    relatedServices: ["custom-software-development", "cybersecurity", "it-consulting"],
+    subcategories: [
+      {
+        id: 401,
+        slug: "aws-services",
+        title: "AWS Services",
+        description: "Comprehensive Amazon Web Services solutions for scalable, reliable, and secure cloud infrastructure and applications.",
+        icon: Cloud,
+        image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&w=600&q=80"
+      },
+      {
+        id: 402,
+        slug: "azure-services",
+        title: "Azure Services",
+        description: "Microsoft Azure consulting and implementation to leverage the full potential of Microsoft's enterprise-grade cloud computing platform.",
+        icon: Server,
+        image: "https://images.unsplash.com/photo-1614064642639-e398341ae7ea?auto=format&w=600&q=80"
+      },
+      {
+        id: 403,
+        slug: "cloud-migration",
+        title: "Cloud Migration",
+        description: "Seamless transition of your existing applications, databases, and IT infrastructure to optimal cloud environments with minimal disruption.",
+        icon: Workflow,
+        image: "https://images.unsplash.com/photo-1606765962248-7ff407b51667?auto=format&w=600&q=80"
+      },
+      {
+        id: 404,
+        slug: "cloud-security",
+        title: "Cloud Security",
+        description: "Advanced cloud security solutions that protect your data, applications, and infrastructure from threats while maintaining compliance.",
+        icon: Shield,
+        image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&w=600&q=80"
+      },
+      {
+        id: 405,
+        slug: "cloud-databases",
+        title: "Cloud Databases",
+        description: "Scalable, high-performance database solutions in the cloud for optimal data management, analytics, and business intelligence.",
+        icon: Database,
+        image: "https://images.unsplash.com/photo-1569396116180-210c182bedb8?auto=format&w=600&q=80"
+      }
+    ]
   }
 ];

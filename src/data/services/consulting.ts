@@ -1,5 +1,5 @@
 
-import { LineChart } from "lucide-react";
+import { BarChart, Briefcase, LineChart, PresentationChart, TrendingUp } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const consultingServices: ServiceDetail[] = [
@@ -75,6 +75,40 @@ export const consultingServices: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1600880292-0b7de84388bd?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&w=600&q=80"
     ],
-    relatedServices: ["digital-strategy", "cloud-solutions", "cybersecurity"]
+    relatedServices: ["digital-strategy", "cloud-solutions", "cybersecurity"],
+    subcategories: [
+      {
+        id: 501,
+        slug: "digital-transformation",
+        title: "Digital Transformation",
+        description: "Strategic guidance to help organizations evolve with digital technology, reinvent business models, and adapt to changing market conditions.",
+        icon: TrendingUp,
+        image: "https://images.unsplash.com/photo-1525953495391-61c1152dcb66?auto=format&w=600&q=80"
+      },
+      {
+        id: 502,
+        slug: "technology-strategy",
+        title: "Technology Strategy",
+        description: "Development of comprehensive technology roadmaps aligned with your business goals to drive innovation, efficiency, and competitive advantage.",
+        icon: PresentationChart,
+        image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&w=600&q=80"
+      },
+      {
+        id: 503,
+        slug: "business-process-optimization",
+        title: "Business Process Optimization",
+        description: "Streamlining and improving your operational workflows to increase efficiency, reduce costs, and enhance overall business performance.",
+        icon: BarChart,
+        image: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?auto=format&w=600&q=80"
+      },
+      {
+        id: 504,
+        slug: "change-management",
+        title: "Change Management",
+        description: "Guiding your organization through technological and operational changes with strategies for minimizing disruption and maximizing adoption.",
+        icon: Briefcase,
+        image: "https://images.unsplash.com/photo-1529119513315-e46523825d2d?auto=format&w=600&q=80"
+      }
+    ]
   }
 ];

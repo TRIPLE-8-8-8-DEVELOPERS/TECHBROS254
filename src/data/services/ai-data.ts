@@ -1,5 +1,5 @@
 
-import { BrainCircuit } from "lucide-react";
+import { BarChartHorizontal, BrainCircuit, CircleDashed, Database, LineChart } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const aiDataServices: ServiceDetail[] = [
@@ -75,6 +75,48 @@ export const aiDataServices: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1598425237654-4fc758e50a93?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&w=600&q=80"
     ],
-    relatedServices: ["custom-software-development", "data-analytics", "cloud-solutions"]
+    relatedServices: ["custom-software-development", "data-analytics", "cloud-solutions"],
+    subcategories: [
+      {
+        id: 701,
+        slug: "machine-learning",
+        title: "Machine Learning",
+        description: "Custom machine learning models and algorithms that enable your systems to learn from data and improve performance without explicit programming.",
+        icon: BrainCircuit,
+        image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?auto=format&w=600&q=80"
+      },
+      {
+        id: 702,
+        slug: "natural-language-processing",
+        title: "Natural Language Processing",
+        description: "AI systems that can understand, interpret, and generate human language, powering chatbots, sentiment analysis, and content generation.",
+        icon: CircleDashed,
+        image: "https://images.unsplash.com/photo-1655720828018-7467e7029825?auto=format&w=600&q=80"
+      },
+      {
+        id: 703,
+        slug: "data-analytics",
+        title: "Data Analytics",
+        description: "Advanced data analysis and visualization to extract actionable insights from your business data for better decision-making.",
+        icon: BarChartHorizontal,
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=600&q=80"
+      },
+      {
+        id: 704,
+        slug: "predictive-analytics",
+        title: "Predictive Analytics",
+        description: "Forecasting tools and models that analyze historical data to predict future outcomes and trends for proactive business planning.",
+        icon: LineChart,
+        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&w=600&q=80"
+      },
+      {
+        id: 705,
+        slug: "big-data",
+        title: "Big Data Solutions",
+        description: "Comprehensive infrastructure and tools to collect, store, process, and analyze large volumes of structured and unstructured data.",
+        icon: Database,
+        image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&w=600&q=80"
+      }
+    ]
   }
 ];

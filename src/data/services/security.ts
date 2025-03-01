@@ -1,5 +1,5 @@
 
-import { ShieldCheck } from "lucide-react";
+import { AlertTriangle, FileCheck, Lock, Shield, ShieldCheck } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const securityServices: ServiceDetail[] = [
@@ -75,6 +75,40 @@ export const securityServices: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1510511336377-1a9d3abcbd3c?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&w=600&q=80"
     ],
-    relatedServices: ["cloud-solutions", "it-consulting", "compliance-services"]
+    relatedServices: ["cloud-solutions", "it-consulting", "compliance-services"],
+    subcategories: [
+      {
+        id: 801,
+        slug: "network-security",
+        title: "Network Security",
+        description: "Protect your organization's network infrastructure against unauthorized access, misuse, and cyber attacks with advanced security solutions.",
+        icon: Shield,
+        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&w=600&q=80"
+      },
+      {
+        id: 802,
+        slug: "data-protection",
+        title: "Data Protection",
+        description: "Comprehensive data security solutions including encryption, access controls, and backup strategies to safeguard your sensitive information.",
+        icon: Lock,
+        image: "https://images.unsplash.com/photo-1614064643083-5dc8ed0b6cc0?auto=format&w=600&q=80"
+      },
+      {
+        id: 803,
+        slug: "security-audits",
+        title: "Security Audits & Assessments",
+        description: "Thorough evaluation of your security posture to identify vulnerabilities, compliance gaps, and areas requiring improvement.",
+        icon: FileCheck,
+        image: "https://images.unsplash.com/photo-1593642533144-3d62aa4783ec?auto=format&w=600&q=80"
+      },
+      {
+        id: 804,
+        slug: "incident-response",
+        title: "Incident Response",
+        description: "Rapid detection, investigation, and recovery from security breaches to minimize damage and restore normal operations quickly.",
+        icon: AlertTriangle,
+        image: "https://images.unsplash.com/photo-1616066026363-e76972c8a7c7?auto=format&w=600&q=80"
+      }
+    ]
   }
 ];

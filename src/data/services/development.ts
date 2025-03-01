@@ -1,228 +1,313 @@
-
-import { Code, Globe, Smartphone } from "lucide-react";
+import { Code, Code2, Globe, Smartphone, Wrench } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const developmentServices: ServiceDetail[] = [
   {
     id: 1,
-    slug: "custom-software-development",
-    title: "Custom Software Development",
-    icon: Code,
-    category: "Development",
-    shortDescription: "Scalable, high-performance applications tailored to your business needs and goals.",
-    description: [
-      "At TechBros, we specialize in developing custom software solutions that perfectly align with your business requirements and objectives. Our expert team of developers, architects, and analysts work collaboratively to create robust, scalable, and secure applications that drive efficiency and growth.",
-      "We follow a comprehensive approach to software development, starting with a thorough analysis of your business needs, followed by detailed planning, agile development, rigorous testing, and ongoing support and maintenance. This ensures that the final product not only meets but exceeds your expectations.",
-      "Our custom software solutions are designed to address specific business challenges, streamline processes, and provide a competitive edge in your industry. Whether you need to automate workflows, integrate disparate systems, or build a completely new application from scratch, we have the expertise to deliver exceptional results."
-    ],
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&w=1200&q=80",
-    keyFeatures: [
-      {
-        title: "Tailored Solutions",
-        description: "Software precisely designed to address your specific business needs"
-      },
-      {
-        title: "Scalability",
-        description: "Applications that grow alongside your business without performance issues"
-      },
-      {
-        title: "Enhanced Efficiency",
-        description: "Streamlined processes and automated workflows for improved productivity"
-      },
-      {
-        title: "Integration Capabilities",
-        description: "Seamless connections with existing systems and third-party applications"
-      },
-      {
-        title: "Data Security",
-        description: "Robust security measures to protect sensitive information"
-      },
-      {
-        title: "User-Friendly Design",
-        description: "Intuitive interfaces that enhance user adoption and satisfaction"
-      }
-    ],
-    processSteps: [
-      {
-        title: "Discovery & Analysis",
-        description: "We begin by understanding your business, challenges, and objectives to define clear requirements."
-      },
-      {
-        title: "Planning & Architecture",
-        description: "Our team creates a detailed roadmap and technical architecture for your software solution."
-      },
-      {
-        title: "Development",
-        description: "Using agile methodologies, we develop your software iteratively with regular progress updates."
-      },
-      {
-        title: "Quality Assurance",
-        description: "Rigorous testing ensures your software is bug-free, secure, and meets all requirements."
-      },
-      {
-        title: "Deployment",
-        description: "We carefully implement your software into your environment with minimal disruption."
-      },
-      {
-        title: "Support & Maintenance",
-        description: "Ongoing assistance and updates keep your software performing optimally long-term."
-      }
-    ],
-    technologies: ["C#", "Java", "Python", "Node.js", "React", "Angular", "AWS", "Azure", "SQL", "NoSQL"],
-    showcaseImages: [
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1550439062-609e1531270e?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1551033406-611cf9a28f67?auto=format&w=600&q=80"
-    ],
-    relatedServices: ["web-development", "mobile-app-development", "cloud-solutions"]
-  },
-  {
-    id: 2,
     slug: "web-development",
     title: "Web Development",
     icon: Globe,
     category: "Development",
-    shortDescription: "Professional, responsive, and high-converting websites and web applications.",
+    shortDescription: "Custom websites and web applications designed for your unique business needs.",
     description: [
-      "Our web development services deliver stunning, functional websites that elevate your brand and drive business results. We combine cutting-edge technology with creative design to create web experiences that engage visitors and convert them into customers.",
-      "Every website we build is responsive, ensuring optimal performance across all devices. We focus on creating intuitive user interfaces backed by robust functionality, whether you need a corporate website, e-commerce platform, or a complex web application.",
-      "Performance optimization is at the core of our web development process. We ensure your website loads quickly, ranks well in search engines, and provides seamless navigation for users. Our development team stays updated with the latest technologies and best practices to deliver modern, future-proof web solutions."
+      "Our web development services provide custom-built, scalable, and high-performing websites and web applications tailored to your specific business needs. From simple brochure sites to complex web applications, we leverage modern technologies and best practices to create solutions that drive business growth.",
+      "We follow a collaborative approach to web development, working closely with you throughout the process to ensure the final product aligns with your vision and objectives. Our development process emphasizes clean code, thorough testing, and seamless deployment to deliver high-quality web solutions.",
+      "Our experienced development team stays current with the latest technologies and techniques to build websites and applications that not only look great but also offer exceptional user experience, performance, and security."
     ],
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?auto=format&w=1200&q=80",
     keyFeatures: [
       {
         title: "Responsive Design",
-        description: "Websites that look and function perfectly on all devices and screen sizes"
+        description: "Websites that adapt perfectly to all devices and screen sizes"
       },
       {
-        title: "SEO Optimization",
-        description: "Built-in search engine optimization for improved visibility and ranking"
-      },
-      {
-        title: "Fast Loading Speed",
-        description: "Performance-optimized code for quick page loading and enhanced user experience"
+        title: "Performance Optimization",
+        description: "Fast-loading pages that provide an excellent user experience"
       },
       {
         title: "Content Management",
-        description: "User-friendly CMS solutions that make content updates simple"
+        description: "Easy-to-use systems for updating and managing content"
       },
       {
-        title: "E-commerce Integration",
-        description: "Secure shopping carts, payment processing, and inventory management"
+        title: "Custom Functionality",
+        description: "Tailored features that address your specific business requirements"
       },
       {
-        title: "Analytics Setup",
-        description: "Integrated tracking tools to monitor performance and user behavior"
+        title: "Integration Capabilities",
+        description: "Seamless connection with third-party services and APIs"
+      },
+      {
+        title: "SEO Best Practices",
+        description: "Built-in optimization for better search engine visibility"
       }
     ],
     processSteps: [
       {
         title: "Discovery",
-        description: "We explore your business goals, target audience, and specific requirements."
+        description: "Understanding your business, goals, and requirements for the website."
       },
       {
-        title: "Planning & Wireframing",
-        description: "Creating the blueprint of your website's structure and user flow."
+        title: "Planning",
+        description: "Developing site architecture, wireframes, and project roadmap."
       },
       {
         title: "Design",
-        description: "Developing visual mockups that align with your brand identity."
+        description: "Creating visual mockups and UI/UX designs for approval."
       },
       {
         title: "Development",
-        description: "Building the functional website with clean, optimized code."
+        description: "Building the website with clean, efficient code."
       },
       {
-        title: "Testing & QA",
-        description: "Rigorous testing across devices, browsers, and user scenarios."
+        title: "Testing",
+        description: "Ensuring quality across devices, browsers, and use cases."
       },
       {
-        title: "Launch & Support",
-        description: "Deploying your website and providing ongoing maintenance."
+        title: "Deployment",
+        description: "Launching the website and providing ongoing support."
       }
     ],
-    technologies: ["HTML5", "CSS3", "JavaScript", "React", "Vue.js", "PHP", "WordPress", "Shopify", "Node.js", "MongoDB"],
+    technologies: ["React", "Angular", "Vue.js", "Node.js", "PHP", "Ruby on Rails", "WordPress", "HTML5", "CSS3", "JavaScript"],
     showcaseImages: [
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1481487196290-c152efe083f5?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&w=600&q=80"
+      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&w=600&q=80"
     ],
-    relatedServices: ["custom-software-development", "e-commerce-solutions", "digital-marketing"]
+    relatedServices: ["mobile-app-development", "ui-ux-design", "e-commerce-development"],
+    subcategories: [
+      {
+        id: 101,
+        slug: "frontend-development",
+        title: "Frontend Development",
+        description: "Creating beautiful, responsive, and interactive user interfaces that engage your visitors and deliver exceptional user experiences.",
+        icon: Code,
+        image: "https://images.unsplash.com/photo-1581092335878-8c338f11637f?auto=format&w=600&q=80"
+      },
+      {
+        id: 102,
+        slug: "backend-development",
+        title: "Backend Development",
+        description: "Building robust, scalable server-side applications and APIs that power your web platforms with high performance and reliability.",
+        icon: Code2,
+        image: "https://images.unsplash.com/photo-1572177191856-3cde618dee1f?auto=format&w=600&q=80"
+      },
+      {
+        id: 103,
+        slug: "full-stack-development",
+        title: "Full-Stack Development",
+        description: "End-to-end web development combining frontend and backend expertise to create complete, cohesive, and powerful web applications.",
+        icon: Wrench,
+        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&w=600&q=80"
+      },
+      {
+        id: 104,
+        slug: "progressive-web-apps",
+        title: "Progressive Web Apps",
+        description: "Developing fast, reliable web applications that work offline and provide a native app-like experience to boost engagement and conversion rates.",
+        icon: Smartphone,
+        image: "https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&w=600&q=80"
+      }
+    ]
   },
   {
-    id: 3,
+    id: 2,
     slug: "mobile-app-development",
     title: "Mobile App Development",
     icon: Smartphone,
     category: "Development",
-    shortDescription: "Cross-platform and native app solutions for seamless mobile experiences.",
+    shortDescription: "Native and cross-platform mobile apps for iOS and Android devices.",
     description: [
-      "Our mobile app development services create powerful, intuitive applications that engage users and extend your brand's reach. We develop for both iOS and Android platforms, ensuring your app reaches the widest possible audience with a consistent user experience.",
-      "We specialize in both native and cross-platform development approaches, choosing the right technology based on your specific requirements, timeline, and budget. Our team has extensive experience with the latest mobile frameworks and best practices for building high-performance apps.",
-      "From concept to launch and beyond, we guide you through the entire app development journey. We focus on creating intuitive user interfaces, implementing robust functionality, and ensuring seamless integration with existing systems. Post-launch, we provide ongoing support and updates to keep your app current and competitive."
+      "Our mobile app development services create innovative and engaging mobile applications for iOS and Android platforms. We offer end-to-end mobile app development, from concept and design to development, testing, and deployment.",
+      "We build native mobile apps using platform-specific technologies like Swift for iOS and Kotlin for Android, as well as cross-platform apps using frameworks like React Native and Flutter. Our mobile app development process focuses on creating intuitive user interfaces, seamless user experiences, and robust functionality.",
+      "Whether you need a consumer-facing app, an enterprise mobile solution, or a game, our experienced mobile app developers can bring your vision to life. We follow agile development methodologies to ensure flexibility, transparency, and timely delivery."
     ],
-    image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1556075798-4825df14b14b?auto=format&w=1200&q=80",
     keyFeatures: [
       {
-        title: "Native & Cross-Platform",
-        description: "Expert development for iOS, Android, or both using the most suitable frameworks"
+        title: "Native App Development",
+        description: "High-performance apps built specifically for iOS and Android"
       },
       {
-        title: "Intuitive UX/UI",
-        description: "User-centric design that enhances engagement and satisfaction"
+        title: "Cross-Platform Development",
+        description: "Code reuse across platforms for faster development and cost savings"
       },
       {
-        title: "Offline Functionality",
-        description: "Apps that work even when users don't have internet access"
+        title: "UI/UX Design",
+        description: "Intuitive interfaces that provide a seamless user experience"
+      },
+      {
+        title: "API Integration",
+        description: "Seamless connection with backend systems and third-party services"
       },
       {
         title: "Push Notifications",
-        description: "Engage users with timely, relevant notifications"
+        description: "Real-time updates and engagement with users"
       },
       {
-        title: "Secure Authentication",
-        description: "Multiple secure login options including biometric and social media integration"
-      },
-      {
-        title: "Analytics Integration",
-        description: "Track user behavior and app performance for continuous improvement"
+        title: "App Store Submission",
+        description: "Guidance and support for app store approval and launch"
       }
     ],
     processSteps: [
       {
-        title: "Concept & Strategy",
-        description: "Defining your app's purpose, target audience, and core features."
+        title: "Ideation",
+        description: "Brainstorming and defining the app concept and features."
       },
       {
-        title: "Wireframing & Design",
-        description: "Creating the visual blueprint and user experience flow."
+        title: "Design",
+        description: "Creating wireframes, mockups, and UI/UX designs."
       },
       {
         title: "Development",
-        description: "Building your app with clean, optimized code and regular progress demos."
+        description: "Coding the app using appropriate technologies and frameworks."
       },
       {
         title: "Testing",
-        description: "Rigorous quality assurance across devices, operating systems, and user scenarios."
+        description: "Thoroughly testing the app for functionality, performance, and security."
       },
       {
         title: "Deployment",
-        description: "Publishing your app to the App Store, Google Play, or private distribution."
+        description: "Publishing the app to app stores and providing ongoing support."
       },
       {
-        title: "Maintenance & Updates",
-        description: "Ongoing support, performance monitoring, and feature enhancements."
+        title: "Marketing",
+        description: "Promoting the app to reach the target audience and drive downloads."
       }
     ],
-    technologies: ["Swift", "Kotlin", "React Native", "Flutter", "Firebase", "GraphQL", "REST APIs", "OAuth", "Push Notifications"],
+    technologies: ["Swift", "Kotlin", "React Native", "Flutter", "Objective-C", "Java", "Ionic", "Xamarin"],
     showcaseImages: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1535303311164-664fc9ec6532?auto=format&w=600&q=80",
-      "https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?auto=format&w=600&q=80"
+      "https://images.unsplash.com/photo-1550525811-e5869dd03032?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1589145789875-5a80e1a996ea?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1599809275671-d594cd535961?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1584394432314-9c09b4489235?auto=format&w=600&q=80"
     ],
-    relatedServices: ["custom-software-development", "web-development", "ux-ui-design"]
+    relatedServices: ["web-development", "ui-ux-design", "digital-marketing"],
+    subcategories: [
+      {
+        id: 201,
+        slug: "ios-app-development",
+        title: "iOS App Development",
+        description: "Crafting high-performance, intuitive apps for iPhones and iPads using Swift and Objective-C.",
+        icon: Code,
+        image: "https://images.unsplash.com/photo-1584394432314-9c09b4489235?auto=format&w=600&q=80"
+      },
+      {
+        id: 202,
+        slug: "android-app-development",
+        title: "Android App Development",
+        description: "Building scalable, feature-rich apps for Android devices using Kotlin and Java.",
+        icon: Code2,
+        image: "https://images.unsplash.com/photo-1599809275671-d594cd535961?auto=format&w=600&q=80"
+      },
+      {
+        id: 203,
+        slug: "cross-platform-development",
+        title: "Cross-Platform Development",
+        description: "Developing apps that run seamlessly on both iOS and Android using frameworks like React Native and Flutter.",
+        icon: Wrench,
+        image: "https://images.unsplash.com/photo-1555059780-9e1759781908?auto=format&w=600&q=80"
+      }
+    ]
+  },
+  {
+    id: 3,
+    slug: "e-commerce-development",
+    title: "E-commerce Development",
+    icon: Code,
+    category: "Development",
+    shortDescription: "Custom e-commerce platforms with secure payment gateways and inventory management.",
+    description: [
+      "Our e-commerce development services provide custom-built online stores tailored to your specific business needs. We offer end-to-end e-commerce solutions, from platform selection and design to development, integration, and ongoing support.",
+      "We work with leading e-commerce platforms like Shopify, Magento, and WooCommerce, as well as custom-built solutions using technologies like React and Node.js. Our e-commerce development process focuses on creating secure, scalable, and user-friendly online stores that drive sales and customer satisfaction.",
+      "Whether you're launching a new online store or migrating from an existing platform, our experienced e-commerce developers can help you create a successful online business. We focus on implementing best practices for product presentation, shopping cart functionality, payment processing, and order management."
+    ],
+    image: "https://images.unsplash.com/photo-1517842067-bc650b2f3734?auto=format&w=1200&q=80",
+    keyFeatures: [
+      {
+        title: "Custom Design",
+        description: "Unique store designs that reflect your brand identity"
+      },
+      {
+        title: "Product Management",
+        description: "Easy-to-use systems for adding, updating, and managing products"
+      },
+      {
+        title: "Shopping Cart",
+        description: "Seamless and secure shopping cart functionality"
+      },
+      {
+        title: "Payment Gateway Integration",
+        description: "Secure integration with leading payment processors"
+      },
+      {
+        title: "Order Management",
+        description: "Efficient systems for processing and fulfilling orders"
+      },
+      {
+        title: "SEO Optimization",
+        description: "Built-in optimization for better search engine visibility"
+      }
+    ],
+    processSteps: [
+      {
+        title: "Planning",
+        description: "Defining your e-commerce goals, target audience, and product catalog."
+      },
+      {
+        title: "Design",
+        description: "Creating visual mockups and UI/UX designs for your online store."
+      },
+      {
+        title: "Development",
+        description: "Building the e-commerce platform with secure and scalable code."
+      },
+      {
+        title: "Integration",
+        description: "Integrating payment gateways, shipping providers, and other third-party services."
+      },
+      {
+        title: "Testing",
+        description: "Thoroughly testing the store for functionality, security, and performance."
+      },
+      {
+        title: "Launch",
+        description: "Launching the online store and providing ongoing support."
+      }
+    ],
+    technologies: ["Shopify", "Magento", "WooCommerce", "React", "Node.js", "PHP", "MySQL", "Stripe", "PayPal"],
+    showcaseImages: [
+      "https://images.unsplash.com/photo-1563010890-a66818b94982?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1555863252-2949c7f94d37?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1591076482639-3169ac9925b3?auto=format&w=600&q=80",
+      "https://images.unsplash.com/photo-1559056104-d94497461978?auto=format&w=600&q=80"
+    ],
+    relatedServices: ["web-development", "ui-ux-design", "digital-marketing"],
+    subcategories: [
+      {
+        id: 301,
+        slug: "shopify-development",
+        title: "Shopify Development",
+        description: "Custom Shopify store development and theme customization to create a unique online shopping experience.",
+        icon: Globe,
+        image: "https://images.unsplash.com/photo-1622542487434-e0a314690043?auto=format&w=600&q=80"
+      },
+      {
+        id: 302,
+        slug: "magento-development",
+        title: "Magento Development",
+        description: "Enterprise-level e-commerce solutions with Magento, offering scalability and advanced features for large online businesses.",
+        icon: Code2,
+        image: "https://images.unsplash.com/photo-1591076482639-3169ac9925b3?auto=format&w=600&q=80"
+      },
+      {
+        id: 303,
+        slug: "woocommerce-development",
+        title: "WooCommerce Development",
+        description: "Customizable e-commerce solutions with WordPress and WooCommerce, ideal for small to medium-sized businesses.",
+        icon: Wrench,
+        image: "https://images.unsplash.com/photo-1559056104-d94497461978?auto=format&w=600&q=80"
+      }
+    ]
   }
 ];

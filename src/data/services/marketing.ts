@@ -1,5 +1,5 @@
 
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Globe, Mail, Megaphone, Search, Share2 } from "lucide-react";
 import { ServiceDetail } from "./types";
 
 export const marketingServices: ServiceDetail[] = [
@@ -75,6 +75,48 @@ export const marketingServices: ServiceDetail[] = [
       "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&w=600&q=80",
       "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&w=600&q=80"
     ],
-    relatedServices: ["web-development", "content-creation", "brand-strategy"]
+    relatedServices: ["web-development", "content-creation", "brand-strategy"],
+    subcategories: [
+      {
+        id: 901,
+        slug: "search-engine-optimization",
+        title: "Search Engine Optimization",
+        description: "Improve your website's visibility in search engine results to drive more organic traffic and potential customers to your business.",
+        icon: Search,
+        image: "https://images.unsplash.com/photo-1571715696756-5000d9c2c115?auto=format&w=600&q=80"
+      },
+      {
+        id: 902,
+        slug: "social-media-marketing",
+        title: "Social Media Marketing",
+        description: "Engage with your audience and build brand awareness through strategic content and campaigns across social media platforms.",
+        icon: Share2,
+        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&w=600&q=80"
+      },
+      {
+        id: 903,
+        slug: "content-marketing",
+        title: "Content Marketing",
+        description: "Attract and retain customers through valuable, relevant content that establishes your brand as an industry authority.",
+        icon: Globe,
+        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&w=600&q=80"
+      },
+      {
+        id: 904,
+        slug: "email-marketing",
+        title: "Email Marketing",
+        description: "Nurture leads and drive conversions with targeted, personalized email campaigns that deliver the right message at the right time.",
+        icon: Mail,
+        image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&w=600&q=80"
+      },
+      {
+        id: 905,
+        slug: "ppc-advertising",
+        title: "PPC Advertising",
+        description: "Drive immediate traffic and conversions with strategically targeted pay-per-click campaigns across search engines and social platforms.",
+        icon: Megaphone,
+        image: "https://images.unsplash.com/photo-1617131033266-46504630b5af?auto=format&w=600&q=80"
+      }
+    ]
   }
 ];
