@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/ServicesPage";
@@ -20,6 +21,14 @@ import BenefitsPage from "./pages/BenefitsPage";
 import PerksPage from "./pages/PerksPage";
 import DiversityPage from "./pages/DiversityPage";
 import ScrollToTop from "./components/ScrollToTop";
+
+// Import perk pages
+import CompensationPage from "./pages/perks/CompensationPage";
+import HealthWellnessPage from "./pages/perks/HealthWellnessPage";
+import FlexibleWorkPage from "./pages/perks/FlexibleWorkPage";
+import LearningDevelopmentPage from "./pages/perks/LearningDevelopmentPage";
+import ModernOfficePage from "./pages/perks/ModernOfficePage";
+import TeamEventsPage from "./pages/perks/TeamEventsPage";
 
 function App() {
   return (
@@ -49,6 +58,15 @@ function App() {
         <Route path="/diversity" element={<DiversityPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/pricing" element={<Pricing />} />
+        
+        {/* Perk Detail Routes */}
+        <Route path="/perks/compensation" element={<CompensationPage />} />
+        <Route path="/perks/health-wellness" element={<HealthWellnessPage />} />
+        <Route path="/perks/flexible-work" element={<FlexibleWorkPage />} />
+        <Route path="/perks/learning-development" element={<LearningDevelopmentPage />} />
+        <Route path="/perks/modern-office" element={<ModernOfficePage />} />
+        <Route path="/perks/team-events" element={<TeamEventsPage />} />
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
