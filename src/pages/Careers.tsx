@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -871,4 +870,3 @@ const Careers = () => {
 };
 
 export default Careers;
-
