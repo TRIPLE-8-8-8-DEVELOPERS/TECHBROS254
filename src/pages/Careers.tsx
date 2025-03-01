@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
@@ -289,6 +289,7 @@ const Careers = () => {
   const [selectedLocation, setSelectedLocation] = useState("All");
   const [selectedType, setSelectedType] = useState("All");
   const [filteredJobs, setFilteredJobs] = useState(jobPositions);
+  const navigate = useNavigate();
   
   const heroRef = useRef<HTMLDivElement>(null);
   const perksRef = useRef<HTMLDivElement>(null);
@@ -299,7 +300,6 @@ const Careers = () => {
   const [jobsVisible, setJobsVisible] = useState(false);
 
   useEffect(() => {
-    // Filter jobs based on search term and selected filters
     const filtered = jobPositions.filter(job => {
       const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            job.department.toLowerCase().includes(searchTerm.toLowerCase());
@@ -353,13 +353,16 @@ const Careers = () => {
     };
   }, []);
 
+  const handleJobClick = (slug: string) => {
+    navigate(`/careers/${slug}`);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollProgress />
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Hero Section */}
         <section 
           ref={heroRef}
           className="relative py-20 md:py-28 overflow-hidden"
@@ -369,7 +372,6 @@ const Careers = () => {
             backgroundPosition: "center"
           }}
         >
-          {/* Background elements */}
           <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-tech-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
           <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
           
@@ -398,7 +400,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* Company Culture Banner */}
         <section className="py-12 bg-gradient-to-r from-tech-50 to-purple-50">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
@@ -437,7 +438,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* Why Join Us Section */}
         <section 
           ref={perksRef}
           className="py-20 bg-white"
@@ -545,7 +545,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* Employee Testimonial Banner */}
         <section className="py-16 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
@@ -579,7 +578,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* Open Positions Section */}
         <section 
           id="open-positions" 
           ref={jobsRef}
@@ -599,7 +597,6 @@ const Careers = () => {
                 Find your perfect role and join our growing team of talented professionals.
               </p>
               
-              {/* Search and Filters */}
               <div className="max-w-4xl mx-auto bg-white p-4 rounded-xl shadow-sm mb-8">
                 <div className="flex flex-col md:flex-row gap-4">
                   <div className="relative flex-grow">
@@ -648,15 +645,14 @@ const Careers = () => {
               </div>
             </div>
             
-            {/* Job Listings */}
             <div className="max-w-4xl mx-auto">
               {filteredJobs.length > 0 ? (
                 <div className="space-y-6">
                   {filteredJobs.map((job, index) => (
-                    <Link 
+                    <div 
                       key={job.id} 
-                      to={`/careers/${job.slug}`}
-                      className={`block bg-white rounded-xl border border-gray-200 hover:border-tech-200 hover:shadow-md transition-all duration-300 group ${
+                      onClick={() => handleJobClick(job.slug)}
+                      className={`block bg-white rounded-xl border border-gray-200 hover:border-tech-200 hover:shadow-md transition-all duration-300 group cursor-pointer ${
                         jobsVisible ? "animate-reveal revealed" : "opacity-0"
                       }`}
                       style={{ animationDelay: `${index * 100}ms` }}
@@ -708,7 +704,7 @@ const Careers = () => {
                           </span>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               ) : (
@@ -723,7 +719,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* Application Process Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
@@ -738,7 +733,6 @@ const Careers = () => {
             
             <div className="max-w-5xl mx-auto">
               <div className="relative">
-                {/* Timeline line */}
                 <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-tech-200 transform -translate-x-1/2 hidden md:block"></div>
                 
                 <div className="space-y-12">
@@ -792,7 +786,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* Growth and Development Banner */}
         <section className="py-16 bg-gradient-to-br from-tech-100 to-indigo-100">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -844,7 +837,6 @@ const Careers = () => {
           </div>
         </section>
         
-        {/* CTA Section */}
         <section className="py-16 bg-tech-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">

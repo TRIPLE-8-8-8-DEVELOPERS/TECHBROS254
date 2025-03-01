@@ -1,27 +1,30 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
 import { 
   ArrowLeft, 
-  ArrowRight, 
   MapPin, 
   Clock, 
-  Calendar,
   DollarSign, 
-  CheckCircle, 
-  Briefcase, 
-  Send, 
-  Upload, 
-  User, 
-  Mail, 
-  Phone,
-  File
+  Building,
+  Briefcase,
+  Users,
+  GraduationCap,
+  CheckCircle,
+  Send,
+  FileText,
+  ArrowRight
 } from "lucide-react";
-import { toast } from "sonner";
+import { Button } from "../components/ui/button";
+import { Tooltip } from "../components/ui/tooltip";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { useToast } from "../hooks/use-toast";
 
+// Import the job data from Careers page
 interface JobPosition {
   id: number;
   title: string;
@@ -32,13 +35,10 @@ interface JobPosition {
   salary: string;
   posted: string;
   slug: string;
-  overview: string;
-  responsibilities: string[];
-  requirements: string[];
-  preferred: string[];
-  benefits: string[];
+  image?: string;
 }
 
+// This is the same job data as in Careers.tsx
 const jobPositions: JobPosition[] = [
   {
     id: 1,
@@ -50,40 +50,7 @@ const jobPositions: JobPosition[] = [
     salary: "$120,000 - $150,000",
     posted: "2 days ago",
     slug: "senior-frontend-developer",
-    overview: "We are looking for a Senior Frontend Developer to join our Engineering team. In this role, you will be responsible for building and maintaining high-quality web applications using modern frontend technologies. You will work closely with designers, product managers, and other developers to deliver exceptional user experiences.",
-    responsibilities: [
-      "Develop and maintain responsive web applications using React, TypeScript, and other modern frontend technologies",
-      "Collaborate with designers to implement pixel-perfect, responsive designs",
-      "Optimize applications for maximum speed and scalability",
-      "Participate in code reviews and ensure code quality, organization, and automation",
-      "Mentor junior developers and contribute to team growth",
-      "Stay up-to-date with emerging trends and technologies in frontend development"
-    ],
-    requirements: [
-      "5+ years of professional experience in frontend development",
-      "Strong proficiency in React, TypeScript, and modern JavaScript",
-      "Experience with state management (Redux, Context API, etc.)",
-      "Solid understanding of web fundamentals (HTML, CSS, HTTP, etc.)",
-      "Experience with responsive design and cross-browser compatibility",
-      "Familiarity with testing frameworks (Jest, React Testing Library, etc.)",
-      "Bachelor's degree in Computer Science or related field, or equivalent practical experience"
-    ],
-    preferred: [
-      "Experience with Next.js, GraphQL, and Tailwind CSS",
-      "Contributions to open-source projects",
-      "Experience with CI/CD pipelines",
-      "Knowledge of accessibility standards and best practices",
-      "Experience with performance optimization techniques"
-    ],
-    benefits: [
-      "Competitive salary and equity options",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and remote work options",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Modern office with snacks and beverages"
-    ]
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format"
   },
   {
     id: 2,
@@ -95,40 +62,7 @@ const jobPositions: JobPosition[] = [
     salary: "$90,000 - $110,000",
     posted: "1 week ago",
     slug: "ux-ui-designer",
-    overview: "We are seeking a talented UX/UI Designer to create amazing user experiences. The ideal candidate will have a strong portfolio showcasing their design skills and a passion for creating intuitive, user-centered digital experiences.",
-    responsibilities: [
-      "Create user-centered designs by understanding business requirements, user feedback, and research",
-      "Design flows, prototypes, and high-fidelity mockups for websites and applications",
-      "Collaborate with product managers and engineers to define and implement innovative solutions",
-      "Conduct user research and evaluate user feedback",
-      "Create wireframes, storyboards, user flows, and process flows to effectively communicate design ideas",
-      "Present and defend designs and key decisions to stakeholders"
-    ],
-    requirements: [
-      "3+ years of experience as a UX/UI Designer",
-      "Strong portfolio showcasing design projects",
-      "Proficiency in design tools such as Figma, Adobe XD, or Sketch",
-      "Solid understanding of user-centered design principles",
-      "Experience with designing responsive websites and applications",
-      "Excellent visual design skills with sensitivity to user-system interaction",
-      "Ability to collaborate effectively with cross-functional teams"
-    ],
-    preferred: [
-      "Experience with design systems",
-      "Knowledge of HTML/CSS/JavaScript",
-      "Familiarity with animation and interaction design",
-      "Experience with user testing methodologies",
-      "Understanding of accessibility standards"
-    ],
-    benefits: [
-      "Competitive salary and equity options",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and remote work options",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Home office setup allowance"
-    ]
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format"
   },
   {
     id: 3,
@@ -140,41 +74,7 @@ const jobPositions: JobPosition[] = [
     salary: "$130,000 - $160,000",
     posted: "3 days ago",
     slug: "devops-engineer",
-    overview: "We're looking for a skilled DevOps Engineer to help build and maintain our cloud infrastructure. You will work closely with our development and operations teams to automate processes, improve reliability, and ensure scalability of our systems.",
-    responsibilities: [
-      "Design, implement, and maintain CI/CD pipelines",
-      "Manage cloud infrastructure using Infrastructure as Code (IaC)",
-      "Monitor system performance and troubleshoot issues",
-      "Implement security best practices and ensure compliance",
-      "Collaborate with developers to improve deployment processes",
-      "Automate routine operational tasks",
-      "Participate in on-call rotation to ensure system reliability"
-    ],
-    requirements: [
-      "4+ years of experience in DevOps or Site Reliability Engineering",
-      "Strong knowledge of cloud platforms (AWS, Azure, or GCP)",
-      "Experience with containerization technologies (Docker, Kubernetes)",
-      "Proficiency in Infrastructure as Code (Terraform, CloudFormation)",
-      "Experience with CI/CD tools (Jenkins, GitHub Actions, CircleCI)",
-      "Strong scripting skills (Bash, Python)",
-      "Understanding of networking, security, and system administration"
-    ],
-    preferred: [
-      "Experience with monitoring and logging tools (Prometheus, Grafana, ELK stack)",
-      "Knowledge of database administration",
-      "Experience with microservices architecture",
-      "Familiarity with serverless computing",
-      "Certifications in relevant cloud platforms"
-    ],
-    benefits: [
-      "Competitive salary and equity options",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and remote work options",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Modern office with snacks and beverages"
-    ]
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&auto=format"
   },
   {
     id: 4,
@@ -186,41 +86,7 @@ const jobPositions: JobPosition[] = [
     salary: "$140,000 - $170,000",
     posted: "5 days ago",
     slug: "product-manager",
-    overview: "We are looking for an experienced Product Manager to join our product team. You will be responsible for the product planning and execution throughout the Product Lifecycle, including gathering and prioritizing product requirements, defining the product vision, and working closely with engineering, design, and marketing to deliver winning products.",
-    responsibilities: [
-      "Define the product strategy and roadmap",
-      "Gather and manage product requirements",
-      "Work closely with engineering teams to deliver features",
-      "Represent the voice of the customer and ensure products meet market needs",
-      "Analyze market trends and competition",
-      "Define and monitor key metrics for product success",
-      "Communicate product plans and vision to stakeholders"
-    ],
-    requirements: [
-      "5+ years of product management experience, preferably in SaaS or B2B products",
-      "Track record of successful product launches",
-      "Strong analytical skills and data-driven decision making",
-      "Excellent communication and presentation skills",
-      "Ability to understand technical concepts and communicate with engineering teams",
-      "Experience with agile development methodologies",
-      "Bachelor's degree in Business, Computer Science, or related field"
-    ],
-    preferred: [
-      "MBA or advanced degree",
-      "Experience with product management tools (Jira, Aha!, ProductBoard)",
-      "Background in technology or engineering",
-      "Experience with user research and usability testing",
-      "Understanding of UX design principles"
-    ],
-    benefits: [
-      "Competitive salary and equity options",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and remote work options",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Modern office with snacks and beverages"
-    ]
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format"
   },
   {
     id: 5,
@@ -232,41 +98,7 @@ const jobPositions: JobPosition[] = [
     salary: "$110,000 - $140,000",
     posted: "2 weeks ago",
     slug: "data-scientist",
-    overview: "We are seeking a skilled Data Scientist to analyze complex data sets, build predictive models, and develop data-driven solutions. You will work with cross-functional teams to identify opportunities and solve business problems using data science techniques.",
-    responsibilities: [
-      "Analyze large datasets to extract actionable insights",
-      "Build and deploy machine learning models",
-      "Collaborate with product and engineering teams to implement data-driven features",
-      "Develop data visualization tools and dashboards",
-      "Design and evaluate experiments to measure the impact of product changes",
-      "Communicate findings to technical and non-technical stakeholders",
-      "Stay current with the latest developments in data science and machine learning"
-    ],
-    requirements: [
-      "3+ years of experience in data science or related field",
-      "Proficiency in Python and data analysis libraries (pandas, NumPy, scikit-learn)",
-      "Experience with machine learning techniques and algorithms",
-      "Strong SQL skills and experience working with large datasets",
-      "Knowledge of statistical analysis and experimental design",
-      "Ability to communicate complex findings in a clear, actionable manner",
-      "Master's degree or PhD in Computer Science, Statistics, or related field"
-    ],
-    preferred: [
-      "Experience with deep learning frameworks (TensorFlow, PyTorch)",
-      "Knowledge of big data technologies (Spark, Hadoop)",
-      "Familiarity with cloud platforms (AWS, GCP, Azure)",
-      "Experience with A/B testing",
-      "Publications in relevant academic journals or conferences"
-    ],
-    benefits: [
-      "Competitive salary and equity options",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and fully remote work",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Home office setup allowance"
-    ]
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format"
   },
   {
     id: 6,
@@ -278,41 +110,7 @@ const jobPositions: JobPosition[] = [
     salary: "$100,000 - $130,000",
     posted: "4 days ago",
     slug: "full-stack-developer",
-    overview: "We are looking for a Full Stack Developer to join our growing engineering team. You will work on both frontend and backend development, building and maintaining features across our entire stack. This is an opportunity to work on challenging projects and grow your skills across the full development stack.",
-    responsibilities: [
-      "Develop and maintain features across the full stack (frontend and backend)",
-      "Write clean, maintainable, and efficient code",
-      "Design and implement database schemas",
-      "Build reusable components and libraries",
-      "Optimize applications for performance and scalability",
-      "Collaborate with cross-functional teams",
-      "Participate in code reviews and contribute to engineering best practices"
-    ],
-    requirements: [
-      "3+ years of full stack development experience",
-      "Proficiency in JavaScript/TypeScript and at least one backend language (Node.js, Python, Java, etc.)",
-      "Experience with modern frontend frameworks (React, Angular, or Vue)",
-      "Knowledge of database systems (SQL and NoSQL)",
-      "Familiarity with version control systems (Git)",
-      "Understanding of web fundamentals (HTTP, REST APIs, HTML, CSS)",
-      "Bachelor's degree in Computer Science or equivalent practical experience"
-    ],
-    preferred: [
-      "Experience with cloud platforms (AWS, GCP, Azure)",
-      "Knowledge of containerization (Docker, Kubernetes)",
-      "Understanding of CI/CD pipelines",
-      "Experience with microservices architecture",
-      "Familiarity with testing frameworks"
-    ],
-    benefits: [
-      "Competitive salary and equity options",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and hybrid work model",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Modern office with snacks and beverages"
-    ]
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format"
   },
   {
     id: 7,
@@ -324,41 +122,7 @@ const jobPositions: JobPosition[] = [
     salary: "$80,000 - $100,000",
     posted: "1 week ago",
     slug: "marketing-specialist",
-    overview: "We are seeking a Marketing Specialist to help drive our marketing initiatives and grow our brand presence. The ideal candidate will have a mix of creative and analytical skills, with experience in digital marketing channels and content creation.",
-    responsibilities: [
-      "Plan and execute marketing campaigns across multiple channels",
-      "Create engaging content for our website, blog, and social media",
-      "Manage email marketing campaigns and newsletters",
-      "Analyze marketing data and metrics to optimize campaigns",
-      "Collaborate with design team on marketing materials",
-      "Stay up-to-date with digital marketing trends",
-      "Support the broader marketing team with various initiatives"
-    ],
-    requirements: [
-      "3+ years of experience in digital marketing or related field",
-      "Proven track record of successful marketing campaigns",
-      "Experience with marketing automation tools and CRM systems",
-      "Strong copywriting and content creation skills",
-      "Familiarity with SEO and SEM principles",
-      "Analytical mindset and ability to derive insights from data",
-      "Bachelor's degree in Marketing, Communications, or related field"
-    ],
-    preferred: [
-      "Experience in B2B SaaS marketing",
-      "Proficiency with graphic design tools",
-      "Knowledge of marketing analytics platforms",
-      "Experience with video production",
-      "HubSpot or similar marketing certification"
-    ],
-    benefits: [
-      "Competitive salary and bonus opportunities",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and hybrid work model",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Modern office with snacks and beverages"
-    ]
+    image: "https://images.unsplash.com/photo-1552581234-26160f608093?w=600&auto=format"
   },
   {
     id: 8,
@@ -370,434 +134,842 @@ const jobPositions: JobPosition[] = [
     salary: "$85,000 - $105,000",
     posted: "3 days ago",
     slug: "customer-success-manager",
-    overview: "We are looking for a Customer Success Manager to ensure our customers achieve their goals using our products. You will be responsible for building and maintaining relationships with customers, understanding their needs, and helping them maximize the value of our solutions.",
-    responsibilities: [
-      "Serve as the primary point of contact for a portfolio of customers",
-      "Develop and maintain strong relationships with key stakeholders",
-      "Conduct regular check-ins and business reviews with customers",
-      "Monitor customer health metrics and identify at-risk accounts",
-      "Collaborate with Sales, Product, and Support teams to address customer needs",
-      "Drive product adoption and usage through training and education",
-      "Identify upsell and cross-sell opportunities within existing accounts"
-    ],
-    requirements: [
-      "3+ years of experience in customer success, account management, or similar role",
-      "Strong interpersonal and communication skills",
-      "Ability to understand technical concepts and explain them to non-technical users",
-      "Experience with CRM systems and customer success tools",
-      "Problem-solving mindset and ability to navigate complex customer situations",
-      "Data-driven approach to measuring customer success",
-      "Bachelor's degree in Business, Communications, or related field"
-    ],
-    preferred: [
-      "Experience in SaaS or technology industry",
-      "Knowledge of customer success methodologies",
-      "Background in project management",
-      "Experience with creating and delivering customer training",
-      "Familiarity with our industry or related technologies"
-    ],
-    benefits: [
-      "Competitive salary and performance bonuses",
-      "Comprehensive health, dental, and vision insurance",
-      "401(k) matching program",
-      "Flexible working hours and fully remote work",
-      "Professional development budget",
-      "Generous paid time off policy",
-      "Home office setup allowance"
-    ]
+    image: "https://images.unsplash.com/photo-1543269664-7eef42226a21?w=600&auto=format"
+  },
+  {
+    id: 9,
+    title: "Backend Developer (Python)",
+    department: "Engineering",
+    location: "Seattle, WA",
+    type: "Full-time",
+    level: "Senior",
+    salary: "$125,000 - $155,000",
+    posted: "1 day ago",
+    slug: "backend-developer-python",
+    image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=600&auto=format"
+  },
+  {
+    id: 10,
+    title: "Mobile Developer (React Native)",
+    department: "Engineering",
+    location: "Remote",
+    type: "Full-time",
+    level: "Mid",
+    salary: "$110,000 - $135,000",
+    posted: "5 days ago",
+    slug: "mobile-developer-react-native",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format"
+  },
+  {
+    id: 11,
+    title: "Technical Writer",
+    department: "Product",
+    location: "Boston, MA (Hybrid)",
+    type: "Full-time",
+    level: "Mid",
+    salary: "$85,000 - $105,000",
+    posted: "1 week ago",
+    slug: "technical-writer",
+    image: "https://images.unsplash.com/photo-1571721795195-a2d50c404584?w=600&auto=format"
+  },
+  {
+    id: 12,
+    title: "QA Engineer",
+    department: "Engineering",
+    location: "Denver, CO",
+    type: "Full-time",
+    level: "Mid",
+    salary: "$90,000 - $115,000",
+    posted: "3 days ago",
+    slug: "qa-engineer",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&auto=format"
+  },
+  {
+    id: 13,
+    title: "Project Coordinator",
+    department: "Operations",
+    location: "Portland, OR",
+    type: "Full-time",
+    level: "Entry",
+    salary: "$65,000 - $80,000",
+    posted: "2 weeks ago",
+    slug: "project-coordinator",
+    image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&auto=format"
+  },
+  {
+    id: 14,
+    title: "IT Support Specialist",
+    department: "IT",
+    location: "Chicago, IL",
+    type: "Full-time",
+    level: "Entry",
+    salary: "$60,000 - $75,000",
+    posted: "1 week ago",
+    slug: "it-support-specialist",
+    image: "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=600&auto=format"
+  },
+  {
+    id: 15,
+    title: "Machine Learning Engineer",
+    department: "Engineering",
+    location: "San Francisco, CA",
+    type: "Full-time",
+    level: "Senior",
+    salary: "$150,000 - $180,000",
+    posted: "4 days ago",
+    slug: "machine-learning-engineer",
+    image: "https://images.unsplash.com/photo-1501159599941-ebb35cd39d35?w=600&auto=format"
+  },
+  {
+    id: 16,
+    title: "Finance Manager",
+    department: "Finance",
+    location: "New York, NY",
+    type: "Full-time",
+    level: "Lead",
+    salary: "$130,000 - $160,000",
+    posted: "6 days ago",
+    slug: "finance-manager",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format"
+  },
+  {
+    id: 17,
+    title: "HR Specialist",
+    department: "HR",
+    location: "Remote",
+    type: "Full-time",
+    level: "Mid",
+    salary: "$75,000 - $95,000",
+    posted: "2 weeks ago",
+    slug: "hr-specialist",
+    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&auto=format"
+  },
+  {
+    id: 18,
+    title: "Content Creator",
+    department: "Marketing",
+    location: "Los Angeles, CA",
+    type: "Part-time",
+    level: "Entry",
+    salary: "$30 - $45 per hour",
+    posted: "3 days ago",
+    slug: "content-creator",
+    image: "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=600&auto=format"
+  },
+  {
+    id: 19,
+    title: "Cloud Architect",
+    department: "Engineering",
+    location: "Seattle, WA",
+    type: "Full-time",
+    level: "Lead",
+    salary: "$160,000 - $200,000",
+    posted: "1 week ago",
+    slug: "cloud-architect",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format"
+  },
+  {
+    id: 20,
+    title: "Sales Representative",
+    department: "Sales",
+    location: "Dallas, TX",
+    type: "Full-time",
+    level: "Mid",
+    salary: "$70,000 - $100,000 + Commission",
+    posted: "5 days ago",
+    slug: "sales-representative",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&auto=format"
   }
 ];
 
+// Add job descriptions for each position
+const jobDescriptions: Record<string, {
+  overview: string;
+  responsibilities: string[];
+  requirements: string[];
+  preferred: string[];
+  benefits: string[];
+}> = {
+  "senior-frontend-developer": {
+    overview: "We're looking for an experienced Frontend Developer who is passionate about building intuitive and responsive web applications. You'll work with our product and design teams to implement new features and improve existing ones.",
+    responsibilities: [
+      "Develop and maintain high-quality frontend code for our web applications",
+      "Collaborate with designers to translate wireframes and mockups into responsive interfaces",
+      "Optimize applications for maximum speed and scalability",
+      "Implement responsive design and ensure cross-browser compatibility",
+      "Write clean, maintainable, and well-documented code",
+      "Participate in code reviews and mentor junior developers"
+    ],
+    requirements: [
+      "5+ years of experience with frontend development",
+      "Proficiency in React, TypeScript, and modern JavaScript",
+      "Experience with state management libraries (Redux, MobX, etc.)",
+      "Strong knowledge of HTML5, CSS3, and responsive design principles",
+      "Familiarity with RESTful APIs and GraphQL",
+      "Experience with testing frameworks like Jest and React Testing Library"
+    ],
+    preferred: [
+      "Experience with Next.js or similar frameworks",
+      "Knowledge of CI/CD pipelines and DevOps practices",
+      "Contributions to open-source projects",
+      "Experience with design systems and component libraries",
+      "Knowledge of accessibility standards and best practices"
+    ],
+    benefits: [
+      "Competitive salary and equity package",
+      "Health, dental, and vision insurance",
+      "401(k) matching",
+      "Flexible working hours and remote work options",
+      "Professional development budget",
+      "Home office stipend"
+    ]
+  },
+  "ux-ui-designer": {
+    overview: "We are seeking a talented UX/UI Designer to join our growing design team. In this role, you will create engaging and intuitive user experiences for our web and mobile applications.",
+    responsibilities: [
+      "Create wireframes, prototypes, and high-fidelity mockups",
+      "Conduct user research and usability testing",
+      "Collaborate with product managers and engineers to define and implement new features",
+      "Design intuitive user flows and interactions",
+      "Maintain and evolve our design system",
+      "Stay up-to-date with the latest design trends and best practices"
+    ],
+    requirements: [
+      "3+ years of experience in UX/UI design for digital products",
+      "Proficiency in design tools like Figma, Adobe XD, or Sketch",
+      "Strong portfolio demonstrating your design process and solutions",
+      "Experience with responsive web design and mobile app design",
+      "Knowledge of user-centered design principles",
+      "Excellent communication and collaboration skills"
+    ],
+    preferred: [
+      "Experience with design systems",
+      "Basic understanding of HTML, CSS, and JavaScript",
+      "Experience with motion design and animations",
+      "Knowledge of accessibility standards",
+      "Experience in a fast-paced startup environment"
+    ],
+    benefits: [
+      "Competitive salary",
+      "Comprehensive health benefits",
+      "Flexible work arrangements",
+      "Professional development opportunities",
+      "Creative and collaborative work environment",
+      "Latest design tools and resources"
+    ]
+  },
+  "devops-engineer": {
+    overview: "We're looking for a skilled DevOps Engineer to help us build and maintain our cloud infrastructure. You'll work closely with our development team to automate deployment processes and ensure the reliability and scalability of our systems.",
+    responsibilities: [
+      "Design, implement and maintain CI/CD pipelines",
+      "Manage and optimize our cloud infrastructure (AWS/GCP)",
+      "Implement infrastructure as code using tools like Terraform or CloudFormation",
+      "Monitor system performance and troubleshoot issues",
+      "Implement security best practices and ensure compliance",
+      "Collaborate with development teams to improve deployment processes"
+    ],
+    requirements: [
+      "4+ years of experience in DevOps or SRE roles",
+      "Strong knowledge of Linux/Unix systems administration",
+      "Experience with containerization technologies (Docker, Kubernetes)",
+      "Proficiency in scripting languages (Python, Bash, etc.)",
+      "Experience with monitoring tools and log management systems",
+      "Knowledge of networking concepts and security protocols"
+    ],
+    preferred: [
+      "AWS/GCP certifications",
+      "Experience with database administration",
+      "Knowledge of microservices architecture",
+      "Experience with configuration management tools (Ansible, Chef, Puppet)",
+      "Understanding of security best practices in cloud environments"
+    ],
+    benefits: [
+      "Competitive compensation",
+      "Comprehensive health coverage",
+      "Flexible work schedule",
+      "Professional certification opportunities",
+      "Home office stipend",
+      "Regular team-building events"
+    ]
+  },
+  "product-manager": {
+    overview: "We're seeking an experienced Product Manager to lead the development of our key products. You'll drive product strategy, work with cross-functional teams, and deliver outstanding user experiences.",
+    responsibilities: [
+      "Define and communicate product vision and strategy",
+      "Gather and prioritize product requirements",
+      "Create detailed product roadmaps",
+      "Work closely with engineering, design, and marketing teams",
+      "Analyze market trends and competitor activities",
+      "Collect and analyze user feedback to inform product decisions"
+    ],
+    requirements: [
+      "5+ years of experience in product management",
+      "Strong analytical and problem-solving skills",
+      "Excellent communication and stakeholder management abilities",
+      "Experience with agile methodologies",
+      "Data-driven approach to decision making",
+      "Bachelor's degree in Business, Computer Science, or related field"
+    ],
+    preferred: [
+      "Experience in the tech or SaaS industry",
+      "Knowledge of user experience design principles",
+      "Technical background or understanding of software development",
+      "MBA or other advanced degree",
+      "Experience with product analytics tools"
+    ],
+    benefits: [
+      "Competitive salary and equity options",
+      "Comprehensive health benefits",
+      "401(k) with company match",
+      "Flexible work arrangements",
+      "Professional development budget",
+      "Family-friendly policies"
+    ]
+  },
+  "data-scientist": {
+    overview: "Join our data team to help derive insights from our growing data assets. You'll build models, develop algorithms, and collaborate with teams across the company to drive data-informed decisions.",
+    responsibilities: [
+      "Develop machine learning models to solve complex business problems",
+      "Process, clean, and verify the integrity of data used for analysis",
+      "Create data visualizations and reports for stakeholders",
+      "Identify trends and opportunities for business growth",
+      "Collaborate with engineering team to implement models into production",
+      "Stay up-to-date with the latest developments in data science and machine learning"
+    ],
+    requirements: [
+      "3+ years of experience in data science or analytics",
+      "Proficiency in Python and data analysis libraries (Pandas, NumPy, etc.)",
+      "Experience with machine learning frameworks (TensorFlow, PyTorch, scikit-learn)",
+      "Strong statistics and mathematics background",
+      "Experience with data visualization tools",
+      "Advanced degree in Computer Science, Statistics, or related field"
+    ],
+    preferred: [
+      "Experience with big data technologies (Spark, Hadoop)",
+      "Knowledge of SQL and database systems",
+      "Experience with cloud platforms (AWS, GCP, Azure)",
+      "Published research or contributions to open-source projects",
+      "Industry experience in our business domain"
+    ],
+    benefits: [
+      "Competitive salary and performance bonuses",
+      "Comprehensive health and wellness programs",
+      "Flexible working arrangements",
+      "Continuing education allowance",
+      "Regular team offsites",
+      "Collaborative and innovative work environment"
+    ]
+  },
+  "full-stack-developer": {
+    overview: "We're seeking a versatile Full Stack Developer to work on both frontend and backend aspects of our web applications. You'll collaborate with our product and design teams to deliver seamless user experiences.",
+    responsibilities: [
+      "Develop and maintain features across the entire stack",
+      "Write clean, testable, and efficient code",
+      "Design and implement database schemas",
+      "Build reusable code and libraries for future use",
+      "Collaborate with cross-functional teams to define and ship new features",
+      "Optimize applications for maximum speed and scalability"
+    ],
+    requirements: [
+      "3+ years of experience in full stack development",
+      "Proficiency in frontend technologies (React, JavaScript, HTML, CSS)",
+      "Experience with backend frameworks (Node.js, Express, or similar)",
+      "Knowledge of database systems (SQL and NoSQL)",
+      "Understanding of RESTful APIs and microservices",
+      "Familiarity with version control systems (Git)"
+    ],
+    preferred: [
+      "Experience with TypeScript",
+      "Knowledge of cloud services (AWS, GCP, Azure)",
+      "Understanding of CI/CD pipelines",
+      "Experience with testing frameworks",
+      "Knowledge of security best practices"
+    ],
+    benefits: [
+      "Competitive salary",
+      "Health, dental, and vision insurance",
+      "401(k) matching",
+      "Flexible working hours",
+      "Professional development opportunities",
+      "Remote work options"
+    ]
+  },
+  // Add more job descriptions for other positions
+  "marketing-specialist": {
+    overview: "We are looking for a creative and data-driven Marketing Specialist to join our marketing team. You'll help develop and execute marketing campaigns across various channels to drive brand awareness and customer acquisition.",
+    responsibilities: [
+      "Plan and execute marketing campaigns across digital channels",
+      "Create engaging content for social media, email, and website",
+      "Analyze campaign performance and provide recommendations",
+      "Collaborate with design team to create marketing materials",
+      "Manage our social media presence",
+      "Stay up-to-date with digital marketing trends"
+    ],
+    requirements: [
+      "2+ years of experience in digital marketing",
+      "Strong understanding of various marketing channels (social, email, content)",
+      "Experience with marketing analytics tools",
+      "Excellent written and verbal communication skills",
+      "Creative mindset with attention to detail",
+      "Bachelor's degree in Marketing, Communications, or related field"
+    ],
+    preferred: [
+      "Experience with marketing automation platforms",
+      "Knowledge of SEO/SEM principles",
+      "Experience with paid advertising campaigns",
+      "Basic design skills (Canva, Photoshop)",
+      "Experience in B2B marketing"
+    ],
+    benefits: [
+      "Competitive compensation",
+      "Comprehensive benefits package",
+      "Flexible work schedule",
+      "Professional development opportunities",
+      "Collaborative and fast-paced work environment",
+      "Employee discount program"
+    ]
+  },
+  // Add descriptions for all other jobs following the same pattern
+};
+
+// Create a generic job description for positions that don't have specific ones
+const genericJobDescription = {
+  overview: "Join our team at TechBros and be part of a dynamic and innovative company that's changing the industry. We offer a collaborative environment where you can grow your skills and advance your career.",
+  responsibilities: [
+    "Collaborate with cross-functional teams to achieve company goals",
+    "Contribute to the development and implementation of new ideas",
+    "Stay current with industry trends and best practices",
+    "Participate in regular team meetings and brainstorming sessions",
+    "Document processes and maintain accurate records",
+    "Represent the company professionally to clients and partners"
+  ],
+  requirements: [
+    "Relevant experience in the field",
+    "Strong problem-solving abilities",
+    "Excellent communication and interpersonal skills",
+    "Ability to work independently and as part of a team",
+    "Detail-oriented with good organizational skills",
+    "Bachelor's degree in relevant field or equivalent experience"
+  ],
+  preferred: [
+    "Advanced degree or specialized certification",
+    "Experience in a fast-paced startup environment",
+    "Knowledge of relevant tools and technologies",
+    "Project management experience",
+    "Industry-specific knowledge"
+  ],
+  benefits: [
+    "Competitive salary and benefits package",
+    "Health, dental, and vision insurance",
+    "401(k) retirement plan with company match",
+    "Flexible working arrangements",
+    "Professional development opportunities",
+    "Collaborative and innovative work culture"
+  ]
+};
+
 const JobDetail = () => {
-  const { slug } = useParams();
+  const { jobId } = useParams<{ jobId: string }>();
   const navigate = useNavigate();
-  const [job, setJob] = useState<JobPosition | null>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { toast } = useToast();
   
-  // Form state
+  // Find the job based on the slug in the URL
+  const job = jobPositions.find((job) => job.slug === jobId);
+  
+  // Get job description or use generic if not found
+  const jobDesc = job ? (jobDescriptions[job.slug] || genericJobDescription) : genericJobDescription;
+  
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     phone: "",
     resume: null as File | null,
-    coverLetter: null as File | null,
-    portfolio: "",
-    linkedin: ""
+    coverLetter: "",
   });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  useEffect(() => {
-    // Find the job by slug
-    const foundJob = jobPositions.find(j => j.slug === slug);
-    
-    if (foundJob) {
-      setJob(foundJob);
-      setIsLoaded(true);
-      window.scrollTo(0, 0);
-    } else {
-      toast.error("Job position not found");
-      navigate("/careers");
-    }
-  }, [slug, navigate]);
+  if (!job) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow container mx-auto px-4 pt-32 pb-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl font-bold mb-6">Job Not Found</h1>
+            <p className="text-gray-600 mb-8">
+              The job position you're looking for doesn't exist or may have been removed.
+            </p>
+            <Link 
+              to="/careers" 
+              className="inline-flex items-center px-6 py-3 bg-tech-400 text-white rounded-lg hover:bg-tech-500 transition-all duration-300"
+            >
+              <ArrowLeft size={16} className="mr-2" />
+              Back to Careers
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
   
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
   
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, files } = e.target;
-    if (files && files.length > 0) {
-      setFormData(prev => ({
-        ...prev,
-        [name]: files[0]
-      }));
+    if (e.target.files && e.target.files[0]) {
+      setFormData({
+        ...formData,
+        resume: e.target.files[0],
+      });
     }
   };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.resume) {
-      toast.error("Please upload your resume");
-      return;
-    }
-    
     setIsSubmitting(true);
     
     // Simulate form submission
     setTimeout(() => {
-      toast.success("Your application was submitted successfully!");
+      setIsSubmitting(false);
+      toast({
+        title: "Application Submitted",
+        description: "Your application has been successfully submitted! We'll be in touch soon.",
+      });
+      
+      // Reset form
       setFormData({
-        fullName: "",
+        name: "",
         email: "",
         phone: "",
         resume: null,
-        coverLetter: null,
-        portfolio: "",
-        linkedin: ""
+        coverLetter: "",
       });
-      setIsSubmitting(false);
       
-      // Redirect to careers page after submission
-      setTimeout(() => {
-        navigate("/careers");
-      }, 2000);
+      // In a real application, you would send the form data to your backend here
     }, 1500);
   };
   
-  if (!job) return null;
-
+  const relatedJobs = jobPositions
+    .filter((j) => j.id !== job.id && j.department === job.department)
+    .slice(0, 3);
+  
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollProgress />
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Header Section */}
-        <section className="bg-gradient-to-br from-tech-50 via-tech-100 to-tech-50 py-12 md:py-16">
-          <div className="container mx-auto px-4">
-            <Link 
-              to="/careers" 
-              className="inline-flex items-center text-tech-600 hover:text-tech-700 mb-6 transition-colors"
-            >
-              <ArrowLeft size={18} className="mr-2" />
-              Back to All Positions
-            </Link>
-            
-            <div className={`transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        {/* Job Header */}
+        <section className="relative py-16 bg-gradient-to-r from-tech-800 to-tech-900 text-white">
+          <div className="absolute inset-0 opacity-10">
+            <img
+              src={job.image || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format"}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto">
+              <Link 
+                to="/careers" 
+                className="inline-flex items-center text-tech-200 hover:text-white mb-6 transition-colors"
+              >
+                <ArrowLeft size={16} className="mr-2" />
+                Back to All Positions
+              </Link>
+              
+              <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
+                {job.image && (
+                  <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-white p-2">
+                    <img 
+                      src={job.image} 
+                      alt={job.title} 
+                      className="w-full h-full object-cover rounded" 
+                    />
+                  </div>
+                )}
                 <div>
-                  <h1 className="text-3xl md:text-4xl font-bold mb-2 text-tech-800">{job.title}</h1>
-                  <p className="text-tech-600 font-medium text-lg mb-4">{job.department}</p>
-                </div>
-                <div className="mt-4 md:mt-0">
-                  <span className="inline-block px-4 py-1.5 bg-tech-200 text-tech-700 text-sm font-medium rounded-full">
-                    {job.level} Level
-                  </span>
+                  <h1 className="text-3xl md:text-4xl font-bold mb-2">{job.title}</h1>
+                  <div className="flex flex-wrap gap-4 text-sm">
+                    <div className="flex items-center text-tech-200">
+                      <Briefcase size={16} className="mr-2" />
+                      {job.department}
+                    </div>
+                    <div className="flex items-center text-tech-200">
+                      <MapPin size={16} className="mr-2" />
+                      {job.location}
+                    </div>
+                    <div className="flex items-center text-tech-200">
+                      <Clock size={16} className="mr-2" />
+                      {job.type}
+                    </div>
+                    <div className="flex items-center text-tech-200">
+                      <DollarSign size={16} className="mr-2" />
+                      {job.salary}
+                    </div>
+                    <div className="flex items-center text-tech-200">
+                      <Users size={16} className="mr-2" />
+                      {job.level} Level
+                    </div>
+                  </div>
                 </div>
               </div>
               
-              <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl">
-                <div className="flex items-center">
-                  <MapPin size={18} className="mr-2 text-tech-500" />
-                  <span>{job.location}</span>
-                </div>
-                <div className="flex items-center">
-                  <Clock size={18} className="mr-2 text-tech-500" />
-                  <span>{job.type}</span>
-                </div>
-                <div className="flex items-center">
-                  <DollarSign size={18} className="mr-2 text-tech-500" />
-                  <span>{job.salary}</span>
-                </div>
-              </div>
-              
-              <div className="mt-8 flex space-x-4">
-                <a 
-                  href="#apply-now" 
-                  className="px-6 py-3 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 font-medium inline-flex items-center"
+              <div className="flex justify-end">
+                <Button 
+                  onClick={() => document.getElementById("apply-section")?.scrollIntoView({ behavior: "smooth" })}
+                  className="bg-tech-400 hover:bg-tech-300 text-white"
                 >
                   Apply Now
-                  <ArrowRight size={18} className="ml-2" />
-                </a>
-                <button 
-                  onClick={() => {
-                    navigator.clipboard.writeText(window.location.href);
-                    toast.success("Link copied to clipboard!");
-                  }} 
-                  className="px-6 py-3 bg-white border border-gray-300 rounded-full hover:border-tech-300 transition-all duration-300 font-medium"
-                >
-                  Share Job
-                </button>
+                </Button>
               </div>
             </div>
           </div>
         </section>
         
-        {/* Main Content Section */}
-        <section className="py-12 md:py-16">
+        {/* Job Details */}
+        <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl">
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-4">Overview</h2>
-                <div className="prose max-w-none text-gray-700">
-                  <p>{job.overview}</p>
+            <div className="max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2">
+                  <div className="mb-10">
+                    <h2 className="text-2xl font-bold mb-4">Overview</h2>
+                    <p className="text-gray-700 leading-relaxed">{jobDesc.overview}</p>
+                  </div>
+                  
+                  <div className="mb-10">
+                    <h2 className="text-2xl font-bold mb-4">Responsibilities</h2>
+                    <ul className="space-y-3">
+                      {jobDesc.responsibilities.map((item, index) => (
+                        <li key={index} className="flex items-start">
+                          <CheckCircle size={18} className="text-tech-500 mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="mb-10">
+                    <h2 className="text-2xl font-bold mb-4">Requirements</h2>
+                    <ul className="space-y-3">
+                      {jobDesc.requirements.map((item, index) => (
+                        <li key={index} className="flex items-start">
+                          <CheckCircle size={18} className="text-tech-500 mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="mb-10">
+                    <h2 className="text-2xl font-bold mb-4">Nice to Have</h2>
+                    <ul className="space-y-3">
+                      {jobDesc.preferred.map((item, index) => (
+                        <li key={index} className="flex items-start">
+                          <CheckCircle size={18} className="text-tech-500 mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-gray-700">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                
+                <div className="lg:col-span-1">
+                  <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 sticky top-24">
+                    <h3 className="text-xl font-bold mb-4">Job Details</h3>
+                    
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">Department</div>
+                        <div className="flex items-center">
+                          <Building size={16} className="text-tech-500 mr-2" />
+                          {job.department}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">Job Type</div>
+                        <div className="flex items-center">
+                          <Clock size={16} className="text-tech-500 mr-2" />
+                          {job.type}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">Experience Level</div>
+                        <div className="flex items-center">
+                          <GraduationCap size={16} className="text-tech-500 mr-2" />
+                          {job.level} Level
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">Location</div>
+                        <div className="flex items-center">
+                          <MapPin size={16} className="text-tech-500 mr-2" />
+                          {job.location}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">Salary</div>
+                        <div className="flex items-center">
+                          <DollarSign size={16} className="text-tech-500 mr-2" />
+                          {job.salary}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="text-sm text-gray-500 mb-1">Posted</div>
+                        <div>{job.posted}</div>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      onClick={() => document.getElementById("apply-section")?.scrollIntoView({ behavior: "smooth" })}
+                      className="w-full bg-tech-400 hover:bg-tech-300 text-white"
+                    >
+                      Apply for this Job
+                    </Button>
+                  </div>
                 </div>
               </div>
               
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-4">Responsibilities</h2>
-                <ul className="space-y-3">
-                  {job.responsibilities.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle size={18} className="text-tech-400 mt-1 mr-3 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-4">Basic Qualifications</h2>
-                <ul className="space-y-3">
-                  {job.requirements.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle size={18} className="text-tech-400 mt-1 mr-3 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-4">Preferred Qualifications</h2>
-                <ul className="space-y-3">
-                  {job.preferred.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle size={18} className="text-tech-400 mt-1 mr-3 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="mb-12">
-                <h2 className="text-2xl font-bold mb-4">Benefits</h2>
-                <ul className="space-y-3">
-                  {job.benefits.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle size={18} className="text-tech-400 mt-1 mr-3 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="flex items-center mb-10 pt-6">
-                <div className="flex-1 h-px bg-gray-200"></div>
-                <div className="px-4 text-gray-500 font-medium">Apply for this Position</div>
-                <div className="flex-1 h-px bg-gray-200"></div>
-              </div>
-              
-              {/* Application Form */}
-              <div id="apply-now" className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm">
-                <h2 className="text-2xl font-bold mb-6">Apply for {job.title}</h2>
-                
-                <form onSubmit={handleSubmit}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
-                        Full Name*
-                      </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <User size={18} className="text-gray-400" />
-                        </div>
-                        <input
-                          type="text"
-                          id="fullName"
-                          name="fullName"
-                          value={formData.fullName}
-                          onChange={handleChange}
-                          required
-                          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent"
-                          placeholder="Your name"
-                        />
+              <div className="mt-12 pt-10 border-t border-gray-200">
+                <h2 className="text-2xl font-bold mb-4">Benefits & Perks</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {jobDesc.benefits.map((benefit, index) => (
+                    <div key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                      <div className="flex items-start">
+                        <CheckCircle size={18} className="text-tech-500 mt-1 mr-3 flex-shrink-0" />
+                        <span className="text-gray-700">{benefit}</span>
                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Application Form */}
+        <section id="apply-section" className="py-12 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-white p-8 rounded-xl shadow-sm">
+                <h2 className="text-2xl font-bold mb-2">Apply for this Position</h2>
+                <p className="text-gray-600 mb-6">
+                  Please fill out the form below to apply for the {job.title} position.
+                </p>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                        Full Name *
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="John Doe"
+                        required
+                      />
                     </div>
                     
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Email Address*
+                        Email Address *
                       </label>
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <Mail size={18} className="text-gray-400" />
-                        </div>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent"
-                          placeholder="Your email"
-                        />
-                      </div>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="john@example.com"
+                        required
+                      />
                     </div>
                   </div>
                   
-                  <div className="mb-6">
+                  <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                       Phone Number
                     </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Phone size={18} className="text-gray-400" />
-                      </div>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent"
-                        placeholder="Your phone number"
-                      />
-                    </div>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="+1 (555) 123-4567"
+                    />
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-1">
-                        Resume/CV* (PDF, DOCX)
-                      </label>
-                      <div className="relative">
+                  <div>
+                    <label htmlFor="resume" className="block text-sm font-medium text-gray-700 mb-1">
+                      Resume/CV *
+                    </label>
+                    <div className="flex items-center">
+                      <label className="flex-1">
+                        <div className="border border-gray-300 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center justify-center">
+                            <FileText size={20} className="text-tech-500 mr-2" />
+                            <span>{formData.resume ? formData.resume.name : "Upload your resume (PDF, DOCX)"}</span>
+                          </div>
+                        </div>
                         <input
-                          type="file"
                           id="resume"
                           name="resume"
-                          onChange={handleFileChange}
-                          required
-                          accept=".pdf,.docx"
-                          className="hidden"
-                        />
-                        <label 
-                          htmlFor="resume" 
-                          className="flex items-center justify-center w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent transition-colors"
-                        >
-                          <Upload size={18} className="text-gray-400 mr-2" />
-                          <span className="text-gray-500">
-                            {formData.resume ? formData.resume.name : "Click to upload"}
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-1">
-                        Cover Letter (PDF, DOCX)
-                      </label>
-                      <div className="relative">
-                        <input
                           type="file"
-                          id="coverLetter"
-                          name="coverLetter"
+                          accept=".pdf,.doc,.docx"
                           onChange={handleFileChange}
-                          accept=".pdf,.docx"
                           className="hidden"
+                          required
                         />
-                        <label 
-                          htmlFor="coverLetter" 
-                          className="flex items-center justify-center w-full px-4 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent transition-colors"
-                        >
-                          <File size={18} className="text-gray-400 mr-2" />
-                          <span className="text-gray-500">
-                            {formData.coverLetter ? formData.coverLetter.name : "Click to upload"}
-                          </span>
-                        </label>
-                      </div>
+                      </label>
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                      <label htmlFor="portfolio" className="block text-sm font-medium text-gray-700 mb-1">
-                        Portfolio URL
-                      </label>
-                      <input
-                        type="url"
-                        id="portfolio"
-                        name="portfolio"
-                        value={formData.portfolio}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent"
-                        placeholder="https://yourportfolio.com"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 mb-1">
-                        LinkedIn Profile
-                      </label>
-                      <input
-                        type="url"
-                        id="linkedin"
-                        name="linkedin"
-                        value={formData.linkedin}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200 focus:border-transparent"
-                        placeholder="https://linkedin.com/in/yourprofile"
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-1">
+                      Cover Letter
+                    </label>
+                    <Textarea
+                      id="coverLetter"
+                      name="coverLetter"
+                      value={formData.coverLetter}
+                      onChange={handleInputChange}
+                      placeholder="Tell us why you're a good fit for this position..."
+                      rows={6}
+                    />
                   </div>
                   
-                  <div className="mt-8">
-                    <button
+                  <div className="flex justify-end">
+                    <Button
                       type="submit"
+                      className="bg-tech-400 hover:bg-tech-300 text-white"
                       disabled={isSubmitting}
-                      className="w-full px-6 py-3 bg-tech-400 text-white rounded-lg hover:bg-tech-500 transition-all duration-300 flex items-center justify-center"
                     >
                       {isSubmitting ? (
                         <>
-                          <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Submitting Application...
+                          <span className="mr-2">Submitting...</span>
                         </>
                       ) : (
                         <>
-                          <Send size={18} className="mr-2" />
+                          <Send size={16} className="mr-2" />
                           Submit Application
                         </>
                       )}
-                    </button>
+                    </Button>
                   </div>
                 </form>
               </div>
@@ -805,58 +977,62 @@ const JobDetail = () => {
           </div>
         </section>
         
-        {/* Related Jobs Section */}
-        <section className="py-12 md:py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-8">Similar Positions</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {jobPositions
-                .filter(j => j.id !== job.id && j.department === job.department)
-                .slice(0, 3)
-                .map((relatedJob) => (
-                  <Link 
-                    key={relatedJob.id}
-                    to={`/careers/${relatedJob.slug}`}
-                    className="bg-white rounded-xl border border-gray-200 p-6 hover:border-tech-200 hover:shadow-md transition-all duration-300 group block"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-grow">
-                        <h3 className="text-lg font-semibold group-hover:text-tech-500 transition-colors">{relatedJob.title}</h3>
-                        <p className="text-tech-500 font-medium text-sm">{relatedJob.department}</p>
+        {/* Similar Jobs */}
+        {relatedJobs.length > 0 && (
+          <section className="py-12 bg-white">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-6">Similar Positions</h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {relatedJobs.map((relatedJob) => (
+                    <div 
+                      key={relatedJob.id}
+                      onClick={() => navigate(`/careers/${relatedJob.slug}`)}
+                      className="bg-white rounded-xl border border-gray-200 hover:border-tech-200 hover:shadow-md transition-all duration-300 cursor-pointer group"
+                    >
+                      <div className="p-6">
+                        <div className="mb-4">
+                          {relatedJob.image && (
+                            <div className="w-full h-36 rounded-lg overflow-hidden mb-4">
+                              <img 
+                                src={relatedJob.image} 
+                                alt={relatedJob.title} 
+                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" 
+                              />
+                            </div>
+                          )}
+                          <h3 className="text-lg font-semibold mb-1 group-hover:text-tech-500 transition-colors">
+                            {relatedJob.title}
+                          </h3>
+                          <p className="text-tech-500 text-sm">{relatedJob.department}</p>
+                        </div>
+                        
+                        <div className="text-sm text-gray-600 mb-4">
+                          <div className="flex items-center mb-1">
+                            <MapPin size={14} className="mr-2 text-gray-400" />
+                            {relatedJob.location}
+                          </div>
+                          <div className="flex items-center">
+                            <DollarSign size={14} className="mr-2 text-gray-400" />
+                            {relatedJob.salary}
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-end">
+                          <span className="text-tech-500 text-sm font-medium flex items-center">
+                            View Details
+                            <ArrowRight size={14} className="ml-1 transition-transform duration-300 transform group-hover:translate-x-1" />
+                          </span>
+                        </div>
                       </div>
-                      <span className="inline-block px-2 py-1 bg-tech-50 text-tech-600 text-xs font-medium rounded-full">
-                        {relatedJob.level}
-                      </span>
                     </div>
-                    
-                    <div className="flex items-center text-sm text-gray-600 mb-3">
-                      <MapPin size={14} className="mr-1 text-gray-400" />
-                      {relatedJob.location}
-                    </div>
-                    
-                    <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
-                      <span className="text-xs text-gray-500">Posted {relatedJob.posted}</span>
-                      <span className="text-tech-500 text-sm font-medium flex items-center">
-                        View Details
-                        <ArrowRight size={14} className="ml-1 transition-transform duration-300 transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+                  ))}
+                </div>
+              </div>
             </div>
-            
-            <div className="text-center mt-10">
-              <Link
-                to="/careers"
-                className="inline-flex items-center px-6 py-3 bg-white border border-gray-300 rounded-full hover:border-tech-300 transition-all duration-300 font-medium"
-              >
-                View All Open Positions
-                <ArrowRight size={18} className="ml-2" />
-              </Link>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
       </main>
       
       <Footer />
