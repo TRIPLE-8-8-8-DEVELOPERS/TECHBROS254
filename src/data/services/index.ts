@@ -7,6 +7,9 @@ import ecommerceServices from './ecommerce';
 import { aiDataServices } from './ai-data';
 import { securityServices } from './security';
 import { marketingServices } from './marketing';
+import { designServices } from './design';
+import { healthcareServices } from './healthcare';
+import { educationServices } from './education';
 
 // Combine all service categories
 export const serviceDetails: ServiceDetail[] = [
@@ -16,7 +19,10 @@ export const serviceDetails: ServiceDetail[] = [
   ...ecommerceServices,
   ...aiDataServices,
   ...securityServices,
-  ...marketingServices
+  ...marketingServices,
+  ...designServices,
+  ...healthcareServices,
+  ...educationServices
 ];
 
 // Create serviceItems array from serviceDetails for easier consumption

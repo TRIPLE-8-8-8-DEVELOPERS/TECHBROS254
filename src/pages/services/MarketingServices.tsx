@@ -27,11 +27,11 @@ const MarketingServices = () => {
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Hero Section */}
+        {/* Hero Section - Updated with better image and contrast */}
         <section 
-          className="relative py-20 bg-gradient-to-br from-pink-700/90 to-pink-900/90 text-white"
+          className="relative py-20 bg-gradient-to-br from-pink-600/95 to-rose-900/95 text-white"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&q=80)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundBlendMode: 'overlay',
@@ -39,14 +39,14 @@ const MarketingServices = () => {
         >
           <div className="container mx-auto px-4">
             <div className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <Link to="/services" className="text-pink-200 hover:text-white mb-4 inline-flex items-center">
+              <Link to="/services" className="text-pink-100 hover:text-white mb-4 inline-flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
                 </svg>
                 All Services
               </Link>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Marketing Services</h1>
-              <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Marketing Services</h1>
+              <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
                 Strategic digital marketing solutions to increase your online visibility and drive customer growth.
               </p>
             </div>

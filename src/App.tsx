@@ -37,6 +37,11 @@ import FinancialWellnessPage from "./pages/perks/FinancialWellnessPage";
 import RecognitionProgramsPage from "./pages/perks/RecognitionProgramsPage";
 import FoodRefreshmentsPage from "./pages/perks/FoodRefreshmentsPage";
 
+// Import new services
+import DesignServices from "./pages/services/DesignServices";
+import HealthcareServices from "./pages/services/HealthcareServices";
+import EducationServices from "./pages/services/EducationServices";
+
 function App() {
   return (
     <Router>
@@ -53,6 +58,9 @@ function App() {
         <Route path="/services/ai-data" element={<AIDataServices />} />
         <Route path="/services/security" element={<SecurityServices />} />
         <Route path="/services/marketing" element={<MarketingServices />} />
+        <Route path="/services/design" element={<DesignServices />} />
+        <Route path="/services/healthcare" element={<HealthcareServices />} />
+        <Route path="/services/education" element={<EducationServices />} />
         <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
         

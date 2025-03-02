@@ -8,11 +8,11 @@ import ScrollProgress from "@/components/ScrollProgress";
 import ServiceCard from "@/components/ServiceCard";
 import SubCategoryList from "@/components/SubCategoryList";
 
-const EcommerceServices = () => {
+const DesignServices = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   
-  // Filter services by E-commerce category
-  const services = serviceDetails.filter(service => service.category === "E-commerce");
+  // Filter services by Design category
+  const services = serviceDetails.filter(service => service.category === "Design");
   // Get all subcategories
   const allSubcategories = services.flatMap(service => service.subcategories || []);
   
@@ -27,11 +27,11 @@ const EcommerceServices = () => {
       <Navbar />
       
       <main className="flex-grow pt-24">
-        {/* Hero Section - Updated with better image and contrast */}
+        {/* Hero Section */}
         <section 
-          className="relative py-20 bg-gradient-to-br from-orange-600/95 to-orange-900/95 text-white"
+          className="relative py-20 bg-gradient-to-br from-indigo-700/90 to-purple-900/90 text-white"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundBlendMode: 'overlay',
@@ -39,15 +39,15 @@ const EcommerceServices = () => {
         >
           <div className="container mx-auto px-4">
             <div className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <Link to="/services" className="text-orange-100 hover:text-white mb-4 inline-flex items-center">
+              <Link to="/services" className="text-indigo-200 hover:text-white mb-4 inline-flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
                 </svg>
                 All Services
               </Link>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">E-commerce Services</h1>
-              <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-                Complete e-commerce solutions to help you sell products online and grow your business.
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">Design Services</h1>
+              <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
+                User-centered design solutions that transform digital experiences and strengthen brand identity.
               </p>
             </div>
           </div>
@@ -84,4 +84,4 @@ const EcommerceServices = () => {
   );
 };
 
-export default EcommerceServices;
+export default DesignServices;

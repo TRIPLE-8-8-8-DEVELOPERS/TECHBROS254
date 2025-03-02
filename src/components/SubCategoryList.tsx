@@ -41,7 +41,7 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
                         <Icon size={24} />
                       </div>
                     )}
-                    <h3 className="text-xl font-bold">{subcategory.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-800">{subcategory.title}</h3>
                   </div>
                   <p className="text-gray-600 mb-5 flex-grow">{subcategory.description}</p>
                   <div className="flex items-center text-vibrant-purple font-medium group-hover:text-vibrant-pink transition-colors mt-auto">
