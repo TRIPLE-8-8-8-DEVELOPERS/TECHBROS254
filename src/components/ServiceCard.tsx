@@ -120,16 +120,16 @@ const ServiceCard = ({
   return (
     <div
       ref={cardRef}
-      className={`service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-500 ${
+      className={`service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-500 h-full ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link to={`/services/${slug}`} className="block h-full">
+      <Link to={`/services/${slug}`} className="block h-full flex flex-col">
         {image && (
-          <div className="h-52 overflow-hidden">
+          <div className="h-48 md:h-52 lg:h-56 overflow-hidden">
             <img 
               src={image} 
               alt={title}
@@ -139,11 +139,11 @@ const ServiceCard = ({
             />
           </div>
         )}
-        <div className="p-6 flex flex-col h-[calc(100%-208px)]">
+        <div className="p-6 md:p-8 flex flex-col flex-grow">
           {category && (
             <Badge 
               variant="outline" 
-              className={`mb-4 ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border}`}
+              className={`mb-4 self-start ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border}`}
             >
               {category}
             </Badge>

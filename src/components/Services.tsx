@@ -47,16 +47,16 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-padding relative overflow-hidden">
+    <section id="services" ref={sectionRef} className="section-padding relative overflow-hidden w-full">
       {/* Enhanced background elements */}
       <div className="absolute -top-20 -right-20 w-96 h-96 bg-vibrant-purple/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
       <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-vibrant-pink/20 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
       <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-vibrant-blue/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
       
-      <div className="container mx-auto px-4 relative">
+      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[1920px] mx-auto relative">
         <div 
           ref={titleRef}
-          className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-700 ${
+          className={`max-w-4xl mx-auto text-center mb-16 md:mb-24 transition-all duration-700 ${
             titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
@@ -65,21 +65,21 @@ const Services = () => {
               Our Expertise
             </span>
           </div>
-          <h2 className="section-title font-feature">Transforming Businesses with <span className="title-highlight">Technology</span></h2>
-          <p className="text-gray-600 mt-6 text-lg text-pretty">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-feature">Transforming Businesses with <span className="title-highlight">Technology</span></h2>
+          <p className="text-gray-600 mt-6 text-lg md:text-xl text-pretty max-w-3xl mx-auto">
             We provide a comprehensive suite of services that cater to businesses of all sizes, from startups to enterprises, combining technical expertise with strategic insight.
           </p>
         </div>
 
         {/* Category Filters - Enhanced styling */}
-        <div className="mb-12">
-          <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full max-w-4xl mx-auto">
+        <div className="mb-12 md:mb-16">
+          <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full max-w-5xl mx-auto">
             <TabsList className="w-full flex flex-wrap justify-center bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 p-3 rounded-xl">
               {categories.map((category) => (
                 <TabsTrigger 
                   key={category} 
                   value={category}
-                  className="capitalize font-accent text-base px-6 py-2.5 data-[state=active]:bg-gradient-to-r data-[state=active]:from-vibrant-purple data-[state=active]:to-vibrant-pink data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300"
+                  className="capitalize font-accent text-base px-5 py-2.5 data-[state=active]:bg-gradient-to-r data-[state=active]:from-vibrant-purple data-[state=active]:to-vibrant-pink data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300"
                 >
                   {category === "all" ? "All Services" : category}
                 </TabsTrigger>
@@ -88,17 +88,17 @@ const Services = () => {
           </Tabs>
         </div>
 
-        {/* Enhanced services grid with larger cards and better styling */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+        {/* Full-width services grid with better responsive layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {filteredServices.map((service, index) => (
             <div 
               key={service.id}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-vibrant-purple/20 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 hover:border-vibrant-purple/20 transform hover:-translate-y-2 h-full"
             >
               {/* Service main card */}
-              <Link to={`/services/${service.slug}`} className="block">
+              <Link to={`/services/${service.slug}`} className="block h-full flex flex-col">
                 {service.image && (
-                  <div className="h-60 overflow-hidden">
+                  <div className="h-52 sm:h-48 md:h-56 lg:h-60 overflow-hidden">
                     <img 
                       src={service.image} 
                       alt={service.title}
@@ -106,9 +106,9 @@ const Services = () => {
                     />
                   </div>
                 )}
-                <div className="p-8">
+                <div className="p-6 md:p-8 flex flex-col flex-grow">
                   {service.category && (
-                    <Badge variant="outline" className="mb-4 text-sm px-3 py-1 bg-vibrant-purple/10 text-vibrant-purple border-vibrant-purple/20">
+                    <Badge variant="outline" className="mb-4 text-sm px-3 py-1 bg-vibrant-purple/10 text-vibrant-purple border-vibrant-purple/20 self-start">
                       {service.category}
                     </Badge>
                   )}
@@ -117,10 +117,10 @@ const Services = () => {
                     <service.icon size={28} />
                   </div>
                   
-                  <h3 className="text-2xl font-bold mb-3 text-left font-feature">{service.title}</h3>
-                  <p className="text-base text-gray-600 text-left mb-6">{service.shortDescription}</p>
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 text-left font-feature">{service.title}</h3>
+                  <p className="text-base text-gray-600 text-left mb-6 flex-grow">{service.shortDescription}</p>
                   
-                  <div className="flex items-center text-vibrant-purple font-medium">
+                  <div className="flex items-center text-vibrant-purple font-medium mt-auto">
                     Learn more <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -141,7 +141,7 @@ const Services = () => {
                   </button>
                   
                   {showSubcategories === service.slug && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6 bg-gradient-to-r from-vibrant-purple/5 to-vibrant-pink/5 animate-fade-in">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-6 bg-gradient-to-r from-vibrant-purple/5 to-vibrant-pink/5 animate-fade-in">
                       {service.subcategories.map((subcat) => {
                         const Icon = subcat.icon;
                         return (
@@ -174,14 +174,14 @@ const Services = () => {
           ))}
         </div>
         
-        {/* "View All Services" button */}
-        <div className="mt-16 text-center">
+        {/* "View All Services" button - larger and more prominent */}
+        <div className="mt-16 md:mt-24 text-center">
           <Link 
             to="/services" 
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-vibrant-purple to-vibrant-pink text-white rounded-full hover:shadow-lg transition-all duration-300 font-medium group"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-vibrant-purple to-vibrant-pink text-white rounded-full hover:shadow-lg transition-all duration-300 font-medium group text-lg"
           >
             View All Services
-            <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>

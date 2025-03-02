@@ -78,8 +78,8 @@ const ServicesPage = () => {
             <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-vibrant-pink/30 rounded-full mix-blend-multiply filter blur-3xl"></div>
           </div>
           
-          <div className="container mx-auto px-4 relative z-10">
-            <div className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="inline-block mb-6 px-4 py-1.5 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full">
                 <span className="text-sm font-medium text-vibrant-purple uppercase tracking-wider font-accent">Our Services</span>
               </div>
@@ -93,20 +93,20 @@ const ServicesPage = () => {
         
         {/* Categories Section */}
         <section className="py-16 md:py-24">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1920px]">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6">Browse by Category</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Browse by Category</h2>
               <p className="text-lg text-gray-600">
                 Explore our service categories to find the perfect solution for your business needs.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
               {categories.map((category, index) => (
                 <Link 
                   key={index} 
                   to={`/services/${categoryUrls[category as keyof typeof categoryUrls]}`}
-                  className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+                  className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group h-full"
                 >
                   <div className="p-8">
                     <div className={`w-20 h-20 bg-gradient-to-r ${categoryGradients[category as keyof typeof categoryGradients] || 'from-tech-50 to-white'} rounded-2xl flex items-center justify-center mb-6 text-tech-500 group-hover:scale-110 transition-transform duration-300`}>
