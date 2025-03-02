@@ -1,13 +1,14 @@
 
 import { useEffect, useState, useRef } from "react";
 import AnimatedText from "./AnimatedText";
-import { ChevronDown, ArrowRight, Briefcase } from "lucide-react";
+import { ArrowRight, Briefcase, ChevronDown, Search, BarChart, Code, Server, Shield, HeartHandshake, Landmark } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const [parallaxY, setParallaxY] = useState(0);
+  const [selectedService, setSelectedService] = useState("");
 
   useEffect(() => {
     setIsLoaded(true);
@@ -34,17 +35,26 @@ const Hero = () => {
     }
   };
 
+  const services = [
+    { id: "development", name: "Software Development", icon: <Code size={20} />, path: "/services/development" },
+    { id: "infrastructure", name: "Cloud Infrastructure", icon: <Server size={20} />, path: "/services/infrastructure" },
+    { id: "consulting", name: "Tech Consulting", icon: <HeartHandshake size={20} />, path: "/services/consulting" },
+    { id: "aidata", name: "AI & Data", icon: <BarChart size={20} />, path: "/services/ai-data" },
+    { id: "security", name: "Cybersecurity", icon: <Shield size={20} />, path: "/services/security" },
+    { id: "enterprise", name: "Enterprise Solutions", icon: <Landmark size={20} />, path: "/services/enterprise" },
+  ];
+
   return (
     <div 
       id="home" 
       ref={heroRef}
-      className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-gradient-to-br from-vibrant-purple/5 to-vibrant-pink/5"
+      className="min-h-[750px] md:min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
       {/* Background with gradient overlay and pattern */}
       <div 
         className="absolute inset-0 z-0 bg-gradient-to-b from-white to-tech-50"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&w=1920&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&w=1920&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.05,
@@ -59,98 +69,158 @@ const Hero = () => {
 
       {/* Hero content */}
       <div className="container mx-auto px-4 z-10 pt-20 md:pt-0">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7 text-center md:text-left">
-            <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="inline-block mb-6 px-4 py-1.5 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full">
-                <span className="text-sm font-medium text-vibrant-purple font-accent">Innovating the Digital Future</span>
+        <div className="max-w-7xl mx-auto">
+          {/* Main Content Area */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-10">
+            <div className="md:col-span-7 text-center md:text-left">
+              <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className="inline-block mb-6 px-4 py-1.5 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full">
+                  <span className="text-sm font-medium text-vibrant-purple font-accent">Innovating the Digital Future</span>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h1 className="mb-4 text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight font-display">
+                  <span className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent">Leading</span><br />
+                  Technology Solutions Provider
+                </h1>
+                <div className={`max-w-2xl mx-auto md:mx-0 transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                  <p className="text-xl text-gray-600 text-pretty">
+                    We help businesses transform, scale, and thrive in the digital landscape by leveraging cutting-edge technologies and innovative strategies.
+                  </p>
+                </div>
+              </div>
+
+              <div className={`flex flex-wrap justify-center md:justify-start gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <a 
+                  href="#services" 
+                  className="px-8 py-4 bg-gradient-to-r from-vibrant-purple to-vibrant-pink text-white rounded-full hover:opacity-90 transition-all duration-300 hover:shadow-lg font-medium flex items-center"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleScrollDown();
+                  }}
+                >
+                  Explore Services
+                  <ArrowRight size={18} className="ml-2" />
+                </a>
+                <a 
+                  href="#contact" 
+                  className="px-8 py-4 bg-white border border-vibrant-purple/20 text-vibrant-purple rounded-full hover:border-vibrant-purple/40 transition-all duration-300 hover:shadow-md font-medium"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const contactSection = document.querySelector("#contact");
+                    if (contactSection) {
+                      window.scrollTo({
+                        top: contactSection.getBoundingClientRect().top + window.pageYOffset - 100,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                >
+                  Contact Us
+                </a>
+              </div>
+
+              {/* We're Hiring Banner */}
+              <div className={`mt-8 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <Link to="/careers" className="inline-flex items-center px-4 py-2 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full text-vibrant-purple hover:bg-vibrant-purple/20 transition-all group">
+                  <div className="w-8 h-8 rounded-full bg-vibrant-purple flex items-center justify-center mr-2 text-white">
+                    <Briefcase size={16} />
+                  </div>
+                  <span className="font-medium">We're Hiring!</span>
+                  <span className="text-sm ml-2">Join our team</span>
+                  <ArrowRight size={16} className="ml-2 transform transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
 
-            <div className="mb-6">
-              <h1 className="hero-text mb-4 font-feature">
-                <span className="bg-gradient-to-r from-vibrant-purple to-vibrant-pink bg-clip-text text-transparent">TechBros</span> - Leading<br />Technology Solutions
-              </h1>
-              <div className={`max-w-2xl mx-auto md:mx-0 transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <p className="text-xl text-gray-600 text-pretty">
-                  We help businesses transform, scale, and thrive in the digital landscape by leveraging cutting-edge technologies and innovative strategies.
-                </p>
+            {/* Quick Access & Stats */}
+            <div className="md:col-span-5">
+              <div className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                {/* Search & Quick Access */}
+                <div className="mb-6">
+                  <div className="relative mb-4">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <Search className="w-5 h-5 text-gray-400" />
+                    </div>
+                    <input 
+                      type="text" 
+                      className="block w-full pl-10 pr-4 py-3 text-gray-700 border border-gray-200 rounded-lg bg-white/70 focus:ring-vibrant-purple focus:border-vibrant-purple" 
+                      placeholder="Search our services..." 
+                      onChange={(e) => setSelectedService(e.target.value.toLowerCase())}
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                    {services
+                      .filter(service => 
+                        selectedService === "" || 
+                        service.name.toLowerCase().includes(selectedService) ||
+                        service.id.includes(selectedService)
+                      )
+                      .map((service, index) => (
+                        <Link 
+                          key={service.id} 
+                          to={service.path}
+                          className="flex flex-col items-center p-3 text-center bg-white border border-gray-100 rounded-lg hover:border-vibrant-purple/30 hover:shadow-sm transition-all duration-300"
+                        >
+                          <div className="p-2 mb-2 bg-vibrant-purple/10 rounded-full">
+                            {service.icon}
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">{service.name}</span>
+                        </Link>
+                      ))
+                    }
+                  </div>
+                </div>
+                
+                {/* Statistics */}
+                <div className="grid grid-cols-3 gap-4 p-4 bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 rounded-xl">
+                  <div className="text-center">
+                    <h3 className="text-3xl font-bold text-vibrant-purple font-feature">150+</h3>
+                    <p className="text-sm text-gray-600">Clients Worldwide</p>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-3xl font-bold text-vibrant-purple font-feature">98%</h3>
+                    <p className="text-sm text-gray-600">Satisfaction Rate</p>
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-3xl font-bold text-vibrant-purple font-feature">10+</h3>
+                    <p className="text-sm text-gray-600">Years Experience</p>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div className={`flex flex-wrap justify-center md:justify-start gap-4 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          </div>
+          
+          {/* Quick Links */}
+          <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {[
+              { name: "About Us", path: "#about" },
+              { name: "Services", path: "#services" },
+              { name: "Portfolio", path: "#portfolio" },
+              { name: "Technologies", path: "#technologies" },
+              { name: "Testimonials", path: "#testimonials" },
+              { name: "Contact", path: "#contact" }
+            ].map((link, index) => (
               <a 
-                href="#services" 
-                className="px-8 py-4 bg-gradient-to-r from-vibrant-purple to-vibrant-pink text-white rounded-full hover:opacity-90 transition-all duration-300 hover:shadow-lg font-medium flex items-center"
+                key={index}
+                href={link.path}
+                className="py-3 px-4 bg-white/70 backdrop-blur-sm border border-gray-100 rounded-lg text-center hover:bg-vibrant-purple/5 hover:border-vibrant-purple/20 transition-all duration-300"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleScrollDown();
-                }}
-              >
-                Explore Services
-                <ArrowRight size={18} className="ml-2" />
-              </a>
-              <a 
-                href="#contact" 
-                className="px-8 py-4 bg-white border border-vibrant-purple/20 text-vibrant-purple rounded-full hover:border-vibrant-purple/40 transition-all duration-300 hover:shadow-md font-medium"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const contactSection = document.querySelector("#contact");
-                  if (contactSection) {
+                  const section = document.querySelector(link.path);
+                  if (section) {
                     window.scrollTo({
-                      top: contactSection.getBoundingClientRect().top + window.pageYOffset - 100,
+                      top: section.getBoundingClientRect().top + window.pageYOffset - 100,
                       behavior: "smooth",
                     });
                   }
                 }}
               >
-                Contact Us
+                <span className="font-medium text-gray-700">{link.name}</span>
               </a>
-            </div>
-
-            {/* We're Hiring Banner */}
-            <div className={`mt-8 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <Link to="/careers" className="inline-flex items-center px-4 py-2 bg-vibrant-purple/10 border border-vibrant-purple/20 rounded-full text-vibrant-purple hover:bg-vibrant-purple/20 transition-all group">
-                <div className="w-8 h-8 rounded-full bg-vibrant-purple flex items-center justify-center mr-2 text-white">
-                  <Briefcase size={16} />
-                </div>
-                <span className="font-medium">We're Hiring!</span>
-                <span className="text-sm ml-2">Join our team</span>
-                <ArrowRight size={16} className="ml-2 transform transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-            {/* Statistics */}
-            <div className={`mt-12 grid grid-cols-3 gap-4 max-w-lg mx-auto md:mx-0 py-6 transition-all duration-1000 delay-900 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-vibrant-purple font-feature">150+</h3>
-                <p className="text-sm text-gray-600">Clients Worldwide</p>
-              </div>
-              <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-vibrant-purple font-feature">98%</h3>
-                <p className="text-sm text-gray-600">Satisfaction Rate</p>
-              </div>
-              <div className="text-center md:text-left">
-                <h3 className="text-3xl font-bold text-vibrant-purple font-feature">10+</h3>
-                <p className="text-sm text-gray-600">Years Experience</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Image */}
-          <div className="md:col-span-5 hidden md:block">
-            <div className={`transition-all duration-1000 delay-700 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="relative">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-vibrant-purple to-vibrant-pink rounded-3xl blur opacity-30 animate-gradient-x"></div>
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl">
-                  <img 
-                    src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&w=800&q=80" 
-                    alt="Tech Innovation"
-                    className="w-full h-auto rounded-3xl"
-                  />
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
