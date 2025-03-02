@@ -6,12 +6,15 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ServiceCard from "@/components/ServiceCard";
+import SubCategoryList from "@/components/SubCategoryList";
 
 const InfrastructureServices = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   
   // Filter services by Infrastructure category
   const services = serviceDetails.filter(service => service.category === "Infrastructure");
+  // Get all subcategories
+  const allSubcategories = services.flatMap(service => service.subcategories || []);
   
   useEffect(() => {
     setIsLoaded(true);
@@ -61,6 +64,11 @@ const InfrastructureServices = () => {
             </div>
           </div>
         </section>
+        
+        {/* Subcategories Section */}
+        {allSubcategories.length > 0 && (
+          <SubCategoryList serviceSlug={services[0]?.slug || ''} subcategories={allSubcategories} />
+        )}
       </main>
       
       <Footer />

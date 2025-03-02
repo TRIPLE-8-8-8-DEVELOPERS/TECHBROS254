@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import ServiceCard from "@/components/ServiceCard";
-import { ArrowRight } from "lucide-react";
+import SubCategoryList from "@/components/SubCategoryList";
 
 const MarketingServices = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -70,55 +70,13 @@ const MarketingServices = () => {
                 />
               ))}
             </div>
-            
-            {/* Subcategories Section */}
-            {allSubcategories.length > 0 && (
-              <div className="mt-20">
-                <h2 className="text-3xl font-bold mb-10 text-center">Specialized Marketing Services</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {allSubcategories.map((subcategory, index) => {
-                    const parentService = services.find(service => 
-                      service.subcategories?.some(sub => sub.id === subcategory.id)
-                    );
-                    const Icon = subcategory.icon;
-                    
-                    return (
-                      <Link 
-                        key={subcategory.id}
-                        to={`/services/${parentService?.slug}/${subcategory.slug}`}
-                        className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-pink-200"
-                      >
-                        {subcategory.image && (
-                          <div className="h-40 overflow-hidden">
-                            <img 
-                              src={subcategory.image} 
-                              alt={subcategory.title}
-                              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                            />
-                          </div>
-                        )}
-                        <div className="p-6">
-                          <div className="flex items-center mb-3">
-                            {Icon && (
-                              <div className="w-8 h-8 rounded-lg bg-pink-50 text-pink-500 flex items-center justify-center mr-3 group-hover:bg-pink-100 transition-colors">
-                                <Icon size={18} />
-                              </div>
-                            )}
-                            <h3 className="font-bold">{subcategory.title}</h3>
-                          </div>
-                          <p className="text-sm text-gray-600 mb-4">{subcategory.description}</p>
-                          <div className="flex items-center text-pink-500 text-sm font-medium">
-                            Learn more <ArrowRight size={14} className="ml-1 transition-transform group-hover:translate-x-1" />
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
           </div>
         </section>
+        
+        {/* Subcategories Section */}
+        {allSubcategories.length > 0 && (
+          <SubCategoryList serviceSlug={services[0]?.slug || ''} subcategories={allSubcategories} />
+        )}
       </main>
       
       <Footer />
