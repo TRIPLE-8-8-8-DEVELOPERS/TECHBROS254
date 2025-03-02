@@ -88,8 +88,11 @@ const Index = () => {
       
       <main>
         <Hero />
+        
+        {/* Changed to full-width layout for Services */}
+        <Services />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-8">
-          <Services />
           <Technologies />
         </div>
         <Process />
