@@ -1,4 +1,4 @@
-<lov-code>
+
 export interface Project {
   id: number;
   slug: string;
@@ -461,4 +461,21 @@ export const projects: Project[] = [
         caption: "Scenario creation interface" 
       },
       { 
-        url: "https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w
+        url: "https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w=800&auto=format", 
+        caption: "Training analytics dashboard" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=800&auto=format", 
+        caption: "VR equipment setup" 
+      }
+    ],
+    testimonial: {
+      quote: "The VR training platform has completely transformed how we deliver safety training. Our clients are seeing dramatic improvements in knowledge retention and practical skills, while significantly reducing their training costs and time-to-competency.",
+      author: "Amanda Torres",
+      position: "Training Director, SafetyFirst Industries",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format"
+    },
+    nextProject: "financial-app-redesign",
+    prevProject: "iot-smart-manufacturing"
+  }
+];
