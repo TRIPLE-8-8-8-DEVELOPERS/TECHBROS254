@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/ServicesPage";
@@ -21,6 +20,8 @@ import BenefitsPage from "./pages/BenefitsPage";
 import PerksPage from "./pages/PerksPage";
 import DiversityPage from "./pages/DiversityPage";
 import ScrollToTop from "./components/ScrollToTop";
+import ProjectsPage from "./pages/ProjectsPage";
+import ProjectDetail from "./components/ProjectDetail";
 
 // Import perk pages
 import CompensationPage from "./pages/perks/CompensationPage";
@@ -78,6 +79,10 @@ function App() {
         <Route path="/perks/financial-wellness" element={<FinancialWellnessPage />} />
         <Route path="/perks/recognition-programs" element={<RecognitionProgramsPage />} />
         <Route path="/perks/food-refreshments" element={<FoodRefreshmentsPage />} />
+        
+        {/* Projects Routes */}
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
         
         <Route path="*" element={<NotFound />} />
       </Routes>

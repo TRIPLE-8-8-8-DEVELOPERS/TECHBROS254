@@ -177,7 +177,7 @@ const Hero = () => {
                 {/* Statistics */}
                 <div className="grid grid-cols-3 gap-4 p-4 bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 rounded-xl">
                   <div className="text-center">
-                    <h3 className="text-3xl font-bold text-vibrant-purple font-feature">150+</h3>
+                    <h3 className="text-3xl font-bold text-vibrant-purple font-feature">6500+</h3>
                     <p className="text-sm text-gray-600">Clients Worldwide</p>
                   </div>
                   <div className="text-center">

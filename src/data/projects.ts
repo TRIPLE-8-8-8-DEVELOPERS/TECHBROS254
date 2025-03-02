@@ -1,4 +1,4 @@
-
+<lov-code>
 export interface Project {
   id: number;
   slug: string;
@@ -327,5 +327,138 @@ export const projects: Project[] = [
     },
     nextProject: "financial-app-redesign",
     prevProject: "supply-chain-management"
-  }
-];
+  },
+  {
+    id: 7,
+    slug: "ai-powered-chatbot",
+    title: "AI-Powered Customer Service Chatbot",
+    category: "AI & Machine Learning",
+    client: "RetailX",
+    year: "2023",
+    role: "AI Development, Natural Language Processing",
+    description: [
+      "RetailX, a major e-commerce retailer, wanted to enhance customer support efficiency while maintaining a personalized customer experience. They needed a solution that could handle common inquiries 24/7 while seamlessly escalating complex issues to human agents.",
+      "We developed an AI-powered chatbot using advanced natural language processing and machine learning techniques. The chatbot was designed to understand context, maintain conversation history, and learn from interactions to continuously improve its responses.",
+      "The solution integrated with their existing CRM and order management systems, allowing customers to check order status, initiate returns, and get product recommendations without human intervention."
+    ],
+    challenge: "The client was experiencing a 43% increase in customer service inquiries due to business growth, but struggled to scale their support team effectively. Customer wait times were increasing, and satisfaction scores were declining. They needed a scalable solution that maintained their reputation for excellent customer service.",
+    solution: "We built a custom, AI-powered chatbot using GPT-4 for natural language understanding, with fine-tuning on retail-specific data. The system was integrated with their order management and CRM systems, allowing for personalized customer interactions with real-time data access.",
+    results: [
+      "Reduced first response time from 15 minutes to instant for 68% of inquiries",
+      "Decreased human agent load by 54%, allowing them to focus on complex issues",
+      "Improved customer satisfaction scores from 72% to 89% for chat support",
+      "Generated $2.3M in additional sales through AI-powered product recommendations"
+    ],
+    technologies: ["Python", "TensorFlow", "GPT-4", "React", "Node.js", "Redis", "Docker", "AWS Lambda"],
+    mainImage: "https://images.unsplash.com/photo-1581092921461-7d6720245ef2?w=1200&auto=format",
+    images: [
+      { 
+        url: "https://images.unsplash.com/photo-1526378800651-c32d170fe6f8?w=800&auto=format", 
+        caption: "Chatbot interface on various devices" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1535378620166-273708d44e4c?w=800&auto=format", 
+        caption: "Agent handoff workflow" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1579389083078-4e7018379f7e?w=800&auto=format", 
+        caption: "Analytics dashboard" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1587691592099-24045742c181?w=800&auto=format", 
+        caption: "Training and improvement workflow" 
+      }
+    ],
+    testimonial: {
+      quote: "The AI chatbot TechBros developed has transformed our customer service operations. Not only has it significantly reduced wait times and operational costs, but it's also contributed directly to our bottom line through smart product recommendations.",
+      author: "Jennifer Morris",
+      position: "VP of Customer Experience, RetailX",
+      avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=200&auto=format"
+    },
+    nextProject: "iot-smart-manufacturing",
+    prevProject: "secure-banking-portal"
+  },
+  {
+    id: 8,
+    slug: "iot-smart-manufacturing",
+    title: "IoT Smart Manufacturing Platform",
+    category: "Software Development",
+    client: "Precision Industries",
+    year: "2023",
+    role: "IoT Development, Industrial Software Engineering",
+    description: [
+      "Precision Industries, a manufacturer of aerospace components, needed to modernize their factory operations to improve efficiency, reduce waste, and maintain their competitive edge in a highly regulated industry.",
+      "We developed a comprehensive IoT platform that connected their manufacturing equipment, tracked materials, monitored environmental conditions, and provided real-time analytics on production efficiency and quality control.",
+      "The system leveraged edge computing for real-time monitoring and decision-making, with cloud integration for analytics, reporting, and digital twin simulation of manufacturing processes."
+    ],
+    challenge: "The client operated a high-precision manufacturing facility with legacy equipment that lacked connectivity. They experienced 8% production waste and had limited visibility into bottlenecks. They needed to modernize without disrupting ongoing production or compromising quality in their highly regulated industry.",
+    solution: "We designed a multi-layered IoT platform with non-invasive sensors retrofitted to existing equipment, edge gateways for real-time monitoring, and a cloud platform for analytics. The system included predictive maintenance, material tracking, and quality control automation with digital twin modeling.",
+    results: [
+      "Reduced manufacturing waste by 62%, saving $3.1M annually",
+      "Decreased unplanned equipment downtime by 78%",
+      "Improved production throughput by 24% without additional capital investment",
+      "Enhanced regulatory compliance with automated documentation and traceability"
+    ],
+    technologies: ["Python", "C++", "MQTT", "Node.js", "React", "PostgreSQL", "TensorFlow", "Azure IoT Hub", "Docker"],
+    mainImage: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&auto=format",
+    images: [
+      { 
+        url: "https://images.unsplash.com/photo-1582828633619-4ed05228c006?w=800&auto=format", 
+        caption: "Factory floor monitoring system" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&auto=format", 
+        caption: "Equipment monitoring interface" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1515343480029-43cdfe6b6aae?w=800&auto=format", 
+        caption: "Quality control dashboard" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?w=800&auto=format", 
+        caption: "Digital twin simulation" 
+      }
+    ],
+    testimonial: {
+      quote: "The IoT platform developed by TechBros has revolutionized our manufacturing operations. We've not only improved efficiency and reduced waste, but we've gained unprecedented visibility into our processes that helps us continuously improve.",
+      author: "Richard Stephens",
+      position: "Chief Operations Officer, Precision Industries",
+      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&auto=format"
+    },
+    nextProject: "vr-training-platform",
+    prevProject: "ai-powered-chatbot"
+  },
+  {
+    id: 9,
+    slug: "vr-training-platform",
+    title: "VR Training Platform",
+    category: "Software Development",
+    client: "SafetyFirst Industries",
+    year: "2022",
+    role: "VR Development, Learning Management Systems",
+    description: [
+      "SafetyFirst Industries, a company specializing in industrial safety training, wanted to transform their traditional training programs into immersive virtual reality experiences to improve engagement, knowledge retention, and practical skill development.",
+      "We developed a comprehensive VR training platform that simulated high-risk industrial environments and scenarios, allowing trainees to practice emergency responses and safety procedures in a realistic but completely safe virtual environment.",
+      "The platform included a content management system for creating and modifying scenarios, a learning management system for tracking progress and certification, and analytics for measuring effectiveness and identifying areas for improvement."
+    ],
+    challenge: "The client's traditional training methods were costly, logistically complex, and had knowledge retention issues. They needed a scalable solution that could realistically simulate dangerous scenarios without risk, while providing objective assessment of trainee performance and compliance tracking.",
+    solution: "We developed a VR training platform using Unity3D with high-fidelity scenarios for hazardous environments. The platform included haptic feedback for equipment operation, natural interaction patterns, and realistic consequence simulation, with an integrated LMS for tracking and certification.",
+    results: [
+      "Improved knowledge retention by 78% compared to traditional methods",
+      "Reduced training time by 47% while improving competency scores",
+      "Decreased training costs by 64% through reduced equipment and facility needs",
+      "Enabled the client to expand their training business to new geographic markets"
+    ],
+    technologies: ["Unity3D", "C#", "Oculus SDK", "WebGL", "Node.js", "MongoDB", "WebRTC", "AWS"],
+    mainImage: "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=1200&auto=format",
+    images: [
+      { 
+        url: "https://images.unsplash.com/photo-1626387346567-68d9613822b1?w=800&auto=format", 
+        caption: "VR training in progress" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1528715471579-d1bcf0ba5e83?w=800&auto=format", 
+        caption: "Scenario creation interface" 
+      },
+      { 
+        url: "https://images.unsplash.com/photo-1544725121-be3bf52e2dc8?w
