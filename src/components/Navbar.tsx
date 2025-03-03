@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Briefcase } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -74,7 +75,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
           ? "py-3 glass shadow-md"
-          : "py-6 bg-transparent"
+          : "py-6 bg-transparent dark:bg-dark-100/50 dark:backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -95,20 +96,21 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className={`text-gray-700 hover:text-tech-500 transition-colors duration-300 text-sm font-medium link-hover ${
+              className={`text-gray-700 dark:text-gray-200 hover:text-tech-500 dark:hover:text-tech-300 transition-colors duration-300 text-sm font-medium link-hover ${
                 link.name === "Careers" ? "flex items-center" : ""
               }`}
               onClick={(e) => handleNavClick(e, link.path)}
             >
               {link.name === "Careers" && (
-                <Briefcase size={16} className="mr-1.5 text-tech-500" />
+                <Briefcase size={16} className="mr-1.5 text-tech-500 dark:text-tech-300" />
               )}
               {link.name}
             </Link>
           ))}
+          <ThemeToggle />
           <Link 
             to="/#contact" 
-            className="bg-gradient-tech text-white px-6 py-2.5 rounded-full transition-all duration-300 text-sm hover:shadow-lg font-medium"
+            className="bg-gradient-tech dark:bg-dark-gradient-tech text-white px-6 py-2.5 rounded-full transition-all duration-300 text-sm hover:shadow-lg font-medium"
             onClick={(e) => handleNavClick(e, "/#contact")}
           >
             Get Started
@@ -116,18 +118,21 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden text-gray-700 focus:outline-none"
-          onClick={toggleMenu}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center md:hidden space-x-2">
+          <ThemeToggle />
+          <button 
+            className="text-gray-700 dark:text-gray-200 focus:outline-none"
+            onClick={toggleMenu}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-white z-40 transition-transform duration-500 ease-expo-out ${
+        className={`fixed inset-0 bg-white dark:bg-dark-100 z-40 transition-transform duration-500 ease-expo-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         } md:hidden`}
       >
@@ -140,7 +145,7 @@ const Navbar = () => {
               </span>
             </Link>
             <button 
-              className="text-gray-700 focus:outline-none"
+              className="text-gray-700 dark:text-gray-200 focus:outline-none"
               onClick={closeMenu}
               aria-label="Close menu"
             >
@@ -152,7 +157,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-2xl font-medium text-gray-700 hover:text-tech-500 transition-all stagger-item ${
+                className={`text-2xl font-medium text-gray-700 dark:text-gray-200 hover:text-tech-500 dark:hover:text-tech-300 transition-all stagger-item ${
                   isOpen ? "revealed" : ""
                 } stagger-delay-${index + 1} ${
                   link.name === "Careers" ? "flex items-center" : ""
@@ -160,7 +165,7 @@ const Navbar = () => {
                 onClick={(e) => handleNavClick(e, link.path)}
               >
                 {link.name === "Careers" && (
-                  <Briefcase size={24} className="mr-2 text-tech-500" />
+                  <Briefcase size={24} className="mr-2 text-tech-500 dark:text-tech-300" />
                 )}
                 {link.name}
               </Link>
@@ -169,7 +174,7 @@ const Navbar = () => {
           <div className="mt-auto mb-8">
             <Link
               to="/#contact"
-              className="inline-block bg-gradient-tech text-white px-8 py-4 rounded-full text-lg font-medium transition-all hover:shadow-lg stagger-item stagger-delay-5"
+              className="inline-block bg-gradient-tech dark:bg-dark-gradient-tech text-white px-8 py-4 rounded-full text-lg font-medium transition-all hover:shadow-lg stagger-item stagger-delay-5"
               onClick={(e) => handleNavClick(e, "/#contact")}
             >
               Get Started

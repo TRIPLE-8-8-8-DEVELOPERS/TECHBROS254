@@ -88,6 +88,17 @@ export default {
 					pink: "#D946EF",
 					orange: "#F97316",
 					blue: "#0EA5E9",
+				},
+				// Add dark mode colors
+				dark: {
+					100: "#1A1F2C",
+					200: "#221F26",
+					300: "#27272a",
+					400: "#403E43",
+					500: "#52525b",
+					foreground: "#f8fafc",
+					muted: "#94a3b8",
+					border: "#334155",
 				}
 			},
 			fontFamily: {
@@ -175,6 +186,7 @@ export default {
 				'hero-pattern': 'url("/images/hero-bg.png")',
 				'gradient-tech': 'linear-gradient(135deg, #9b87f5 0%, #7b5ffc 100%)',
 				'gradient-tech-animate': 'linear-gradient(135deg, #9b87f5 0%, #7b5ffc 50%, #a777e3 100%)',
+				'dark-gradient-tech': 'linear-gradient(135deg, #6b46c1 0%, #553c9a 100%)',
 			}
 		}
 	},
