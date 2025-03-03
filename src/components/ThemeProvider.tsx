@@ -49,6 +49,23 @@ export function ThemeProvider({
     root.classList.add(theme);
   }, [theme]);
 
+  // Add a meta theme-color tag for mobile browsers
+  useEffect(() => {
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.setAttribute('name', 'theme-color');
+      document.head.appendChild(metaThemeColor);
+    }
+
+    // Set the color based on theme
+    if (theme === 'dark' || (theme === 'system' && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      metaThemeColor.setAttribute('content', '#1A1F2C'); // dark-100 color
+    } else {
+      metaThemeColor.setAttribute('content', '#ffffff'); // white for light mode
+    }
+  }, [theme]);
+
   const value = {
     theme,
     setTheme: (theme: Theme) => {

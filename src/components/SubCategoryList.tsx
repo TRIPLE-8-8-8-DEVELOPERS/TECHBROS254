@@ -16,7 +16,7 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1920px]">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold relative inline-block">
-            <span className="bg-white dark:bg-dark-300 px-6 py-2 rounded-lg shadow-sm">Specialized Services</span>
+            <span className="bg-white dark:bg-dark-300 px-6 py-2 rounded-lg shadow-sm text-gray-800 dark:text-gray-100">Specialized Services</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 lg:gap-8">
