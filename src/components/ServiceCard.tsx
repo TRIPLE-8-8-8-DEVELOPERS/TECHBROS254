@@ -120,7 +120,7 @@ const ServiceCard = ({
   return (
     <div
       ref={cardRef}
-      className={`service-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 transition-all duration-500 h-full ${
+      className={`service-card bg-white dark:bg-dark-300 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-500 h-full ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
@@ -129,7 +129,7 @@ const ServiceCard = ({
     >
       <Link to={`/services/${slug}`} className="block h-full flex flex-col">
         {image && (
-          <div className="h-48 md:h-52 lg:h-56 overflow-hidden">
+          <div className="h-48 md:h-52 lg:h-56 overflow-hidden relative">
             <img 
               src={image} 
               alt={title}
@@ -137,35 +137,37 @@ const ServiceCard = ({
                 isHovered ? "scale-110" : "scale-100"
               }`}
             />
+            {/* Dark overlay for better text visibility in dark mode */}
+            <div className="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
           </div>
         )}
         <div className="p-6 md:p-8 flex flex-col flex-grow">
           {category && (
             <Badge 
               variant="outline" 
-              className={`mb-4 self-start ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border}`}
+              className={`mb-4 self-start ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border} dark:bg-gray-800 dark:text-white dark:border-gray-700`}
             >
               {category}
             </Badge>
           )}
           <div 
-            className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 bg-gradient-to-r ${
+            className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
               isHovered 
-                ? `${colorConfig.text} bg-white border-2 ${colorConfig.border}` 
-                : `${colorConfig.gradient} ${colorConfig.text}`
+                ? `${colorConfig.text} bg-white dark:bg-gray-800 border-2 ${colorConfig.border} dark:border-gray-700` 
+                : `bg-gradient-to-r ${colorConfig.gradient} ${colorConfig.text} dark:bg-gray-800 dark:text-white`
             }`}
           >
             <Icon size={26} className={`transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
           </div>
-          <h3 className="text-xl font-bold mb-3 text-left font-feature">{title}</h3>
-          <p className="text-gray-600 text-left flex-grow">{description}</p>
+          <h3 className="text-xl font-bold mb-3 text-left font-feature text-gray-800 dark:text-white">{title}</h3>
+          <p className="text-gray-600 dark:text-gray-300 text-left flex-grow">{description}</p>
           
           <div className="mt-6 flex justify-between items-center">
             <div className={`w-0 h-1 rounded-full bg-gradient-to-r ${colorConfig.gradient} transition-all duration-500 ${isHovered ? "w-1/2" : ""}`}></div>
             <Button 
               variant="ghost" 
               size="sm" 
-              className={`${colorConfig.text} p-0 hover:bg-transparent hover:text-tech-800 transition-all duration-300 ${
+              className={`${colorConfig.text} dark:text-white p-0 hover:bg-transparent hover:text-tech-800 dark:hover:text-gray-200 transition-all duration-300 ${
                 isHovered ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
               }`}
             >

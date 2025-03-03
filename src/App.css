@@ -1,4 +1,3 @@
-
 #root {
   width: 100%;
   margin: 0 auto;
@@ -141,6 +140,10 @@
   border-radius: 8px;
 }
 
+.dark .animated-gradient-border::after {
+  background: #1A1F2C;
+}
+
 @keyframes rotate {
   100% {
     transform: rotate(1turn);
@@ -172,6 +175,11 @@
 
 .hover-card-effect:hover::before {
   opacity: 1;
+}
+
+/* Dark theme title highlight */
+.dark .title-highlight {
+  text-shadow: 0 0 15px rgba(123, 95, 252, 0.5);
 }
 
 @media (prefers-reduced-motion) {
