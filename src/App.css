@@ -1,3 +1,4 @@
+
 #root {
   width: 100%;
   margin: 0 auto;
@@ -180,6 +181,35 @@
 /* Dark theme title highlight */
 .dark .title-highlight {
   text-shadow: 0 0 15px rgba(123, 95, 252, 0.5);
+}
+
+/* Process section connections */
+.process-connection {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(155, 135, 245, 0.5), rgba(123, 95, 252, 0.2));
+  z-index: 0;
+}
+
+.dark .process-connection {
+  background: linear-gradient(to right, rgba(155, 135, 245, 0.3), rgba(123, 95, 252, 0.1));
+}
+
+/* Technologies section */
+.tech-item {
+  transition: all 0.3s ease;
+}
+
+.tech-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
+}
+
+.dark .tech-item:hover {
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.3);
 }
 
 @media (prefers-reduced-motion) {

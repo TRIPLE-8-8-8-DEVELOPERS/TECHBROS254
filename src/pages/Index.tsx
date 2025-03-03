@@ -66,17 +66,17 @@ const Index = () => {
       <Navbar />
       
       {/* Quick Navigation Bar */}
-      <div className="sticky top-20 z-40 bg-white/80 backdrop-blur-sm border-b border-gray-100 shadow-sm py-2 hidden md:block">
+      <div className="sticky top-20 z-40 bg-white/80 dark:bg-dark-200/80 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800 shadow-sm py-2 hidden md:block">
         <div className="container mx-auto">
           <div className="flex items-center justify-center space-x-6">
-            {["services", "about", "technologies", "portfolio", "testimonials", "faq", "contact"].map((section) => (
+            {["services", "about", "technologies", "process", "portfolio", "testimonials", "faq", "contact"].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
                 className={`px-3 py-1 text-sm font-medium rounded-full transition-all ${
                   activeSection === section 
-                    ? 'bg-vibrant-purple/10 text-vibrant-purple' 
-                    : 'text-gray-600 hover:text-vibrant-purple'
+                    ? 'bg-vibrant-purple/10 text-vibrant-purple dark:bg-vibrant-purple/20' 
+                    : 'text-gray-600 dark:text-gray-400 hover:text-vibrant-purple dark:hover:text-vibrant-purple/90'
                 }`}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -88,24 +88,23 @@ const Index = () => {
       
       <main>
         <Hero />
-        
-        {/* Changed to full-width layout for Services */}
         <Services />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-8">
-          <Technologies />
-        </div>
+        <Technologies />
         <Process />
-        <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-8">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-20">
           <About />
           <Portfolio />
         </div>
+        
         <Partners />
         <CTABanner />
-        <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-8">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-20">
           <Testimonials />
           <FAQ />
         </div>
+        
         <Contact />
       </main>
       <Footer />
