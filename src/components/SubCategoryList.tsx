@@ -13,7 +13,7 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
   
   return (
     <section className="w-full py-16 md:py-24 bg-gradient-to-r from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1920px]">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 md:mb-16 text-center">Specialized Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {subcategories.map((subcategory) => {
@@ -23,7 +23,7 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
               <Link 
                 key={subcategory.id}
                 to={`/services/${serviceSlug}/${subcategory.slug}`}
-                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-vibrant-purple/30 transform hover:-translate-y-1 h-full"
+                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-vibrant-purple/30 transform hover:-translate-y-1 h-full flex flex-col"
               >
                 {subcategory.image && (
                   <div className="h-48 overflow-hidden">
@@ -34,7 +34,7 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
                     />
                   </div>
                 )}
-                <div className="p-6 md:p-8 flex flex-col h-full">
+                <div className="p-6 md:p-8 flex flex-col flex-grow">
                   <div className="flex items-center mb-5">
                     {Icon && (
                       <div className="w-14 h-14 rounded-lg bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 text-vibrant-purple flex items-center justify-center mr-4 group-hover:bg-vibrant-purple group-hover:text-white transition-colors duration-300">

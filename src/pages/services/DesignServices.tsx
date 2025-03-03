@@ -73,7 +73,7 @@ const DesignServices = () => {
           </div>
         </section>
         
-        {/* Subcategories Section */}
+        {/* Subcategories Section - Updated to use SubCategoryList */}
         {allSubcategories.length > 0 && (
           <SubCategoryList serviceSlug={services[0]?.slug || ''} subcategories={allSubcategories} />
         )}
