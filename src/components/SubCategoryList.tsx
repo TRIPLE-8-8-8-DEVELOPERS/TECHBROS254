@@ -30,11 +30,11 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
                 className="group bg-white dark:bg-dark-300 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-dark-border hover:border-vibrant-purple/30 dark:hover:border-vibrant-purple/50 transform hover:-translate-y-1 h-full flex flex-col"
               >
                 {subcategory.image && (
-                  <div className="h-48 sm:h-52 md:h-56 lg:h-64 overflow-hidden">
+                  <div className="overflow-hidden">
                     <img 
                       src={subcategory.image} 
                       alt={subcategory.title}
-                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                      className="w-full subcategory-image object-cover transition-all duration-500 group-hover:scale-105"
                     />
                   </div>
                 )}
@@ -42,14 +42,14 @@ const SubCategoryList = ({ serviceSlug, subcategories }: SubCategoryListProps) =
                   <div className="flex items-start mb-5 md:mb-6">
                     {Icon && (
                       <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0 rounded-lg bg-gradient-to-r from-vibrant-purple/10 to-vibrant-pink/10 dark:from-vibrant-purple/20 dark:to-vibrant-pink/20 text-vibrant-purple flex items-center justify-center mr-4 md:mr-5 group-hover:bg-vibrant-purple group-hover:text-white transition-colors duration-300">
-                        <Icon size={24} className="md:text-2xl" />
+                        <Icon size={28} className="md:text-3xl" />
                       </div>
                     )}
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100 bg-white/90 dark:bg-dark-300/90 px-3 py-1.5 rounded">
+                    <h3 className="subcategory-title bg-white/90 dark:bg-dark-300/90 px-3 py-1.5 rounded">
                       {subcategory.title}
                     </h3>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow text-base md:text-lg">{subcategory.description}</p>
+                  <p className="subcategory-desc flex-grow mb-6">{subcategory.description}</p>
                   <div className="flex items-center text-vibrant-purple dark:text-vibrant-purple/90 font-medium group-hover:text-vibrant-pink transition-colors mt-auto text-base">
                     Learn more <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-2" />
                   </div>

@@ -9,11 +9,12 @@
 .mobile-heading {
   font-size: 1.5rem;
   line-height: 2rem;
+  font-weight: 700;
 }
 
 .mobile-text {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
 }
 
 .mobile-section {
@@ -33,22 +34,32 @@
 
 /* Service subcategory card responsive classes */
 .subcategory-card {
-  padding: 1rem;
-  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .subcategory-image {
-  height: 180px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
 }
 
 .subcategory-title {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: rgb(var(--foreground) / 0.95);
 }
 
 .subcategory-desc {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
+  color: rgb(var(--foreground) / 0.8);
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 /* Media queries for larger screens */
@@ -64,21 +75,23 @@
   }
   
   .subcategory-card {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
   
   .subcategory-image {
-    height: 200px;
+    height: 220px;
   }
   
   .subcategory-title {
-    font-size: 1.25rem;
+    font-size: 1.375rem;
     line-height: 1.75rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
   }
   
   .subcategory-desc {
-    font-size: 0.9375rem;
-    line-height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.625rem;
   }
 }
 
@@ -109,26 +122,6 @@
   }
   
   .subcategory-card {
-    padding: 1.5rem;
-  }
-  
-  .subcategory-image {
-    height: 220px;
-  }
-  
-  .subcategory-title {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-  
-  .subcategory-desc {
-    font-size: 1rem;
-    line-height: 1.625rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .subcategory-card {
     padding: 1.75rem;
   }
   
@@ -137,8 +130,39 @@
   }
   
   .subcategory-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .subcategory-desc {
+    font-size: 1.0625rem;
+    line-height: 1.75rem;
+    letter-spacing: 0.015em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subcategory-card {
+    padding: 2rem;
+  }
+  
+  .subcategory-image {
+    height: 260px;
+  }
+  
+  .subcategory-title {
     font-size: 1.75rem;
     line-height: 2.25rem;
+    margin-top: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .subcategory-desc {
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    color: rgb(var(--foreground) / 0.85);
   }
 }
 
