@@ -1,0 +1,80 @@
+
+/* Mobile-first responsive utilities */
+
+.mobile-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mobile-heading {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.mobile-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.mobile-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.mobile-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mobile-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Media queries for larger screens */
+@media (min-width: 640px) {
+  .mobile-heading {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .mobile-text {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .mobile-heading {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .mobile-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .mobile-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion) {
+  .reduced-motion {
+    transition: none !important;
+    animation: none !important;
+  }
+}
