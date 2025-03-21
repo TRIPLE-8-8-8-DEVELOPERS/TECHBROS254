@@ -31,6 +31,26 @@
   height: 2.5rem;
 }
 
+/* Service subcategory card responsive classes */
+.subcategory-card {
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.subcategory-image {
+  height: 180px;
+}
+
+.subcategory-title {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.subcategory-desc {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 /* Media queries for larger screens */
 @media (min-width: 640px) {
   .mobile-heading {
@@ -40,6 +60,24 @@
 
   .mobile-text {
     font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .subcategory-card {
+    padding: 1.25rem;
+  }
+  
+  .subcategory-image {
+    height: 200px;
+  }
+  
+  .subcategory-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .subcategory-desc {
+    font-size: 0.9375rem;
     line-height: 1.5rem;
   }
 }
@@ -68,6 +106,39 @@
   .mobile-icon {
     width: 3rem;
     height: 3rem;
+  }
+  
+  .subcategory-card {
+    padding: 1.5rem;
+  }
+  
+  .subcategory-image {
+    height: 220px;
+  }
+  
+  .subcategory-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .subcategory-desc {
+    font-size: 1rem;
+    line-height: 1.625rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subcategory-card {
+    padding: 1.75rem;
+  }
+  
+  .subcategory-image {
+    height: 240px;
+  }
+  
+  .subcategory-title {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
   }
 }
 
