@@ -10,6 +10,8 @@ import { marketingServices } from './marketing';
 import { designServices } from './design';
 import { healthcareServices } from './healthcare';
 import { educationServices } from './education';
+import forexServices from './forex';
+import cryptoServices from './crypto';
 
 // Update image URLs for services with broken images
 developmentServices.forEach(service => {
@@ -62,7 +64,9 @@ export const serviceDetails: ServiceDetail[] = [
   ...marketingServices,
   ...designServices,
   ...healthcareServices,
-  ...educationServices
+  ...educationServices,
+  ...forexServices,
+  ...cryptoServices
 ];
 
 // Create serviceItems array from serviceDetails for easier consumption

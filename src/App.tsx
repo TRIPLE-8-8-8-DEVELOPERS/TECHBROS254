@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/ServicesPage";
@@ -42,6 +43,8 @@ import FoodRefreshmentsPage from "./pages/perks/FoodRefreshmentsPage";
 import DesignServices from "./pages/services/DesignServices";
 import HealthcareServices from "./pages/services/HealthcareServices";
 import EducationServices from "./pages/services/EducationServices";
+import ForexServices from "./pages/services/ForexServices";
+import CryptoServices from "./pages/services/CryptoServices";
 
 function App() {
   return (
@@ -63,6 +66,8 @@ function App() {
           <Route path="/services/design" element={<DesignServices />} />
           <Route path="/services/healthcare" element={<HealthcareServices />} />
           <Route path="/services/education" element={<EducationServices />} />
+          <Route path="/services/forex" element={<ForexServices />} />
+          <Route path="/services/crypto" element={<CryptoServices />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
           
