@@ -1,4 +1,3 @@
-
 import {
   BarChart3,
   LineChart,
@@ -9,7 +8,7 @@ import {
   Clock,
   BookOpen,
   Terminal,
-  Robot,
+  Bot,
   GitFork,
   Signal,
   AlertCircle,
@@ -47,7 +46,7 @@ export const forexServices: ServiceDetail[] = [
         slug: "trading-algorithms",
         title: "Algorithmic Trading Systems",
         description: "Sophisticated algorithmic trading systems that execute trades based on pre-defined strategies and market conditions.",
-        icon: Robot,
+        icon: Bot,
         image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&q=80"
       },
       {
