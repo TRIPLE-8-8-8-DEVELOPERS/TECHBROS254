@@ -452,14 +452,26 @@ const Careers = () => {
                 Why Join Us
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Perks & Benefits</h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 mb-6">
                 We believe in taking care of our team members and offering competitive benefits and a supportive work environment.
               </p>
+              <div className="flex flex-wrap gap-2 justify-center">
+                <Link to="/perks" className="inline-flex items-center text-sm text-tech-500 hover:text-tech-600 transition-colors">
+                  All Perks <ArrowRight size={14} className="ml-1" />
+                </Link>
+                <Link to="/benefits" className="inline-flex items-center text-sm text-tech-500 hover:text-tech-600 transition-colors ml-4">
+                  All Benefits <ArrowRight size={14} className="ml-1" />
+                </Link>
+                <Link to="/diversity" className="inline-flex items-center text-sm text-tech-500 hover:text-tech-600 transition-colors ml-4">
+                  Diversity & Inclusion <ArrowRight size={14} className="ml-1" />
+                </Link>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div 
-                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-100 ${
+              <Link 
+                to="/perks/compensation"
+                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-100 hover:border-tech-200 hover:shadow-md ${
                   perksVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
@@ -467,13 +479,17 @@ const Careers = () => {
                   <DollarSign size={24} className="text-tech-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Competitive Compensation</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   We offer competitive salaries, performance bonuses, and equity options for eligible positions.
                 </p>
-              </div>
+                <span className="text-tech-500 font-medium flex items-center text-sm">
+                  Learn More <ArrowRight size={14} className="ml-1.5" />
+                </span>
+              </Link>
               
-              <div 
-                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-200 ${
+              <Link 
+                to="/perks/health-wellness"
+                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-200 hover:border-tech-200 hover:shadow-md ${
                   perksVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
@@ -481,13 +497,17 @@ const Careers = () => {
                   <Users size={24} className="text-tech-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Health & Wellness</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Comprehensive health insurance, mental health support, wellness programs, and gym membership reimbursements.
                 </p>
-              </div>
+                <span className="text-tech-500 font-medium flex items-center text-sm">
+                  Learn More <ArrowRight size={14} className="ml-1.5" />
+                </span>
+              </Link>
               
-              <div 
-                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-300 ${
+              <Link 
+                to="/perks/flexible-work"
+                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-300 hover:border-tech-200 hover:shadow-md ${
                   perksVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
@@ -495,13 +515,17 @@ const Careers = () => {
                   <Clock size={24} className="text-tech-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Flexible Work</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Flexible working hours, remote work options, and a generous paid time off policy to maintain work-life balance.
                 </p>
-              </div>
+                <span className="text-tech-500 font-medium flex items-center text-sm">
+                  Learn More <ArrowRight size={14} className="ml-1.5" />
+                </span>
+              </Link>
               
-              <div 
-                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-400 ${
+              <Link 
+                to="/perks/learning-development"
+                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-400 hover:border-tech-200 hover:shadow-md ${
                   perksVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
@@ -509,13 +533,17 @@ const Careers = () => {
                   <GraduationCap size={24} className="text-tech-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Learning & Development</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Professional development budget, learning platforms subscriptions, conference attendance, and internal mentoring.
                 </p>
-              </div>
+                <span className="text-tech-500 font-medium flex items-center text-sm">
+                  Learn More <ArrowRight size={14} className="ml-1.5" />
+                </span>
+              </Link>
               
-              <div 
-                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-500 ${
+              <Link 
+                to="/perks/modern-office"
+                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-500 hover:border-tech-200 hover:shadow-md ${
                   perksVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
@@ -523,13 +551,17 @@ const Careers = () => {
                   <Building2 size={24} className="text-tech-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Modern Office</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   State-of-the-art offices with collaborative spaces, relaxation areas, free snacks, and beverages.
                 </p>
-              </div>
+                <span className="text-tech-500 font-medium flex items-center text-sm">
+                  Learn More <ArrowRight size={14} className="ml-1.5" />
+                </span>
+              </Link>
               
-              <div 
-                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-600 ${
+              <Link 
+                to="/perks/team-events"
+                className={`bg-gray-50 p-8 rounded-xl border border-gray-100 transition-all duration-700 delay-600 hover:border-tech-200 hover:shadow-md ${
                   perksVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
               >
@@ -537,9 +569,35 @@ const Careers = () => {
                   <Coffee size={24} className="text-tech-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Team Events</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Regular team-building events, company retreats, holiday celebrations, and social activities.
                 </p>
+                <span className="text-tech-500 font-medium flex items-center text-sm">
+                  Learn More <ArrowRight size={14} className="ml-1.5" />
+                </span>
+              </Link>
+            </div>
+            
+            <div className="mt-12 text-center">
+              <div className="inline-flex flex-wrap gap-3 justify-center max-w-4xl">
+                <Link to="/perks/work-from-anywhere" className="text-sm px-4 py-2 bg-gray-50 hover:bg-gray-100 transition-colors rounded-full text-gray-700 hover:text-tech-500">
+                  Work From Anywhere
+                </Link>
+                <Link to="/perks/vacation-time" className="text-sm px-4 py-2 bg-gray-50 hover:bg-gray-100 transition-colors rounded-full text-gray-700 hover:text-tech-500">
+                  Vacation Time
+                </Link>
+                <Link to="/perks/parental-benefits" className="text-sm px-4 py-2 bg-gray-50 hover:bg-gray-100 transition-colors rounded-full text-gray-700 hover:text-tech-500">
+                  Parental Benefits
+                </Link>
+                <Link to="/perks/financial-wellness" className="text-sm px-4 py-2 bg-gray-50 hover:bg-gray-100 transition-colors rounded-full text-gray-700 hover:text-tech-500">
+                  Financial Wellness
+                </Link>
+                <Link to="/perks/recognition-programs" className="text-sm px-4 py-2 bg-gray-50 hover:bg-gray-100 transition-colors rounded-full text-gray-700 hover:text-tech-500">
+                  Recognition Programs
+                </Link>
+                <Link to="/perks/food-refreshments" className="text-sm px-4 py-2 bg-gray-50 hover:bg-gray-100 transition-colors rounded-full text-gray-700 hover:text-tech-500">
+                  Food & Refreshments
+                </Link>
               </div>
             </div>
           </div>
@@ -561,304 +619,4 @@ const Careers = () => {
                 <Star size={40} className="text-tech-300 inline-block" />
               </div>
               <blockquote className="text-2xl md:text-3xl font-light italic text-white mb-8">
-                "Working at TechBros has been the highlight of my career. The culture empowers us to innovate while maintaining work-life balance. I've grown professionally and found a true community here."
-              </blockquote>
-              <div className="flex items-center justify-center space-x-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format" 
-                  alt="Employee portrait" 
-                  className="w-12 h-12 rounded-full object-cover border-2 border-tech-300" 
-                />
-                <div className="text-left">
-                  <p className="text-white font-medium">Sarah Johnson</p>
-                  <p className="text-tech-200">Senior Product Manager, 3 years</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section 
-          id="open-positions" 
-          ref={jobsRef}
-          className="py-20 bg-gray-50"
-        >
-          <div className="container mx-auto px-4">
-            <div 
-              className={`max-w-3xl mx-auto text-center mb-12 transition-all duration-700 ${
-                jobsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-            >
-              <span className="text-sm font-medium text-tech-500 uppercase tracking-wider mb-2 inline-block">
-                Career Opportunities
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Open Positions</h2>
-              <p className="text-gray-600 mb-8">
-                Find your perfect role and join our growing team of talented professionals.
-              </p>
-              
-              <div className="max-w-4xl mx-auto bg-white p-4 rounded-xl shadow-sm mb-8">
-                <div className="flex flex-col md:flex-row gap-4">
-                  <div className="relative flex-grow">
-                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                      <Search size={18} className="text-gray-400" />
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Search jobs..."
-                      className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-tech-200"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                  </div>
-                  
-                  <select
-                    className="border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-tech-200"
-                    value={selectedDepartment}
-                    onChange={(e) => setSelectedDepartment(e.target.value)}
-                  >
-                    {departmentFilters.map(dept => (
-                      <option key={dept} value={dept}>{dept === "All" ? "All Departments" : dept}</option>
-                    ))}
-                  </select>
-                  
-                  <select
-                    className="border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-tech-200"
-                    value={selectedLocation}
-                    onChange={(e) => setSelectedLocation(e.target.value)}
-                  >
-                    {locationFilters.map(location => (
-                      <option key={location} value={location}>{location === "All" ? "All Locations" : location}</option>
-                    ))}
-                  </select>
-                  
-                  <select
-                    className="border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-tech-200"
-                    value={selectedType}
-                    onChange={(e) => setSelectedType(e.target.value)}
-                  >
-                    {typeFilters.map(type => (
-                      <option key={type} value={type}>{type === "All" ? "All Types" : type}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-            
-            <div className="max-w-4xl mx-auto">
-              {filteredJobs.length > 0 ? (
-                <div className="space-y-6">
-                  {filteredJobs.map((job, index) => (
-                    <div 
-                      key={job.id} 
-                      onClick={() => handleJobClick(job.slug)}
-                      className={`block bg-white rounded-xl border border-gray-200 hover:border-tech-200 hover:shadow-md transition-all duration-300 group cursor-pointer ${
-                        jobsVisible ? "animate-reveal revealed" : "opacity-0"
-                      }`}
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <div className="p-6">
-                        <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                          {job.image && (
-                            <div className="w-full md:w-24 h-20 rounded-lg overflow-hidden flex-shrink-0">
-                              <img 
-                                src={job.image} 
-                                alt={job.title} 
-                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" 
-                              />
-                            </div>
-                          )}
-                          <div className="flex-grow">
-                            <h3 className="text-xl font-semibold mb-1 text-gray-800 group-hover:text-tech-500 transition-colors">
-                              {job.title}
-                            </h3>
-                            <p className="text-tech-500 font-medium">{job.department}</p>
-                          </div>
-                          <div className="mt-3 md:mt-0">
-                            <span className="inline-block px-3 py-1 bg-tech-50 text-tech-600 text-sm font-medium rounded-full">
-                              {job.level} Level
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
-                          <div className="flex items-center">
-                            <MapPin size={16} className="mr-2 text-gray-400" />
-                            {job.location}
-                          </div>
-                          <div className="flex items-center">
-                            <Clock size={16} className="mr-2 text-gray-400" />
-                            {job.type}
-                          </div>
-                          <div className="flex items-center">
-                            <DollarSign size={16} className="mr-2 text-gray-400" />
-                            {job.salary}
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
-                          <span className="text-sm text-gray-500">Posted {job.posted}</span>
-                          <span className="text-tech-500 font-medium flex items-center">
-                            View Details 
-                            <ArrowRight size={16} className="ml-2 transition-transform duration-300 transform group-hover:translate-x-2" />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="bg-white rounded-xl border border-gray-200 p-8 text-center">
-                  <h3 className="text-xl font-semibold mb-2">No matching positions found</h3>
-                  <p className="text-gray-600">
-                    Please try adjusting your search criteria or check back later for new opportunities.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-        
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <span className="text-sm font-medium text-tech-500 uppercase tracking-wider mb-2 inline-block">
-                What to Expect
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Application Process</h2>
-              <p className="text-gray-600">
-                We've designed a straightforward application process to help you find the right role with us.
-              </p>
-            </div>
-            
-            <div className="max-w-5xl mx-auto">
-              <div className="relative">
-                <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-tech-200 transform -translate-x-1/2 hidden md:block"></div>
-                
-                <div className="space-y-12">
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
-                      <h3 className="text-xl font-bold mb-2">Application</h3>
-                      <p className="text-gray-600">Submit your application with your resume and a cover letter explaining why you're interested in joining our team.</p>
-                    </div>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-tech-400 text-white font-bold text-xl z-10">1</div>
-                    <div className="md:w-1/2 md:pl-12 hidden md:block"></div>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 md:pr-12 hidden md:block"></div>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-tech-400 text-white font-bold text-xl z-10">2</div>
-                    <div className="md:w-1/2 md:pl-12 mb-6 md:mb-0">
-                      <h3 className="text-xl font-bold mb-2">Initial Screening</h3>
-                      <p className="text-gray-600">Our HR team will review your application and conduct a screening call to learn more about your experience and expectations.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
-                      <h3 className="text-xl font-bold mb-2">Technical Assessment</h3>
-                      <p className="text-gray-600">Depending on the role, you might be asked to complete a technical assessment or a case study to demonstrate your skills.</p>
-                    </div>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-tech-400 text-white font-bold text-xl z-10">3</div>
-                    <div className="md:w-1/2 md:pl-12 hidden md:block"></div>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 md:pr-12 hidden md:block"></div>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-tech-400 text-white font-bold text-xl z-10">4</div>
-                    <div className="md:w-1/2 md:pl-12 mb-6 md:mb-0">
-                      <h3 className="text-xl font-bold mb-2">Team Interviews</h3>
-                      <p className="text-gray-600">Meet with potential team members and leaders to discuss your experience, skills, and fit with our culture and values.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
-                      <h3 className="text-xl font-bold mb-2">Final Decision</h3>
-                      <p className="text-gray-600">After the interviews, we'll make a decision and extend an offer to the selected candidate.</p>
-                    </div>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-tech-400 text-white font-bold text-xl z-10">5</div>
-                    <div className="md:w-1/2 md:pl-12 hidden md:block"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section className="py-16 bg-gradient-to-br from-tech-100 to-indigo-100">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="md:w-1/2">
-                <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format" 
-                  alt="Team collaboration" 
-                  className="rounded-xl shadow-lg" 
-                />
-              </div>
-              <div className="md:w-1/2">
-                <h2 className="text-3xl font-bold mb-4">Growth & Development</h2>
-                <p className="text-gray-700 mb-6">
-                  At TechBros, we're committed to helping our team members grow professionally and personally. 
-                  We provide mentorship programs, career development plans, and regular feedback to help you 
-                  reach your full potential.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 mt-1">
-                      <Award size={18} className="text-tech-500" />
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="font-semibold">Mentorship Programs</h3>
-                      <p className="text-gray-600">Connect with senior team members who will guide your development</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 mt-1">
-                      <Laptop size={18} className="text-tech-500" />
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="font-semibold">Learning Resources</h3>
-                      <p className="text-gray-600">Access to online courses, books, and conferences to expand your skills</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="flex-shrink-0 mt-1">
-                      <Star size={18} className="text-tech-500" />
-                    </div>
-                    <div className="ml-4">
-                      <h3 className="font-semibold">Career Pathing</h3>
-                      <p className="text-gray-600">Clear growth tracks and promotion opportunities based on your goals</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        <section className="py-16 bg-tech-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Join Our Team?</h2>
-              <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                Browse our open positions and find the perfect opportunity to grow your career with TechBros.
-              </p>
-              <a 
-                href="#open-positions" 
-                className="inline-flex items-center px-8 py-4 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 font-medium"
-              >
-                View Open Positions
-                <ArrowRight size={18} className="ml-2" />
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </div>
-  );
-};
-
-export default Careers;
+                "Working at TechBros has been the highlight of my career.
