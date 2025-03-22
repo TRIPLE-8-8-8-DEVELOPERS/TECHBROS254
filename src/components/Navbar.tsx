@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Menu, X, Briefcase, ChevronDown, Database, Code, PenTool, ShoppingCart, Shield, LineChart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -24,15 +25,16 @@ const serviceCategories = serviceDetails.reduce((acc, service) => {
   return acc;
 }, {} as Record<string, typeof serviceDetails>);
 
-const categoryIcons: Record<string, React.ReactNode> = {
-  "Development": <Code size={16} />,
-  "Infrastructure": <Database size={16} />,
-  "Consulting": <Briefcase size={16} />,
-  "E-commerce": <ShoppingCart size={16} />,
-  "AI & Data": <Database size={16} />,
-  "Security": <Shield size={16} />,
-  "Marketing": <LineChart size={16} />,
-  "Design": <PenTool size={16} />,
+// Fix: Create a mapping of category names to their respective icon components (not instances)
+const categoryIcons: Record<string, React.ElementType> = {
+  "Development": Code,
+  "Infrastructure": Database,
+  "Consulting": Briefcase,
+  "E-commerce": ShoppingCart,
+  "AI & Data": Database,
+  "Security": Shield,
+  "Marketing": LineChart,
+  "Design": PenTool,
 };
 
 const popularServices = serviceDetails
@@ -138,84 +140,96 @@ const Navbar = () => {
                     Popular Services
                   </DropdownMenuLabel>
                   <div className="grid grid-cols-2 gap-2">
-                    {popularServices.map((service) => (
-                      <Link 
-                        key={service.id} 
-                        to={`/services/${service.slug}`}
-                        className="flex items-center p-2 rounded-md hover:bg-white/60 dark:hover:bg-gray-800/60 transition-colors"
-                      >
-                        <div className="w-8 h-8 flex items-center justify-center rounded-md bg-tech-500/20 text-tech-600 dark:text-tech-400 mr-2">
-                          {service.icon}
-                        </div>
-                        <div className="text-sm font-medium">{service.title}</div>
-                      </Link>
-                    ))}
+                    {popularServices.map((service) => {
+                      // Fix: Properly render service icon component
+                      const ServiceIcon = service.icon;
+                      return (
+                        <Link 
+                          key={service.id} 
+                          to={`/services/${service.slug}`}
+                          className="flex items-center p-2 rounded-md hover:bg-white/60 dark:hover:bg-gray-800/60 transition-colors"
+                        >
+                          <div className="w-8 h-8 flex items-center justify-center rounded-md bg-tech-500/20 text-tech-600 dark:text-tech-400 mr-2">
+                            {typeof ServiceIcon === 'function' && <ServiceIcon size={16} />}
+                          </div>
+                          <div className="text-sm font-medium">{service.title}</div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </div>
                 <DropdownMenuSeparator />
                 
                 <div className="p-2 max-h-[400px] overflow-y-auto scrollbar-thin">
-                  {Object.entries(serviceCategories).map(([category, services]) => (
-                    <DropdownMenuGroup key={category}>
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                          <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-tech-500 to-purple-500 text-white mr-2">
-                            {categoryIcons[category] || <Briefcase size={16} />}
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-sm font-medium">{category}</div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400">{services.length} services</div>
-                          </div>
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent className="min-w-[220px] backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-800">
-                          <Link 
-                            to={`/services/${services[0].category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
-                            className="flex w-full items-center p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
-                          >
-                            <span className="text-xs font-semibold text-tech-500 dark:text-tech-400 uppercase">
-                              View All {category} Services
-                            </span>
-                          </Link>
-                          <DropdownMenuSeparator />
-                          {services.map((service) => (
-                            <DropdownMenuItem key={service.id} asChild>
-                              <Link 
-                                to={`/services/${service.slug}`}
-                                className="flex items-center cursor-pointer"
-                              >
-                                <div className="text-tech-500 dark:text-tech-400 mr-2">
-                                  {service.icon}
-                                </div>
-                                {service.title}
-                              </Link>
-                            </DropdownMenuItem>
-                          ))}
-                          
-                          {services.some(service => service.subcategories && service.subcategories.length > 0) && (
-                            <>
-                              <DropdownMenuSeparator />
-                              <DropdownMenuLabel className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">
-                                Specialized Services
-                              </DropdownMenuLabel>
-                              {services
-                                .flatMap(service => service.subcategories || [])
-                                .slice(0, 5)
-                                .map((subcat, idx) => (
-                                  <DropdownMenuItem key={`${subcat.title}-${idx}`} asChild>
-                                    <Link 
-                                      to={`/services/${services.find(s => s.subcategories?.some(sc => sc.title === subcat.title))?.slug || ''}/${subcat.slug}`}
-                                      className="text-sm text-gray-600 dark:text-gray-300"
-                                    >
-                                      {subcat.title}
-                                    </Link>
-                                  </DropdownMenuItem>
-                                ))}
-                            </>
-                          )}
-                        </DropdownMenuSubContent>
-                      </DropdownMenuSub>
-                    </DropdownMenuGroup>
-                  ))}
+                  {Object.entries(serviceCategories).map(([category, services]) => {
+                    // Fix: Get the icon component for this category
+                    const CategoryIcon = categoryIcons[category] || Briefcase;
+                    return (
+                      <DropdownMenuGroup key={category}>
+                        <DropdownMenuSub>
+                          <DropdownMenuSubTrigger className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-tech-500 to-purple-500 text-white mr-2">
+                              <CategoryIcon size={16} />
+                            </div>
+                            <div className="flex-1">
+                              <div className="text-sm font-medium">{category}</div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">{services.length} services</div>
+                            </div>
+                          </DropdownMenuSubTrigger>
+                          <DropdownMenuSubContent className="min-w-[220px] backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-800">
+                            <Link 
+                              to={`/services/${services[0].category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
+                              className="flex w-full items-center p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+                            >
+                              <span className="text-xs font-semibold text-tech-500 dark:text-tech-400 uppercase">
+                                View All {category} Services
+                              </span>
+                            </Link>
+                            <DropdownMenuSeparator />
+                            {services.map((service) => {
+                              // Fix: Properly render service icon component
+                              const ServiceIcon = service.icon;
+                              return (
+                                <DropdownMenuItem key={service.id} asChild>
+                                  <Link 
+                                    to={`/services/${service.slug}`}
+                                    className="flex items-center cursor-pointer"
+                                  >
+                                    <div className="text-tech-500 dark:text-tech-400 mr-2">
+                                      {typeof ServiceIcon === 'function' && <ServiceIcon size={16} />}
+                                    </div>
+                                    {service.title}
+                                  </Link>
+                                </DropdownMenuItem>
+                              );
+                            })}
+                            
+                            {services.some(service => service.subcategories && service.subcategories.length > 0) && (
+                              <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuLabel className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">
+                                  Specialized Services
+                                </DropdownMenuLabel>
+                                {services
+                                  .flatMap(service => service.subcategories || [])
+                                  .slice(0, 5)
+                                  .map((subcat, idx) => (
+                                    <DropdownMenuItem key={`${subcat.title}-${idx}`} asChild>
+                                      <Link 
+                                        to={`/services/${services.find(s => s.subcategories?.some(sc => sc.title === subcat.title))?.slug || ''}/${subcat.slug}`}
+                                        className="text-sm text-gray-600 dark:text-gray-300"
+                                      >
+                                        {subcat.title}
+                                      </Link>
+                                    </DropdownMenuItem>
+                                  ))}
+                              </>
+                            )}
+                          </DropdownMenuSubContent>
+                        </DropdownMenuSub>
+                      </DropdownMenuGroup>
+                    );
+                  })}
                 </div>
                 
                 <DropdownMenuSeparator />
@@ -297,43 +311,49 @@ const Navbar = () => {
               </div>
               
               <div className="ml-2 space-y-5 pb-4">
-                {Object.entries(serviceCategories).map(([category, services]) => (
-                  <div key={category} className="space-y-2">
-                    <Link 
-                      to={`/services/${category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
-                      className="flex items-center text-xl font-medium text-gray-800 dark:text-gray-200 hover:text-tech-500 dark:hover:text-tech-300 transition-colors"
-                      onClick={closeMenu}
-                    >
-                      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-tech-500 to-purple-500 text-white mr-3">
-                        {categoryIcons[category] || <Briefcase size={16} />}
-                      </div>
-                      {category}
-                    </Link>
-                    
-                    <div className="ml-11 space-y-2">
-                      {services.slice(0, 3).map((service) => (
-                        <Link
-                          key={service.id}
-                          to={`/services/${service.slug}`}
-                          className="block text-base text-gray-600 dark:text-gray-400 hover:text-tech-500 dark:hover:text-tech-300"
-                          onClick={closeMenu}
-                        >
-                          {service.title}
-                        </Link>
-                      ))}
+                {Object.entries(serviceCategories).map(([category, services]) => {
+                  // Fix: Get the icon component for this category
+                  const CategoryIcon = categoryIcons[category] || Briefcase;
+                  return (
+                    <div key={category} className="space-y-2">
+                      <Link 
+                        to={`/services/${category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
+                        className="flex items-center text-xl font-medium text-gray-800 dark:text-gray-200 hover:text-tech-500 dark:hover:text-tech-300 transition-colors"
+                        onClick={closeMenu}
+                      >
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-tech-500 to-purple-500 text-white mr-3">
+                          <CategoryIcon size={16} />
+                        </div>
+                        {category}
+                      </Link>
                       
-                      {services.length > 3 && (
-                        <Link
-                          to={`/services/${category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
-                          className="block text-sm font-medium text-tech-500 dark:text-tech-400 mt-1"
-                          onClick={closeMenu}
-                        >
-                          View all {services.length} services →
-                        </Link>
-                      )}
+                      <div className="ml-11 space-y-2">
+                        {services.slice(0, 3).map((service) => {
+                          return (
+                            <Link
+                              key={service.id}
+                              to={`/services/${service.slug}`}
+                              className="block text-base text-gray-600 dark:text-gray-400 hover:text-tech-500 dark:hover:text-tech-300"
+                              onClick={closeMenu}
+                            >
+                              {service.title}
+                            </Link>
+                          );
+                        })}
+                        
+                        {services.length > 3 && (
+                          <Link
+                            to={`/services/${category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
+                            className="block text-sm font-medium text-tech-500 dark:text-tech-400 mt-1"
+                            onClick={closeMenu}
+                          >
+                            View all {services.length} services →
+                          </Link>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
             
