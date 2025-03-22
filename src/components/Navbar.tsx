@@ -1,12 +1,46 @@
-
 import { useState, useEffect } from "react";
-import { Menu, X, Briefcase } from "lucide-react";
+import { Menu, X, Briefcase, ChevronDown, Database, Code, PenTool, ShoppingCart, Shield, LineChart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
+import { serviceDetails } from "../data/services";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuLabel,
+} from "@/components/ui/dropdown-menu";
+
+const serviceCategories = serviceDetails.reduce((acc, service) => {
+  if (!acc[service.category]) {
+    acc[service.category] = [];
+  }
+  acc[service.category].push(service);
+  return acc;
+}, {} as Record<string, typeof serviceDetails>);
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  "Development": <Code size={16} />,
+  "Infrastructure": <Database size={16} />,
+  "Consulting": <Briefcase size={16} />,
+  "E-commerce": <ShoppingCart size={16} />,
+  "AI & Data": <Database size={16} />,
+  "Security": <Shield size={16} />,
+  "Marketing": <LineChart size={16} />,
+  "Design": <PenTool size={16} />,
+};
+
+const popularServices = serviceDetails
+  .filter(service => ["Mobile App Development", "Web Development", "AI Solutions", "Cybersecurity"].includes(service.title))
+  .slice(0, 4);
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Services", path: "/#services" },
   { name: "About", path: "/#about" },
   { name: "Portfolio", path: "/#portfolio" },
   { name: "Team", path: "/team" },
@@ -90,8 +124,111 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
+          <div className="relative">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="text-gray-700 dark:text-gray-200 hover:text-tech-500 dark:hover:text-tech-300 transition-colors duration-300 text-sm font-medium flex items-center">
+                  Services <ChevronDown size={14} className="ml-1 opacity-70 transition group-open:rotate-180" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[380px] p-0 overflow-hidden backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-800 -ml-6 mt-2 shadow-xl rounded-xl">
+                <div className="p-4 bg-gradient-to-r from-tech-500/10 to-purple-500/10 dark:from-tech-500/20 dark:to-purple-500/20">
+                  <DropdownMenuLabel className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
+                    Popular Services
+                  </DropdownMenuLabel>
+                  <div className="grid grid-cols-2 gap-2">
+                    {popularServices.map((service) => (
+                      <Link 
+                        key={service.id} 
+                        to={`/services/${service.slug}`}
+                        className="flex items-center p-2 rounded-md hover:bg-white/60 dark:hover:bg-gray-800/60 transition-colors"
+                      >
+                        <div className="w-8 h-8 flex items-center justify-center rounded-md bg-tech-500/20 text-tech-600 dark:text-tech-400 mr-2">
+                          {service.icon}
+                        </div>
+                        <div className="text-sm font-medium">{service.title}</div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <DropdownMenuSeparator />
+                
+                <div className="p-2 max-h-[400px] overflow-y-auto scrollbar-thin">
+                  {Object.entries(serviceCategories).map(([category, services]) => (
+                    <DropdownMenuGroup key={category}>
+                      <DropdownMenuSub>
+                        <DropdownMenuSubTrigger className="flex items-center p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                          <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-tech-500 to-purple-500 text-white mr-2">
+                            {categoryIcons[category] || <Briefcase size={16} />}
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-sm font-medium">{category}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">{services.length} services</div>
+                          </div>
+                        </DropdownMenuSubTrigger>
+                        <DropdownMenuSubContent className="min-w-[220px] backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 border-gray-200 dark:border-gray-800">
+                          <Link 
+                            to={`/services/${services[0].category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
+                            className="flex w-full items-center p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+                          >
+                            <span className="text-xs font-semibold text-tech-500 dark:text-tech-400 uppercase">
+                              View All {category} Services
+                            </span>
+                          </Link>
+                          <DropdownMenuSeparator />
+                          {services.map((service) => (
+                            <DropdownMenuItem key={service.id} asChild>
+                              <Link 
+                                to={`/services/${service.slug}`}
+                                className="flex items-center cursor-pointer"
+                              >
+                                <div className="text-tech-500 dark:text-tech-400 mr-2">
+                                  {service.icon}
+                                </div>
+                                {service.title}
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                          
+                          {services.some(service => service.subcategories && service.subcategories.length > 0) && (
+                            <>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuLabel className="text-xs font-semibold text-gray-500 dark:text-gray-400 mt-1">
+                                Specialized Services
+                              </DropdownMenuLabel>
+                              {services
+                                .flatMap(service => service.subcategories || [])
+                                .slice(0, 5)
+                                .map((subcat, idx) => (
+                                  <DropdownMenuItem key={`${subcat.title}-${idx}`} asChild>
+                                    <Link 
+                                      to={`/services/${services.find(s => s.subcategories?.some(sc => sc.title === subcat.title))?.slug || ''}/${subcat.slug}`}
+                                      className="text-sm text-gray-600 dark:text-gray-300"
+                                    >
+                                      {subcat.title}
+                                    </Link>
+                                  </DropdownMenuItem>
+                                ))}
+                            </>
+                          )}
+                        </DropdownMenuSubContent>
+                      </DropdownMenuSub>
+                    </DropdownMenuGroup>
+                  ))}
+                </div>
+                
+                <DropdownMenuSeparator />
+                <Link 
+                  to="/services" 
+                  className="block p-4 text-center text-sm font-medium text-tech-600 dark:text-tech-400 hover:bg-gray-50 dark:hover:bg-gray-800/60 transition-colors"
+                >
+                  View All Services
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -117,7 +254,6 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden space-x-2">
           <ThemeToggle />
           <button 
@@ -130,7 +266,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`fixed inset-0 bg-white dark:bg-dark-100 z-40 transition-transform duration-500 ease-expo-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -152,7 +287,56 @@ const Navbar = () => {
               <X size={24} />
             </button>
           </div>
-          <nav className="flex flex-col space-y-8 mt-10">
+          
+          <nav className="flex flex-col space-y-6 mt-6 overflow-y-auto">
+            <div>
+              <div 
+                className="text-2xl font-medium text-gray-700 dark:text-gray-200 mb-4 flex items-center"
+              >
+                Services <ChevronDown size={20} className="ml-2 text-tech-500" />
+              </div>
+              
+              <div className="ml-2 space-y-5 pb-4">
+                {Object.entries(serviceCategories).map(([category, services]) => (
+                  <div key={category} className="space-y-2">
+                    <Link 
+                      to={`/services/${category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
+                      className="flex items-center text-xl font-medium text-gray-800 dark:text-gray-200 hover:text-tech-500 dark:hover:text-tech-300 transition-colors"
+                      onClick={closeMenu}
+                    >
+                      <div className="w-8 h-8 flex items-center justify-center rounded-full bg-gradient-to-br from-tech-500 to-purple-500 text-white mr-3">
+                        {categoryIcons[category] || <Briefcase size={16} />}
+                      </div>
+                      {category}
+                    </Link>
+                    
+                    <div className="ml-11 space-y-2">
+                      {services.slice(0, 3).map((service) => (
+                        <Link
+                          key={service.id}
+                          to={`/services/${service.slug}`}
+                          className="block text-base text-gray-600 dark:text-gray-400 hover:text-tech-500 dark:hover:text-tech-300"
+                          onClick={closeMenu}
+                        >
+                          {service.title}
+                        </Link>
+                      ))}
+                      
+                      {services.length > 3 && (
+                        <Link
+                          to={`/services/${category.toLowerCase().replace(/[\s&]+/g, '-')}-services`}
+                          className="block text-sm font-medium text-tech-500 dark:text-tech-400 mt-1"
+                          onClick={closeMenu}
+                        >
+                          View all {services.length} services →
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
             {navLinks.map((link, index) => (
               <Link
                 key={link.name}
@@ -171,6 +355,7 @@ const Navbar = () => {
               </Link>
             ))}
           </nav>
+          
           <div className="mt-auto mb-8">
             <Link
               to="/#contact"
