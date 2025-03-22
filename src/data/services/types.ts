@@ -31,4 +31,6 @@ export interface SubCategory {
   description: string;
   icon?: any; // LucideIcon
   image?: string;
+  features?: string[]; // Added features property
+  benefits?: string[]; // Added benefits property
 }
