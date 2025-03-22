@@ -34,32 +34,97 @@
 
 /* Service subcategory card responsive classes */
 .subcategory-card {
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  background: white;
+}
+
+.subcategory-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.subcategory-image-container {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
 }
 
 .subcategory-image {
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border-radius: 0.5rem;
+  transition: transform 0.5s ease;
+}
+
+.subcategory-card:hover .subcategory-image {
+  transform: scale(1.05);
+}
+
+.subcategory-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
 }
 
 .subcategory-title {
-  font-size: 1.25rem;
-  line-height: 1.625rem;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
   font-weight: 700;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  color: rgb(var(--foreground) / 0.95);
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.subcategory-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.subcategory-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  color: white;
 }
 
 .subcategory-desc {
-  font-size: 0.9375rem;
-  line-height: 1.5rem;
-  color: rgb(var(--foreground) / 0.8);
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  color: rgb(var(--foreground) / 0.7);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.subcategory-link {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: auto;
+}
+
+.subcategory-link-icon {
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.subcategory-card:hover .subcategory-link-icon {
+  transform: translateX(4px);
 }
 
 /* Media queries for larger screens */
@@ -74,24 +139,22 @@
     line-height: 1.5rem;
   }
   
-  .subcategory-card {
-    padding: 1.5rem;
-  }
-  
-  .subcategory-image {
-    height: 220px;
+  .subcategory-image-container {
+    height: 260px;
   }
   
   .subcategory-title {
-    font-size: 1.375rem;
-    line-height: 1.75rem;
-    margin-top: 1.25rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.75rem;
+    line-height: 2.125rem;
+  }
+  
+  .subcategory-content {
+    padding: 1.75rem;
   }
   
   .subcategory-desc {
-    font-size: 1rem;
-    line-height: 1.625rem;
+    font-size: 1.0625rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -121,48 +184,51 @@
     height: 3rem;
   }
   
-  .subcategory-card {
-    padding: 1.75rem;
+  .subcategory-image-container {
+    height: 280px;
   }
   
-  .subcategory-image {
-    height: 240px;
+  .subcategory-overlay {
+    padding: 2.5rem 2rem;
   }
   
   .subcategory-title {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.875rem;
+    font-size: 2rem;
+    line-height: 2.375rem;
+  }
+  
+  .subcategory-content {
+    padding: 2rem;
+  }
+  
+  .subcategory-icon {
+    width: 4rem;
+    height: 4rem;
   }
   
   .subcategory-desc {
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
     line-height: 1.75rem;
-    letter-spacing: 0.015em;
   }
 }
 
 @media (min-width: 1024px) {
-  .subcategory-card {
-    padding: 2rem;
-  }
-  
-  .subcategory-image {
-    height: 260px;
+  .subcategory-image-container {
+    height: 300px;
   }
   
   .subcategory-title {
-    font-size: 1.75rem;
-    line-height: 2.25rem;
-    margin-top: 1.75rem;
-    margin-bottom: 1rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .subcategory-content {
+    padding: 2.25rem;
   }
   
   .subcategory-desc {
     font-size: 1.125rem;
     line-height: 1.875rem;
-    color: rgb(var(--foreground) / 0.85);
   }
 }
 
@@ -171,5 +237,11 @@
   .reduced-motion {
     transition: none !important;
     animation: none !important;
+  }
+  
+  .subcategory-card:hover .subcategory-image,
+  .subcategory-card:hover .subcategory-link-icon,
+  .subcategory-card:hover {
+    transform: none;
   }
 }

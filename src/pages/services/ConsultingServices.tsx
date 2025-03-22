@@ -29,7 +29,7 @@ const ConsultingServices = () => {
       <main className="flex-grow pt-24">
         {/* Hero Section - Updated with better image and contrast */}
         <section 
-          className="relative py-20 bg-gradient-to-br from-teal-600/95 to-teal-900/95 text-white"
+          className="relative py-20 md:py-28 lg:py-32 bg-gradient-to-br from-teal-600/95 to-teal-900/95 text-white"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80)',
             backgroundSize: 'cover',
@@ -37,7 +37,7 @@ const ConsultingServices = () => {
             backgroundBlendMode: 'overlay',
           }}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <Link to="/services" className="text-teal-100 hover:text-white mb-4 inline-flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -45,7 +45,7 @@ const ConsultingServices = () => {
                 </svg>
                 All Services
               </Link>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Consulting Services</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">Consulting Services</h1>
               <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
                 Strategic guidance and expert advice to help you navigate the complex digital landscape.
               </p>
@@ -54,8 +54,8 @@ const ConsultingServices = () => {
         </section>
         
         {/* Services Grid */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <ServiceCard
@@ -73,7 +73,7 @@ const ConsultingServices = () => {
           </div>
         </section>
         
-        {/* Subcategories Section */}
+        {/* Subcategories Section - Using updated SubCategoryList component */}
         {allSubcategories.length > 0 && (
           <SubCategoryList serviceSlug={services[0]?.slug || ''} subcategories={allSubcategories} />
         )}
