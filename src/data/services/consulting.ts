@@ -83,7 +83,23 @@ export const consultingServices: ServiceDetail[] = [
         title: "Digital Transformation",
         description: "Strategic guidance to help organizations evolve with digital technology, reinvent business models, and adapt to changing market conditions.",
         icon: TrendingUp,
-        image: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&w=600&q=80",
+        features: [
+          "Comprehensive digital maturity assessment",
+          "Customer experience transformation strategy",
+          "Legacy system modernization planning",
+          "Digital workforce enablement",
+          "Data-driven decision making frameworks",
+          "Digital innovation roadmapping"
+        ],
+        benefits: [
+          "Accelerated business growth through digital channels",
+          "Enhanced customer experience and engagement",
+          "Improved operational efficiency and cost reduction",
+          "Increased agility and responsiveness to market changes",
+          "New revenue streams through digital business models",
+          "Competitive advantage in rapidly evolving markets"
+        ]
       },
       {
         id: "technology-strategy",
@@ -91,7 +107,23 @@ export const consultingServices: ServiceDetail[] = [
         title: "Technology Strategy",
         description: "Development of comprehensive technology roadmaps aligned with your business goals to drive innovation, efficiency, and competitive advantage.",
         icon: Presentation,
-        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&w=600&q=80",
+        features: [
+          "Technology landscape assessment",
+          "IT investment prioritization frameworks",
+          "Emerging technology evaluation",
+          "Build vs. buy decision support",
+          "Technical debt management strategy",
+          "Future-state architecture planning"
+        ],
+        benefits: [
+          "Optimized IT investment with clear ROI expectations",
+          "Reduced complexity and maintenance costs",
+          "Strategic technology alignment with business goals",
+          "Improved innovation capabilities",
+          "Risk mitigation for technology adoption",
+          "Enhanced competitive positioning through technology"
+        ]
       },
       {
         id: "business-process-optimization",
@@ -99,7 +131,23 @@ export const consultingServices: ServiceDetail[] = [
         title: "Business Process Optimization",
         description: "Streamlining and improving your operational workflows to increase efficiency, reduce costs, and enhance overall business performance.",
         icon: BarChart,
-        image: "https://images.unsplash.com/photo-1589461766104-0d30f3f7782d?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1589461766104-0d30f3f7782d?auto=format&w=600&q=80",
+        features: [
+          "End-to-end process mapping and analysis",
+          "Bottleneck identification and elimination",
+          "Workflow automation opportunities assessment",
+          "KPI development for process measurement",
+          "Change management for process adoption",
+          "Continuous improvement frameworks"
+        ],
+        benefits: [
+          "Reduced operational costs through streamlined processes",
+          "Improved customer satisfaction with faster service delivery",
+          "Enhanced employee productivity and satisfaction",
+          "Greater scalability with standardized processes",
+          "Increased accuracy and reduced errors",
+          "Data-driven insights for ongoing optimization"
+        ]
       },
       {
         id: "change-management",
@@ -107,7 +155,23 @@ export const consultingServices: ServiceDetail[] = [
         title: "Change Management",
         description: "Guiding your organization through technological and operational changes with strategies for minimizing disruption and maximizing adoption.",
         icon: Briefcase,
-        image: "https://images.unsplash.com/photo-1600880292-31b5aa28a60b?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1600880292-31b5aa28a60b?auto=format&w=600&q=80",
+        features: [
+          "Stakeholder impact analysis",
+          "Communication strategy development",
+          "Training and enablement programs",
+          "Resistance management planning",
+          "Change readiness assessment",
+          "Leadership alignment and sponsorship"
+        ],
+        benefits: [
+          "Accelerated adoption of new technologies and processes",
+          "Reduced productivity loss during transitions",
+          "Increased employee engagement and buy-in",
+          "More successful technology implementations",
+          "Lower resistance to organizational changes",
+          "Sustainable transformation with cultural alignment"
+        ]
       }
     ]
   }

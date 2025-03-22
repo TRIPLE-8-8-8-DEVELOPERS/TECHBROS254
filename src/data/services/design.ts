@@ -83,7 +83,23 @@ export const designServices: ServiceDetail[] = [
         title: "UX Research",
         description: "In-depth user research to understand behaviors, needs, and motivations to create data-driven design solutions.",
         icon: Text,
-        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&w=600&q=80",
+        features: [
+          "User interviews and contextual inquiry",
+          "Usability testing with real users",
+          "Persona development and user journey mapping",
+          "Heuristic evaluation of existing interfaces",
+          "A/B testing for design validation",
+          "Analytics integration and data interpretation"
+        ],
+        benefits: [
+          "Data-driven design decisions that reduce risk",
+          "Deeper understanding of user needs and pain points",
+          "Prioritized features based on actual user value",
+          "Reduced development costs by fixing issues early",
+          "Increased user satisfaction and retention",
+          "Evidence-based approach to design improvements"
+        ]
       },
       {
         id: "mobile-app-design",
@@ -91,7 +107,23 @@ export const designServices: ServiceDetail[] = [
         title: "Mobile App Design",
         description: "Crafting intuitive and engaging mobile app interfaces optimized for both iOS and Android platforms.",
         icon: Smartphone,
-        image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&w=600&q=80",
+        features: [
+          "Platform-specific design patterns (iOS/Android)",
+          "Gesture-based interaction design",
+          "Adaptive layouts for different device sizes",
+          "Offline-first experience design",
+          "Motion design and micro-interactions",
+          "Accessibility compliance for mobile"
+        ],
+        benefits: [
+          "Higher user engagement and retention rates",
+          "Reduced learning curve with intuitive interfaces",
+          "Brand consistency across mobile platforms",
+          "Improved app store ratings with better UX",
+          "Lower development costs with clear design specs",
+          "Competitive advantage in the mobile market"
+        ]
       },
       {
         id: "web-design",
@@ -99,7 +131,23 @@ export const designServices: ServiceDetail[] = [
         title: "Web Design",
         description: "Creating responsive, conversion-focused websites that deliver outstanding user experiences across all devices.",
         icon: Monitor,
-        image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&w=600&q=80",
+        features: [
+          "Responsive design for all screen sizes",
+          "Conversion-optimized landing pages",
+          "Accessible web interfaces (WCAG compliance)",
+          "SEO-friendly information architecture",
+          "Cross-browser compatibility testing",
+          "Performance-optimized visual elements"
+        ],
+        benefits: [
+          "Increased conversion rates and lead generation",
+          "Improved search engine visibility",
+          "Reduced bounce rates with engaging designs",
+          "Consistent experience across all devices",
+          "Broader audience reach with accessible design",
+          "Strengthened brand identity and recognition"
+        ]
       },
       {
         id: "design-systems",
@@ -107,7 +155,23 @@ export const designServices: ServiceDetail[] = [
         title: "Design Systems",
         description: "Development of comprehensive design systems that ensure consistency across all digital touchpoints.",
         icon: Layers,
-        image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&w=600&q=80",
+        features: [
+          "Component libraries and pattern collections",
+          "Design tokens for colors, typography, and spacing",
+          "Documentation and usage guidelines",
+          "Versioning and change management",
+          "Integration with development workflows",
+          "Shared design language across teams"
+        ],
+        benefits: [
+          "Faster design and development cycles",
+          "Consistent user experience across products",
+          "Reduced design debt and maintenance costs",
+          "Improved collaboration between design and development",
+          "Scalable design approach for growing products",
+          "Easier onboarding for new team members"
+        ]
       },
       {
         id: "ui-animation",
@@ -115,7 +179,23 @@ export const designServices: ServiceDetail[] = [
         title: "UI Animation & Micro-interactions",
         description: "Creating subtle animations and micro-interactions that enhance usability and bring interfaces to life.",
         icon: Brush,
-        image: "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1523726491678-bf852e717f6a?auto=format&w=600&q=80",
+        features: [
+          "State transition animations",
+          "Interactive feedback animations",
+          "Loading state and progress indicators",
+          "Scroll-based animations and parallax effects",
+          "Animated illustrations and icons",
+          "Performance-optimized motion design"
+        ],
+        benefits: [
+          "Enhanced user engagement and delight",
+          "Improved usability through visual feedback",
+          "Stronger perceived performance and reduced wait anxiety",
+          "Differentiated product experience from competitors",
+          "More intuitive navigation and interaction",
+          "Reinforced brand personality through motion"
+        ]
       }
     ]
   }

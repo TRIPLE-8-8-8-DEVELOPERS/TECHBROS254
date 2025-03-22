@@ -83,7 +83,23 @@ export const aiDataServices: ServiceDetail[] = [
         title: "Machine Learning",
         description: "Custom machine learning models and algorithms that enable your systems to learn from data and improve performance without explicit programming.",
         icon: BrainCircuit,
-        image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?auto=format&w=600&q=80",
+        features: [
+          "Supervised and unsupervised learning algorithms",
+          "Feature engineering and selection",
+          "Model training, tuning, and optimization",
+          "Cross-validation and performance evaluation",
+          "Ensemble methods for improved accuracy",
+          "Deployment pipelines for production environments"
+        ],
+        benefits: [
+          "Enhanced decision-making through data-driven insights",
+          "Identification of patterns invisible to human analysis",
+          "Automation of complex analytical tasks",
+          "Improved accuracy and efficiency over time",
+          "Scalable solution for handling large datasets",
+          "Competitive advantage through predictive capabilities"
+        ]
       },
       {
         id: "natural-language-processing",
@@ -91,7 +107,23 @@ export const aiDataServices: ServiceDetail[] = [
         title: "Natural Language Processing",
         description: "AI systems that can understand, interpret, and generate human language, powering chatbots, sentiment analysis, and content generation.",
         icon: CircleDashed,
-        image: "https://images.unsplash.com/photo-1655720828018-7467e7029825?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1655720828018-7467e7029825?auto=format&w=600&q=80",
+        features: [
+          "Text classification and sentiment analysis",
+          "Entity recognition and relationship extraction",
+          "Chatbot and conversational AI development",
+          "Language generation and summarization",
+          "Multilingual support and translation",
+          "Document understanding and topic modeling"
+        ],
+        benefits: [
+          "Automated customer support through intelligent chatbots",
+          "Customer sentiment insights from reviews and feedback",
+          "Content moderation at scale for social platforms",
+          "Enhanced search capabilities with semantic understanding",
+          "Automated content generation and summarization",
+          "Improved accessibility through language translation"
+        ]
       },
       {
         id: "data-analytics",
@@ -99,7 +131,23 @@ export const aiDataServices: ServiceDetail[] = [
         title: "Data Analytics",
         description: "Advanced data analysis and visualization to extract actionable insights from your business data for better decision-making.",
         icon: BarChartHorizontal,
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=600&q=80",
+        features: [
+          "Descriptive, diagnostic, predictive, and prescriptive analytics",
+          "Custom dashboards and interactive visualizations",
+          "Real-time analytics and monitoring",
+          "Time series analysis and forecasting",
+          "ETL pipelines for data processing",
+          "Statistical modeling and hypothesis testing"
+        ],
+        benefits: [
+          "Data-driven strategic decision making",
+          "Identification of business opportunities and risks",
+          "Operational efficiency improvements",
+          "Customer behavior insights and segmentation",
+          "Performance monitoring with actionable metrics",
+          "Competitive intelligence and market analysis"
+        ]
       },
       {
         id: "predictive-analytics",
@@ -107,7 +155,23 @@ export const aiDataServices: ServiceDetail[] = [
         title: "Predictive Analytics",
         description: "Forecasting tools and models that analyze historical data to predict future outcomes and trends for proactive business planning.",
         icon: LineChart,
-        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&w=600&q=80",
+        features: [
+          "Forecasting models for business metrics",
+          "Churn prediction and customer lifetime value",
+          "Demand forecasting and inventory optimization",
+          "Risk assessment and fraud detection",
+          "Maintenance prediction for equipment and systems",
+          "Sales and revenue forecasting"
+        ],
+        benefits: [
+          "Proactive decision-making ahead of market changes",
+          "Reduced costs through optimized resource allocation",
+          "Improved customer retention with early intervention",
+          "Minimized risks through advanced warning systems",
+          "Optimized inventory levels and supply chain",
+          "More accurate budgeting and financial planning"
+        ]
       },
       {
         id: "big-data",
@@ -115,7 +179,23 @@ export const aiDataServices: ServiceDetail[] = [
         title: "Big Data Solutions",
         description: "Comprehensive infrastructure and tools to collect, store, process, and analyze large volumes of structured and unstructured data.",
         icon: Database,
-        image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&w=600&q=80",
+        features: [
+          "Distributed computing frameworks (Hadoop, Spark)",
+          "Data lake and data warehouse architecture",
+          "Stream processing for real-time data",
+          "NoSQL and NewSQL database implementation",
+          "Data governance and compliance solutions",
+          "Scalable infrastructure for petabyte-scale data"
+        ],
+        benefits: [
+          "Ability to process massive datasets beyond traditional tools",
+          "Integration of diverse data sources into unified insights",
+          "Real-time analytics for time-sensitive decisions",
+          "Cost-effective storage of historical and current data",
+          "Scalable solution that grows with your data needs",
+          "Comprehensive view of business operations and customers"
+        ]
       }
     ]
   }
