@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, ChevronRight } from "lucide-react";
 import { serviceDetails } from "../data/services";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -49,7 +49,8 @@ const SubCategoryDetail = () => {
             backgroundBlendMode: 'overlay',
           }}
         >
-          <div className="container mx-auto px-4 py-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
+          <div className="container mx-auto px-4 py-20 relative z-10">
             <Link to={`/services/${serviceSlug}`} className="inline-flex items-center text-white hover:text-tech-100 mb-6 transition-colors">
               <ArrowLeft size={18} className="mr-2" />
               Back to {service.title}
@@ -60,7 +61,7 @@ const SubCategoryDetail = () => {
                   {service.category}
                 </Badge>
                 <span className="inline-block text-sm font-medium bg-tech-400/90 text-white px-4 py-1 rounded-full">
-                  Subcategory
+                  Specialized Service
                 </span>
               </div>
               
@@ -72,6 +73,26 @@ const SubCategoryDetail = () => {
               <p className="text-xl text-gray-100 mb-8 max-w-2xl">
                 {subcategory.description}
               </p>
+              
+              <Link
+                to="/#contact"
+                className="inline-flex items-center px-6 py-3 bg-tech-400 hover:bg-tech-500 text-white rounded-lg transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/");
+                  setTimeout(() => {
+                    const contactSection = document.querySelector("#contact");
+                    if (contactSection) {
+                      window.scrollTo({
+                        top: contactSection.getBoundingClientRect().top + window.pageYOffset - 100,
+                        behavior: "smooth",
+                      });
+                    }
+                  }, 100);
+                }}
+              >
+                Request a Consultation <ChevronRight size={16} className="ml-2" />
+              </Link>
             </div>
           </div>
         </section>
@@ -82,62 +103,108 @@ const SubCategoryDetail = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               <div className="lg:col-span-2">
                 <h2 className="text-3xl font-bold mb-6">About {subcategory.title}</h2>
-                <div className="prose prose-lg max-w-none">
-                  <p className="mb-4 text-gray-700">
-                    Our {subcategory.title.toLowerCase()} service is designed to help businesses 
-                    maximize their e-commerce potential. We provide end-to-end solutions that address
-                    all aspects of {subcategory.title.toLowerCase()} to ensure your online business thrives.
+                <div className="prose prose-lg max-w-none dark:prose-invert">
+                  <p className="mb-4 text-gray-700 dark:text-gray-300">
+                    Our {subcategory.title.toLowerCase()} services deliver comprehensive protection for 
+                    your organization's critical assets. Using advanced technologies and proven methodologies,
+                    we help you build robust defenses against evolving cyber threats while ensuring 
+                    regulatory compliance and business continuity.
                   </p>
-                  <p className="mb-4 text-gray-700">
-                    With our expertise in e-commerce technologies and best practices, we help you 
-                    implement {subcategory.title.toLowerCase()} strategies that drive growth and increase revenue.
-                    Our team works closely with you to understand your specific needs and deliver solutions
-                    that align with your business goals.
+                  <p className="mb-4 text-gray-700 dark:text-gray-300">
+                    In today's threat landscape, {subcategory.title.toLowerCase()} has become essential
+                    for organizations of all sizes. Our expert team provides tailored solutions that address
+                    your specific industry requirements, risk profile, and business objectives.
+                  </p>
+                  <p className="mb-4 text-gray-700 dark:text-gray-300">
+                    We employ a defense-in-depth approach, implementing multiple layers of security controls
+                    to protect your data, systems, and networks from both external threats and insider risks.
                   </p>
                 </div>
                 
-                <div className="mt-12">
-                  <h3 className="text-2xl font-bold mb-6">Key Benefits</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-lg">Increased Conversions</h4>
-                        <p className="text-gray-600">Optimize your e-commerce experience to drive more sales</p>
-                      </div>
+                {/* Key Features Section */}
+                {subcategory.features && (
+                  <div className="mt-12">
+                    <h3 className="text-2xl font-bold mb-6">Key Features</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {subcategory.features.map((feature, index) => (
+                        <div key={index} className="flex items-start">
+                          <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
+                            <Check size={16} className="text-tech-600" />
+                          </div>
+                          <div>
+                            <p className="text-gray-700 dark:text-gray-300">{feature}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-lg">Improved User Experience</h4>
-                        <p className="text-gray-600">Create seamless shopping journeys for your customers</p>
-                      </div>
+                  </div>
+                )}
+                
+                {/* Benefits Section */}
+                {subcategory.benefits && (
+                  <div className="mt-12">
+                    <h3 className="text-2xl font-bold mb-6">Key Benefits</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {subcategory.benefits.map((benefit, index) => (
+                        <div key={index} className="flex items-start">
+                          <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
+                            <Check size={16} className="text-tech-600" />
+                          </div>
+                          <div>
+                            <p className="text-gray-700 dark:text-gray-300">{benefit}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                  </div>
+                )}
+                
+                {/* Default Benefits if none specified */}
+                {!subcategory.benefits && (
+                  <div className="mt-12">
+                    <h3 className="text-2xl font-bold mb-6">Key Benefits</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="flex items-start">
+                        <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
+                          <Check size={16} className="text-tech-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-lg">Enhanced Security Posture</h4>
+                          <p className="text-gray-600 dark:text-gray-400">Strengthen your defenses against evolving threats</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-lg">Scalable Solutions</h4>
-                        <p className="text-gray-600">Grow your e-commerce business without technical limitations</p>
+                      <div className="flex items-start">
+                        <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
+                          <Check size={16} className="text-tech-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-lg">Regulatory Compliance</h4>
+                          <p className="text-gray-600 dark:text-gray-400">Meet industry standards and regulatory requirements</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                      <div className="flex items-start">
+                        <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
+                          <Check size={16} className="text-tech-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-lg">Business Continuity</h4>
+                          <p className="text-gray-600 dark:text-gray-400">Minimize downtime and maintain operations</p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-lg">Enhanced Security</h4>
-                        <p className="text-gray-600">Protect customer data and maintain compliance</p>
+                      <div className="flex items-start">
+                        <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
+                          <Check size={16} className="text-tech-600" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-lg">Reduced Risk Exposure</h4>
+                          <p className="text-gray-600 dark:text-gray-400">Protect your reputation and financial assets</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
                 
+                {/* Image Section */}
                 {subcategory.image && (
                   <div className="mt-12">
                     <img 
@@ -145,13 +212,16 @@ const SubCategoryDetail = () => {
                       alt={subcategory.title}
                       className="w-full h-auto rounded-xl shadow-md"
                     />
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">
+                      {subcategory.title} - Comprehensive protection for your business
+                    </p>
                   </div>
                 )}
               </div>
               
               {/* Sidebar */}
               <div className="lg:col-span-1">
-                <div className="bg-tech-50 p-6 rounded-xl sticky top-32">
+                <div className="bg-tech-50 dark:bg-dark-300/50 p-6 rounded-xl sticky top-32">
                   <h3 className="text-xl font-bold mb-4">Our Process</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start">
@@ -159,8 +229,8 @@ const SubCategoryDetail = () => {
                         1
                       </div>
                       <div>
-                        <h4 className="font-medium">Requirements Gathering</h4>
-                        <p className="text-sm text-gray-600">We start by understanding your specific needs</p>
+                        <h4 className="font-medium">Assessment</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">We evaluate your current security posture and risks</p>
                       </div>
                     </li>
                     <li className="flex items-start">
@@ -168,8 +238,8 @@ const SubCategoryDetail = () => {
                         2
                       </div>
                       <div>
-                        <h4 className="font-medium">Solution Design</h4>
-                        <p className="text-sm text-gray-600">Creating a tailored approach for your business</p>
+                        <h4 className="font-medium">Strategy Development</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Creating a tailored security approach</p>
                       </div>
                     </li>
                     <li className="flex items-start">
@@ -178,7 +248,7 @@ const SubCategoryDetail = () => {
                       </div>
                       <div>
                         <h4 className="font-medium">Implementation</h4>
-                        <p className="text-sm text-gray-600">Developing and deploying your solution</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Deploying security controls and technologies</p>
                       </div>
                     </li>
                     <li className="flex items-start">
@@ -186,8 +256,8 @@ const SubCategoryDetail = () => {
                         4
                       </div>
                       <div>
-                        <h4 className="font-medium">Testing & Optimization</h4>
-                        <p className="text-sm text-gray-600">Ensuring everything works perfectly</p>
+                        <h4 className="font-medium">Testing & Validation</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Verifying the effectiveness of security measures</p>
                       </div>
                     </li>
                     <li className="flex items-start">
@@ -195,13 +265,29 @@ const SubCategoryDetail = () => {
                         5
                       </div>
                       <div>
-                        <h4 className="font-medium">Ongoing Support</h4>
-                        <p className="text-sm text-gray-600">Maintaining and improving your solution</p>
+                        <h4 className="font-medium">Continuous Monitoring</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">Ongoing threat detection and security updates</p>
                       </div>
                     </li>
                   </ul>
                   
-                  <div className="mt-8">
+                  <div className="mt-8 space-y-4">
+                    <div className="bg-white dark:bg-dark-200 p-4 rounded-lg border border-gray-100 dark:border-dark-100">
+                      <h4 className="font-bold text-tech-500 dark:text-tech-400 mb-2">Industry Expertise</h4>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                        Our security specialists have deep experience across financial services, healthcare, 
+                        retail, manufacturing, and government sectors.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white dark:bg-dark-200 p-4 rounded-lg border border-gray-100 dark:border-dark-100">
+                      <h4 className="font-bold text-tech-500 dark:text-tech-400 mb-2">24/7 Support</h4>
+                      <p className="text-sm text-gray-700 dark:text-gray-300">
+                        Our security operations center provides around-the-clock monitoring and 
+                        rapid response to security incidents.
+                      </p>
+                    </div>
+                    
                     <Link 
                       to="/#contact"
                       className="block w-full py-3 bg-tech-400 text-white text-center rounded-lg hover:bg-tech-500 transition-colors font-medium"
@@ -228,17 +314,44 @@ const SubCategoryDetail = () => {
           </div>
         </section>
         
+        {/* Industries Section */}
+        <section className="py-12 bg-tech-50 dark:bg-dark-300/30">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold mb-8 text-center">Industries We Serve</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="bg-white dark:bg-dark-200 p-4 rounded-lg text-center">
+                <h3 className="font-medium text-tech-600 dark:text-tech-400">Financial Services</h3>
+              </div>
+              <div className="bg-white dark:bg-dark-200 p-4 rounded-lg text-center">
+                <h3 className="font-medium text-tech-600 dark:text-tech-400">Healthcare</h3>
+              </div>
+              <div className="bg-white dark:bg-dark-200 p-4 rounded-lg text-center">
+                <h3 className="font-medium text-tech-600 dark:text-tech-400">Retail</h3>
+              </div>
+              <div className="bg-white dark:bg-dark-200 p-4 rounded-lg text-center">
+                <h3 className="font-medium text-tech-600 dark:text-tech-400">Manufacturing</h3>
+              </div>
+              <div className="bg-white dark:bg-dark-200 p-4 rounded-lg text-center">
+                <h3 className="font-medium text-tech-600 dark:text-tech-400">Government</h3>
+              </div>
+              <div className="bg-white dark:bg-dark-200 p-4 rounded-lg text-center">
+                <h3 className="font-medium text-tech-600 dark:text-tech-400">Education</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+        
         {/* Call to Action */}
-        <section className="py-16 bg-tech-400 text-white">
+        <section className="py-16 bg-gradient-to-r from-tech-600 to-tech-700 text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Secure Your Business?</h2>
               <p className="text-xl text-white/90 mb-8">
-                Let's discuss how our {subcategory.title.toLowerCase()} services can help your business grow.
+                Let's discuss how our {subcategory.title.toLowerCase()} services can protect your organization.
               </p>
               <Link 
                 to="/#contact"
-                className="inline-block px-8 py-4 bg-white text-tech-500 rounded-full hover:bg-gray-100 transition-colors duration-300 font-medium"
+                className="inline-block px-8 py-4 bg-white text-tech-600 rounded-full hover:bg-gray-100 transition-colors duration-300 font-medium"
                 onClick={(e) => {
                   e.preventDefault();
                   navigate("/");
