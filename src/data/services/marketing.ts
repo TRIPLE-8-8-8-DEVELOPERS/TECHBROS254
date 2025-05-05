@@ -83,7 +83,23 @@ export const marketingServices: ServiceDetail[] = [
         title: "Search Engine Optimization",
         description: "Improve your website's visibility in search engine results to drive more organic traffic and potential customers to your business.",
         icon: Search,
-        image: "https://images.unsplash.com/photo-1571715696756-5000d9c2c115?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1571715696756-5000d9c2c115?auto=format&w=600&q=80",
+        features: [
+          "Comprehensive SEO audits and strategy development",
+          "Keyword research and competitive analysis",
+          "On-page optimization for content and structure",
+          "Technical SEO for site performance and crawlability",
+          "Link building and authority development",
+          "Local SEO for geographic targeting"
+        ],
+        benefits: [
+          "Sustainable long-term traffic growth",
+          "Improved brand credibility and authority",
+          "Higher quality leads from targeted search intent",
+          "Reduced dependency on paid advertising",
+          "Better user experience through optimized content",
+          "Competitive advantage in your industry"
+        ]
       },
       {
         id: "social-media-marketing",
@@ -91,7 +107,23 @@ export const marketingServices: ServiceDetail[] = [
         title: "Social Media Marketing",
         description: "Engage with your audience and build brand awareness through strategic content and campaigns across social media platforms.",
         icon: Share2,
-        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&w=600&q=80",
+        features: [
+          "Platform-specific strategy development",
+          "Content creation and publishing calendar",
+          "Community management and engagement",
+          "Paid social media advertising campaigns",
+          "Influencer partnership coordination",
+          "Social listening and reputation management"
+        ],
+        benefits: [
+          "Increased brand awareness and recognition",
+          "Enhanced customer loyalty and retention",
+          "Direct engagement with your target audience",
+          "Valuable consumer insights and feedback",
+          "Improved website traffic and conversions",
+          "Higher brand authority in your industry"
+        ]
       },
       {
         id: "content-marketing",
@@ -99,7 +131,23 @@ export const marketingServices: ServiceDetail[] = [
         title: "Content Marketing",
         description: "Attract and retain customers through valuable, relevant content that establishes your brand as an industry authority.",
         icon: Globe,
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&w=600&q=80",
+        features: [
+          "Content strategy development",
+          "Blog writing and management",
+          "White paper and case study creation",
+          "Video content production",
+          "Infographics and visual content development",
+          "Content distribution and promotion"
+        ],
+        benefits: [
+          "Established thought leadership and expertise",
+          "Improved search engine rankings through quality content",
+          "Enhanced customer education and engagement",
+          "Longer website visitor retention",
+          "Increased social sharing and backlinks",
+          "Higher conversion rates through educated prospects"
+        ]
       },
       {
         id: "email-marketing",
@@ -107,7 +155,23 @@ export const marketingServices: ServiceDetail[] = [
         title: "Email Marketing",
         description: "Nurture leads and drive conversions with targeted, personalized email campaigns that deliver the right message at the right time.",
         icon: Mail,
-        image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&w=600&q=80",
+        features: [
+          "Email strategy and campaign planning",
+          "List segmentation and targeting",
+          "Email template design and development",
+          "Marketing automation and drip campaigns",
+          "A/B testing for optimization",
+          "Performance tracking and analytics"
+        ],
+        benefits: [
+          "Direct communication with interested prospects",
+          "Highly personalized customer experiences",
+          "Automated lead nurturing throughout the sales funnel",
+          "Measurable ROI with detailed analytics",
+          "Increased customer lifetime value through retention",
+          "Low-cost marketing channel with high returns"
+        ]
       },
       {
         id: "ppc-advertising",
@@ -115,7 +179,23 @@ export const marketingServices: ServiceDetail[] = [
         title: "PPC Advertising",
         description: "Drive immediate traffic and conversions with strategically targeted pay-per-click campaigns across search engines and social platforms.",
         icon: Megaphone,
-        image: "https://images.unsplash.com/photo-1617131033266-46504630b5af?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1617131033266-46504630b5af?auto=format&w=600&q=80",
+        features: [
+          "Campaign strategy and structure development",
+          "Keyword research and selection",
+          "Ad copywriting and creative development",
+          "Landing page optimization",
+          "Bid management and budget optimization",
+          "Conversion tracking and performance analysis"
+        ],
+        benefits: [
+          "Immediate visibility in search results",
+          "Highly targeted traffic based on search intent",
+          "Flexible budgeting with controlled spending",
+          "Precise audience targeting capabilities",
+          "Real-time campaign adjustments based on performance",
+          "Detailed ROI tracking for marketing accountability"
+        ]
       }
     ]
   }

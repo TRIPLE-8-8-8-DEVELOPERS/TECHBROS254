@@ -83,7 +83,23 @@ export const infrastructureServices: ServiceDetail[] = [
         title: "AWS Services",
         description: "Comprehensive Amazon Web Services solutions for scalable, reliable, and secure cloud infrastructure and applications.",
         icon: Cloud,
-        image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&w=600&q=80",
+        features: [
+          "EC2 instance deployment and management",
+          "S3 storage implementation and optimization",
+          "RDS database configuration and administration",
+          "Lambda serverless function development",
+          "EKS/ECS container orchestration",
+          "CloudFormation infrastructure as code"
+        ],
+        benefits: [
+          "Scalable infrastructure that grows with your business",
+          "Pay-as-you-go pricing for cost optimization",
+          "Global reach through AWS regions and edge locations",
+          "High availability and fault tolerance",
+          "Enterprise-grade security and compliance",
+          "Reduced IT overhead with managed services"
+        ]
       },
       {
         id: "azure-services",
@@ -91,7 +107,23 @@ export const infrastructureServices: ServiceDetail[] = [
         title: "Azure Services",
         description: "Microsoft Azure consulting and implementation to leverage the full potential of Microsoft's enterprise-grade cloud computing platform.",
         icon: Server,
-        image: "https://images.unsplash.com/photo-1614064642639-e398341ae7ea?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1614064642639-e398341ae7ea?auto=format&w=600&q=80",
+        features: [
+          "Azure Virtual Machines deployment and scaling",
+          "Azure App Service for web applications",
+          "Azure SQL Database implementation",
+          "Azure Functions serverless computing",
+          "Azure Active Directory integration",
+          "Azure DevOps implementation"
+        ],
+        benefits: [
+          "Seamless integration with Microsoft ecosystem",
+          "Hybrid cloud capabilities with Azure Arc",
+          "Enterprise-level security and compliance",
+          "Advanced analytics and AI capabilities",
+          "Simplified licensing through existing Microsoft agreements",
+          "Global infrastructure with regional data residency options"
+        ]
       },
       {
         id: "cloud-migration",
@@ -99,7 +131,23 @@ export const infrastructureServices: ServiceDetail[] = [
         title: "Cloud Migration",
         description: "Seamless transition of your existing applications, databases, and IT infrastructure to optimal cloud environments with minimal disruption.",
         icon: Workflow,
-        image: "https://images.unsplash.com/photo-1606765962248-7ff407b51667?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1606765962248-7ff407b51667?auto=format&w=600&q=80",
+        features: [
+          "Discovery and assessment of existing infrastructure",
+          "Workload analysis and cloud readiness evaluation",
+          "Migration strategy development (rehost, refactor, rearchitect)",
+          "Data migration and validation",
+          "Cut-over planning and execution",
+          "Post-migration optimization"
+        ],
+        benefits: [
+          "Reduced capital expenditure on hardware",
+          "Improved scalability and business agility",
+          "Enhanced disaster recovery capabilities",
+          "Modernized infrastructure and applications",
+          "Minimized disruption during transition",
+          "Future-proofed technology stack"
+        ]
       },
       {
         id: "cloud-security",
@@ -107,7 +155,23 @@ export const infrastructureServices: ServiceDetail[] = [
         title: "Cloud Security",
         description: "Advanced cloud security solutions that protect your data, applications, and infrastructure from threats while maintaining compliance.",
         icon: Shield,
-        image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&w=600&q=80",
+        features: [
+          "Identity and access management (IAM)",
+          "Cloud network security and micro-segmentation",
+          "Data encryption for storage and transit",
+          "Security assessment and vulnerability scanning",
+          "Compliance monitoring and reporting",
+          "Security automation and orchestration"
+        ],
+        benefits: [
+          "Comprehensive protection of cloud workloads",
+          "Regulatory compliance for industry standards",
+          "Reduced risk of data breaches and exfiltration",
+          "Consistent security posture across environments",
+          "Real-time threat detection and remediation",
+          "Scalable security that grows with your cloud infrastructure"
+        ]
       },
       {
         id: "cloud-databases",
@@ -115,7 +179,23 @@ export const infrastructureServices: ServiceDetail[] = [
         title: "Cloud Databases",
         description: "Scalable, high-performance database solutions in the cloud for optimal data management, analytics, and business intelligence.",
         icon: Database,
-        image: "https://images.unsplash.com/photo-1569396116180-210c182bedb8?auto=format&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1569396116180-210c182bedb8?auto=format&w=600&q=80",
+        features: [
+          "Relational database configuration and optimization",
+          "NoSQL database implementation for specialized workloads",
+          "Data warehousing solutions for analytics",
+          "Database migration and modernization",
+          "High availability and disaster recovery setup",
+          "Performance monitoring and tuning"
+        ],
+        benefits: [
+          "Elastic scaling to handle varying workloads",
+          "Reduced administrative overhead with managed services",
+          "Improved availability and reliability",
+          "Cost optimization through right-sizing",
+          "Enhanced security and compliance",
+          "Simplified backup and disaster recovery"
+        ]
       }
     ]
   }
