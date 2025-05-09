@@ -19,10 +19,17 @@ const SmoothScroll = () => {
       
       e.preventDefault();
       
+      // Get the header height for offset - automatically adapts if header size changes
+      const header = document.querySelector('header');
+      const offset = header ? header.getBoundingClientRect().height + 20 : 100;
+      
       window.scrollTo({
-        top: targetElement.getBoundingClientRect().top + window.scrollY - 100, // Offset for header
+        top: targetElement.getBoundingClientRect().top + window.scrollY - offset,
         behavior: 'smooth'
       });
+      
+      // Update URL without scrolling
+      window.history.pushState(null, '', href);
     };
     
     document.addEventListener('click', handleLinkClick);

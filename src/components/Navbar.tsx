@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Briefcase, ChevronDown, Database, Code, PenTool, ShoppingCart, Shield, LineChart } from "lucide-react";
+import { Menu, X, Briefcase, ChevronDown, Database, Code, PenTool, ShoppingCart, Shield, LineChart, Search } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
 import { serviceDetails } from "../data/services";
@@ -16,6 +16,9 @@ import {
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
 import { UserProfile } from "./UserProfile";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { SearchModal } from "./SearchModal";
+import { useThemePersistence } from "../hooks/use-theme-persistence";
 
 // Group services by category
 const serviceCategories = serviceDetails.reduce((acc, service) => {
@@ -58,6 +61,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  // Use the enhanced theme hook for persistence
+  useThemePersistence();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,7 +133,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-4">
           <div className="relative">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -258,8 +263,15 @@ const Navbar = () => {
             </Link>
           ))}
           
-          <ThemeToggle />
-          <UserProfile />
+          <div className="pl-2">
+            <SearchModal />
+          </div>
+          
+          <div className="flex items-center space-x-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
+            <UserProfile />
+          </div>
         </nav>
 
         <div className="flex items-center md:hidden space-x-2">

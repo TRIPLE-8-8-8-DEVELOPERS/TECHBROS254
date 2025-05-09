@@ -26,6 +26,9 @@ import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetail from "./components/ProjectDetail";
 import SmoothScroll from "./components/SmoothScroll";
 import FloatingContact from "./components/FloatingContact";
+import BackToTop from "./components/BackToTop";
+import ReadingProgress from "./components/ReadingProgress";
+import CookieConsent from "./components/CookieConsent";
 
 // Import perk pages
 import CompensationPage from "./pages/perks/CompensationPage";
@@ -54,6 +57,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <SmoothScroll />
+        <ReadingProgress />
         <Routes>
           <Route path="/" element={<Index />} />
           
@@ -105,6 +109,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <FloatingContact />
+        <BackToTop />
+        <CookieConsent />
         <Toaster />
       </Router>
     </>
