@@ -14,6 +14,8 @@ import CTABanner from "../components/CTABanner";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
+import FeaturesGrid from "../components/FeaturesGrid";
+import Newsletter from "../components/Newsletter";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("");
@@ -69,7 +71,7 @@ const Index = () => {
       <div className="sticky top-20 z-40 bg-white/80 dark:bg-dark-200/80 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800 shadow-sm py-2 hidden md:block">
         <div className="container mx-auto">
           <div className="flex items-center justify-center space-x-6">
-            {["services", "about", "technologies", "process", "portfolio", "testimonials", "faq", "contact"].map((section) => (
+            {["services", "about", "features", "technologies", "process", "portfolio", "testimonials", "faq", "contact"].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -89,6 +91,7 @@ const Index = () => {
       <main>
         <Hero />
         <Services />
+        <FeaturesGrid />
         <Technologies />
         <Process />
         
@@ -98,6 +101,7 @@ const Index = () => {
         </div>
         
         <Partners />
+        <Newsletter />
         <CTABanner />
         
         <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto gap-8 py-20">

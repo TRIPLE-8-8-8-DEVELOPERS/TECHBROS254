@@ -1,5 +1,6 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "./components/ui/toaster";
 import Index from "./pages/Index";
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetail from "./components/ServiceDetail";
@@ -23,7 +24,8 @@ import DiversityPage from "./pages/DiversityPage";
 import ScrollToTop from "./components/ScrollToTop";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetail from "./components/ProjectDetail";
-import { ThemeProvider } from "./components/ThemeProvider";
+import SmoothScroll from "./components/SmoothScroll";
+import FloatingContact from "./components/FloatingContact";
 
 // Import perk pages
 import CompensationPage from "./pages/perks/CompensationPage";
@@ -48,9 +50,10 @@ import CryptoServices from "./pages/services/CryptoServices";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="techbros-theme">
+    <>
       <Router>
         <ScrollToTop />
+        <SmoothScroll />
         <Routes>
           <Route path="/" element={<Index />} />
           
@@ -101,8 +104,10 @@ function App() {
           
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingContact />
+        <Toaster />
       </Router>
-    </ThemeProvider>
+    </>
   );
 }
 

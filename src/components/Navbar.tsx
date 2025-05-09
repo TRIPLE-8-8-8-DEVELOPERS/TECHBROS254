@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X, Briefcase, ChevronDown, Database, Code, PenTool, ShoppingCart, Shield, LineChart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -16,6 +15,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
+import { UserProfile } from "./UserProfile";
 
 // Group services by category
 const serviceCategories = serviceDetails.reduce((acc, service) => {
@@ -257,20 +257,16 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          
           <ThemeToggle />
-          <Link 
-            to="/#contact" 
-            className="bg-white/20 hover:bg-white/30 text-white px-6 py-2.5 rounded-full transition-all duration-300 text-sm hover:shadow-lg font-medium backdrop-blur-sm border border-white/30"
-            onClick={(e) => handleNavClick(e, "/#contact")}
-          >
-            Get Started
-          </Link>
+          <UserProfile />
         </nav>
 
         <div className="flex items-center md:hidden space-x-2">
           <ThemeToggle />
+          <UserProfile />
           <button 
-            className={`${isScrolled ? 'text-white' : 'text-gray-700 dark:text-gray-200'} focus:outline-none`}
+            className={`${isScrolled ? 'text-white' : 'text-gray-700 dark:text-gray-200'} focus:outline-none ml-2`}
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
