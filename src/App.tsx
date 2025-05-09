@@ -29,6 +29,10 @@ import FloatingContact from "./components/FloatingContact";
 import BackToTop from "./components/BackToTop";
 import ReadingProgress from "./components/ReadingProgress";
 import CookieConsent from "./components/CookieConsent";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import CookiePolicy from "./pages/CookiePolicy";
+import LegalPage from "./pages/LegalPage";
 
 // Import perk pages
 import CompensationPage from "./pages/perks/CompensationPage";
@@ -87,6 +91,12 @@ function App() {
           <Route path="/diversity" element={<DiversityPage />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/pricing" element={<Pricing />} />
+          
+          {/* Legal Routes */}
+          <Route path="/legal" element={<LegalPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
           
           {/* Perk Detail Routes */}
           <Route path="/perks/compensation" element={<CompensationPage />} />

@@ -102,7 +102,18 @@ const Footer = () => {
             </ul>
           </div>
           
-          <div className="md:col-span-4">
+          <div className="md:col-span-2">
+            <h4 className="font-medium text-lg mb-4 text-gray-800">Legal</h4>
+            <ul className="space-y-3">
+              <li><FooterLink to="/legal">Legal Hub</FooterLink></li>
+              <li><FooterLink to="/privacy-policy">Privacy Policy</FooterLink></li>
+              <li><FooterLink to="/terms-of-service">Terms of Service</FooterLink></li>
+              <li><FooterLink to="/cookie-policy">Cookie Policy</FooterLink></li>
+              <li><FooterLink to="/legal">All Legal Documents</FooterLink></li>
+            </ul>
+          </div>
+          
+          <div className="md:col-span-2">
             <h4 className="font-medium text-lg mb-4 text-gray-800">Get In Touch</h4>
             <div className="space-y-4">
               <p className="flex items-start">
@@ -151,8 +162,9 @@ const Footer = () => {
           </p>
           
           <div className="flex space-x-6 items-center">
-            <a href="#" className="text-sm text-gray-500 hover:text-tech-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-sm text-gray-500 hover:text-tech-500 transition-colors">Terms of Service</a>
+            <FooterLink to="/privacy-policy">Privacy Policy</FooterLink>
+            <FooterLink to="/terms-of-service">Terms of Service</FooterLink>
+            <FooterLink to="/cookie-policy">Cookie Policy</FooterLink>
             <button
               onClick={scrollToTop}
               className="w-10 h-10 rounded-full gradient-border flex items-center justify-center hover:shadow-md transition-all duration-300 ml-2"
