@@ -6,6 +6,7 @@ import { ArrowUp, ChevronUp } from "lucide-react";
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [pulse, setPulse] = useState(false);
 
   // Show button when page is scrolled down
   useEffect(() => {
@@ -19,6 +20,11 @@ const BackToTop = () => {
       
       if (window.scrollY > 500) {
         setIsVisible(true);
+        // Pulse animation when reaching certain thresholds
+        if ([25, 50, 75, 90].includes(Math.floor(scrollPercentage))) {
+          setPulse(true);
+          setTimeout(() => setPulse(false), 1500);
+        }
       } else {
         setIsVisible(false);
       }
@@ -44,12 +50,14 @@ const BackToTop = () => {
             {Math.round(progress)}%
           </div>
           <Button
-            className="relative rounded-full h-12 w-12 bg-gradient-to-r from-vibrant-purple to-vibrant-pink shadow-lg hover:shadow-xl transition-all duration-300"
+            className={`relative rounded-full h-12 w-12 bg-gradient-to-r from-vibrant-purple to-vibrant-pink shadow-lg hover:shadow-xl transition-all duration-300 ${
+              pulse ? 'animate-ping' : ''
+            }`}
             size="icon"
             onClick={scrollToTop}
             aria-label="Back to top"
           >
-            <ArrowUp className="h-5 w-5 text-white" />
+            <ArrowUp className={`h-5 w-5 text-white transition-transform ${progress > 90 ? 'animate-bounce' : ''}`} />
             <svg className="absolute -top-1 -right-1 -left-1 -bottom-1 h-[calc(100%+8px)] w-[calc(100%+8px)]" viewBox="0 0 100 100">
               <circle 
                 cx="50" cy="50" r="48" 
