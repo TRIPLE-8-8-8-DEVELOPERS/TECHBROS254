@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, User } from "lucide-react";
@@ -35,8 +36,8 @@ const navItems: NavItem[] = [
       { label: "AI & Data", href: "/services/ai-data" },
       { label: "Security", href: "/services/security" },
       { label: "Consulting", href: "/services/consulting" },
-      { label: "Forex", href: "/services/forex" },
-      { label: "Crypto", href: "/services/crypto" },
+      { label: "Forex Trading", href: "/services/forex" },
+      { label: "Cryptocurrency", href: "/services/crypto" },
     ],
   },
   { label: "Projects", href: "/projects" },

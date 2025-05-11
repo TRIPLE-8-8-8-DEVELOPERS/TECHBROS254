@@ -28,6 +28,8 @@ import SecurityServices from './pages/services/SecurityServices';
 import ConsultingServices from './pages/services/ConsultingServices';
 import ForexServices from './pages/services/ForexServices';
 import CryptoServices from './pages/services/CryptoServices';
+import ServiceDetail from './components/ServiceDetail';
+import SubCategoryDetail from './components/SubCategoryDetail';
 import AuthPage from './pages/AuthPage';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -76,6 +78,10 @@ function App() {
                 <Route path="/services/consulting" element={<ConsultingServices />} />
                 <Route path="/services/forex" element={<ForexServices />} />
                 <Route path="/services/crypto" element={<CryptoServices />} />
+                
+                {/* Service Detail and Subcategory Pages */}
+                <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
+                <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
                 
                 {/* Catch-all for unknown routes */}
                 <Route path="*" element={<NotFound />} />
