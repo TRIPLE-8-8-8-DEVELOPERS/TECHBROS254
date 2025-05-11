@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { MessageSquare, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { useToast } from "../hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const FloatingContact = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,19 +35,40 @@ const FloatingContact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Save contact submission to Supabase
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name,
+          email,
+          message
+        });
+      
+      if (error) {
+        throw error;
+      }
+      
       setIsOpen(false);
       toast({
         title: "Message sent!",
         description: "We will get back to you as soon as possible.",
       });
+      
       // Reset form
       setName("");
       setEmail("");
       setMessage("");
-    }, 1000);
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
