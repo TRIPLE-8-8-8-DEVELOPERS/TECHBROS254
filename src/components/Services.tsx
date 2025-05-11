@@ -46,6 +46,25 @@ const Services = () => {
     };
   }, []);
 
+  // Map category to URL segment
+  const getCategoryUrl = (category: string): string => {
+    const categoryUrls: Record<string, string> = {
+      "Development": "development",
+      "Infrastructure": "infrastructure",
+      "Consulting": "consulting",
+      "E-commerce": "ecommerce",
+      "AI & Data": "ai-data",
+      "Security": "security",
+      "Marketing": "marketing",
+      "Design": "design",
+      "Healthcare": "healthcare",
+      "Education": "education",
+      "Forex Trading": "forex",
+      "Cryptocurrency": "crypto"
+    };
+    return categoryUrls[category] || category.toLowerCase().replace(/\s+/g, '-');
+  };
+
   return (
     <section id="services" ref={sectionRef} className="section-padding relative overflow-hidden w-full dark:bg-dark-100">
       {/* Enhanced background elements */}

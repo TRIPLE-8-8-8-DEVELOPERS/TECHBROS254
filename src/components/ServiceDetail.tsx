@@ -36,6 +36,13 @@ const ServiceDetail = () => {
         .filter(Boolean) as typeof serviceDetails;
     }
     
+    // If no related services specified, show other services from the same category
+    if (service?.category) {
+      return serviceDetails
+        .filter(s => s.slug !== slug && s.category === service.category)
+        .slice(0, 3);
+    }
+    
     return [];
   };
   
@@ -54,7 +61,7 @@ const ServiceDetail = () => {
     
     setIsLoaded(true);
     window.scrollTo(0, 0);
-  }, [service, navigate]);
+  }, [service, navigate, slug]);
   
   if (!service) return null;
 
@@ -85,7 +92,7 @@ const ServiceDetail = () => {
           ></div>
           
           <div className="container mx-auto px-4 z-10 text-white">
-            <Link to="/#services" className="inline-flex items-center text-white/90 hover:text-white mb-6 transition-colors">
+            <Link to="/services" className="inline-flex items-center text-white/90 hover:text-white mb-6 transition-colors">
               <ArrowLeft size={18} className="mr-2" />
               Back to Services
             </Link>
@@ -129,7 +136,7 @@ const ServiceDetail = () => {
                 <h2 className="text-3xl font-bold mb-6">{service.title}</h2>
                 <div className="prose prose-lg max-w-none">
                   {service.description.map((paragraph, index) => (
-                    <p key={index} className="mb-4 text-gray-700">
+                    <p key={index} className="mb-4 text-gray-700 dark:text-gray-300">
                       {paragraph}
                     </p>
                   ))}
@@ -206,36 +213,36 @@ const ServiceDetail = () => {
               
               {/* Sidebar */}
               <div className="lg:col-span-1">
-                <div className="bg-tech-50 p-6 rounded-xl sticky top-32">
+                <div className="bg-tech-50 dark:bg-dark-200 p-6 rounded-xl sticky top-32">
                   <h3 className="text-xl font-bold mb-4">Why Choose TechBros?</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                      <div className="bg-tech-100 dark:bg-dark-300 rounded-full p-1 mr-3 mt-1">
+                        <Check size={16} className="text-tech-600 dark:text-tech-400" />
                       </div>
                       <span>Experienced team of professionals</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                      <div className="bg-tech-100 dark:bg-dark-300 rounded-full p-1 mr-3 mt-1">
+                        <Check size={16} className="text-tech-600 dark:text-tech-400" />
                       </div>
                       <span>Proven track record of success</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                      <div className="bg-tech-100 dark:bg-dark-300 rounded-full p-1 mr-3 mt-1">
+                        <Check size={16} className="text-tech-600 dark:text-tech-400" />
                       </div>
                       <span>Customized solutions for your needs</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                      <div className="bg-tech-100 dark:bg-dark-300 rounded-full p-1 mr-3 mt-1">
+                        <Check size={16} className="text-tech-600 dark:text-tech-400" />
                       </div>
                       <span>Cutting-edge technologies</span>
                     </li>
                     <li className="flex items-start">
-                      <div className="bg-tech-100 rounded-full p-1 mr-3 mt-1">
-                        <Check size={16} className="text-tech-600" />
+                      <div className="bg-tech-100 dark:bg-dark-300 rounded-full p-1 mr-3 mt-1">
+                        <Check size={16} className="text-tech-600 dark:text-tech-400" />
                       </div>
                       <span>Transparent communication</span>
                     </li>
@@ -270,7 +277,7 @@ const ServiceDetail = () => {
                         {service.technologies.map((tech, index) => (
                           <span 
                             key={index} 
-                            className="bg-white px-3 py-1 rounded-full text-xs font-medium text-tech-600 border border-tech-200"
+                            className="bg-white dark:bg-dark-300 px-3 py-1 rounded-full text-xs font-medium text-tech-600 dark:text-tech-400 border border-tech-200 dark:border-dark-400"
                           >
                             {tech}
                           </span>
@@ -316,8 +323,8 @@ const ServiceDetail = () => {
         </section>
 
         {/* Related Services */}
-        {(service.relatedServices || service.category) && (
-          <section className="py-16 bg-gray-50">
+        {relatedServices.length > 0 && (
+          <section className="py-16 bg-gray-50 dark:bg-dark-200">
             <div className="container mx-auto px-4">
               <div className="flex flex-col md:flex-row justify-between items-center mb-10">
                 <h2 className="text-3xl font-bold text-center md:text-left">Related Services</h2>
@@ -328,12 +335,12 @@ const ServiceDetail = () => {
                   onValueChange={setSelectedCategory}
                   className="mt-4 md:mt-0"
                 >
-                  <TabsList className="bg-tech-50">
+                  <TabsList className="bg-tech-50 dark:bg-dark-300">
                     {allCategories.map((category) => (
                       <TabsTrigger 
                         key={category} 
                         value={category}
-                        className="capitalize data-[state=active]:bg-tech-100 data-[state=active]:text-tech-800"
+                        className="capitalize data-[state=active]:bg-tech-100 data-[state=active]:text-tech-800 dark:data-[state=active]:bg-dark-400"
                       >
                         {category === "all" ? "All" : category}
                       </TabsTrigger>
@@ -350,7 +357,7 @@ const ServiceDetail = () => {
                     <Link 
                       key={index}
                       to={`/services/${relatedService.slug}`} 
-                      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                      className="bg-white dark:bg-dark-300 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all"
                     >
                       <div className="aspect-video overflow-hidden">
                         <img 
@@ -363,13 +370,13 @@ const ServiceDetail = () => {
                         {relatedService.category && (
                           <Badge 
                             variant="outline" 
-                            className="mb-3 bg-tech-50 text-tech-600 hover:bg-tech-100 border-tech-200"
+                            className="mb-3 bg-tech-50 text-tech-600 hover:bg-tech-100 border-tech-200 dark:bg-dark-400 dark:text-tech-300 dark:border-dark-500"
                           >
                             {relatedService.category}
                           </Badge>
                         )}
                         <h3 className="text-xl font-bold mb-2">{relatedService.title}</h3>
-                        <p className="text-gray-600 line-clamp-2">{relatedService.shortDescription}</p>
+                        <p className="text-gray-600 dark:text-gray-300 line-clamp-2">{relatedService.shortDescription}</p>
                       </div>
                     </Link>
                   );

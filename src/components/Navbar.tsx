@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Moon, Sun, User } from "lucide-react";
@@ -97,15 +96,15 @@ const Navbar = () => {
             Transforming Businesses with Cutting-Edge Technology Solutions
           </span>
           <div className="flex items-center space-x-3">
-            <a href="/benefits" className="hover:underline">
+            <Link to="/benefits" className="hover:underline">
               Benefits
-            </a>
-            <a href="/diversity" className="hover:underline">
+            </Link>
+            <Link to="/diversity" className="hover:underline">
               Diversity
-            </a>
-            <a href="/perks" className="hover:underline">
+            </Link>
+            <Link to="/perks" className="hover:underline">
               Perks
-            </a>
+            </Link>
           </div>
         </div>
       </div>

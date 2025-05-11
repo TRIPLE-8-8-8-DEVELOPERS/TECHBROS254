@@ -46,14 +46,14 @@ const ServicesPage = () => {
     "Cryptocurrency": <Bitcoin className="w-10 h-10" />
   };
 
-  // Map category to URL segment
+  // Map category to URL segment - Corrected and confirmed these match the routes in App.tsx
   const categoryUrls = {
     "Development": "development",
     "Infrastructure": "infrastructure",
     "Consulting": "consulting",
     "E-commerce": "ecommerce",
     "AI & Data": "ai-data",
-    "Security": "security",
+    "Security": "security", 
     "Marketing": "marketing",
     "Design": "design",
     "Healthcare": "healthcare",
@@ -122,43 +122,48 @@ const ServicesPage = () => {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-              {categories.map((category, index) => (
-                <Link 
-                  key={index} 
-                  to={`/services/${categoryUrls[category as keyof typeof categoryUrls]}`}
-                  className="bg-white dark:bg-dark-300 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group h-full"
-                >
-                  <div className="p-8">
-                    <div className={`w-20 h-20 bg-gradient-to-r ${categoryGradients[category as keyof typeof categoryGradients] || 'from-tech-50 to-white'} rounded-2xl flex items-center justify-center mb-6 text-tech-500 dark:text-tech-300 group-hover:scale-110 transition-transform duration-300`}>
-                      {categoryIcons[category as keyof typeof categoryIcons]}
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">{category}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6">
-                      {categoryCount[category]} services available
-                    </p>
-                    
-                    <div className="mb-6 flex flex-wrap gap-2">
-                      {serviceDetails
-                        .filter(service => service.category === category)
-                        .slice(0, 3)
-                        .map((service, idx) => (
-                          <Badge key={idx} variant="outline" className="bg-tech-50 dark:bg-dark-200 text-tech-600 dark:text-tech-300 py-1.5">
-                            {service.title}
+              {categories.map((category, index) => {
+                const categoryKey = category as keyof typeof categoryUrls;
+                const url = categoryUrls[categoryKey] || category.toLowerCase().replace(/\s+/g, '-');
+                
+                return (
+                  <Link 
+                    key={index} 
+                    to={`/services/${url}`}
+                    className="bg-white dark:bg-dark-300 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group h-full"
+                  >
+                    <div className="p-8">
+                      <div className={`w-20 h-20 bg-gradient-to-r ${(categoryGradients as any)[category] || 'from-tech-50 to-white'} rounded-2xl flex items-center justify-center mb-6 text-tech-500 dark:text-tech-300 group-hover:scale-110 transition-transform duration-300`}>
+                        {(categoryIcons as any)[category]}
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">{category}</h3>
+                      <p className="text-gray-600 dark:text-gray-300 mb-6">
+                        {categoryCount[category]} services available
+                      </p>
+                      
+                      <div className="mb-6 flex flex-wrap gap-2">
+                        {serviceDetails
+                          .filter(service => service.category === category)
+                          .slice(0, 3)
+                          .map((service, idx) => (
+                            <Badge key={idx} variant="outline" className="bg-tech-50 dark:bg-dark-200 text-tech-600 dark:text-tech-300 py-1.5">
+                              {service.title}
+                            </Badge>
+                          ))}
+                        {categoryCount[category] > 3 && (
+                          <Badge variant="outline" className="bg-gray-100 dark:bg-dark-400 text-gray-700 dark:text-gray-300 py-1.5">
+                            +{categoryCount[category] - 3} more
                           </Badge>
-                        ))}
-                      {categoryCount[category] > 3 && (
-                        <Badge variant="outline" className="bg-gray-100 dark:bg-dark-400 text-gray-700 dark:text-gray-300 py-1.5">
-                          +{categoryCount[category] - 3} more
-                        </Badge>
-                      )}
+                        )}
+                      </div>
+                      
+                      <div className="flex items-center text-vibrant-purple dark:text-vibrant-purple/90 font-medium group-hover:text-vibrant-purple/80 dark:group-hover:text-vibrant-purple/70 transition-colors">
+                        View all services <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                      </div>
                     </div>
-                    
-                    <div className="flex items-center text-vibrant-purple dark:text-vibrant-purple/90 font-medium group-hover:text-vibrant-purple/80 dark:group-hover:text-vibrant-purple/70 transition-colors">
-                      View all services <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
