@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { serviceDetails } from "../data/services";
 import Navbar from "@/components/Navbar";
@@ -25,7 +25,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 const ServicesPage = () => {
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    setIsLoaded(true);
+    window.scrollTo(0, 0);
+  }, []);
   
   // Extract all unique categories
   const categories = Array.from(new Set(serviceDetails.map(item => item.category)));

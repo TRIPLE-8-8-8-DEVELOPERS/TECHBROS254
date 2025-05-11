@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Moon, Sun, User } from "lucide-react";
+import { Menu, X, ChevronDown, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { SearchModal } from "./SearchModal"; // Changed from default import to named import
+import { SearchModal } from "./SearchModal";
 import { useAuth } from "@/components/AuthContext";
+import { ThemeToggle } from "./ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,7 +52,6 @@ const Navbar = () => {
   const location = useLocation();
 
   const { user, signOut } = useAuth();
-  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -152,18 +151,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <SearchModal />
           
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="mr-2"
-          >
-            {resolvedTheme === "dark" ? (
-              <Sun size={18} />
-            ) : (
-              <Moon size={18} />
-            )}
-          </Button>
+          <ThemeToggle />
 
           <LanguageSwitcher />
 

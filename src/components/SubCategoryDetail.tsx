@@ -21,7 +21,7 @@ const SubCategoryDetail = () => {
   
   useEffect(() => {
     if (!service || !subcategory) {
-      navigate(`/services/${serviceSlug}`);
+      navigate(`/services/${serviceSlug || ''}`);
       return;
     }
     
