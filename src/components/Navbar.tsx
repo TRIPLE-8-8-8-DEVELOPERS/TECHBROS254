@@ -1,10 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Moon, Sun, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import LanguageSwitcher from "./LanguageSwitcher";
-import SearchModal from "./SearchModal";
+import { SearchModal } from "./SearchModal"; // Changed from default import to named import
 import { useAuth } from "@/components/AuthContext";
 import {
   DropdownMenu,
