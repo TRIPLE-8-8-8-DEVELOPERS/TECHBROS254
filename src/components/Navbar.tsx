@@ -90,25 +90,6 @@ const Navbar = () => {
           : "bg-white dark:bg-gray-900"
       }`}
     >
-      <div className="bg-tech-500 text-white py-1.5 text-sm">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <span>
-            Transforming Businesses with Cutting-Edge Technology Solutions
-          </span>
-          <div className="flex items-center space-x-3">
-            <Link to="/benefits" className="hover:underline">
-              Benefits
-            </Link>
-            <Link to="/diversity" className="hover:underline">
-              Diversity
-            </Link>
-            <Link to="/perks" className="hover:underline">
-              Perks
-            </Link>
-          </div>
-        </div>
-      </div>
-      
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
