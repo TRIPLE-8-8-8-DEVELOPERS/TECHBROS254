@@ -60,6 +60,7 @@ const Navbar = () => {
   const location = useLocation();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeService, setActiveService] = useState<string | null>(null);
+  const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
   const { user, signOut } = useAuth();
 
@@ -111,13 +112,22 @@ const Navbar = () => {
 
         <nav className="hidden md:flex items-center space-x-1">
           {/* Services mega dropdown */}
-          <div className="relative group">
-            <Button variant="ghost" className="font-medium">
+          <div 
+            className="relative group"
+            onMouseEnter={() => setServicesMenuOpen(true)}
+            onMouseLeave={() => setServicesMenuOpen(false)}
+          >
+            <Button 
+              variant="ghost" 
+              className="font-medium"
+            >
               <span>Services</span>
               <ChevronDown className="h-4 w-4 opacity-50 ml-1" />
             </Button>
 
-            <div className="absolute left-0 top-full hidden group-hover:block w-[700px] bg-white dark:bg-gray-900 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700 z-50">
+            <div 
+              className={`absolute left-0 top-full ${servicesMenuOpen ? 'block' : 'hidden'} w-[700px] bg-white dark:bg-gray-900 shadow-lg rounded-xl p-6 border border-gray-200 dark:border-gray-700 z-50`}
+            >
               <div className="grid grid-cols-12 gap-x-6">
                 {/* Popular services section */}
                 <div className="col-span-12 mb-6 bg-purple-50 dark:bg-purple-900/20 p-5 rounded-xl">
