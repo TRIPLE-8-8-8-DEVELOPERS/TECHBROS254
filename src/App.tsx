@@ -14,7 +14,7 @@ import DiversityPage from './pages/DiversityPage';
 import PerksPage from './pages/PerksPage';
 import Blog from './pages/Blog';
 import Careers from './pages/Careers';
-import JobDetail from './pages/JobDetail';
+import JobDetail from './components/JobDetail';
 import Pricing from './pages/Pricing';
 import DevelopmentServices from './pages/services/DevelopmentServices';
 import DesignServices from './pages/services/DesignServices';
@@ -61,7 +61,7 @@ function App() {
                 <Route path="/perks" element={<PerksPage />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/careers" element={<Careers />} />
-                <Route path="/careers/:id" element={<JobDetail />} />
+                <Route path="/careers/:jobSlug" element={<JobDetail />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/auth" element={<AuthPage />} />
                 

@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -23,265 +22,44 @@ import {
   Star,
   Sparkles
 } from "lucide-react";
+import { jobPositions } from "../data/jobs";
 
-interface JobPosition {
-  id: number;
-  title: string;
-  department: string;
-  location: string;
-  type: "Full-time" | "Part-time" | "Contract" | "Remote";
-  level: "Entry" | "Mid" | "Senior" | "Lead";
-  salary: string;
-  posted: string;
-  slug: string;
-  image?: string;
-}
-
-const jobPositions: JobPosition[] = [
-  {
-    id: 1,
-    title: "Senior Frontend Developer",
-    department: "Engineering",
-    location: "New York, NY (Hybrid)",
-    type: "Full-time",
-    level: "Senior",
-    salary: "$120,000 - $150,000",
-    posted: "2 days ago",
-    slug: "senior-frontend-developer",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format"
-  },
-  {
-    id: 2,
-    title: "UX/UI Designer",
-    department: "Design",
-    location: "Remote",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$90,000 - $110,000",
-    posted: "1 week ago",
-    slug: "ux-ui-designer",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&auto=format"
-  },
-  {
-    id: 3,
-    title: "DevOps Engineer",
-    department: "Engineering",
-    location: "San Francisco, CA",
-    type: "Full-time",
-    level: "Senior",
-    salary: "$130,000 - $160,000",
-    posted: "3 days ago",
-    slug: "devops-engineer",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&auto=format"
-  },
-  {
-    id: 4,
-    title: "Product Manager",
-    department: "Product",
-    location: "New York, NY",
-    type: "Full-time",
-    level: "Lead",
-    salary: "$140,000 - $170,000",
-    posted: "5 days ago",
-    slug: "product-manager",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format"
-  },
-  {
-    id: 5,
-    title: "Data Scientist",
-    department: "Data",
-    location: "Remote",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$110,000 - $140,000",
-    posted: "2 weeks ago",
-    slug: "data-scientist",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format"
-  },
-  {
-    id: 6,
-    title: "Full Stack Developer",
-    department: "Engineering",
-    location: "Austin, TX (Hybrid)",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$100,000 - $130,000",
-    posted: "4 days ago",
-    slug: "full-stack-developer",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format"
-  },
-  {
-    id: 7,
-    title: "Marketing Specialist",
-    department: "Marketing",
-    location: "Chicago, IL",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$80,000 - $100,000",
-    posted: "1 week ago",
-    slug: "marketing-specialist",
-    image: "https://images.unsplash.com/photo-1552581234-26160f608093?w=600&auto=format"
-  },
-  {
-    id: 8,
-    title: "Customer Success Manager",
-    department: "Customer Support",
-    location: "Remote",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$85,000 - $105,000",
-    posted: "3 days ago",
-    slug: "customer-success-manager",
-    image: "https://images.unsplash.com/photo-1543269664-7eef42226a21?w=600&auto=format"
-  },
-  {
-    id: 9,
-    title: "Backend Developer (Python)",
-    department: "Engineering",
-    location: "Seattle, WA",
-    type: "Full-time",
-    level: "Senior",
-    salary: "$125,000 - $155,000",
-    posted: "1 day ago",
-    slug: "backend-developer-python",
-    image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=600&auto=format"
-  },
-  {
-    id: 10,
-    title: "Mobile Developer (React Native)",
-    department: "Engineering",
-    location: "Remote",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$110,000 - $135,000",
-    posted: "5 days ago",
-    slug: "mobile-developer-react-native",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&auto=format"
-  },
-  {
-    id: 11,
-    title: "Technical Writer",
-    department: "Product",
-    location: "Boston, MA (Hybrid)",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$85,000 - $105,000",
-    posted: "1 week ago",
-    slug: "technical-writer",
-    image: "https://images.unsplash.com/photo-1571721795195-a2d50c404584?w=600&auto=format"
-  },
-  {
-    id: 12,
-    title: "QA Engineer",
-    department: "Engineering",
-    location: "Denver, CO",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$90,000 - $115,000",
-    posted: "3 days ago",
-    slug: "qa-engineer",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&auto=format"
-  },
-  {
-    id: 13,
-    title: "Project Coordinator",
-    department: "Operations",
-    location: "Portland, OR",
-    type: "Full-time",
-    level: "Entry",
-    salary: "$65,000 - $80,000",
-    posted: "2 weeks ago",
-    slug: "project-coordinator",
-    image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&auto=format"
-  },
-  {
-    id: 14,
-    title: "IT Support Specialist",
-    department: "IT",
-    location: "Chicago, IL",
-    type: "Full-time",
-    level: "Entry",
-    salary: "$60,000 - $75,000",
-    posted: "1 week ago",
-    slug: "it-support-specialist",
-    image: "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?w=600&auto=format"
-  },
-  {
-    id: 15,
-    title: "Machine Learning Engineer",
-    department: "Engineering",
-    location: "San Francisco, CA",
-    type: "Full-time",
-    level: "Senior",
-    salary: "$150,000 - $180,000",
-    posted: "4 days ago",
-    slug: "machine-learning-engineer",
-    image: "https://images.unsplash.com/photo-1501159599941-ebb35cd39d35?w=600&auto=format"
-  },
-  {
-    id: 16,
-    title: "Finance Manager",
-    department: "Finance",
-    location: "New York, NY",
-    type: "Full-time",
-    level: "Lead",
-    salary: "$130,000 - $160,000",
-    posted: "6 days ago",
-    slug: "finance-manager",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format"
-  },
-  {
-    id: 17,
-    title: "HR Specialist",
-    department: "HR",
-    location: "Remote",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$75,000 - $95,000",
-    posted: "2 weeks ago",
-    slug: "hr-specialist",
-    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&auto=format"
-  },
-  {
-    id: 18,
-    title: "Content Creator",
-    department: "Marketing",
-    location: "Los Angeles, CA",
-    type: "Part-time",
-    level: "Entry",
-    salary: "$30 - $45 per hour",
-    posted: "3 days ago",
-    slug: "content-creator",
-    image: "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=600&auto=format"
-  },
-  {
-    id: 19,
-    title: "Cloud Architect",
-    department: "Engineering",
-    location: "Seattle, WA",
-    type: "Full-time",
-    level: "Lead",
-    salary: "$160,000 - $200,000",
-    posted: "1 week ago",
-    slug: "cloud-architect",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format"
-  },
-  {
-    id: 20,
-    title: "Sales Representative",
-    department: "Sales",
-    location: "Dallas, TX",
-    type: "Full-time",
-    level: "Mid",
-    salary: "$70,000 - $100,000 + Commission",
-    posted: "5 days ago",
-    slug: "sales-representative",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&auto=format"
-  }
+const departmentFilters = [
+  "All", 
+  "Engineering", 
+  "Design", 
+  "Product", 
+  "Data", 
+  "Marketing", 
+  "Customer Support", 
+  "Operations", 
+  "IT", 
+  "Finance", 
+  "HR", 
+  "Sales",
+  "Security",
+  "Healthcare",
+  "Education",
+  "Ecommerce"
 ];
 
-const departmentFilters = ["All", "Engineering", "Design", "Product", "Data", "Marketing", "Customer Support", "Operations", "IT", "Finance", "HR", "Sales"];
-const locationFilters = ["All", "Remote", "New York, NY", "San Francisco, CA", "Austin, TX", "Chicago, IL", "Seattle, WA", "Boston, MA", "Denver, CO", "Portland, OR", "Los Angeles, CA", "Dallas, TX"];
+const locationFilters = [
+  "All", 
+  "Remote", 
+  "New York, NY", 
+  "San Francisco, CA", 
+  "Austin, TX", 
+  "Chicago, IL", 
+  "Seattle, WA", 
+  "Boston, MA", 
+  "Denver, CO", 
+  "Portland, OR", 
+  "Los Angeles, CA", 
+  "Dallas, TX",
+  "Miami, FL",
+  "Washington, DC"
+];
+
 const typeFilters = ["All", "Full-time", "Part-time", "Contract", "Remote"];
 
 const Careers = () => {
