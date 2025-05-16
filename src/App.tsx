@@ -1,10 +1,8 @@
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
-import Team from './pages/Team';
 import LegalPage from './pages/LegalPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookiePolicy from './pages/CookiePolicy';
@@ -31,6 +29,7 @@ import CryptoServices from './pages/services/CryptoServices';
 import ServiceDetail from './components/ServiceDetail';
 import SubCategoryDetail from './components/SubCategoryDetail';
 import AuthPage from './pages/AuthPage';
+import ProjectDetail from './components/ProjectDetail';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AuthProvider } from '@/components/AuthContext';
@@ -38,6 +37,23 @@ import { SupabaseProvider } from '@/components/SupabaseProvider';
 import { Suspense } from 'react';
 import FloatingContact from '@/components/FloatingContact';
 import ScrollToTop from '@/components/ScrollToTop';
+import { Team, TeamMemberDetailWrapper } from "./components/Team";
+import BlogAIAgents2025 from './pages/blog/AIAgents2025';
+import BlogQuantumComputing2025 from './pages/blog/QuantumComputing2025';
+import BlogReactServerComponents from './pages/blog/ReactServerComponents';
+import BlogEdgeAI2025 from './pages/blog/EdgeAI2025';
+import BlogOpenSource2025 from './pages/blog/OpenSource2025';
+import BlogTechBrosScalePlus from './pages/blog/TechBrosScalePlus';
+import Blog5GBeyond2025 from './pages/blog/5GBeyond2025';
+import BlogEthicsOfAI2025 from './pages/blog/EthicsOfAI2025';
+import BlogComposableCommerce2025 from './pages/blog/ComposableCommerce2025';
+import BlogDigitalTwins2025 from './pages/blog/DigitalTwins2025';
+import BlogWomenInTech2025 from './pages/blog/WomenInTech2025';
+import BlogZeroTrustSecurity2025 from './pages/blog/ZeroTrustSecurity2025';
+import BlogAPIEconomy2025 from './pages/blog/APIEconomy2025';
+import BlogTechInAfrica2025 from './pages/blog/TechInAfrica2025';
+import BlogWearables2025 from './pages/blog/Wearables2025';
+import BlogServerless2025 from './pages/blog/Serverless2025';
 
 function App() {
   return (
@@ -51,7 +67,9 @@ function App() {
                 <Route path="/" element={<Index />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/projects" element={<ProjectsPage />} />
+                <Route path="/projects/:slug" element={<ProjectDetail />} />
                 <Route path="/team" element={<Team />} />
+                <Route path="/team/:slug" element={<TeamMemberDetailWrapper />} />
                 <Route path="/legal" element={<LegalPage />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/cookie-policy" element={<CookiePolicy />} />
@@ -83,6 +101,23 @@ function App() {
                 <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
                 <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
                 
+                <Route path="/blog/ai-agents-2025" element={<BlogAIAgents2025 />} />
+                <Route path="/blog/quantum-computing-2025" element={<BlogQuantumComputing2025 />} />
+                <Route path="/blog/react-server-components" element={<BlogReactServerComponents />} />
+                <Route path="/blog/edge-ai-2025" element={<BlogEdgeAI2025 />} />
+                <Route path="/blog/open-source-2025" element={<BlogOpenSource2025 />} />
+                <Route path="/blog/techbros-scale-plus" element={<BlogTechBrosScalePlus />} />
+                <Route path="/blog/5g-beyond-2025" element={<Blog5GBeyond2025 />} />
+                <Route path="/blog/ethics-of-ai-2025" element={<BlogEthicsOfAI2025 />} />
+                <Route path="/blog/composable-commerce-2025" element={<BlogComposableCommerce2025 />} />
+                <Route path="/blog/digital-twins-2025" element={<BlogDigitalTwins2025 />} />
+                <Route path="/blog/women-in-tech-2025" element={<BlogWomenInTech2025 />} />
+                <Route path="/blog/zero-trust-security-2025" element={<BlogZeroTrustSecurity2025 />} />
+                <Route path="/blog/api-economy-2025" element={<BlogAPIEconomy2025 />} />
+                <Route path="/blog/tech-in-africa-2025" element={<BlogTechInAfrica2025 />} />
+                <Route path="/blog/wearables-2025" element={<BlogWearables2025 />} />
+                <Route path="/blog/serverless-2025" element={<BlogServerless2025 />} />
+
                 {/* Catch-all for unknown routes */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

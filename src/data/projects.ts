@@ -1,4 +1,3 @@
-
 export interface Project {
   id: number;
   slug: string;
@@ -165,7 +164,7 @@ export const projects: Project[] = [
         caption: "Clinical documentation system" 
       },
       { 
-        url: "https://images.unsplash.com/photo-1537434096881-12ecd09b818e?w=800&auto=format", 
+        url: "https://images.unsplash.com/photo-1537434096881-12ecd09b8187?w=800&auto=format", 
         caption: "Analytics and reporting module" 
       }
     ],
@@ -475,7 +474,767 @@ export const projects: Project[] = [
       position: "Training Director, SafetyFirst Industries",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format"
     },
-    nextProject: "financial-app-redesign",
+    nextProject: "smart-agriculture-platform",
     prevProject: "iot-smart-manufacturing"
+  },
+  {
+    id: 10,
+    slug: "smart-agriculture-platform",
+    title: "Smart Agriculture Platform",
+    category: "IoT & Data Science",
+    client: "AgroTech Solutions",
+    year: "2024",
+    role: "IoT Development, Data Analytics",
+    description: [
+      "AgroTech Solutions wanted to help farmers optimize crop yields and resource usage by leveraging IoT sensors and data analytics.",
+      "We built a platform that collects real-time data from soil sensors, weather stations, and drones, providing actionable insights for irrigation, fertilization, and pest control.",
+      "The system features a mobile dashboard for farmers, automated alerts, and AI-driven recommendations to maximize productivity and sustainability."
+    ],
+    challenge: "Farmers lacked real-time visibility into field conditions, leading to inefficient resource use and lower yields. They needed a scalable, easy-to-use solution for data-driven agriculture.",
+    solution: "We deployed a network of IoT sensors and integrated them with a cloud-based analytics platform. The solution provides predictive analytics, automated irrigation control, and mobile access for farmers.",
+    results: [
+      "Increased crop yields by 22% in the first season",
+      "Reduced water usage by 31% through smart irrigation",
+      "Decreased fertilizer costs by 18%",
+      "Enabled early detection of pest outbreaks, reducing crop loss"
+    ],
+    technologies: ["IoT Sensors", "Python", "Node.js", "React Native", "AWS", "TensorFlow", "Django"],
+    mainImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "IoT sensors in the field" },
+      { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format", caption: "Mobile dashboard for farmers" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Drone-based crop monitoring" },
+      { url: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&auto=format", caption: "Automated irrigation system" }
+    ],
+    testimonial: {
+      quote: "The smart agriculture platform has empowered our farmers to make data-driven decisions, resulting in higher yields and more sustainable practices.",
+      author: "Samuel Kimani",
+      position: "CEO, AgroTech Solutions",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "blockchain-supply-chain",
+    prevProject: "vr-training-platform"
+  },
+  {
+    id: 11,
+    slug: "blockchain-supply-chain",
+    title: "Blockchain Supply Chain Transparency",
+    category: "Blockchain & Logistics",
+    client: "TransGlobal Logistics",
+    year: "2024",
+    role: "Blockchain Development, Supply Chain Consulting",
+    description: [
+      "TransGlobal Logistics needed to improve transparency and traceability in their international supply chain.",
+      "We implemented a blockchain-based system that records every transaction and shipment event, providing an immutable audit trail accessible to all stakeholders.",
+      "The platform includes real-time tracking, automated compliance checks, and secure document management."
+    ],
+    challenge: "The client faced frequent disputes and delays due to lack of transparency and trust between supply chain partners.",
+    solution: "We built a Hyperledger-based blockchain platform with smart contracts for automated verification and dispute resolution, integrated with IoT tracking devices.",
+    results: [
+      "Reduced shipment disputes by 87%",
+      "Improved customs clearance speed by 29%",
+      "Increased partner trust and collaboration",
+      "Enabled end-to-end traceability for high-value goods"
+    ],
+    technologies: ["Hyperledger", "Node.js", "React", "IoT", "AWS", "GraphQL"],
+    mainImage: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=800&auto=format", caption: "Blockchain shipment tracking" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "Supply chain dashboard" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "Smart contract verification" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Secure document management" }
+    ],
+    testimonial: {
+      quote: "The blockchain platform has brought unprecedented transparency to our supply chain, reducing disputes and building trust with our partners.",
+      author: "Linda Mensah",
+      position: "COO, TransGlobal Logistics",
+      avatar: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&auto=format"
+    },
+    nextProject: "financial-app-redesign",
+    prevProject: "smart-agriculture-platform"
+  },
+  {
+    id: 12,
+    slug: "edtech-learning-platform",
+    title: "EdTech Learning Platform",
+    category: "Education Technology",
+    client: "BrightFuture Academy",
+    year: "2024",
+    role: "Full-stack Development, UX/UI Design",
+    description: [
+      "BrightFuture Academy wanted to create an interactive online learning platform for K-12 students, featuring adaptive learning paths and gamified assessments.",
+      "We developed a web and mobile platform with personalized dashboards, real-time progress tracking, and integrated video lessons.",
+      "The system supports teacher-student messaging, parental monitoring, and AI-driven content recommendations."
+    ],
+    challenge: "The client needed a scalable, engaging solution to support remote and hybrid learning, with robust analytics for teachers and parents.",
+    solution: "We built a React/Node.js platform with a custom LMS, adaptive quizzes, and gamification features, deployed on AWS for scalability.",
+    results: [
+      "Student engagement increased by 41%",
+      "Test scores improved by 19% after 6 months",
+      "Teacher workload for grading reduced by 32%",
+      "Parental satisfaction scores rose to 92%"
+    ],
+    technologies: ["React", "Node.js", "MongoDB", "AWS", "TypeScript", "Socket.io", "Figma"],
+    mainImage: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&auto=format", caption: "Student dashboard" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Interactive lesson interface" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Gamified quiz results" },
+      { url: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&auto=format", caption: "Teacher analytics dashboard" }
+    ],
+    testimonial: {
+      quote: "The EdTech platform has made learning fun and effective for our students, and the analytics tools are invaluable for our teachers and parents.",
+      author: "Grace Njeri",
+      position: "Principal, BrightFuture Academy",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "energy-management-system",
+    prevProject: "blockchain-supply-chain"
+  },
+  {
+    id: 13,
+    slug: "energy-management-system",
+    title: "AI Energy Management System",
+    category: "AI & Sustainability",
+    client: "EcoGrid Solutions",
+    year: "2024",
+    role: "AI Development, IoT Integration",
+    description: [
+      "EcoGrid Solutions needed a smart system to optimize energy consumption in commercial buildings using AI and IoT sensors.",
+      "We built a platform that monitors real-time energy usage, predicts peak demand, and automates HVAC and lighting controls for efficiency.",
+      "The dashboard provides actionable insights, cost savings reports, and sustainability metrics for building managers."
+    ],
+    challenge: "Clients struggled with high energy costs and lacked visibility into usage patterns across multiple facilities.",
+    solution: "We integrated IoT sensors with a cloud-based AI engine for predictive analytics and automated control, accessible via a web dashboard.",
+    results: [
+      "Reduced energy costs by 27% in the first year",
+      "Lowered carbon footprint by 18%",
+      "Improved occupant comfort and productivity",
+      "Enabled compliance with new sustainability regulations"
+    ],
+    technologies: ["Python", "TensorFlow", "IoT", "React", "Node.js", "AWS", "Grafana"],
+    mainImage: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b41?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b41?w=800&auto=format", caption: "Energy usage dashboard" },
+      { url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format", caption: "IoT sensors in commercial building" },
+      { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format", caption: "Automated HVAC control" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Sustainability analytics" }
+    ],
+    testimonial: {
+      quote: "The AI energy management system has delivered significant cost savings and helped us meet our sustainability goals.",
+      author: "Peter Otieno",
+      position: "CTO, EcoGrid Solutions",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "telemedicine-app",
+    prevProject: "edtech-learning-platform"
+  },
+  {
+    id: 14,
+    slug: "telemedicine-app",
+    title: "Telemedicine & Virtual Care App",
+    category: "Healthcare Technology",
+    client: "CareConnect Health",
+    year: "2024",
+    role: "Mobile Development, Cloud Integration",
+    description: [
+      "CareConnect Health wanted to expand access to healthcare with a secure, user-friendly telemedicine app for patients and providers.",
+      "We developed a HIPAA-compliant mobile app with video consultations, appointment scheduling, e-prescriptions, and integrated health records.",
+      "The platform supports real-time chat, push notifications, and analytics for providers to track patient outcomes."
+    ],
+    challenge: "The client needed a scalable, secure solution to support remote care and reduce in-person visits during and after the pandemic.",
+    solution: "We built a React Native app with secure video, encrypted messaging, and cloud-based health record integration, deployed on AWS.",
+    results: [
+      "Increased patient access to care by 38%",
+      "Reduced no-show rates by 21%",
+      "Improved provider efficiency and satisfaction",
+      "Enabled remote monitoring for chronic conditions"
+    ],
+    technologies: ["React Native", "Node.js", "AWS", "WebRTC", "TypeScript", "PostgreSQL", "Twilio"],
+    mainImage: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=800&auto=format", caption: "Telemedicine video call" },
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "Appointment scheduling interface" },
+      { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format", caption: "E-prescription workflow" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Provider analytics dashboard" }
+    ],
+    testimonial: {
+      quote: "The telemedicine app has made healthcare more accessible and convenient for our patients, while streamlining workflows for our providers.",
+      author: "Dr. Amina Hassan",
+      position: "Medical Director, CareConnect Health",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "smart-retail-analytics",
+    prevProject: "energy-management-system"
+  },
+  {
+    id: 15,
+    slug: "smart-retail-analytics",
+    title: "Smart Retail Analytics Platform",
+    category: "AI & Data Science",
+    client: "Retail Insights Ltd.",
+    year: "2024",
+    role: "AI Development, Data Visualization",
+    description: [
+      "Retail Insights Ltd. wanted to help brick-and-mortar stores compete with e-commerce by leveraging in-store analytics and AI.",
+      "We built a platform that uses computer vision and IoT sensors to track customer movement, optimize store layouts, and provide real-time sales insights.",
+      "The dashboard offers predictive analytics, heatmaps, and automated inventory alerts for store managers."
+    ],
+    challenge: "Traditional retail lacked actionable data on customer behavior, leading to missed sales opportunities and inefficient layouts.",
+    solution: "We deployed edge AI cameras and sensors, integrated with a cloud analytics platform, to deliver real-time insights and recommendations.",
+    results: [
+      "Increased sales conversion by 17%",
+      "Reduced out-of-stock incidents by 28%",
+      "Improved customer dwell time by 22%",
+      "Enabled data-driven merchandising decisions"
+    ],
+    technologies: ["Python", "TensorFlow", "React", "Node.js", "IoT", "AWS", "OpenCV"],
+    mainImage: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=800&auto=format", caption: "In-store analytics dashboard" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "Customer heatmap visualization" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "AI-powered inventory alerts" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Store layout optimization" }
+    ],
+    testimonial: {
+      quote: "The analytics platform has given us a competitive edge and transformed how we manage our stores.",
+      author: "Emily Carter",
+      position: "COO, Retail Insights Ltd.",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "remote-work-platform",
+    prevProject: "telemedicine-app"
+  },
+  {
+    id: 16,
+    slug: "remote-work-platform",
+    title: "Remote Work Collaboration Platform",
+    category: "Software Development",
+    client: "CollabSuite",
+    year: "2024",
+    role: "Full-stack Development, Cloud Integration",
+    description: [
+      "CollabSuite needed a secure, scalable platform for distributed teams to collaborate in real time.",
+      "We built a web and mobile app with video conferencing, document sharing, task management, and integrated chat.",
+      "The platform features end-to-end encryption, SSO, and integrations with popular productivity tools."
+    ],
+    challenge: "Remote teams struggled with fragmented tools and security concerns, impacting productivity.",
+    solution: "We developed a unified platform with robust security, seamless integrations, and a user-friendly interface.",
+    results: [
+      "Improved team productivity by 31%",
+      "Reduced IT overhead by 24%",
+      "Increased user adoption across global offices",
+      "Enhanced data security and compliance"
+    ],
+    technologies: ["React", "Node.js", "WebRTC", "AWS", "TypeScript", "OAuth 2.0", "MongoDB"],
+    mainImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format", caption: "Team video call interface" },
+      { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format", caption: "Document collaboration tools" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Task management dashboard" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Integrated chat and notifications" }
+    ],
+    testimonial: {
+      quote: "CollabSuite has unified our remote teams and made collaboration seamless, secure, and enjoyable.",
+      author: "Rajesh Patel",
+      position: "CTO, CollabSuite",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "smart-city-dashboard",
+    prevProject: "smart-retail-analytics"
+  },
+  {
+    id: 17,
+    slug: "smart-city-dashboard",
+    title: "Smart City IoT Dashboard",
+    category: "IoT & Data Visualization",
+    client: "City of Nairobi",
+    year: "2024",
+    role: "IoT Integration, Data Engineering",
+    description: [
+      "The City of Nairobi wanted a centralized dashboard to monitor and manage urban infrastructure in real time.",
+      "We integrated data from traffic sensors, environmental monitors, and public safety systems into a single platform.",
+      "The dashboard provides live maps, alerts, and analytics for city officials and emergency responders."
+    ],
+    challenge: "City departments operated in silos, making it hard to respond quickly to incidents and optimize resources.",
+    solution: "We built a scalable IoT platform with real-time data ingestion, visualization, and automated alerting.",
+    results: [
+      "Reduced incident response time by 36%",
+      "Improved air quality monitoring and reporting",
+      "Enabled data-driven traffic management",
+      "Enhanced public safety coordination"
+    ],
+    technologies: ["React", "Node.js", "IoT", "AWS", "Mapbox", "Kafka", "Grafana"],
+    mainImage: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&auto=format", caption: "City dashboard overview" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "Live traffic monitoring" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "Environmental sensor data" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Public safety alerts" }
+    ],
+    testimonial: {
+      quote: "The smart city dashboard has transformed how we manage urban infrastructure and respond to emergencies.",
+      author: "Jane Wambui",
+      position: "Chief Innovation Officer, City of Nairobi",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "fintech-api-platform",
+    prevProject: "remote-work-platform"
+  },
+  {
+    id: 18,
+    slug: "fintech-api-platform",
+    title: "FinTech API Platform",
+    category: "FinTech",
+    client: "PayLink Solutions",
+    year: "2024",
+    role: "API Development, Security Engineering",
+    description: [
+      "PayLink Solutions needed a secure, developer-friendly API platform for payments, KYC, and compliance.",
+      "We built a suite of REST and GraphQL APIs with robust authentication, rate limiting, and detailed documentation.",
+      "The platform supports instant payments, identity verification, and regulatory reporting for fintech partners."
+    ],
+    challenge: "Fintech startups struggled to integrate payments and compliance quickly due to fragmented APIs and security risks.",
+    solution: "We delivered a unified API gateway with developer portal, sandbox environment, and 24/7 monitoring.",
+    results: [
+      "Reduced partner onboarding time by 60%",
+      "Achieved 99.99% API uptime",
+      "Passed all regulatory audits with zero critical findings",
+      "Enabled rapid launch of new fintech products"
+    ],
+    technologies: ["Node.js", "GraphQL", "TypeScript", "AWS", "OAuth 2.0", "PostgreSQL", "Swagger"],
+    mainImage: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format", caption: "API developer portal" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "API analytics dashboard" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "KYC and compliance workflow" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Payment integration examples" }
+    ],
+    testimonial: {
+      quote: "The API platform has accelerated our growth and made compliance a breeze for our partners.",
+      author: "Carlos Mendez",
+      position: "Head of Product, PayLink Solutions",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "e-learning-mobile-app",
+    prevProject: "smart-city-dashboard"
+  },
+  {
+    id: 19,
+    slug: "e-learning-mobile-app",
+    title: "E-Learning Mobile App",
+    category: "Education Technology",
+    client: "LearnOnTheGo",
+    year: "2024",
+    role: "Mobile Development, UX/UI Design",
+    description: [
+      "LearnOnTheGo wanted a mobile-first e-learning app for professional development and certification.",
+      "We designed and built an app with interactive video lessons, quizzes, progress tracking, and offline access.",
+      "The app features gamification, push notifications, and integration with major LMS platforms."
+    ],
+    challenge: "Busy professionals needed flexible, engaging learning tools that work on any device, anywhere.",
+    solution: "We delivered a cross-platform app with seamless user experience and robust analytics for learners and administrators.",
+    results: [
+      "User engagement increased by 44%",
+      "Course completion rates improved by 27%",
+      "Reduced support tickets by 35%",
+      "Enabled rapid rollout of new courses"
+    ],
+    technologies: ["React Native", "TypeScript", "Node.js", "AWS", "Firebase", "Figma"],
+    mainImage: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=800&auto=format", caption: "Mobile learning dashboard" },
+      { url: "https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&auto=format", caption: "Interactive video lessons" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Gamified quiz results" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Progress tracking and analytics" }
+    ],
+    testimonial: {
+      quote: "The e-learning app has made professional development accessible and fun for our users.",
+      author: "Fatima Noor",
+      position: "CEO, LearnOnTheGo",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "financial-app-redesign",
+    prevProject: "fintech-api-platform"
+  },
+  {
+    id: 20,
+    slug: "digital-twin-factory",
+    title: "Digital Twin Factory Simulation",
+    category: "Industry 4.0",
+    client: "FutureFab Corp.",
+    year: "2024",
+    role: "Simulation Engineering, IoT Integration",
+    description: [
+      "FutureFab Corp. wanted to optimize their manufacturing processes using digital twin technology for real-time simulation and predictive maintenance.",
+      "We developed a platform that mirrors factory operations in a virtual environment, integrating live data from IoT sensors and machinery.",
+      "The system enables scenario testing, downtime prediction, and process optimization without disrupting actual production."
+    ],
+    challenge: "The client needed to reduce unplanned downtime and improve process efficiency, but lacked a safe way to test changes in a live environment.",
+    solution: "We built a digital twin platform using real-time data ingestion, 3D visualization, and AI-driven analytics for predictive maintenance and optimization.",
+    results: [
+      "Reduced unplanned downtime by 40%",
+      "Improved process efficiency by 18%",
+      "Enabled rapid scenario testing for process changes",
+      "Lowered maintenance costs by 22%"
+    ],
+    technologies: ["Unity3D", "C#", "IoT", "Node.js", "React", "Azure Digital Twins", "TensorFlow"],
+    mainImage: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Digital twin simulation dashboard" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "3D factory visualization" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "Predictive maintenance analytics" },
+      { url: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=800&auto=format", caption: "Live IoT data integration" }
+    ],
+    testimonial: {
+      quote: "The digital twin platform has revolutionized our approach to process improvement and maintenance.",
+      author: "Helena Schmidt",
+      position: "Operations Director, FutureFab Corp.",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "ai-legal-assistant",
+    prevProject: "e-learning-mobile-app"
+  },
+  {
+    id: 21,
+    slug: "ai-legal-assistant",
+    title: "AI Legal Document Assistant",
+    category: "AI & LegalTech",
+    client: "LexiLaw Solutions",
+    year: "2024",
+    role: "AI Development, NLP Engineering",
+    description: [
+      "LexiLaw Solutions needed an AI-powered assistant to help lawyers draft, review, and analyze legal documents efficiently.",
+      "We built a web app that uses NLP to extract key clauses, suggest edits, and flag compliance risks in contracts and filings.",
+      "The platform integrates with document management systems and supports secure collaboration between legal teams."
+    ],
+    challenge: "Manual document review was time-consuming and error-prone, increasing risk and reducing productivity for legal teams.",
+    solution: "We developed an AI assistant using GPT-4 and custom legal models for clause extraction, risk detection, and smart suggestions.",
+    results: [
+      "Reduced contract review time by 55%",
+      "Improved compliance accuracy by 31%",
+      "Enabled faster turnaround for client deliverables",
+      "Lowered legal research costs"
+    ],
+    technologies: ["Python", "GPT-4", "React", "Node.js", "MongoDB", "Azure", "NLP"],
+    mainImage: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "AI contract review interface" },
+      { url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format", caption: "Clause extraction dashboard" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Compliance risk alerts" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Team collaboration tools" }
+    ],
+    testimonial: {
+      quote: "The AI assistant has dramatically improved our document review process and reduced risk for our clients.",
+      author: "Markus Weber",
+      position: "Managing Partner, LexiLaw Solutions",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "green-building-platform",
+    prevProject: "digital-twin-factory"
+  },
+  {
+    id: 22,
+    slug: "green-building-platform",
+    title: "Green Building Management Platform",
+    category: "Sustainability & IoT",
+    client: "EcoBuild Africa",
+    year: "2024",
+    role: "IoT Integration, Sustainability Analytics",
+    description: [
+      "EcoBuild Africa wanted a platform to monitor and optimize energy, water, and waste in commercial buildings for sustainability certification.",
+      "We developed a dashboard that aggregates sensor data, tracks resource usage, and provides actionable recommendations for LEED compliance.",
+      "The system supports automated reporting, real-time alerts, and benchmarking across multiple properties."
+    ],
+    challenge: "Building managers lacked real-time insights into resource consumption and struggled to meet sustainability targets.",
+    solution: "We built an IoT-enabled analytics platform with customizable dashboards and automated compliance reporting.",
+    results: [
+      "Reduced energy usage by 19%",
+      "Improved water efficiency by 23%",
+      "Enabled LEED Gold certification for 7 properties",
+      "Lowered operational costs by 15%"
+    ],
+    technologies: ["React", "Node.js", "IoT", "AWS", "Grafana", "PostgreSQL"],
+    mainImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format", caption: "Building sustainability dashboard" },
+      { url: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=800&auto=format", caption: "Resource usage analytics" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "LEED compliance tracking" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Automated reporting tools" }
+    ],
+    testimonial: {
+      quote: "The platform has made it easy to track and improve our sustainability performance across all our buildings.",
+      author: "Naomi Wanjiku",
+      position: "Sustainability Manager, EcoBuild Africa",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "mobile-banking-app",
+    prevProject: "ai-legal-assistant"
+  },
+  {
+    id: 23,
+    slug: "mobile-banking-app",
+    title: "Next-Gen Mobile Banking App",
+    category: "FinTech & Mobile",
+    client: "UrbanBank",
+    year: "2024",
+    role: "Mobile Development, UX/UI Design",
+    description: [
+      "UrbanBank wanted a modern mobile app to attract younger customers and offer innovative digital banking features.",
+      "We designed and built an app with instant account opening, budgeting tools, card controls, and integrated rewards.",
+      "The app features biometric login, real-time notifications, and seamless integration with digital wallets."
+    ],
+    challenge: "The bank's legacy app was outdated and lacked features expected by digital-native customers.",
+    solution: "We delivered a React Native app with a modern UI, robust security, and a scalable backend for rapid feature rollout.",
+    results: [
+      "Doubled new account signups in 6 months",
+      "Increased app store rating from 2.8 to 4.8",
+      "Reduced support calls by 39%",
+      "Boosted card transaction volume by 26%"
+    ],
+    technologies: ["React Native", "TypeScript", "Node.js", "AWS", "Firebase", "Figma"],
+    mainImage: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format", caption: "Mobile banking dashboard" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "Budgeting and analytics tools" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "Card controls and rewards" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Biometric login interface" }
+    ],
+    testimonial: {
+      quote: "The new app has set a benchmark for digital banking in our market and delighted our customers.",
+      author: "Brian Ochieng",
+      position: "Head of Digital, UrbanBank",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "ai-powered-hr-platform",
+    prevProject: "green-building-platform"
+  },
+  {
+    id: 24,
+    slug: "ai-powered-hr-platform",
+    title: "AI-Powered HR & Recruitment Platform",
+    category: "AI & HRTech",
+    client: "TalentMatch Africa",
+    year: "2024",
+    role: "AI Development, Platform Engineering",
+    description: [
+      "TalentMatch Africa needed a platform to streamline recruitment and talent management using AI-driven matching and analytics.",
+      "We built a web app that automates candidate screening, interview scheduling, and performance tracking for HR teams.",
+      "The system features AI-powered job matching, diversity analytics, and seamless integration with HRIS platforms."
+    ],
+    challenge: "Manual recruitment processes were slow and biased, leading to missed talent and inefficiencies.",
+    solution: "We delivered an AI platform with smart candidate ranking, automated workflows, and real-time analytics for better hiring decisions.",
+    results: [
+      "Reduced time-to-hire by 48%",
+      "Improved candidate diversity by 21%",
+      "Increased hiring manager satisfaction",
+      "Lowered recruitment costs by 27%"
+    ],
+    technologies: ["React", "Node.js", "Python", "TensorFlow", "AWS", "MongoDB"],
+    mainImage: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1515168833906-d2a3b82b1a48?w=800&auto=format", caption: "AI-powered candidate matching" },
+      { url: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&auto=format", caption: "Recruitment analytics dashboard" },
+      { url: "https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&auto=format", caption: "Automated interview scheduling" },
+      { url: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&auto=format", caption: "Performance tracking tools" }
+    ],
+    testimonial: {
+      quote: "The AI platform has transformed our recruitment process and helped us build stronger, more diverse teams.",
+      author: "Lilian Muthoni",
+      position: "HR Director, TalentMatch Africa",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "digital-twin-factory",
+    prevProject: "mobile-banking-app"
+  },
+  {
+    id: 25,
+    slug: "agritech-drone-monitoring",
+    title: "AgriTech Drone Monitoring System",
+    category: "Agriculture & AI",
+    client: "AgroVision Ltd.",
+    year: "2025",
+    role: "AI Engineering, IoT Integration",
+    description: [
+      "AgroVision Ltd. sought to improve crop monitoring and yield prediction using drone imagery and AI analytics.",
+      "We developed a system that collects aerial imagery, processes it with computer vision models, and delivers actionable insights to farmers.",
+      "The platform supports real-time alerts for pest detection, irrigation needs, and crop health assessment."
+    ],
+    challenge: "Manual crop monitoring was inefficient and often missed early signs of disease or water stress.",
+    solution: "We integrated drone data with AI models for automated, large-scale crop analysis and reporting.",
+    results: [
+      "Increased yield prediction accuracy by 32%",
+      "Reduced manual labor costs by 40%",
+      "Enabled early pest and disease detection",
+      "Improved resource allocation for irrigation and fertilization"
+    ],
+    technologies: ["Python", "TensorFlow", "React", "Node.js", "AWS", "DJI SDK"],
+    mainImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&auto=format", caption: "Drone crop monitoring" },
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "AI-powered crop health analysis" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Irrigation insights dashboard" },
+      { url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=800&auto=format", caption: "Pest detection alerts" }
+    ],
+    testimonial: {
+      quote: "The drone monitoring system has transformed our approach to precision agriculture.",
+      author: "Samuel Kiptoo",
+      position: "CTO, AgroVision Ltd.",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "remote-patient-monitoring",
+    prevProject: "ai-hr-platform"
+  },
+  {
+    id: 26,
+    slug: "remote-patient-monitoring",
+    title: "Remote Patient Monitoring Platform",
+    category: "Healthcare & IoT",
+    client: "HealthLink Africa",
+    year: "2025",
+    role: "IoT Engineering, Cloud Development",
+    description: [
+      "HealthLink Africa needed a solution for continuous patient monitoring outside hospital settings.",
+      "We built a platform that collects data from wearable devices, analyzes it in real time, and alerts clinicians to anomalies.",
+      "The system supports secure patient portals and integrates with EHR systems for seamless care coordination."
+    ],
+    challenge: "Hospitals faced high readmission rates due to lack of post-discharge monitoring.",
+    solution: "We enabled remote monitoring with IoT devices and cloud analytics, reducing unnecessary hospital visits.",
+    results: [
+      "Reduced readmission rates by 22%",
+      "Improved patient engagement and outcomes",
+      "Enabled early intervention for at-risk patients",
+      "Enhanced clinician workflow efficiency"
+    ],
+    technologies: ["IoT", "React", "Node.js", "Azure", "FHIR API", "Python"],
+    mainImage: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=800&auto=format", caption: "Wearable health monitoring" },
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "Patient dashboard" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Clinician alert system" },
+      { url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=800&auto=format", caption: "EHR integration" }
+    ],
+    testimonial: {
+      quote: "Remote monitoring has empowered our patients and improved care quality.",
+      author: "Dr. Amina Hassan",
+      position: "Chief Medical Officer, HealthLink Africa",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "smart-logistics-platform",
+    prevProject: "agritech-drone-monitoring"
+  },
+  {
+    id: 27,
+    slug: "smart-logistics-platform",
+    title: "Smart Logistics Optimization Platform",
+    category: "Logistics & AI",
+    client: "TransMove Logistics",
+    year: "2025",
+    role: "AI Engineering, Data Science",
+    description: [
+      "TransMove Logistics wanted to optimize fleet management and delivery routes using AI and real-time data.",
+      "We developed a platform that ingests GPS, traffic, and order data, then uses machine learning to optimize routes and schedules.",
+      "The dashboard provides live tracking, predictive ETAs, and automated exception handling."
+    ],
+    challenge: "Inefficient routing led to high fuel costs and missed delivery windows.",
+    solution: "We implemented AI-driven route optimization and real-time fleet analytics, reducing operational costs.",
+    results: [
+      "Reduced fuel costs by 18%",
+      "Improved on-time delivery rate to 97%",
+      "Lowered carbon emissions",
+      "Enhanced customer satisfaction"
+    ],
+    technologies: ["Python", "React", "Node.js", "AWS", "Mapbox API", "PostgreSQL"],
+    mainImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&auto=format", caption: "Fleet tracking dashboard" },
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "AI route optimization" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Predictive ETA analytics" },
+      { url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=800&auto=format", caption: "Exception management tools" }
+    ],
+    testimonial: {
+      quote: "The platform has made our logistics operations smarter and more sustainable.",
+      author: "James Otieno",
+      position: "Logistics Manager, TransMove Logistics",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "virtual-event-platform",
+    prevProject: "remote-patient-monitoring"
+  },
+  {
+    id: 28,
+    slug: "virtual-event-platform",
+    title: "Virtual Event & Conference Platform",
+    category: "Events & SaaS",
+    client: "EventSphere",
+    year: "2025",
+    role: "Full Stack Development, Video Streaming",
+    description: [
+      "EventSphere needed a scalable platform for hosting virtual conferences, expos, and networking events.",
+      "We built a SaaS platform with live video, breakout rooms, sponsor booths, and attendee engagement tools.",
+      "The system supports ticketing, analytics, and integrations with major CRM and marketing tools."
+    ],
+    challenge: "Existing solutions lacked customization and robust networking features for large-scale events.",
+    solution: "We delivered a modular, cloud-based platform with advanced video and engagement features.",
+    results: [
+      "Hosted events with 10,000+ attendees",
+      "Increased attendee engagement by 45%",
+      "Enabled real-time analytics for organizers",
+      "Improved sponsor ROI"
+    ],
+    technologies: ["React", "Node.js", "AWS", "WebRTC", "Stripe API", "MongoDB"],
+    mainImage: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800&auto=format", caption: "Virtual event main stage" },
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "Breakout networking rooms" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Sponsor booth interface" },
+      { url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=800&auto=format", caption: "Live analytics dashboard" }
+    ],
+    testimonial: {
+      quote: "Our virtual events now rival in-person experiences, thanks to this platform.",
+      author: "Linda Njeri",
+      position: "CEO, EventSphere",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "edtech-content-platform",
+    prevProject: "smart-logistics-platform"
+  },
+  {
+    id: 29,
+    slug: "edtech-content-platform",
+    title: "EdTech Content Delivery Platform",
+    category: "Education & SaaS",
+    client: "LearnX Africa",
+    year: "2025",
+    role: "Platform Engineering, Content Management",
+    description: [
+      "LearnX Africa wanted a robust platform for delivering interactive educational content to schools and learners.",
+      "We built a scalable SaaS solution with multimedia lessons, quizzes, progress tracking, and teacher dashboards.",
+      "The platform supports offline access, adaptive learning, and integration with national curricula."
+    ],
+    challenge: "Many schools lacked reliable tools for digital content delivery and student engagement.",
+    solution: "We delivered a cloud-based platform with offline sync and adaptive learning features for diverse learning environments.",
+    results: [
+      "Improved student engagement by 38%",
+      "Enabled content access in low-connectivity areas",
+      "Enhanced teacher productivity",
+      "Supported 50,000+ active learners"
+    ],
+    technologies: ["React", "Node.js", "AWS", "MongoDB", "SCORM API", "TypeScript"],
+    mainImage: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&auto=format",
+    images: [
+      { url: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=800&auto=format", caption: "Interactive lesson interface" },
+      { url: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=800&auto=format", caption: "Teacher dashboard" },
+      { url: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=800&auto=format", caption: "Student progress tracking" },
+      { url: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?w=800&auto=format", caption: "Offline content access" }
+    ],
+    testimonial: {
+      quote: "The platform has made digital learning accessible and engaging for our students.",
+      author: "Grace Wambui",
+      position: "Head of Curriculum, LearnX Africa",
+      avatar: "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=200&auto=format"
+    },
+    nextProject: "digital-twin-factory-simulation",
+    prevProject: "virtual-event-platform"
   }
 ];

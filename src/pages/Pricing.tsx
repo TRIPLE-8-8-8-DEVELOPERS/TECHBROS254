@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -20,70 +19,76 @@ interface PricingTier {
   ctaText: string;
 }
 
+// Redesigned pricing tiers with more creative, realistic packages and services
 const pricingTiers: PricingTier[] = [
   {
-    name: "Starter",
-    description: "Perfect for small businesses and startups.",
+    name: "Launch",
+    description: "For startups and entrepreneurs ready to make their mark online.",
+    price: {
+      monthly: 199,
+      annual: 159
+    },
+    features: [
+      { text: "Modern 1-5 page website", included: true },
+      { text: "Mobile-first responsive design", included: true },
+      { text: "Basic SEO setup", included: true },
+      { text: "Contact & lead forms", included: true },
+      { text: "Google Analytics integration", included: true },
+      { text: "1 language supported", included: true },
+      { text: "Email support", included: true },
+      { text: "Blog setup", included: false },
+      { text: "E-commerce ready", included: false },
+      { text: "Custom branding kit", included: false },
+      { text: "Priority support", included: false }
+    ],
+    ctaText: "Start Your Launch"
+  },
+  {
+    name: "Growth",
+    description: "Best for growing businesses needing advanced features and flexibility.",
     price: {
       monthly: 499,
       annual: 399
     },
-    features: [
-      { text: "Custom website design", included: true },
-      { text: "Mobile responsive", included: true },
-      { text: "5 pages website", included: true },
-      { text: "Basic SEO optimization", included: true },
-      { text: "Contact form integration", included: true },
-      { text: "Social media integration", included: true },
-      { text: "3 rounds of revisions", included: true },
-      { text: "24/7 support", included: false },
-      { text: "E-commerce functionality", included: false },
-      { text: "Custom applications", included: false }
-    ],
-    ctaText: "Get Started"
-  },
-  {
-    name: "Professional",
-    description: "Ideal for growing businesses needing more features.",
-    price: {
-      monthly: 999,
-      annual: 799
-    },
     highlighted: true,
     features: [
-      { text: "Custom website design", included: true },
-      { text: "Mobile responsive", included: true },
-      { text: "10 pages website", included: true },
-      { text: "Advanced SEO optimization", included: true },
-      { text: "Contact form integration", included: true },
-      { text: "Social media integration", included: true },
-      { text: "Unlimited revisions", included: true },
-      { text: "24/7 support", included: true },
-      { text: "Basic E-commerce (up to 50 products)", included: true },
-      { text: "Custom applications", included: false }
+      { text: "Up to 15 custom pages", included: true },
+      { text: "Advanced SEO & analytics", included: true },
+      { text: "Blog & content management", included: true },
+      { text: "Multi-language support (up to 3)", included: true },
+      { text: "E-commerce (up to 100 products)", included: true },
+      { text: "Custom branding kit", included: true },
+      { text: "Social media integrations", included: true },
+      { text: "Live chat & chatbot integration", included: true },
+      { text: "Monthly performance reports", included: true },
+      { text: "Priority email & chat support", included: true },
+      { text: "API integrations", included: false },
+      { text: "Dedicated account manager", included: false }
     ],
-    ctaText: "Get Started"
+    ctaText: "Grow with Us"
   },
   {
-    name: "Enterprise",
-    description: "For large businesses with complex requirements.",
+    name: "Scale+",
+    description: "For established brands and enterprises seeking custom, scalable solutions.",
     price: {
-      monthly: 1999,
-      annual: 1599
+      monthly: 1299,
+      annual: 1049
     },
     features: [
-      { text: "Custom website design", included: true },
-      { text: "Mobile responsive", included: true },
-      { text: "Unlimited pages", included: true },
-      { text: "Advanced SEO optimization", included: true },
-      { text: "Contact form integration", included: true },
-      { text: "Social media integration", included: true },
-      { text: "Unlimited revisions", included: true },
-      { text: "24/7 priority support", included: true },
-      { text: "Full E-commerce functionality", included: true },
-      { text: "Custom applications", included: true }
+      { text: "Unlimited pages & users", included: true },
+      { text: "Full e-commerce suite (unlimited products)", included: true },
+      { text: "Custom web applications & portals", included: true },
+      { text: "API & third-party integrations", included: true },
+      { text: "Advanced security & compliance", included: true },
+      { text: "Performance optimization & audits", included: true },
+      { text: "Dedicated account manager", included: true },
+      { text: "24/7 priority support (phone, chat, email)", included: true },
+      { text: "Quarterly strategy sessions", included: true },
+      { text: "Custom onboarding & training", included: true },
+      { text: "On-demand feature development", included: true },
+      { text: "White-labeling options", included: true }
     ],
-    ctaText: "Contact Sales"
+    ctaText: "Request Enterprise Demo"
   }
 ];
 
@@ -123,99 +128,78 @@ const Pricing = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-blue-950 relative overflow-x-hidden">
       <ScrollProgress />
       <Navbar />
-      
-      <main className="flex-grow pt-24">
+      {/* Animated/gradient background shapes for visual interest */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400 via-purple-300 to-pink-300 dark:from-blue-900 dark:via-purple-900 dark:to-pink-900 rounded-full filter blur-3xl opacity-20 animate-pulse z-0" />
+      <div className="absolute -bottom-40 right-0 w-96 h-96 bg-gradient-to-tr from-pink-200 via-blue-200 to-purple-200 dark:from-pink-900 dark:via-blue-950 dark:to-purple-950 rounded-full filter blur-2xl opacity-20 animate-pulse z-0" />
+      <main className="flex-grow pt-24 relative z-10">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-tech-50 via-tech-100 to-tech-50 py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-tech-800">Simple, Transparent Pricing</h1>
-              <p className="text-lg text-gray-700 mb-10">
-                Choose the perfect plan for your business needs. No hidden fees, just value-driven solutions.
-              </p>
-              
-              {/* Billing Toggle */}
-              <div className="flex items-center justify-center mb-12">
-                <span className={`mr-3 ${billingPeriod === 'monthly' ? 'text-tech-600 font-medium' : 'text-gray-500'}`}>
-                  Monthly
-                </span>
-                <button 
-                  className="relative w-14 h-7 bg-tech-300 rounded-full p-1 transition-colors duration-300"
-                  onClick={() => setBillingPeriod(billingPeriod === 'monthly' ? 'annual' : 'monthly')}
-                >
-                  <div 
-                    className={`absolute w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
-                      billingPeriod === 'annual' ? 'translate-x-7' : 'translate-x-0'
-                    }`} 
-                  />
-                </button>
-                <span className={`ml-3 flex items-center ${billingPeriod === 'annual' ? 'text-tech-600 font-medium' : 'text-gray-500'}`}>
-                  Annual
-                  <span className="ml-2 bg-tech-400 text-white text-xs font-bold px-2 py-1 rounded-full">20% OFF</span>
-                </span>
-              </div>
+        <section className="py-20 md:py-28 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-primary drop-shadow-lg tracking-tight">Simple, Transparent Pricing</h1>
+            <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-300 mb-10">Choose the perfect plan for your business needs. No hidden fees, just value-driven solutions.</p>
+            {/* Billing Toggle */}
+            <div className="flex items-center justify-center mb-12">
+              <span className={`mr-3 ${billingPeriod === 'monthly' ? 'text-primary font-bold' : 'text-neutral-400'}`}>Monthly</span>
+              <button 
+                className="relative w-16 h-8 bg-primary/20 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                onClick={() => setBillingPeriod(billingPeriod === 'monthly' ? 'annual' : 'monthly')}
+                aria-label="Toggle billing period"
+              >
+                <div 
+                  className={`absolute w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${billingPeriod === 'annual' ? 'translate-x-8' : 'translate-x-0'}`}
+                />
+              </button>
+              <span className={`ml-3 flex items-center ${billingPeriod === 'annual' ? 'text-primary font-bold' : 'text-neutral-400'}`}>Annual <span className="ml-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">20% OFF</span></span>
             </div>
           </div>
         </section>
-        
         {/* Pricing Tiers */}
         <section className="py-16 -mt-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
               {pricingTiers.map((tier, index) => (
                 <div 
                   key={tier.name}
-                  className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${
+                  className={`relative rounded-3xl overflow-hidden transition-all duration-300 group shadow-xl border-2 ${
                     tier.highlighted 
-                      ? 'bg-white border-2 border-tech-400 shadow-xl transform md:-translate-y-4' 
-                      : 'bg-white border border-gray-200 shadow-sm hover:shadow'
+                      ? 'bg-gradient-to-br from-primary/10 via-white to-purple-100 dark:from-primary/20 dark:via-neutral-900 dark:to-purple-950 border-primary scale-105 z-10' 
+                      : 'bg-white/80 dark:bg-neutral-900/80 border-neutral-200 dark:border-neutral-800 hover:scale-105'
                   }`}
                 >
                   {tier.highlighted && (
-                    <div className="absolute top-0 left-0 right-0 bg-tech-400 text-white text-center py-1 text-sm font-medium">
-                      Most Popular
-                    </div>
+                    <div className="absolute top-0 left-0 right-0 bg-primary text-white text-center py-2 text-base font-bold tracking-wide shadow-lg z-20">Most Popular</div>
                   )}
-                  <div className={`p-8 ${tier.highlighted ? 'pt-10' : ''}`}>
-                    <h3 className="text-2xl font-bold mb-2 text-left">{tier.name}</h3>
-                    <p className="text-gray-600 mb-6 text-left">{tier.description}</p>
-                    
-                    <div className="mb-6">
-                      <span className="text-4xl font-bold">${billingPeriod === 'monthly' ? tier.price.monthly : tier.price.annual}</span>
-                      <span className="text-gray-500">/mo</span>
-                      {billingPeriod === 'annual' && (
-                        <span className="block text-sm text-tech-500 mt-1">
-                          Billed annually (${tier.price.annual * 12}/year)
-                        </span>
-                      )}
+                  <div className={`p-10 pt-14 flex flex-col items-center`}>
+                    <h3 className="text-2xl font-extrabold mb-2 text-center text-primary group-hover:text-purple-700 transition-colors">{tier.name}</h3>
+                    <p className="text-neutral-600 dark:text-neutral-300 mb-6 text-center">{tier.description}</p>
+                    <div className="mb-6 flex items-end gap-2">
+                      <span className="text-5xl font-extrabold text-neutral-900 dark:text-white">${billingPeriod === 'monthly' ? tier.price.monthly : tier.price.annual}</span>
+                      <span className="text-neutral-500 text-lg font-medium">/mo</span>
                     </div>
-                    
-                    <div className="mb-8">
-                      <ul className="space-y-3">
-                        {tier.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start text-left">
-                            {feature.included ? (
-                              <Check className="h-5 w-5 text-tech-500 mt-0.5 mr-2 flex-shrink-0" />
-                            ) : (
-                              <X className="h-5 w-5 text-gray-400 mt-0.5 mr-2 flex-shrink-0" />
-                            )}
-                            <span className={feature.included ? 'text-gray-700' : 'text-gray-400'}>
-                              {feature.text}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
+                    {billingPeriod === 'annual' && (
+                      <span className="block text-sm text-primary font-semibold mb-2">Billed annually (${tier.price.annual * 12}/year)</span>
+                    )}
+                    <ul className="mb-8 w-full space-y-3 text-left">
+                      {tier.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center gap-2">
+                          {feature.included ? (
+                            <Check className="h-5 w-5 text-primary flex-shrink-0" />
+                          ) : (
+                            <X className="h-5 w-5 text-neutral-300 dark:text-neutral-700 flex-shrink-0" />
+                          )}
+                          <span className={feature.included ? 'text-neutral-800 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-600'}>{feature.text}</span>
+                        </li>
+                      ))}
+                    </ul>
                     <button 
-                      className={`w-full py-3 rounded-lg font-medium ${
+                      className={`w-full py-3 rounded-xl font-bold text-lg shadow transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary ${
                         tier.highlighted
-                          ? 'bg-tech-400 text-white hover:bg-tech-500'
-                          : 'bg-white border border-tech-400 text-tech-600 hover:bg-tech-50'
-                      } transition-colors duration-300`}
+                          ? 'bg-primary text-white hover:bg-purple-700'
+                          : 'bg-white border border-primary text-primary hover:bg-primary/10'
+                      }`}
                     >
                       {tier.ctaText}
                     </button>
@@ -225,67 +209,57 @@ const Pricing = () => {
             </div>
           </div>
         </section>
-        
         {/* Custom Projects */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-gradient-to-r from-blue-100 via-purple-50 to-pink-100 dark:from-blue-950 dark:via-neutral-950 dark:to-purple-950">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-6">Need a Custom Solution?</h2>
-              <p className="text-lg text-gray-700 mb-8">
-                We understand that every business is unique. Contact us for a tailored solution that meets your specific requirements.
-              </p>
+              <h2 className="text-4xl font-extrabold mb-6 text-primary drop-shadow">Need a Custom Solution?</h2>
+              <p className="text-xl text-neutral-700 dark:text-neutral-200 mb-8">We understand that every business is unique. Contact us for a tailored solution that meets your specific requirements.</p>
               <a 
                 href="/contact" 
-                className="inline-block px-8 py-4 bg-tech-400 text-white rounded-full hover:bg-tech-500 transition-all duration-300 font-medium"
+                className="inline-block px-10 py-4 bg-primary text-white rounded-full hover:bg-purple-700 transition-all duration-300 font-bold text-lg shadow-lg"
               >
                 Get Custom Quote
               </a>
             </div>
           </div>
         </section>
-        
         {/* FAQs */}
-        <section className="py-16 md:py-24">
+        <section className="py-20 md:py-28">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
-              
+              <h2 className="text-4xl font-extrabold mb-12 text-center text-primary drop-shadow">Frequently Asked Questions</h2>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <div 
                     key={index} 
-                    className="border border-gray-200 rounded-lg overflow-hidden"
+                    className="border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-sm bg-white/80 dark:bg-neutral-900/80"
                   >
                     <button
-                      className="w-full flex justify-between items-center p-5 text-left bg-white hover:bg-gray-50 transition-colors duration-200"
+                      className="w-full flex justify-between items-center p-6 text-left bg-white/90 dark:bg-neutral-900/90 hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary"
                       onClick={() => toggleFaq(index)}
                       aria-expanded={expandedFaq === index}
                     >
-                      <span className="font-medium text-lg">{faq.question}</span>
+                      <span className="font-bold text-lg text-neutral-900 dark:text-white">{faq.question}</span>
                       <HelpCircle 
-                        className={`w-5 h-5 text-tech-400 transform transition-transform duration-300 ${
-                          expandedFaq === index ? 'rotate-180' : ''
-                        }`} 
+                        className={`w-6 h-6 text-primary transform transition-transform duration-300 ${expandedFaq === index ? 'rotate-180' : ''}`} 
                       />
                     </button>
                     <div 
-                      className={`overflow-hidden transition-all duration-300 ${
-                        expandedFaq === index ? 'max-h-96' : 'max-h-0'
-                      }`}
+                      className={`overflow-hidden transition-all duration-300 ${expandedFaq === index ? 'max-h-96' : 'max-h-0'}`}
                     >
-                      <div className="p-5 pt-0 bg-white">
-                        <p className="text-gray-600">{faq.answer}</p>
+                      <div className="p-6 pt-0 bg-white/90 dark:bg-neutral-900/90">
+                        <p className="text-neutral-700 dark:text-neutral-200 text-base leading-relaxed">{faq.answer}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              
               <div className="mt-12 text-center">
-                <p className="text-gray-700 mb-4">Still have questions?</p>
+                <p className="text-neutral-700 dark:text-neutral-200 mb-4">Still have questions?</p>
                 <a 
                   href="/contact" 
-                  className="text-tech-500 font-medium hover:text-tech-600 transition-colors"
+                  className="text-primary font-bold hover:underline transition-colors"
                 >
                   Contact our friendly team
                 </a>
@@ -293,25 +267,22 @@ const Pricing = () => {
             </div>
           </div>
         </section>
-        
         {/* Call to Action */}
-        <section className="py-16 bg-tech-400 text-white">
+        <section className="py-20 bg-gradient-to-r from-primary to-purple-700 text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Digital Presence?</h2>
-              <p className="text-xl text-white/90 mb-8">
-                Join hundreds of businesses who trust TechBros for their technology needs.
-              </p>
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow">Ready to Transform Your Digital Presence?</h2>
+              <p className="text-2xl text-white/90 mb-8">Join hundreds of businesses who trust TechBros for their technology needs.</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a 
                   href="/contact" 
-                  className="px-8 py-4 bg-white text-tech-500 rounded-full hover:bg-gray-100 transition-colors duration-300 font-medium"
+                  className="px-10 py-4 bg-white text-primary rounded-full hover:bg-primary/10 transition-colors duration-300 font-bold text-lg shadow"
                 >
                   Get Started Today
                 </a>
                 <a 
                   href="/portfolio" 
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full hover:bg-white/10 transition-colors duration-300 font-medium"
+                  className="px-10 py-4 bg-transparent border-2 border-white text-white rounded-full hover:bg-white/10 transition-colors duration-300 font-bold text-lg shadow"
                 >
                   View Our Work
                 </a>
@@ -320,7 +291,6 @@ const Pricing = () => {
           </div>
         </section>
       </main>
-      
       <Footer />
     </div>
   );

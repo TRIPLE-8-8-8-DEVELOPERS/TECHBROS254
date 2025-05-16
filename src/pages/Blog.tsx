@@ -1,248 +1,264 @@
-
-import { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
-import { ArrowRight, Search, Tag, Clock, User } from "lucide-react";
+import BlogAIAgents2025 from "./blog/AIAgents2025";
+import BlogQuantumComputing2025 from "./blog/QuantumComputing2025";
+import BlogReactServerComponents from "./blog/ReactServerComponents";
+import BlogEdgeAI2025 from "./blog/EdgeAI2025";
+import BlogOpenSource2025 from "./blog/OpenSource2025";
+import BlogTechBrosScalePlus from "./blog/TechBrosScalePlus";
 
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  author: string;
-  image: string;
-  tags: string[];
-}
-
-const blogPosts: BlogPost[] = [
+const techBlogs = [
   {
-    id: 1,
-    title: "The Future of Web Development in 2023",
-    excerpt: "Discover the latest trends and technologies shaping the future of web development in 2023 and beyond.",
-    category: "Web Development",
-    date: "June 15, 2023",
-    author: "Alex Johnson",
-    image: "https://images.unsplash.com/photo-1581089781785-603411fa81e5?auto=format&w=800&q=80",
-    tags: ["WebDev", "Trends", "Technology"]
+    title: "AI Agents: The Next Wave of Automation in 2025",
+    date: "May 15, 2025",
+    author: "Jane Kim",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Explore how AI agents are revolutionizing business workflows, from customer support to code generation. Discover the latest breakthroughs and what to expect in the coming year.",
+    link: "/blog/ai-agents-2025"
   },
   {
-    id: 2,
-    title: "How AI is Transforming Mobile App Development",
-    excerpt: "Artificial intelligence is revolutionizing how we build mobile applications. Learn about the impact and opportunities.",
-    category: "Mobile Development",
-    date: "May 28, 2023",
-    author: "Sarah Chen",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&w=800&q=80",
-    tags: ["AI", "Mobile", "Innovation"]
+    title: "Quantum Computing: Hype vs. Reality in 2025",
+    date: "May 10, 2025",
+    author: "Dr. Alex Rivera",
+    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Quantum computers are making headlines, but what can they really do today? We break down the latest research, real-world applications, and what developers should know.",
+    link: "/blog/quantum-computing-2025"
   },
   {
-    id: 3,
-    title: "Ultimate Guide to Cloud Infrastructure Security",
-    excerpt: "Essential security practices for building and maintaining secure cloud infrastructure in today's threat landscape.",
-    category: "Cloud Security",
-    date: "April 12, 2023",
-    author: "Michael Rodriguez",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&w=800&q=80",
-    tags: ["Security", "Cloud", "Best Practices"]
+    title: "React Server Components: A Game Changer for Web Apps",
+    date: "May 2, 2025",
+    author: "Priya Patel",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    excerpt: "React Server Components are now stable! Learn how this new paradigm can supercharge your app performance and developer experience.",
+    link: "/blog/react-server-components"
   },
   {
-    id: 4,
-    title: "Building Scalable E-commerce Solutions",
-    excerpt: "Learn the architecture and design patterns behind high-performing e-commerce platforms that can scale with your business.",
-    category: "E-commerce",
-    date: "March 5, 2023",
-    author: "Emma Williams",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&w=800&q=80",
-    tags: ["E-commerce", "Scalability", "Architecture"]
+    title: "The Rise of Edge AI: Smarter Devices Everywhere",
+    date: "April 28, 2025",
+    author: "Samuel Lee",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Edge AI is bringing intelligence to IoT and mobile devices. We look at the latest chips, frameworks, and use cases powering the next generation of smart tech.",
+    link: "/blog/edge-ai-2025"
   },
   {
-    id: 5,
-    title: "The Rise of Low-Code Development Platforms",
-    excerpt: "How low-code platforms are democratizing software development and enabling faster time-to-market.",
-    category: "Development",
-    date: "February 20, 2023",
-    author: "David Kim",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=800&q=80",
-    tags: ["Low-Code", "Productivity", "Business"]
+    title: "Open Source in 2025: The Most Exciting Projects to Watch",
+    date: "April 20, 2025",
+    author: "Maria Gomez",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    excerpt: "From new JavaScript frameworks to AI toolkits, open source is thriving. Here are the projects making waves this year and how you can contribute.",
+    link: "/blog/open-source-2025"
   },
   {
-    id: 6,
-    title: "Implementing Serverless Architectures",
-    excerpt: "A comprehensive guide to designing and deploying serverless applications for optimal performance and cost-efficiency.",
-    category: "Cloud Computing",
-    date: "January 8, 2023",
-    author: "Lisa Thompson",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&w=800&q=80",
-    tags: ["Serverless", "AWS", "Architecture"]
+    title: "TechBros Launches Scale+ Package for Startups",
+    date: "April 10, 2025",
+    author: "TechBros Team",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Our new Scale+ package is designed to help startups grow faster with advanced cloud, AI, and product design services. See what's included and how to get started!",
+    link: "/blog/techbros-scale-plus"
+  },
+  {
+    title: "The Future of WebAssembly: Beyond the Browser",
+    date: "May 16, 2025",
+    author: "Liam Chen",
+    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80",
+    excerpt: "WebAssembly is moving beyond browsers into serverless, IoT, and blockchain. Discover the latest use cases and what this means for developers.",
+    link: "/blog/webassembly-future"
+  },
+  {
+    title: "How LLMs Are Changing Software Engineering",
+    date: "May 14, 2025",
+    author: "Ava Robinson",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Large Language Models are now writing, reviewing, and even architecting code. We explore the tools, risks, and opportunities for dev teams.",
+    link: "/blog/llms-software-engineering"
+  },
+  {
+    title: "Design Systems in 2025: AI, Automation, and Accessibility",
+    date: "May 12, 2025",
+    author: "Noah Williams",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Modern design systems are powered by AI and automation, making accessibility and consistency easier than ever. See the latest trends and tools.",
+    link: "/blog/design-systems-2025"
+  },
+  {
+    title: "The Green Cloud: Sustainable Tech in the Age of AI",
+    date: "May 8, 2025",
+    author: "Sophia Müller",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Cloud providers are racing to reduce carbon footprints. Learn how AI, renewables, and new architectures are making tech greener.",
+    link: "/blog/green-cloud-ai"
+  },
+  {
+    title: "Cybersecurity in 2025: Defending Against AI-Powered Threats",
+    date: "May 5, 2025",
+    author: "Elena Petrova",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80",
+    excerpt: "AI is both a weapon and a shield in cybersecurity. We break down the latest threats, defense strategies, and what every business should know.",
+    link: "/blog/cybersecurity-2025"
+  },
+  {
+    title: "Remote Work 3.0: The Tech Shaping Distributed Teams",
+    date: "May 1, 2025",
+    author: "Carlos Mendes",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "From virtual offices to AI-driven productivity tools, remote work is evolving fast. Here’s how top companies are building the future of work.",
+    link: "/blog/remote-work-3"
+  },
+  {
+    title: "The No-Code/Low-Code Revolution: 2025 Update",
+    date: "April 27, 2025",
+    author: "Fatima Al-Farsi",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+    excerpt: "No-code and low-code platforms are more powerful than ever. We review the best tools, real-world success stories, and what’s next for citizen developers.",
+    link: "/blog/no-code-2025"
+  },
+  {
+    title: "Tech for Good: Social Impact Startups to Watch",
+    date: "April 22, 2025",
+    author: "Grace Okafor",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Meet the startups using technology to solve real-world problems, from climate change to education and healthcare. Inspiring stories and lessons learned.",
+    link: "/blog/tech-for-good-2025"
+  },
+  {
+    title: "The State of AR/VR: Immersive Tech in Everyday Life",
+    date: "April 18, 2025",
+    author: "Maya Singh",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "AR and VR are no longer just for gaming. Explore how immersive tech is transforming retail, healthcare, and remote collaboration.",
+    link: "/blog/ar-vr-2025"
+  },
+  {
+    title: "Next-Gen Databases: Speed, Scale, and AI Integration",
+    date: "April 15, 2025",
+    author: "Oliver Zhang",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+    excerpt: "From vector search to real-time analytics, databases are evolving fast. We review the most exciting new tech and what it means for developers.",
+    link: "/blog/next-gen-databases"
+  },
+  {
+    title: "5G and Beyond: The Next Leap in Connectivity",
+    date: "May 16, 2025",
+    author: "Ravi Desai",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+    excerpt: "5G is just the beginning. Discover how 6G, satellite internet, and edge networking are reshaping the digital landscape for everyone.",
+    link: "/blog/5g-beyond-2025"
+  },
+  {
+    title: "The Ethics of AI: Building Responsible Technology",
+    date: "May 15, 2025",
+    author: "Dr. Emily Carter",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    excerpt: "As AI becomes more powerful, ethical questions grow. We explore frameworks, real-world dilemmas, and how to build tech that benefits all.",
+    link: "/blog/ethics-of-ai-2025"
+  },
+  {
+    title: "Composable Commerce: The Future of Online Retail",
+    date: "May 14, 2025",
+    author: "Isabella Rossi",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Composable commerce lets brands build flexible, best-in-class e-commerce experiences. See how APIs, headless CMS, and microservices are changing the game.",
+    link: "/blog/composable-commerce-2025"
+  },
+  {
+    title: "The Rise of Digital Twins in Industry 4.0",
+    date: "May 13, 2025",
+    author: "Lucas Weber",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Digital twins are revolutionizing manufacturing, logistics, and smart cities. Learn how virtual replicas are driving efficiency and innovation.",
+    link: "/blog/digital-twins-2025"
+  },
+  {
+    title: "Women in Tech: Breaking Barriers in 2025",
+    date: "May 12, 2025",
+    author: "Nia Johnson",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Women are leading the way in AI, engineering, and entrepreneurship. Meet the trailblazers and discover how the industry is changing for the better.",
+    link: "/blog/women-in-tech-2025"
+  },
+  {
+    title: "Zero Trust Security: Protecting Data in a Remote World",
+    date: "May 11, 2025",
+    author: "Ahmed El-Sayed",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Zero trust is the new standard for cybersecurity. Find out how organizations are implementing it to secure remote teams and cloud infrastructure.",
+    link: "/blog/zero-trust-security-2025"
+  },
+  {
+    title: "The API Economy: Monetizing Digital Services",
+    date: "May 10, 2025",
+    author: "Sofia Martinez",
+    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80",
+    excerpt: "APIs are powering new business models and revenue streams. Explore the latest trends, platforms, and success stories in the API economy.",
+    link: "/blog/api-economy-2025"
+  },
+  {
+    title: "Tech in Africa: Innovation on the Rise",
+    date: "May 9, 2025",
+    author: "Kwame Mensah",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80",
+    excerpt: "African startups are making global headlines in fintech, healthtech, and edtech. Discover the companies and leaders to watch in 2025.",
+    link: "/blog/tech-in-africa-2025"
+  },
+  {
+    title: "The Next Big Thing in Wearables: Health, AR, and More",
+    date: "May 8, 2025",
+    author: "Hiro Tanaka",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Wearables are evolving fast, with new sensors, AR features, and health applications. See what’s coming to your wrist and beyond.",
+    link: "/blog/wearables-2025"
+  },
+  {
+    title: "Serverless 2.0: The Evolution of Cloud Computing",
+    date: "May 7, 2025",
+    author: "Marta Kowalski",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Serverless is getting smarter, faster, and more affordable. Learn about the new platforms, use cases, and how to get started in 2025.",
+    link: "/blog/serverless-2025"
   }
 ];
 
-const categories = ["All", "Web Development", "Mobile Development", "Cloud Security", "E-commerce", "Development", "Cloud Computing"];
-
-const Blog = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
-  });
-
-  return (
-    <div className="flex flex-col min-h-screen">
-      <ScrollProgress />
-      <Navbar />
-      
-      <main className="flex-grow pt-24">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-tech-50 via-tech-100 to-tech-50 py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-tech-800">Tech Insights & Updates</h1>
-              <p className="text-lg text-gray-700 mb-10">
-                The latest news, trends, and insights from the world of technology and innovation.
-              </p>
-              
-              {/* Search Bar */}
-              <div className="relative max-w-xl mx-auto">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-tech-300 focus:border-transparent transition-all"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+const Blog = () => (
+  <div className="flex flex-col min-h-screen">
+    <ScrollProgress />
+    <Navbar />
+    <main className="container mx-auto px-4 py-12 min-h-screen">
+      <h1 className="text-4xl font-extrabold mb-4 text-primary">TechBros Blog</h1>
+      <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-10 max-w-2xl">
+        Stay up to date with the latest trends, news, and insights in technology, software development, AI, and the startup world. Our team and guest experts share deep dives, tutorials, and industry analysis every week.
+      </p>
+      <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {techBlogs.map((blog) => (
+          <article key={blog.title} className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden flex flex-col hover:scale-[1.025] transition-transform border border-primary/10">
+            <Link to={blog.link} className="block h-48 w-full overflow-hidden">
+              <img src={blog.image} alt={blog.title} className="object-cover w-full h-full transition-transform duration-300 hover:scale-105" />
+            </Link>
+            <div className="p-6 flex flex-col flex-1">
+              <div className="flex items-center gap-2 text-xs text-neutral-500 mb-2">
+                <span>{blog.date}</span>
+                <span>•</span>
+                <span>By {blog.author}</span>
               </div>
+              <Link to={blog.link} className="font-bold text-xl text-primary hover:text-purple-700 mb-2 line-clamp-2">
+                {blog.title}
+              </Link>
+              <p className="text-neutral-700 dark:text-neutral-300 mb-4 line-clamp-3">{blog.excerpt}</p>
+              <Link to={blog.link} className="mt-auto text-vibrant-purple font-semibold hover:underline">Read more →</Link>
             </div>
-          </div>
-        </section>
-        
-        {/* Categories Section */}
-        <section className="py-8 border-b border-gray-200">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className={`px-4 py-2 rounded-full transition-all ${
-                    selectedCategory === category
-                      ? "bg-tech-400 text-white"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-        
-        {/* Blog Posts Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            {filteredPosts.length === 0 ? (
-              <div className="text-center py-16">
-                <h3 className="text-2xl font-medium text-gray-700 mb-2">No articles found</h3>
-                <p className="text-gray-500">Try changing your search criteria</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post) => (
-                  <article key={post.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
-                    <div className="relative h-48 overflow-hidden">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-tech-400 text-white">
-                          {post.category}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="flex items-center text-sm text-gray-500 mb-3 space-x-4">
-                        <div className="flex items-center">
-                          <Clock size={14} className="mr-1" />
-                          <span>{post.date}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <User size={14} className="mr-1" />
-                          <span>{post.author}</span>
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-bold mb-3 text-left">{post.title}</h3>
-                      <p className="text-gray-600 mb-4 flex-grow text-left">{post.excerpt}</p>
-                      <div className="mt-4 space-x-2 mb-4">
-                        {post.tags.map((tag, index) => (
-                          <span key={index} className="inline-flex items-center text-xs text-tech-600 bg-tech-50 px-2 py-1 rounded">
-                            <Tag size={12} className="mr-1" />
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <a 
-                        href={`/blog/${post.id}`} 
-                        className="inline-flex items-center text-tech-500 hover:text-tech-700 font-medium text-sm mt-auto self-start"
-                      >
-                        Read More <ArrowRight size={16} className="ml-1" />
-                      </a>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
-            
-            {/* Newsletter Section */}
-            <div className="mt-20 bg-gradient-to-r from-tech-400 to-tech-500 rounded-2xl p-8 md:p-12">
-              <div className="max-w-4xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-left">Stay updated with our newsletter</h3>
-                    <p className="text-white/90 mb-6 text-left">
-                      Get the latest tech insights, tips, and industry news delivered directly to your inbox.
-                    </p>
-                  </div>
-                  <div>
-                    <form className="flex flex-col sm:flex-row gap-3">
-                      <input
-                        type="email"
-                        placeholder="Your email address"
-                        className="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
-                      />
-                      <button
-                        type="submit"
-                        className="px-6 py-3 bg-white text-tech-500 font-medium rounded-lg hover:bg-gray-100 transition-colors"
-                      >
-                        Subscribe
-                      </button>
-                    </form>
-                    <p className="text-white/80 text-sm mt-3">
-                      We respect your privacy. Unsubscribe at any time.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </div>
-  );
-};
+          </article>
+        ))}
+      </section>
+      <div className="mt-16 text-center">
+        <h2 className="text-2xl font-bold mb-2 text-primary">Want more?</h2>
+        <p className="text-neutral-600 dark:text-neutral-300 mb-4">We publish new articles every week. Subscribe to our newsletter for the latest updates, tips, and exclusive content!</p>
+        <Link to="/newsletter" className="inline-block bg-vibrant-purple text-white px-6 py-3 rounded-full font-semibold shadow hover:bg-purple-700 transition">Subscribe Now</Link>
+      </div>
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Blog;
