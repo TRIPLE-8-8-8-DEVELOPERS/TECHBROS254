@@ -103,11 +103,7 @@
   }
 
   @media (max-width: 767px) {
-    html {
-      font-size: 15px; /* Slightly smaller base font for mobile */
-    }
-    
-    button, 
+    button,
     a[role="button"],
     input[type="submit"] {
       cursor: default !important; /* Remove hover effects on touch */
@@ -116,7 +112,7 @@
     }
     
     /* Improve tap targets */
-    nav a, 
+    nav a,
     .footer a,
     .mobile-tap-target {
       padding: 0.5rem;
