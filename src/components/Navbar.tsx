@@ -113,17 +113,17 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center group">
-            <img src="/logo.svg" alt="TechBros" className="h-12 transition-all duration-500 group-hover:scale-110" />
-            <span className="ml-3 font-display font-bold text-2xl bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent">
-              TechBros
-            </span>
+          <Link to="/" className="flex items-center">
+            <div className="w-8 h-8 bg-vibrant-purple rounded-md flex items-center justify-center mr-2">
+              <span className="text-white font-bold text-lg">T</span>
+            </div>
+            <span className="font-bold text-xl">TechBros</span>
           </Link>
         </div>
 
-        <nav className="hidden md:hidden items-center space-x-1">
+        <nav className="hidden md:flex items-center space-x-1">
           {/* Services mega dropdown */}
-          <div
+          <div 
             className="relative group"
             onMouseEnter={() => setServicesMenuOpen(true)}
             onMouseLeave={() => setServicesMenuOpen(false)}
@@ -278,7 +278,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center">
+        <div className="flex items-center">
           <SearchModal />
           
           <ThemeToggle />
@@ -341,39 +341,6 @@ const Navbar = () => {
           </Button>
         </div>
         <nav className="flex flex-col p-4 space-y-2">
-          {/* Add the other functions here */}
-          <div className="flex flex-col items-start space-y-2 mb-4">
-            <SearchModal />
-            <ThemeToggle />
-            <LanguageSwitcher />
-            {user ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="w-full justify-start font-medium">
-                    <User size={18} className="mr-2" />
-                    Account
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    <Link to="/profile" className="w-full">Profile</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link to="/dashboard" className="w-full">Dashboard</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => signOut()}>
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button variant="default" asChild className="w-full justify-start font-medium">
-                <Link to="/auth">Sign In</Link>
-              </Button>
-            )}
-          </div>
-
           {/* Services dropdown for mobile */}
           <div className="mb-4">
             <Button
