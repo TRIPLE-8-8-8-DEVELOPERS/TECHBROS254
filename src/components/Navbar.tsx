@@ -113,11 +113,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
-          <Link to="/" className="flex items-center">
-            <div className="w-8 h-8 bg-vibrant-purple rounded-md flex items-center justify-center mr-2">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
-            <span className="font-bold text-xl">TechBros</span>
+          <Link to="/" className="flex items-center group">
+            <img src="/logo.svg" alt="TechBros" className="h-12 transition-all duration-500 group-hover:scale-110" />
+            <span className="ml-3 font-display font-bold text-2xl bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent">
+              TechBros
+            </span>
           </Link>
         </div>
 
