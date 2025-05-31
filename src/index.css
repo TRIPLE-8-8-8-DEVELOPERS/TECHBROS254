@@ -297,3 +297,28 @@
     }
   }
 }
+
+/* Mobile visibility classes */
+.hidden-mobile {
+  @apply hidden;
+}
+
+.visible-mobile {
+  @apply block;
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    @apply hidden !important;
+  }
+
+  .visible-mobile {
+    @apply block !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .visible-mobile {
+    @apply hidden !important;
+  }
+}
