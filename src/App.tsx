@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import Index from './pages/Index';
+import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import NotFound from './pages/NotFound';
 import ServicesPage from './pages/ServicesPage';
@@ -96,6 +97,7 @@ function App() {
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/auth" element={<AuthPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/dashboard" element={<DashboardPage />} />
                 {/* Service Category Pages */}
                 <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/development" element={<DevelopmentServices />} />

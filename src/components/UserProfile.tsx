@@ -175,6 +175,11 @@ export const UserProfile = () => {
                   <span>Profile</span>
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/dashboard">
+                  <span>Dashboard</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard className="mr-2 h-4 w-4" />
                 <span>Billing</span>
