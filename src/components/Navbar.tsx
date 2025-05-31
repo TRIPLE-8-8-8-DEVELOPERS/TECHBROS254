@@ -114,7 +114,9 @@ const Navbar = () => {
       <div className="w-full px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <img src="/logo.svg" alt="TechBros" className="h-8 mr-2 transition-all duration-500 group-hover:scale-110" />
+            <div className="w-8 h-8 bg-vibrant-purple rounded-md flex items-center justify-center mr-2">
+              <span className="text-white font-bold text-lg">T</span>
+            </div>
             <span className="font-bold text-xl">TechBros</span>
           </Link>
         </div>
@@ -276,7 +278,13 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center">
+        <div className="flex items-center">
+          <SearchModal />
+          
+          <ThemeToggle />
+
+          <LanguageSwitcher />
+
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -329,15 +337,10 @@ const Navbar = () => {
             <span className="font-bold text-xl">TechBros</span>
           </Link>
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
-            <X size={24} />
+            <X size={15} />
           </Button>
         </div>
         <nav className="flex flex-col p-4 space-y-2">
-          <div className="flex flex-col items-center space-y-2 mb-4">
-            <SearchModal />
-            <ThemeToggle />
-            <LanguageSwitcher />
-          </div>
           {/* Services dropdown for mobile */}
           <div className="mb-4">
             <Button
