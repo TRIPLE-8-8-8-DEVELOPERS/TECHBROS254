@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './BlogStyles.css';
 
 const BlogTechInAfrica2025 = () => (
-  <main className="container mx-auto px-4 py-12 max-w-3xl">
+  <main className="blog-container">
     <article>
-      <h1 className="text-4xl font-extrabold mb-4 text-primary">Tech in Africa: Innovation on the Rise</h1>
-      <div className="flex items-center gap-4 mb-6">
-        <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=80&q=80" alt="Kwame Mensah" className="w-12 h-12 rounded-full object-cover" />
+      <h1 className="blog-title">Tech in Africa: Innovation on the Rise</h1>
+      <div className="blog-author">
+        <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=80&q=80" alt="Kwame Mensah" className="author-image" />
         <div>
-          <div className="font-semibold text-primary">Kwame Mensah</div>
-          <div className="text-xs text-neutral-500">May 9, 2025</div>
+          <div className="author-name">Kwame Mensah</div>
+          <div className="author-date">May 9, 2025</div>
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80" alt="Tech in Africa" className="rounded-2xl shadow mb-8 w-full object-cover h-64" />
-      <section className="prose dark:prose-invert max-w-none mb-8">
+      <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80" alt="Tech in Africa" className="blog-image" />
+      <section className="blog-content">
         <p>African startups are making global headlines in fintech, healthtech, and edtech. Discover the companies and leaders to watch in 2025, and how innovation is transforming the continent.</p>
         <h2>Key Sectors</h2>
         <ul>

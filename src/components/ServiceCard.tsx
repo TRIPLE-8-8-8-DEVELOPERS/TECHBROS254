@@ -79,41 +79,6 @@ const ServiceCard = ({
       border: "border-vibrant-pink/20",
       gradient: "from-vibrant-pink/10 to-vibrant-pink/30"
     },
-    "Design": { 
-      bg: "bg-emerald-100", 
-      text: "text-emerald-700", 
-      hover: "hover:bg-emerald-200",
-      border: "border-emerald-200",
-      gradient: "from-emerald-100 to-emerald-200/50"
-    },
-    "Healthcare": { 
-      bg: "bg-sky-100", 
-      text: "text-sky-700", 
-      hover: "hover:bg-sky-200",
-      border: "border-sky-200",
-      gradient: "from-sky-100 to-sky-200/50"
-    },
-    "Education": { 
-      bg: "bg-amber-100", 
-      text: "text-amber-700", 
-      hover: "hover:bg-amber-200",
-      border: "border-amber-200",
-      gradient: "from-amber-100 to-amber-200/50"
-    },
-    "Forex Trading": { 
-      bg: "bg-vibrant-blue/10", 
-      text: "text-vibrant-blue", 
-      hover: "hover:bg-vibrant-blue/20",
-      border: "border-vibrant-blue/20",
-      gradient: "from-vibrant-blue/10 to-vibrant-blue/30"
-    },
-    "Cryptocurrency": { 
-      bg: "bg-orange-100", 
-      text: "text-orange-600", 
-      hover: "hover:bg-orange-200",
-      border: "border-orange-200",
-      gradient: "from-orange-100 to-orange-200/50"
-    }
   };
 
   const defaultColor = { 

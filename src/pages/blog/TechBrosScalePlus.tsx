@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './BlogStyles.css';
 
 const BlogTechBrosScalePlus = () => (
-  <main className="container mx-auto px-4 py-12 max-w-3xl">
+  <main className="blog-container">
     <article>
-      <h1 className="text-4xl font-extrabold mb-4 text-primary">TechBros Launches Scale+ Package for Startups</h1>
-      <div className="flex items-center gap-4 mb-6">
-        <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=80&q=80" alt="TechBros Team" className="w-12 h-12 rounded-full object-cover" />
+      <h1 className="blog-title">TechBros Launches Scale+ Package for Startups</h1>
+      <div className="blog-author">
+        <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=80&q=80" alt="TechBros Team" className="author-image" />
         <div>
-          <div className="font-semibold text-primary">TechBros Team</div>
-          <div className="text-xs text-neutral-500">April 10, 2025</div>
+          <div className="author-name">TechBros Team</div>
+          <div className="author-date">April 10, 2025</div>
         </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80" alt="Scale+ Launch" className="rounded-2xl shadow mb-8 w-full object-cover h-64" />
-      <section className="prose dark:prose-invert max-w-none mb-8">
+      <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80" alt="Scale+ Launch" className="blog-image" />
+      <section className="blog-content">
         <p>
           We’re excited to announce the launch of <b>Scale+</b>, our most advanced package for startups and fast-growing companies. Scale+ combines cloud, AI, and product design services to help you accelerate your journey from MVP to market leader.
         </p>

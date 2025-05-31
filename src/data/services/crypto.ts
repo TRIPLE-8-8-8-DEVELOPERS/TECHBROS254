@@ -275,7 +275,7 @@ export const cryptoServices: ServiceDetail[] = [
   },
   {
     id: "crypto-research",
-    slug: "crypto-research",
+    slug: "CryptoResearchServices",
     title: "Cryptocurrency Research & Analysis",
     icon: BarChart4,
     shortDescription: "In-depth research and analysis of cryptocurrency markets, projects, and trends to inform investment decisions.",

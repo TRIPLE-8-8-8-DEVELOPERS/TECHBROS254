@@ -54,6 +54,18 @@ import BlogAPIEconomy2025 from './pages/blog/APIEconomy2025';
 import BlogTechInAfrica2025 from './pages/blog/TechInAfrica2025';
 import BlogWearables2025 from './pages/blog/Wearables2025';
 import BlogServerless2025 from './pages/blog/Serverless2025';
+import CompensationPage from './pages/perks/CompensationPage';
+import WorkFromAnywherePage from './pages/perks/WorkFromAnywherePage';
+import VacationTimePage from './pages/perks/VacationTimePage';
+import RecognitionProgramsPage from './pages/perks/RecognitionProgramsPage';
+import ParentalBenefitsPage from './pages/perks/ParentalBenefitsPage';
+import ModernOfficePage from './pages/perks/ModernOfficePage';
+import TeamEventsPage from './pages/perks/TeamEventsPage';
+import LearningDevelopmentPage from './pages/perks/LearningDevelopmentPage';
+import HealthWellnessPage from './pages/perks/HealthWellnessPage';
+import FoodRefreshmentsPage from './pages/perks/FoodRefreshmentsPage';
+import FlexibleWorkPage from './pages/perks/FlexibleWorkPage';
+import FinancialWellnessPage from './pages/perks/FinancialWellnessPage';
 
 function App() {
   return (
@@ -84,18 +96,20 @@ function App() {
                 <Route path="/auth" element={<AuthPage />} />
                 
                 {/* Service Category Pages */}
-                <Route path="/services/development" element={<DevelopmentServices />} />
-                <Route path="/services/design" element={<DesignServices />} />
-                <Route path="/services/marketing" element={<MarketingServices />} />
-                <Route path="/services/infrastructure" element={<InfrastructureServices />} />
-                <Route path="/services/education" element={<EducationServices />} />
-                <Route path="/services/healthcare" element={<HealthcareServices />} />
-                <Route path="/services/ecommerce" element={<EcommerceServices />} />
-                <Route path="/services/ai-data" element={<AIDataServices />} />
-                <Route path="/services/security" element={<SecurityServices />} />
-                <Route path="/services/consulting" element={<ConsultingServices />} />
-                <Route path="/services/forex" element={<ForexServices />} />
-                <Route path="/services/crypto" element={<CryptoServices />} />
+                <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/development" element={<DevelopmentServices />} />
+          <Route path="/services/infrastructure" element={<InfrastructureServices />} />
+          <Route path="/services/consulting" element={<ConsultingServices />} />
+          <Route path="/services/ecommerce" element={<EcommerceServices />} />
+          <Route path="/services/ai-data" element={<AIDataServices />} />
+          <Route path="/services/security" element={<SecurityServices />} />
+          <Route path="/services/marketing" element={<MarketingServices />} />
+          <Route path="/services/design" element={<DesignServices />} />
+          <Route path="/services/healthcare" element={<HealthcareServices />} />
+          <Route path="/services/education" element={<EducationServices />} />
+          <Route path="/services/forex-trading" element={<ForexServices />} />
+          <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
                 
                 {/* Service Detail and Subcategory Pages */}
                 <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
@@ -117,6 +131,18 @@ function App() {
                 <Route path="/blog/tech-in-africa-2025" element={<BlogTechInAfrica2025 />} />
                 <Route path="/blog/wearables-2025" element={<BlogWearables2025 />} />
                 <Route path="/blog/serverless-2025" element={<BlogServerless2025 />} />
+                <Route path="/perks/compensation" element={<CompensationPage />} />
+                <Route path="/perks/work-from-anywhere" element={<WorkFromAnywherePage />} />
+                <Route path="/perks/vacation-time" element={<VacationTimePage />} />
+                <Route path="/perks/recognition-programs" element={<RecognitionProgramsPage />} />
+                <Route path="/perks/parental-benefits" element={<ParentalBenefitsPage />} />
+                <Route path="/perks/modern-office" element={<ModernOfficePage />} />
+                <Route path="/perks/team-events" element={<TeamEventsPage />} />
+                <Route path="/perks/learning-development" element={<LearningDevelopmentPage />} />
+                <Route path="/perks/health-wellness" element={<HealthWellnessPage />} />
+                <Route path="/perks/food-refreshments" element={<FoodRefreshmentsPage />} />
+                <Route path="/perks/flexible-work" element={<FlexibleWorkPage />} />
+                <Route path="/perks/financial-wellness" element={<FinancialWellnessPage />} />
 
                 {/* Catch-all for unknown routes */}
                 <Route path="*" element={<NotFound />} />
