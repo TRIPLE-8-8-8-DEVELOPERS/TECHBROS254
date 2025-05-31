@@ -121,9 +121,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-1">
+        <nav className="hidden md:hidden items-center space-x-1">
           {/* Services mega dropdown */}
-          <div 
+          <div
             className="relative group"
             onMouseEnter={() => setServicesMenuOpen(true)}
             onMouseLeave={() => setServicesMenuOpen(false)}
@@ -278,7 +278,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="flex items-center">
+        <div className="hidden md:flex items-center">
           <SearchModal />
           
           <ThemeToggle />
@@ -341,6 +341,39 @@ const Navbar = () => {
           </Button>
         </div>
         <nav className="flex flex-col p-4 space-y-2">
+          {/* Add the other functions here */}
+          <div className="flex flex-col items-start space-y-2 mb-4">
+            <SearchModal />
+            <ThemeToggle />
+            <LanguageSwitcher />
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="w-full justify-start font-medium">
+                    <User size={18} className="mr-2" />
+                    Account
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    <Link to="/profile" className="w-full">Profile</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link to="/dashboard" className="w-full">Dashboard</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => signOut()}>
+                    Log out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="default" asChild className="w-full justify-start font-medium">
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
+          </div>
+
           {/* Services dropdown for mobile */}
           <div className="mb-4">
             <Button
