@@ -114,8 +114,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
           <Link to="/" className="flex items-center group">
-            <img src="/logo.svg" alt="TechBros" className="h-12 transition-all duration-500 group-hover:scale-110" />
-            <span className="ml-3 font-display font-bold text-2xl bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent">
+            <img src="/logo.svg" alt="TechBros" className="h-12 shrink-0 transition-all duration-500 group-hover:scale-110" />
+            <span className="ml-3 font-display font-bold text-2xl bg-gradient-to-r from-tech-400 to-purple-500 bg-clip-text text-transparent whitespace-nowrap">
               TechBros
             </span>
           </Link>
@@ -484,6 +484,46 @@ const Navbar = () => {
             </React.Fragment>
           ))}
         </nav>
+         {navItems.map((item) => (
+            <React.Fragment key={item.label}>
+              {item.children ? (
+                <div>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-between font-medium"
+                    onClick={() => {
+                      // Handle dropdown open/close state if needed
+                    }}
+                  >
+                    <span>{item.label}</span>
+                    <ChevronDown className="h-4 w-4 opacity-50" />
+                  </Button>
+                  <div className="ml-4 flex flex-col space-y-2">
+                    {item.children.map((child) => (
+                      <Button
+                        key={child.label}
+                        variant="ghost"
+                        className="w-full justify-start font-medium"
+                        onClick={closeMenu}
+                      >
+                        <Link to={child.href} className="w-full">
+                          {child.label}
+                        </Link>
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start font-medium"
+                  onClick={closeMenu}
+                >
+                  <Link to={item.href}>{item.label}</Link>
+                </Button>
+              )}
+            </React.Fragment>
+          ))}
       </div>
     </header>
   );
