@@ -105,19 +105,7 @@ const SubCategoryDetail = () => {
                 <h2 className="text-3xl font-bold mb-6">About {subcategory.title}</h2>
                 <div className="prose prose-lg max-w-none dark:prose-invert">
                   <p className="mb-4 text-gray-700 dark:text-gray-300">
-                    Our {subcategory.title.toLowerCase()} services deliver comprehensive protection for 
-                    your organization's critical assets. Using advanced technologies and proven methodologies,
-                    we help you build robust defenses against evolving cyber threats while ensuring 
-                    regulatory compliance and business continuity.
-                  </p>
-                  <p className="mb-4 text-gray-700 dark:text-gray-300">
-                    In today's threat landscape, {subcategory.title.toLowerCase()} has become essential
-                    for organizations of all sizes. Our expert team provides tailored solutions that address
-                    your specific industry requirements, risk profile, and business objectives.
-                  </p>
-                  <p className="mb-4 text-gray-700 dark:text-gray-300">
-                    We employ a defense-in-depth approach, implementing multiple layers of security controls
-                    to protect your data, systems, and networks from both external threats and insider risks.
+                    {subcategory.description}
                   </p>
                 </div>
                 
@@ -132,7 +120,7 @@ const SubCategoryDetail = () => {
                             <Check size={16} className="text-tech-600" />
                           </div>
                           <div>
-                            <p className="text-gray-700 dark:text-gray-300">{feature}</p>
+                            <p className="text-gray-700 dark:text-gray-300"><b>{feature}</b></p>
                           </div>
                         </div>
                       ))}
@@ -151,7 +139,7 @@ const SubCategoryDetail = () => {
                             <Check size={16} className="text-tech-600" />
                           </div>
                           <div>
-                            <p className="text-gray-700 dark:text-gray-300">{benefit}</p>
+                            <p className="text-gray-700 dark:text-gray-300"><b>{benefit}</b></p>
                           </div>
                         </div>
                       ))}
@@ -169,7 +157,7 @@ const SubCategoryDetail = () => {
                           <Check size={16} className="text-tech-600" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-lg">Enhanced Security Posture</h4>
+                          <h4 className="font-medium text-lg"><b>Enhanced Security Posture</b></h4>
                           <p className="text-gray-600 dark:text-gray-400">Strengthen your defenses against evolving threats</p>
                         </div>
                       </div>
@@ -178,7 +166,7 @@ const SubCategoryDetail = () => {
                           <Check size={16} className="text-tech-600" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-lg">Regulatory Compliance</h4>
+                          <h4 className="font-medium text-lg"><b>Regulatory Compliance</b></h4>
                           <p className="text-gray-600 dark:text-gray-400">Meet industry standards and regulatory requirements</p>
                         </div>
                       </div>
@@ -187,7 +175,7 @@ const SubCategoryDetail = () => {
                           <Check size={16} className="text-tech-600" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-lg">Business Continuity</h4>
+                          <h4 className="font-medium text-lg"><b>Business Continuity</b></h4>
                           <p className="text-gray-600 dark:text-gray-400">Minimize downtime and maintain operations</p>
                         </div>
                       </div>
@@ -196,7 +184,7 @@ const SubCategoryDetail = () => {
                           <Check size={16} className="text-tech-600" />
                         </div>
                         <div>
-                          <h4 className="font-medium text-lg">Reduced Risk Exposure</h4>
+                          <h4 className="font-medium text-lg"><b>Reduced Risk Exposure</b></h4>
                           <p className="text-gray-600 dark:text-gray-400">Protect your reputation and financial assets</p>
                         </div>
                       </div>

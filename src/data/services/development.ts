@@ -10,7 +10,7 @@ const developmentServices: ServiceDetail[] = [
     category: "Development",
     icon: Globe,
     shortDescription: "Custom web applications tailored to your business needs using the latest technologies.",
-    description: ["Our web development team creates custom web applications that are fast, secure, and scalable. We use the latest web technologies to ensure your application is future-proof."],
+    description: ["Our web development team specializes in building custom web applications that are fast, secure, and scalable. Whether you need a dynamic website, a business portal, or a complex web-based system, we have the expertise to deliver solutions tailored to your unique business objectives.From interactive dashboards and custom CMS platforms to complex e-commerce systems and enterprise web solutions, our team ensures secure data handling, optimized performance, and a seamless digital experience. Partner with us to turn your ideas into powerful digital products that drive business growth."],
     image: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?auto=format&fit=crop&q=80",
     subcategories: [
       {
