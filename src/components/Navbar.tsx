@@ -111,12 +111,10 @@ const Navbar = () => {
           : "bg-white dark:bg-gray-900"
       }`}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center h-16">
+      <div className="w-full px-4 flex justify-between items-center h-16">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <div className="w-8 h-8 bg-vibrant-purple rounded-md flex items-center justify-center mr-2">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
+            <img src="/logo.svg" alt="TechBros" className="h-8 mr-2 transition-all duration-500 group-hover:scale-110" />
             <span className="font-bold text-xl">TechBros</span>
           </Link>
         </div>
