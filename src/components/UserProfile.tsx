@@ -169,9 +169,11 @@ export const UserProfile = () => {
             <DropdownMenuSeparator />
             
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <UserIcon className="mr-2 h-4 w-4" />
-                <span>Profile</span>
+              <DropdownMenuItem asChild>
+                <Link to="/profile">
+                  <UserIcon className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard className="mr-2 h-4 w-4" />
