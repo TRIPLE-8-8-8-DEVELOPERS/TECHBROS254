@@ -74,9 +74,9 @@ const Careers = () => {
   const perksRef = useRef<HTMLDivElement>(null);
   const jobsRef = useRef<HTMLDivElement>(null);
   
-  const [heroVisible, setHeroVisible] = useState(false);
-  const [perksVisible, setPerksVisible] = useState(false);
-  const [jobsVisible, setJobsVisible] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(true);
+  const [perksVisible, setPerksVisible] = useState(true);
+  const [jobsVisible, setJobsVisible] = useState(true);
 
   useEffect(() => {
     const filtered = jobPositions.filter(job => {
@@ -92,45 +92,6 @@ const Careers = () => {
     
     setFilteredJobs(filtered);
   }, [searchTerm, selectedDepartment, selectedLocation, selectedType]);
-
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.1,
-    };
-
-    const heroObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setHeroVisible(true);
-        heroObserver.disconnect();
-      }
-    }, observerOptions);
-
-    const perksObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setPerksVisible(true);
-        perksObserver.disconnect();
-      }
-    }, observerOptions);
-
-    const jobsObserver = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setJobsVisible(true);
-        jobsObserver.disconnect();
-      }
-    }, observerOptions);
-
-    if (heroRef.current) heroObserver.observe(heroRef.current);
-    if (perksRef.current) perksObserver.observe(perksRef.current);
-    if (jobsRef.current) jobsObserver.observe(jobsRef.current);
-
-    return () => {
-      if (heroRef.current) heroObserver.unobserve(heroRef.current);
-      if (perksRef.current) perksObserver.unobserve(perksRef.current);
-      if (jobsRef.current) jobsObserver.unobserve(jobsRef.current);
-    };
-  }, []);
 
   const handleJobClick = (slug: string) => {
     navigate(`/careers/${slug}`);
@@ -183,6 +144,7 @@ const Careers = () => {
         {/* Values section */}
         <section className="py-12 bg-gradient-to-r from-tech-50 to-purple-50">
           <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-10 text-center text-purple-800">Our Core Values</h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
               <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
                 <div className="w-12 h-12 bg-tech-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
@@ -491,9 +453,7 @@ const Careers = () => {
               </div>
               
               <div 
-                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500 ${
-                  jobsVisible ? "opacity-100" : "opacity-0"
-                }`}
+                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-500 opacity-100`}
               >
                 {filteredJobs.length > 0 ? (
                   filteredJobs.map((job) => (
@@ -522,92 +482,33 @@ const Careers = () => {
                       <div className="p-6">
                         {!job.image && (
                           <>
-                            <span className="inline-block px-3 py-1 bg-tech-100 text-tech-600 text-xs font-medium rounded-full mb-2">
+                            <span className="inline-block px-3 py-1 bg-tech-100 text-tech-600 text-xs font-medium rounded-full mb-4">
                               {job.department}
                             </span>
-                            <h3 className="text-lg font-semibold mb-3">{job.title}</h3>
+                            <h3 className="text-lg font-semibold mb-2">{job.title}</h3>
                           </>
                         )}
                         
-                        <div className="space-y-2 mb-4">
-                          <div className="flex items-center text-gray-600">
-                            <MapPin size={16} className="mr-2 text-gray-400" />
-                            <span className="text-sm">{job.location}</span>
-                          </div>
-                          
-                          <div className="flex items-center text-gray-600">
-                            <Briefcase size={16} className="mr-2 text-gray-400" />
-                            <span className="text-sm">{job.type}</span>
-                          </div>
-                          
-                          <div className="flex items-center text-gray-600">
-                            <DollarSign size={16} className="mr-2 text-gray-400" />
-                            <span className="text-sm">{job.salary}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="flex justify-between items-center mt-6">
-                          <span className="text-xs text-gray-500">Posted {job.posted}</span>
-                          <span className="text-tech-500 flex items-center text-sm font-medium transition-all group-hover:translate-x-0.5">
-                            View Position <ArrowRight size={14} className="ml-1" />
+                        <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                          <span className="flex items-center">
+                            <MapPin className="mr-2" size={16} />
+                            {job.location}
+                          </span>
+                          <span className="flex items-center">
+                            <Clock className="mr-2" size={16} />
+                            {job.type}
                           </span>
                         </div>
                       </div>
                     </div>
                   ))
                 ) : (
-                  <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-white p-8 rounded-xl text-center border border-gray-100">
-                    <div className="mb-4">
-                      <Search size={40} className="mx-auto text-gray-300" />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">No positions found</h3>
-                    <p className="text-gray-600 mb-6">
-                      We couldn't find any positions matching your search criteria. Try adjusting your filters or check back later.
+                  <div className="col-span-1 text-center py-8">
+                    <p className="text-gray-500 text-lg">
+                      No job positions found matching your criteria.
                     </p>
-                    <button
-                      onClick={() => {
-                        setSearchTerm("");
-                        setSelectedDepartment("All");
-                        setSelectedLocation("All");
-                        setSelectedType("All");
-                      }}
-                      className="text-tech-500 font-medium hover:text-tech-600 transition-colors"
-                    >
-                      Reset Filters
-                    </button>
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        </section>
-        
-        {/* CTA section */}
-        <section className="py-20 bg-gradient-to-r from-tech-500 to-purple-600 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
-            <div className="absolute top-10 right-10 w-80 h-80 rounded-full border-[40px] border-white"></div>
-            <div className="absolute bottom-10 right-40 w-60 h-60 rounded-full border-[30px] border-white"></div>
-          </div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Don't See a Position That Fits?</h2>
-              <p className="text-xl text-tech-50 mb-8">
-                We're always looking for talented individuals to join our team. Send us your resume and we'll keep you in mind for future opportunities.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link 
-                  to="/#contact"
-                  className="px-8 py-4 bg-white text-tech-600 rounded-full hover:shadow-lg transition-all duration-300 font-medium"
-                >
-                  Get in Touch
-                </Link>
-                <a 
-                  href="mailto:careers@techbros.com"
-                  className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full hover:bg-white/10 transition-all duration-300 font-medium"
-                >
-                  Email Your Resume
-                </a>
               </div>
             </div>
           </div>

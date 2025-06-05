@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
@@ -16,15 +15,16 @@ interface ServiceCardProps {
   category?: string;
 }
 
-const ServiceCard = ({ 
-  icon: Icon, 
-  title, 
-  description, 
-  index = 0, 
-  slug, 
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+  index = 0,
+  slug,
   image,
-  category 
+  category,
 }: ServiceCardProps) => {
+  console.log("ServiceCard component is running");
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -117,56 +117,64 @@ const ServiceCard = ({
     };
   }, [index]);
 
+  console.log("ServiceCard component is about to return JSX");
   return (
     <div
       ref={cardRef}
-      className={`service-card bg-white dark:bg-dark-300 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 transition-all duration-500 h-full ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`service-card bg-white dark:bg-dark-300 rounded-xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-500 h-full transform ${
+        isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-10 scale-95"
+      } hover:shadow-lg hover:scale-102`}
       style={{ transitionDelay: `${index * 100}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <Link to={`/services/${slug}`} className="block h-full flex flex-col">
         {image && (
-          <div className="h-48 md:h-52 lg:h-56 overflow-hidden relative">
-            <img 
-              src={image} 
-              alt={title}
-              className={`w-full h-full object-cover transition-all duration-500 ${
-                isHovered ? "scale-110" : "scale-100"
-              }`}
-            />
-            {/* Dark overlay for better text visibility in dark mode */}
-            <div className="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
+          <div className="relative h-40 md:h-44 lg:h-48 overflow-hidden">
+            <div className="absolute inset-0 flex space-x-4 animate-scroll-images">
+              <img
+                src={image}
+                alt={title}
+                className={`w-1/2 h-full object-cover transition-transform duration-500 ${
+                  isHovered ? "scale-110" : "scale-100"
+                }`}
+              />
+              <img
+                src={image}
+                alt={`${title} secondary`}
+                className={`w-1/2 h-full object-cover transition-transform duration-500 ${
+                  isHovered ? "scale-110" : "scale-100"
+                }`}
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           </div>
         )}
-        <div className="p-6 md:p-8 flex flex-col flex-grow">
+        <div className="p-4 md:p-6 flex flex-col flex-grow">
           {category && (
-            <Badge 
-              variant="outline" 
-              className={`mb-4 self-start ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border} dark:bg-gray-800 dark:text-white dark:border-gray-700`}
+            <Badge
+              variant="outline"
+              className={`mb-3 self-start ${colorConfig.bg} ${colorConfig.text} ${colorConfig.hover} ${colorConfig.border} dark:bg-gray-800 dark:text-white dark:border-gray-700`}
             >
               {category}
             </Badge>
           )}
-          <div 
-            className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${
-              isHovered 
-                ? `${colorConfig.text} bg-white dark:bg-gray-800 border-2 ${colorConfig.border} dark:border-gray-700` 
+          <div
+            className={`w-12 h-12 rounded-lg flex items-center justify-center mb-3 transition-all duration-300 ${
+              isHovered
+                ? `${colorConfig.text} bg-white dark:bg-gray-800 border-2 ${colorConfig.border} dark:border-gray-700`
                 : `bg-gradient-to-r ${colorConfig.gradient} ${colorConfig.text} dark:bg-gray-800 dark:text-white`
             }`}
           >
-            <Icon size={26} className={`transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
+            <Icon size={22} className={`transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
           </div>
-          <h3 className="text-xl font-bold mb-3 text-left font-feature text-gray-800 dark:text-white">{title}</h3>
-          <p className="text-gray-600 dark:text-gray-300 text-left flex-grow">{description}</p>
-          
-          <div className="mt-6 flex justify-between items-center">
-            <div className={`w-0 h-1 rounded-full bg-gradient-to-r ${colorConfig.gradient} transition-all duration-500 ${isHovered ? "w-1/2" : ""}`}></div>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+          <h3 className="text-lg font-bold mb-2 text-left font-feature text-gray-800 dark:text-white">{title}</h3>
+          <p className="text-gray-600 dark:text-gray-300 text-left flex-grow text-sm">{description}</p>
+          <div className="mt-4 flex justify-between items-center">
+            <div className={`w-0 h-1 rounded-full bg-gradient-to-r ${colorConfig.gradient} transition-all duration-500 ${isHovered ? "w-1/3" : ""}`}></div>
+            <Button
+              variant="ghost"
+              size="sm"
               className={`${colorConfig.text} dark:text-white p-0 hover:bg-transparent hover:text-tech-800 dark:hover:text-gray-200 transition-all duration-300 ${
                 isHovered ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
               }`}
@@ -176,6 +184,20 @@ const ServiceCard = ({
           </div>
         </div>
       </Link>
+      <style>{`
+        @keyframes scroll-images {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+
+        .animate-scroll-images {
+          animation: scroll-images 10s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };
