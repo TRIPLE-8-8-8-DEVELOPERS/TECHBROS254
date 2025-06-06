@@ -123,12 +123,10 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-1">
-          {/* Services mega dropdown */}
+        <nav className="flex items-center space-x-1">
+          {/* Services mega dropdown - always visible */}
           <div 
             className="relative group"
-            onMouseEnter={() => setServicesMenuOpen(true)}
-            onMouseLeave={() => setServicesMenuOpen(false)}
           >
             <Button 
               variant="ghost" 
@@ -140,7 +138,7 @@ const Navbar = () => {
             </Button>
 
             <div 
-              className={`absolute left-0 top-full ${servicesMenuOpen ? 'block' : 'hidden'} w-[760px] bg-white/95 dark:bg-gray-900/95 shadow-2xl rounded-3xl p-8 border border-primary/20 z-50 animate-fade-in`}
+              className="absolute left-0 top-full block w-[760px] bg-white/95 dark:bg-gray-900/95 shadow-2xl rounded-3xl p-8 border border-primary/20 z-50 animate-fade-in"
               style={{ minHeight: '340px' }}
             >
               <div className="grid grid-cols-12 gap-x-8">
@@ -343,7 +341,7 @@ const Navbar = () => {
           </Button>
         </div>
         <nav className="flex flex-col p-4 space-y-2">
-          {/* Services dropdown for mobile */}
+          {/* Services dropdown for mobile - always visible */}
           <div className="mb-4">
             <Button
               variant="ghost"
@@ -357,58 +355,54 @@ const Navbar = () => {
                 className={`h-4 w-4 opacity-50 transition-transform ${activeCategory === "Services" ? "rotate-180" : ""}`}
               />
             </Button>
-            
-            {activeCategory === "Services" && (
-              <div className="ml-4 mt-2 space-y-2">
-                {serviceCategories.map((category) => (
-                  <div key={category.label}>
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-between font-medium text-sm py-2"
-                      onClick={() => setActiveService(activeService === category.label ? null : category.label)}
-                    >
-                      <span>{category.label}</span>
-                      <ChevronDown 
-                        className={`h-4 w-4 opacity-50 transition-transform ${
-                          activeService === category.label ? "rotate-180" : ""
-                        }`}
-                      />
-                    </Button>
-                    
-                    {activeService === category.label && (
-                      <div className="ml-4 space-y-2 mt-2">
-                        {category.services.map((service) => (
-                          <div key={service.label}>
-                            <Link 
-                              to={service.href}
-                              className="block py-2 hover:text-vibrant-purple dark:hover:text-vibrant-purple/90 text-sm font-medium"
-                              onClick={closeMenu}
-                            >
-                              {service.label}
-                            </Link>
-                            
-                            {service.subcategories.length > 0 && (
-                              <div className="ml-4 space-y-1 mt-1">
-                                {service.subcategories.map(sub => (
-                                  <Link
-                                    key={sub.label}
-                                    to={sub.href}
-                                    className="block py-1 text-gray-600 dark:text-gray-300 text-xs hover:text-vibrant-purple dark:hover:text-vibrant-purple/90"
-                                    onClick={closeMenu}
-                                  >
-                                    {sub.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
+            {/* Always render the dropdown content */}
+            <div className="ml-4 mt-2 space-y-2">
+              {serviceCategories.map((category) => (
+                <div key={category.label}>
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-between font-medium text-sm py-2"
+                    onClick={() => setActiveService(activeService === category.label ? null : category.label)}
+                  >
+                    <span>{category.label}</span>
+                    <ChevronDown 
+                      className={`h-4 w-4 opacity-50 transition-transform ${
+                        activeService === category.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  </Button>
+                  {activeService === category.label && (
+                    <div className="ml-4 space-y-2 mt-2">
+                      {category.services.map((service) => (
+                        <div key={service.label}>
+                          <Link 
+                            to={service.href}
+                            className="block py-2 hover:text-vibrant-purple dark:hover:text-vibrant-purple/90 text-sm font-medium"
+                            onClick={closeMenu}
+                          >
+                            {service.label}
+                          </Link>
+                          {service.subcategories.length > 0 && (
+                            <div className="ml-4 space-y-1 mt-1">
+                              {service.subcategories.map(sub => (
+                                <Link
+                                  key={sub.label}
+                                  to={sub.href}
+                                  className="block py-1 text-gray-600 dark:text-gray-300 text-xs hover:text-vibrant-purple dark:hover:text-vibrant-purple/90"
+                                  onClick={closeMenu}
+                                >
+                                  {sub.label}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
           
           {/* Other nav items */}
