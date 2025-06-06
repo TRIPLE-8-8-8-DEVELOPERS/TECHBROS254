@@ -4,6 +4,9 @@ import Footer from "../components/Footer";
 import ScrollProgress from "../components/ScrollProgress";
 import { Check, HelpCircle, X } from "lucide-react";
 
+// Add animation keyframes
+import "../styles/pricing-animations.css";
+
 interface PricingTier {
   name: string;
   description: string;
@@ -17,79 +20,94 @@ interface PricingTier {
   }[];
   highlighted?: boolean;
   ctaText: string;
+  isOneTime?: boolean;
+  maintenanceFee?: number;
+  isCustomQuote?: boolean;
+  priceRange?: string;
+  tagline?: string;
 }
 
-// Redesigned pricing tiers with more creative, realistic packages and services
+// Pricing tiers
 const pricingTiers: PricingTier[] = [
   {
-    name: "Launch",
-    description: "For startups and entrepreneurs ready to make their mark online.",
+    name: "🚀 Launch",
+    description: "For startups & visionaries taking their first bold step online.",
     price: {
-      monthly: 199,
-      annual: 159
+      monthly: 750,
+      annual: 750
     },
     features: [
-      { text: "Modern 1-5 page website", included: true },
-      { text: "Mobile-first responsive design", included: true },
-      { text: "Basic SEO setup", included: true },
-      { text: "Contact & lead forms", included: true },
-      { text: "Google Analytics integration", included: true },
-      { text: "1 language supported", included: true },
-      { text: "Email support", included: true },
-      { text: "Blog setup", included: false },
-      { text: "E-commerce ready", included: false },
-      { text: "Custom branding kit", included: false },
-      { text: "Priority support", included: false }
+      { text: "Full Custom Website / Web App (Modern, Mobile-Ready)", included: true },
+      { text: "TechBros Brand Starter Pack (Logo, Colors, Fonts)", included: true },
+      { text: "Domain & Hosting Setup", included: true },
+      { text: "Basic SEO & Speed Optimization", included: true },
+      { text: "Delivery in 7 Days", included: true }
     ],
-    ctaText: "Start Your Launch"
+    tagline: "Clean. Functional. Professional. Everything you need to launch with confidence.",
+    ctaText: "Start Your Launch",
+    isOneTime: true
   },
   {
-    name: "Growth",
-    description: "Best for growing businesses needing advanced features and flexibility.",
+    name: "🚀 Scale",
+    description: "For growing businesses ready to automate, scale, and dominate.",
     price: {
-      monthly: 499,
-      annual: 399
+      monthly: 1500,
+      annual: 1500
     },
+    maintenanceFee: 99,
     highlighted: true,
     features: [
-      { text: "Up to 15 custom pages", included: true },
-      { text: "Advanced SEO & analytics", included: true },
-      { text: "Blog & content management", included: true },
-      { text: "Multi-language support (up to 3)", included: true },
-      { text: "E-commerce (up to 100 products)", included: true },
-      { text: "Custom branding kit", included: true },
-      { text: "Social media integrations", included: true },
-      { text: "Live chat & chatbot integration", included: true },
-      { text: "Monthly performance reports", included: true },
-      { text: "Priority email & chat support", included: true },
-      { text: "API integrations", included: false },
-      { text: "Dedicated account manager", included: false }
+      { text: "Full Custom Website / Web App (Up to 15 pages + dashboard)", included: true },
+      { text: "Backend Integration (APIs, Admin Panel, etc.)", included: true },
+      { text: "CRM, Payment Gateway, Email Integration", included: true },
+      { text: "Copywriting & UX Writing Support", included: true },
+      { text: "Speed, Security & SEO Optimization", included: true },
+      { text: "Dedicated Tech Support", included: true },
+      { text: "Weekly Analytics Report", included: true }
     ],
-    ctaText: "Grow with Us"
+    tagline: "More than just a website — a system that grows with you.",
+    ctaText: "Scale Your Business",
+    isOneTime: true
   },
   {
-    name: "Scale+",
-    description: "For established brands and enterprises seeking custom, scalable solutions.",
+    name: "🧠 Elite Partner Plan",
+    description: "For brands building serious platforms — SaaS, marketplaces, or enterprise systems.",
     price: {
-      monthly: 1299,
-      annual: 1049
+      monthly: 3500,
+      annual: 3500
     },
+    priceRange: "3500",
     features: [
-      { text: "Unlimited pages & users", included: true },
-      { text: "Full e-commerce suite (unlimited products)", included: true },
-      { text: "Custom web applications & portals", included: true },
-      { text: "API & third-party integrations", included: true },
-      { text: "Advanced security & compliance", included: true },
-      { text: "Performance optimization & audits", included: true },
-      { text: "Dedicated account manager", included: true },
-      { text: "24/7 priority support (phone, chat, email)", included: true },
-      { text: "Quarterly strategy sessions", included: true },
-      { text: "Custom onboarding & training", included: true },
-      { text: "On-demand feature development", included: true },
-      { text: "White-labeling options", included: true }
+      { text: "Full-Stack Custom Build (Frontend + Backend + DB Architecture)", included: true },
+      { text: "Custom Admin Panel, User Roles & Permissions", included: true },
+      { text: "Cloud Deployment (AWS, Heroku, Vercel)", included: true },
+      { text: "Advanced Features (AI, Chatbots, APIs, Payment Logic)", included: true },
+      { text: "Scalable Architecture & Documentation", included: true },
+      { text: "Ongoing DevOps, Maintenance & Feature Rollouts", included: true },
+      { text: "Dedicated Account Manager", included: true }
     ],
-    ctaText: "Request Enterprise Demo"
+    tagline: "You're not just a client. You're a long-term tech partner.",
+    ctaText: "Request Custom Quote",
+    isCustomQuote: true
   }
+];
+
+// Optional Add-ons
+const addOns = [
+  { name: "Mobile App (Android/iOS)", price: 999 },
+  { name: "AI Chatbot Integration", price: 199 },
+  { name: "Branding Overhaul (Brand Book + Visual Identity)", price: 349 },
+  { name: "Content & Blog Setup (SEO-ready)", price: 149 },
+  { name: "Tech Consultation/Strategy Session", price: 99, unit: "hr" }
+];
+
+// Why work with us benefits
+const benefits = [
+  { icon: "🛠️", title: "100% Custom Solutions", description: "No templates, no shortcuts" },
+  { icon: "⏱️", title: "Fast Delivery", description: "Projects delivered in as little as 7 days" },
+  { icon: "📊", title: "Strategy-Driven", description: "We build with growth in mind" },
+  { icon: "🧑‍💼", title: "Real Support", description: "You're not alone after launch" },
+  { icon: "🧬", title: "Scalable Code", description: "Built to evolve as your business grows" }
 ];
 
 const faqs = [
@@ -131,74 +149,122 @@ const Pricing = () => {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-100 dark:from-neutral-900 dark:via-neutral-950 dark:to-blue-950 relative overflow-x-hidden">
       <ScrollProgress />
       <Navbar />
-      {/* Animated/gradient background shapes for visual interest */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400 via-purple-300 to-pink-300 dark:from-blue-900 dark:via-purple-900 dark:to-pink-900 rounded-full filter blur-3xl opacity-20 animate-pulse z-0" />
-      <div className="absolute -bottom-40 right-0 w-96 h-96 bg-gradient-to-tr from-pink-200 via-blue-200 to-purple-200 dark:from-pink-900 dark:via-blue-950 dark:to-purple-950 rounded-full filter blur-2xl opacity-20 animate-pulse z-0" />
+      
+      {/* Floating geometric shapes */}
+      <div className="absolute top-20 -right-20 w-96 h-96 bg-gradient-to-br from-primary/30 to-purple-400/30 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
+      <div className="absolute -bottom-32 -left-40 w-96 h-96 bg-gradient-to-tr from-blue-400/30 to-emerald-400/30 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-to-tr from-pink-400/30 to-yellow-400/30 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+
       <main className="flex-grow pt-24 relative z-10">
-        {/* Hero Section */}
-        <section className="py-20 md:py-28 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-primary drop-shadow-lg tracking-tight">Simple, Transparent Pricing</h1>
-            <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-300 mb-10">Choose the perfect plan for your business needs. No hidden fees, just value-driven solutions.</p>
-            {/* Billing Toggle */}
-            <div className="flex items-center justify-center mb-12">
-              <span className={`mr-3 ${billingPeriod === 'monthly' ? 'text-primary font-bold' : 'text-neutral-400'}`}>Monthly</span>
+        {/* Hero Section with 3D effect */}
+        <section className="py-20 md:py-28 text-center relative">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="space-y-4 transform hover:scale-[1.01] transition-transform duration-300">
+              <h1 className="text-6xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-primary via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm">
+                Simple, Transparent Pricing
+              </h1>
+              <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-300 mb-10 max-w-2xl mx-auto">
+                Choose the perfect plan for your business needs. No hidden fees, just value-driven solutions.
+              </p>
+            </div>
+
+            {/* Modern pricing toggle */}
+            <div className="relative inline-flex items-center p-1 rounded-xl bg-white/80 dark:bg-neutral-800/80 backdrop-blur-md shadow-lg border border-neutral-200/50 dark:border-neutral-700/50 mb-12">
               <button 
-                className="relative w-16 h-8 bg-primary/20 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary"
-                onClick={() => setBillingPeriod(billingPeriod === 'monthly' ? 'annual' : 'monthly')}
-                aria-label="Toggle billing period"
+                className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 ${
+                  billingPeriod === 'monthly'
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200'
+                }`}
+                onClick={() => setBillingPeriod('monthly')}
               >
-                <div 
-                  className={`absolute w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${billingPeriod === 'annual' ? 'translate-x-8' : 'translate-x-0'}`}
-                />
+                Monthly
               </button>
-              <span className={`ml-3 flex items-center ${billingPeriod === 'annual' ? 'text-primary font-bold' : 'text-neutral-400'}`}>Annual <span className="ml-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-full">20% OFF</span></span>
+              <button 
+                className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2 ${
+                  billingPeriod === 'annual'
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200'
+                }`}
+                onClick={() => setBillingPeriod('annual')}
+              >
+                Annual
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary dark:bg-primary/30">
+                  Save 20%
+                </span>
+              </button>
             </div>
           </div>
         </section>
-        {/* Pricing Tiers */}
-        <section className="py-16 -mt-20">
+
+        {/* Pricing Cards with Glassmorphism */}
+        <section className="py-16 -mt-20 relative">
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {pricingTiers.map((tier, index) => (
                 <div 
                   key={tier.name}
-                  className={`relative rounded-3xl overflow-hidden transition-all duration-300 group shadow-xl border-2 ${
+                  className={`relative rounded-3xl transition-all duration-500 group hover:translate-y-[-8px] ${
                     tier.highlighted 
-                      ? 'bg-gradient-to-br from-primary/10 via-white to-purple-100 dark:from-primary/20 dark:via-neutral-900 dark:to-purple-950 border-primary scale-105 z-10' 
-                      : 'bg-white/80 dark:bg-neutral-900/80 border-neutral-200 dark:border-neutral-800 hover:scale-105'
+                      ? 'bg-gradient-to-b from-primary/10 to-purple-100/50 dark:from-primary/20 dark:to-purple-950/50 shadow-2xl shadow-primary/20 dark:shadow-primary/10 border-2 border-primary z-10' 
+                      : 'bg-white/80 dark:bg-neutral-900/80 shadow-xl border border-neutral-200/50 dark:border-neutral-700/50'
                   }`}
                 >
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/50 to-transparent dark:from-white/5 backdrop-blur-[2px]" />
+                  
                   {tier.highlighted && (
-                    <div className="absolute top-0 left-0 right-0 bg-primary text-white text-center py-2 text-base font-bold tracking-wide shadow-lg z-20">Most Popular</div>
-                  )}
-                  <div className={`p-10 pt-14 flex flex-col items-center`}>
-                    <h3 className="text-2xl font-extrabold mb-2 text-center text-primary group-hover:text-purple-700 transition-colors">{tier.name}</h3>
-                    <p className="text-neutral-600 dark:text-neutral-300 mb-6 text-center">{tier.description}</p>
-                    <div className="mb-6 flex items-end gap-2">
-                      <span className="text-5xl font-extrabold text-neutral-900 dark:text-white">${billingPeriod === 'monthly' ? tier.price.monthly : tier.price.annual}</span>
-                      <span className="text-neutral-500 text-lg font-medium">/mo</span>
+                    <div className="absolute -top-5 left-0 right-0 mx-auto w-fit px-4 py-2 bg-primary text-white text-sm font-bold rounded-full shadow-lg z-20">
+                      Most Popular
                     </div>
-                    {billingPeriod === 'annual' && (
-                      <span className="block text-sm text-primary font-semibold mb-2">Billed annually (${tier.price.annual * 12}/year)</span>
-                    )}
-                    <ul className="mb-8 w-full space-y-3 text-left">
+                  )}
+
+                  <div className="relative p-8 pt-12">
+                    {/* Price tag with special styling for one-time payments */}
+                    <div className="mb-8">
+                      <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                        {tier.name}
+                      </h3>
+                      <p className="text-neutral-600 dark:text-neutral-400 mb-6">
+                        {tier.description}
+                      </p>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-5xl font-extrabold text-neutral-900 dark:text-white">
+                          ${tier.isCustomQuote ? tier.priceRange : (billingPeriod === 'monthly' ? tier.price.monthly : tier.price.annual)}
+                        </span>
+                        {!tier.isCustomQuote && (
+                          <div className="flex flex-col text-sm text-neutral-500">
+                            <span>{tier.isOneTime ? 'One-Time' : '/month'}</span>
+                            {tier.maintenanceFee && (
+                              <span className="text-primary font-medium">+${tier.maintenanceFee}/mo maintenance</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Features with improved styling */}
+                    <ul className="space-y-4 mb-8">
                       {tier.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center gap-2">
-                          {feature.included ? (
-                            <Check className="h-5 w-5 text-primary flex-shrink-0" />
-                          ) : (
-                            <X className="h-5 w-5 text-neutral-300 dark:text-neutral-700 flex-shrink-0" />
-                          )}
-                          <span className={feature.included ? 'text-neutral-800 dark:text-neutral-100' : 'text-neutral-400 dark:text-neutral-600'}>{feature.text}</span>
+                        <li key={featureIndex} className="flex items-start gap-3 group/item">
+                          <span className="mt-1 flex-shrink-0">
+                            <Check className="h-5 w-5 text-primary" />
+                          </span>
+                          <span className="text-neutral-700 dark:text-neutral-300 group-hover/item:text-primary transition-colors">
+                            {feature.text}
+                          </span>
                         </li>
                       ))}
                     </ul>
+
+                    {/* Tagline */}
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400 italic mb-6">{tier.tagline}</p>
+
+                    {/* CTA Button */}
                     <button 
-                      className={`w-full py-3 rounded-xl font-bold text-lg shadow transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary ${
+                      className={`w-full py-4 px-6 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                         tier.highlighted
-                          ? 'bg-primary text-white hover:bg-purple-700'
-                          : 'bg-white border border-primary text-primary hover:bg-primary/10'
+                          ? 'bg-primary text-white shadow-lg hover:shadow-xl hover:bg-purple-700'
+                          : 'bg-white dark:bg-neutral-800 border-2 border-primary text-primary hover:bg-primary hover:text-white'
                       }`}
                     >
                       {tier.ctaText}
@@ -209,22 +275,58 @@ const Pricing = () => {
             </div>
           </div>
         </section>
-        {/* Custom Projects */}
-        <section className="py-20 bg-gradient-to-r from-blue-100 via-purple-50 to-pink-100 dark:from-blue-950 dark:via-neutral-950 dark:to-purple-950">
+
+        {/* Add-ons Section with Cards */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-extrabold mb-6 text-primary drop-shadow">Need a Custom Solution?</h2>
-              <p className="text-xl text-neutral-700 dark:text-neutral-200 mb-8">We understand that every business is unique. Contact us for a tailored solution that meets your specific requirements.</p>
-              <a 
-                href="/contact" 
-                className="inline-block px-10 py-4 bg-primary text-white rounded-full hover:bg-purple-700 transition-all duration-300 font-bold text-lg shadow-lg"
-              >
-                Get Custom Quote
-              </a>
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                Enhance Your Solution
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                {addOns.map((addon, index) => (
+                  <div key={index} className="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm rounded-xl p-6 border border-neutral-200/50 dark:border-neutral-700/50 hover:border-primary/50 transition-all duration-300 group">
+                    <div className="text-2xl mb-3">🔧</div>
+                    <h3 className="font-semibold mb-2 text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
+                      {addon.name}
+                    </h3>
+                    <p className="text-primary font-medium">
+                      From ${addon.price}{addon.unit ? `/${addon.unit}` : ''}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
-        {/* FAQs */}
+
+        {/* Benefits Grid */}
+        <section className="py-20 bg-gradient-to-r from-neutral-100/50 via-white/50 to-neutral-100/50 dark:from-neutral-900/50 dark:via-neutral-950/50 dark:to-neutral-900/50 backdrop-blur-sm">
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                Why Work With TechBros?
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                {benefits.map((benefit, index) => (
+                  <div key={index} className="text-center group">
+                    <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform">
+                      {benefit.icon}
+                    </div>
+                    <h3 className="font-semibold mb-2 text-neutral-900 dark:text-white">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                      {benefit.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs with better animations */}
         <section className="py-20 md:py-28">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">

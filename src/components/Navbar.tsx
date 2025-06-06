@@ -23,9 +23,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Projects", href: "/projects" },
+  { label: "Careers", href: "/careers" },
   { label: "Team", href: "/team" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Careers", href: "/careers" },
   { label: "Blog", href: "/blog" },
 ];
 
@@ -75,7 +75,9 @@ const Navbar = () => {
 
   const { user, signOut } = useAuth();
 
-  useEffect(() => {
+  const navbarRef = React.useRef<HTMLElement>(null);
+
+  React.useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 80) {
         setScrolled(true);
@@ -89,7 +91,11 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+
+    if (navbarRef.current) {
+      console.log("Navbar height:", navbarRef.current.offsetHeight);
+    }
+  }, [location]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -98,10 +104,6 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
-
-  useEffect(() => {
-    closeMenu();
-  }, [location]);
 
   return (
     <header
@@ -250,7 +252,7 @@ const Navbar = () => {
 
           {/* Other nav items */}
           {navItems.map((item) => (
-            <React.Fragment key={item.label}>
+            <div key={item.label}>
               {item.children ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -274,7 +276,7 @@ const Navbar = () => {
                   <Link to={item.href}>{item.label}</Link>
                 </Button>
               )}
-            </React.Fragment>
+            </div>
           ))}
         </nav>
 
@@ -411,7 +413,7 @@ const Navbar = () => {
           
           {/* Other nav items */}
           {navItems.map((item) => (
-            <React.Fragment key={item.label}>
+            <div key={item.label}>
               {item.children ? (
                 <div>
                   <Button
@@ -448,7 +450,7 @@ const Navbar = () => {
                   <Link to={item.href}>{item.label}</Link>
                 </Button>
               )}
-            </React.Fragment>
+            </div>
           ))}
         </nav>
       </div>

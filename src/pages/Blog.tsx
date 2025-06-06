@@ -9,6 +9,7 @@ import BlogReactServerComponents from "./blog/ReactServerComponents";
 import BlogEdgeAI2025 from "./blog/EdgeAI2025";
 import BlogOpenSource2025 from "./blog/OpenSource2025";
 import BlogTechBrosScalePlus from "./blog/TechBrosScalePlus";
+import BlogServerless2025 from "./blog/Serverless2025";
 
 const techBlogs = [
   {
@@ -217,6 +218,94 @@ const techBlogs = [
     author: "Marta Kowalski",
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
     excerpt: "Serverless is getting smarter, faster, and more affordable. Learn about the new platforms, use cases, and how to get started in 2025.",
+    link: "/blog/serverless-2025"
+  },
+  {
+    title: "The Rise of WebAssembly and Edge Computing",
+    date: "June 4, 2025",
+    author: "David Chen",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    excerpt: "WebAssembly is revolutionizing how we think about performance and portability in web applications. Discover the latest developments and real-world use cases.",
+    link: "/blog/webassembly-edge-2025"
+  },
+  {
+    title: "Blockchain in Enterprise: Beyond Cryptocurrency",
+    date: "June 3, 2025",
+    author: "Maria Santos",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "From supply chain management to digital identity, enterprises are finding innovative uses for blockchain technology. Learn about the transformative applications.",
+    link: "/blog/blockchain-enterprise-2025"
+  },
+  {
+    title: "The Future of DevOps: GitOps and Platform Engineering",
+    date: "June 2, 2025",
+    author: "James Wilson",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Explore how GitOps and Platform Engineering are reshaping the DevOps landscape. Get insights into tools, practices, and team structures.",
+    link: "/blog/devops-future-2025"
+  },
+  {
+    title: "Sustainable Tech: Green Computing Initiatives",
+    date: "June 1, 2025",
+    author: "Emma Green",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+    excerpt: "How tech companies are reducing their carbon footprint through innovative solutions in data centers, software optimization, and renewable energy.",
+    link: "/blog/sustainable-tech-2025"
+  },
+  {
+    title: "Progressive Web Apps in 2025",
+    date: "May 31, 2025",
+    author: "Alex Turner",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+    excerpt: "PWAs are becoming the new standard for web applications. Learn about new capabilities, best practices, and success stories.",
+    link: "/blog/pwa-2025"
+  },
+  {
+    title: "The Evolution of TypeScript and JavaScript",
+    date: "May 30, 2025",
+    author: "Sarah Lee",
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    excerpt: "TypeScript continues to transform JavaScript development. Discover the latest features, tooling improvements, and migration strategies.",
+    link: "/blog/typescript-evolution-2025"
+  },
+  {
+    title: "Micro-Frontends: Scaling Frontend Development",
+    date: "May 29, 2025",
+    author: "Thomas Schmidt",
+    image: "https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80",
+    excerpt: "How large organizations are using micro-frontends to scale their development teams and applications. Best practices and implementation strategies.",
+    link: "/blog/micro-frontends-2025"
+  },
+  {
+    title: "Machine Learning Operations (MLOps)",
+    date: "May 28, 2025",
+    author: "Dr. Rachel Kim",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    excerpt: "MLOps is bridging the gap between ML development and operations. Learn about the tools, practices, and challenges in productionizing ML models.",
+    link: "/blog/mlops-2025"
+  },
+  {
+    title: "Real-time Applications with WebSockets and WebRTC",
+    date: "May 27, 2025",
+    author: "Carlos Rodriguez",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Building real-time applications is easier than ever. Explore the latest protocols, frameworks, and best practices for live experiences.",
+    link: "/blog/realtime-apps-2025"
+  },
+  {
+    title: "Cross-Platform Development with Flutter",
+    date: "May 26, 2025",
+    author: "Priya Sharma",
+    image: "https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Flutter is transforming mobile and desktop development. See how teams are using it to build beautiful, performant applications across platforms.",
+    link: "/blog/flutter-2025"
+  },
+  {
+    title: "Serverless Computing in 2025: Beyond Functions",
+    date: "June 6, 2025",
+    author: "Michael Torres",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
+    excerpt: "Discover how serverless computing has evolved beyond FaaS to enable building entire applications without infrastructure management.",
     link: "/blog/serverless-2025"
   }
 ];

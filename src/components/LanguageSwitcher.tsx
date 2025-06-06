@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Check, ChevronDown, Globe } from "lucide-react";
@@ -8,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
 
 const languages = [
   { code: "en", name: "English" },
@@ -18,14 +18,13 @@ const languages = [
 ];
 
 const LanguageSwitcher = () => {
-  const [currentLang, setCurrentLang] = useState("en");
+  const { i18n } = useTranslation();
+  const [currentLang, setCurrentLang] = useState(i18n.language);
 
   const handleLanguageChange = (langCode: string) => {
+    console.log(`Changing language to: ${langCode}`);
     setCurrentLang(langCode);
-    // In a real implementation, you would use i18n library like react-i18next
-    // i18n.changeLanguage(langCode);
-    
-    // For demo purposes, we'll just save the preference to localStorage
+    i18n.changeLanguage(langCode);
     localStorage.setItem("preferredLanguage", langCode);
   };
 
