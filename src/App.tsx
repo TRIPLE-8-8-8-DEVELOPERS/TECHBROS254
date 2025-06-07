@@ -35,6 +35,7 @@ import ProjectDetail from './components/ProjectDetail';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AuthProvider } from '@/components/AuthContext';
+import { SidebarProvider } from '@/components/ui/sidebar';
 import { SupabaseProvider } from '@/components/SupabaseProvider';
 import { Suspense } from 'react';
 import FloatingContact from '@/components/FloatingContact';
@@ -78,101 +79,108 @@ import AccountSettingsPage from "./pages/AccountSettingsPage";
 
 function App() {
   console.log("App component mounted");
-  return (
-    <ThemeProvider defaultTheme="light">
-      <SupabaseProvider>
-        <AuthProvider>
-          <Router>
-            <ScrollToTop />
-            <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Loading...</div>}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/services" element={<ServicesPage />} />
-                <Route path="/projects" element={<ProjectsPage />} />
-                <Route path="/projects/:slug" element={<ProjectDetail />} />
-                <Route path="/team" element={<Team />} />
-                <Route path="/team/:slug" element={<TeamMemberDetailWrapper />} />
-                <Route path="/legal" element={<LegalPage />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/cookie-policy" element={<CookiePolicy />} />
-                <Route path="/terms-of-service" element={<TermsOfService />} />
-                <Route path="/benefits" element={<BenefitsPage />} />
-                <Route path="/diversity" element={<DiversityPage />} />
-                <Route path="/perks" element={<PerksPage />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/careers" element={<Careers />} />
-                <Route path="/careers/:jobSlug" element={<JobDetail />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/dashboard" element={<DashboardPage />} />
-                {/* Service Category Pages */}
-                <Route path="/services" element={<ServicesPage />} />
-          <Route path="/services/development" element={<DevelopmentServices />} />
-          <Route path="/services/infrastructure" element={<InfrastructureServices />} />
-          <Route path="/services/consulting" element={<ConsultingServices />} />
-          <Route path="/services/ecommerce" element={<EcommerceServices />} />
-          <Route path="/services/ai-data" element={<AIDataServices />} />
-          <Route path="/services/security" element={<SecurityServices />} />
-          <Route path="/services/marketing" element={<MarketingServices />} />
-          <Route path="/services/design" element={<DesignServices />} />
-          <Route path="/services/healthcare" element={<HealthcareServices />} />
-          <Route path="/services/education" element={<EducationServices />} />
-          <Route path="/services/forex-trading" element={<ForexServices />} />
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-          <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
-                
-                {/* Service Detail and Subcategory Pages */}
-                <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
-                <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
-                
-                <Route path="/blog/ai-agents-2025" element={<BlogAIAgents2025 />} />
-                <Route path="/blog/quantum-computing-2025" element={<BlogQuantumComputing2025 />} />
-                <Route path="/blog/react-server-components" element={<BlogReactServerComponents />} />
-                <Route path="/blog/edge-ai-2025" element={<BlogEdgeAI2025 />} />
-                <Route path="/blog/open-source-2025" element={<BlogOpenSource2025 />} />
-                <Route path="/blog/techbros-scale-plus" element={<BlogTechBrosScalePlus />} />
-                <Route path="/blog/5g-beyond-2025" element={<Blog5GBeyond2025 />} />
-                <Route path="/blog/ethics-of-ai-2025" element={<BlogEthicsOfAI2025 />} />
-                <Route path="/blog/composable-commerce-2025" element={<BlogComposableCommerce2025 />} />
-                <Route path="/blog/digital-twins-2025" element={<BlogDigitalTwins2025 />} />
-                <Route path="/blog/women-in-tech-2025" element={<BlogWomenInTech2025 />} />
-                <Route path="/blog/zero-trust-security-2025" element={<BlogZeroTrustSecurity2025 />} />
-                <Route path="/blog/api-economy-2025" element={<BlogAPIEconomy2025 />} />
-                <Route path="/blog/tech-in-africa-2025" element={<BlogTechInAfrica2025 />} />
-                <Route path="/blog/wearables-2025" element={<BlogWearables2025 />} />
-                <Route path="/blog/serverless-2025" element={<BlogServerless2025 />} />
-                <Route path="/perks/compensation" element={<CompensationPage />} />
-                <Route path="/perks/work-from-anywhere" element={<WorkFromAnywherePage />} />
-                <Route path="/perks/vacation-time" element={<VacationTimePage />} />
-                <Route path="/perks/recognition-programs" element={<RecognitionProgramsPage />} />
-                <Route path="/perks/parental-benefits" element={<ParentalBenefitsPage />} />
-                <Route path="/perks/modern-office" element={<ModernOfficePage />} />
-                <Route path="/perks/team-events" element={<TeamEventsPage />} />
-                <Route path="/perks/learning-development" element={<LearningDevelopmentPage />} />
-                <Route path="/perks/health-wellness" element={<HealthWellnessPage />} />
-                <Route path="/perks/food-refreshments" element={<FoodRefreshmentsPage />} />
-                <Route path="/perks/flexible-work" element={<FlexibleWorkPage />} />
-                <Route path="/perks/financial-wellness" element={<FinancialWellnessPage />} />
-                <Route path="/my-projects" element={<MyProjects />} />
-                <Route path="/messages" element={<MessagesSupport />} />
-                <Route path="/meetings" element={<MeetingsPage />} />
-                <Route path="/billing" element={<InvoicesBillingPage />} />
-                <Route path="/analytics" element={<ReportsAnalyticsPage />} />
-                <Route path="/documents" element={<DocumentsFilesPage />} />
-                <Route path="/settings" element={<AccountSettingsPage />} />
+  try {
+    return (
+      <SidebarProvider>
+        <ThemeProvider defaultTheme="light">
+          <SupabaseProvider>
+            <AuthProvider>
+              <Router>
+              <ScrollToTop />
+              <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Loading...</div>}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/services" element={<ServicesPage />} />
+                  <Route path="/projects" element={<ProjectsPage />} />
+                  <Route path="/projects/:slug" element={<ProjectDetail />} />
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/team/:slug" element={<TeamMemberDetailWrapper />} />
+                  <Route path="/legal" element={<LegalPage />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/cookie-policy" element={<CookiePolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/benefits" element={<BenefitsPage />} />
+                  <Route path="/diversity" element={<DiversityPage />} />
+                  <Route path="/perks" element={<PerksPage />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/careers/:jobSlug" element={<JobDetail />} />
+                  <Route path="/pricing" element={<Pricing />} />
+                  <Route path="/auth" element={<AuthPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  {/* Service Category Pages */}
+                  <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/development" element={<DevelopmentServices />} />
+            <Route path="/services/infrastructure" element={<InfrastructureServices />} />
+            <Route path="/services/consulting" element={<ConsultingServices />} />
+            <Route path="/services/ecommerce" element={<EcommerceServices />} />
+            <Route path="/services/ai-data" element={<AIDataServices />} />
+            <Route path="/services/security" element={<SecurityServices />} />
+            <Route path="/services/marketing" element={<MarketingServices />} />
+            <Route path="/services/design" element={<DesignServices />} />
+            <Route path="/services/healthcare" element={<HealthcareServices />} />
+            <Route path="/services/education" element={<EducationServices />} />
+            <Route path="/services/forex-trading" element={<ForexServices />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
+            <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
+                  
+                  {/* Service Detail and Subcategory Pages */}
+                  <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
+                  <Route path="/services/:serviceSlug/:subSlug" element={<SubCategoryDetail />} />
+                  
+                  <Route path="/blog/ai-agents-2025" element={<BlogAIAgents2025 />} />
+                  <Route path="/blog/quantum-computing-2025" element={<BlogQuantumComputing2025 />} />
+                  <Route path="/blog/react-server-components" element={<BlogReactServerComponents />} />
+                  <Route path="/blog/edge-ai-2025" element={<BlogEdgeAI2025 />} />
+                  <Route path="/blog/open-source-2025" element={<BlogOpenSource2025 />} />
+                  <Route path="/blog/techbros-scale-plus" element={<BlogTechBrosScalePlus />} />
+                  <Route path="/blog/5g-beyond-2025" element={<Blog5GBeyond2025 />} />
+                  <Route path="/blog/ethics-of-ai-2025" element={<BlogEthicsOfAI2025 />} />
+                  <Route path="/blog/composable-commerce-2025" element={<BlogComposableCommerce2025 />} />
+                  <Route path="/blog/digital-twins-2025" element={<BlogDigitalTwins2025 />} />
+                  <Route path="/blog/women-in-tech-2025" element={<BlogWomenInTech2025 />} />
+                  <Route path="/blog/zero-trust-security-2025" element={<BlogZeroTrustSecurity2025 />} />
+                  <Route path="/blog/api-economy-2025" element={<BlogAPIEconomy2025 />} />
+                  <Route path="/blog/tech-in-africa-2025" element={<BlogTechInAfrica2025 />} />
+                  <Route path="/blog/wearables-2025" element={<BlogWearables2025 />} />
+                  <Route path="/blog/serverless-2025" element={<BlogServerless2025 />} />
+                  <Route path="/perks/compensation" element={<CompensationPage />} />
+                  <Route path="/perks/work-from-anywhere" element={<WorkFromAnywherePage />} />
+                  <Route path="/perks/vacation-time" element={<VacationTimePage />} />
+                  <Route path="/perks/recognition-programs" element={<RecognitionProgramsPage />} />
+                  <Route path="/perks/parental-benefits" element={<ParentalBenefitsPage />} />
+                  <Route path="/perks/modern-office" element={<ModernOfficePage />} />
+                  <Route path="/perks/team-events" element={<TeamEventsPage />} />
+                  <Route path="/perks/learning-development" element={<LearningDevelopmentPage />} />
+                  <Route path="/perks/health-wellness" element={<HealthWellnessPage />} />
+                  <Route path="/perks/food-refreshments" element={<FoodRefreshmentsPage />} />
+                  <Route path="/perks/flexible-work" element={<FlexibleWorkPage />} />
+                  <Route path="/perks/financial-wellness" element={<FinancialWellnessPage />} />
+                  <Route path="/my-projects" element={<MyProjects />} />
+                  <Route path="/messages" element={<MessagesSupport />} />
+                  <Route path="/meetings" element={<MeetingsPage />} />
+                  <Route path="/billing" element={<InvoicesBillingPage />} />
+                  <Route path="/analytics" element={<ReportsAnalyticsPage />} />
+                  <Route path="/documents" element={<DocumentsFilesPage />} />
+                  <Route path="/settings" element={<AccountSettingsPage />} />
 
-                {/* Catch-all for unknown routes */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-            <FloatingContact />
-          </Router>
-          <Toaster />
-        </AuthProvider>
-      </SupabaseProvider>
-    </ThemeProvider>
-  );
+                  {/* Catch-all for unknown routes */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+              <FloatingContact />
+            </Router>
+            <Toaster />
+          </AuthProvider>
+        </SupabaseProvider>
+      </ThemeProvider>
+      </SidebarProvider>
+    );
+  } catch (error) {
+    console.error("App.tsx: An error occurred:", error);
+    return <div>Error in App.tsx: {error.message}</div>;
+  }
 }
 
 export default App;
