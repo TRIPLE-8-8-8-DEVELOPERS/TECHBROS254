@@ -19,8 +19,8 @@ import {
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = "16rem"
-const SIDEBAR_WIDTH_MOBILE = "18rem"
+const SIDEBAR_WIDTH = "10rem"
+const SIDEBAR_WIDTH_MOBILE = "14rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
@@ -127,7 +127,7 @@ const SidebarProvider = React.forwardRef<
       [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
     )
 
-    console.log("SidebarProvider is rendering");
+    console.log("SidebarProvider is rendering - checking if this log appears");
     return (
       <SidebarContext.Provider value={contextValue}>
         <TooltipProvider delayDuration={0}>
@@ -176,7 +176,7 @@ const Sidebar = React.forwardRef<
   ) => {
     const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
 
-    console.log("Sidebar: isMobile =", isMobile, "state =", state, "openMobile =", openMobile);
+    console.log("Sidebar: isMobile =", isMobile, "state =", state, "openMobile =", openMobile, "SIDEBAR_WIDTH =", SIDEBAR_WIDTH, "SIDEBAR_WIDTH_MOBILE =", SIDEBAR_WIDTH_MOBILE);
 
     if (collapsible === "none") {
       return (

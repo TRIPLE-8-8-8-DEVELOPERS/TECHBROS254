@@ -90,9 +90,9 @@ const DashboardPage = () => {
             </SidebarFooter>
           </Sidebar>
           {/* Main Content */}
-          <div className="flex-1 flex flex-col min-h-screen">
+          <div className="flex-1 flex flex-col min-h-screen h-full border-2 border-red-500" style={{ width: '100%' }}>
             {/* Top Navbar */}
-            <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
+            <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800" style={{ minHeight: '4rem' }}>
               <SidebarTrigger className="md:hidden" />
               <div className="flex items-center gap-3 w-1/2">
                 <input type="text" placeholder="Search projects, invoices..." className="w-full px-4 py-2 rounded-lg bg-[#F5F5F5] dark:bg-[#181A1B] border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E90FF]" />

@@ -311,3 +311,7 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.no-center {
+  text-align: left;
+}

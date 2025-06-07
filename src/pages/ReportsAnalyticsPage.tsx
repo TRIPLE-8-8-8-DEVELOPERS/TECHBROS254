@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAuth } from "@/components/AuthContext";
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
-import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, PieChart, Download, Filter, FileCheck } from "lucide-react";
+import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, PieChart } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
 
@@ -23,19 +23,9 @@ const mockAnalytics = [
   { label: "Upcoming Meetings", value: 2 },
 ];
 
-const kpis = [
-  { label: "Projects Completed", value: 12, icon: <FileCheck className="text-green-500" /> },
-  { label: "Hours Billed", value: 320, icon: <Calendar className="text-blue-500" /> },
-  { label: "Revenue", value: "$24,000", icon: <PieChart className="text-purple-500" /> },
-];
-const projects = ["All Projects", "Website Redesign", "Mobile App", "Branding"];
-const timeframes = ["Weekly", "Monthly", "Custom"];
-
 const ReportsAnalyticsPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [selectedProject, setSelectedProject] = useState("All Projects");
-  const [selectedTimeframe, setSelectedTimeframe] = useState("Monthly");
   if (!user) return null;
   return (
     <SidebarProvider>
@@ -73,52 +63,19 @@ const ReportsAnalyticsPage = () => {
         </Sidebar>
         <div className="flex-1 flex flex-col min-h-screen">
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
-            <div className="font-bold text-lg text-[#1E90FF] flex items-center gap-2"><BarChart2 /> Reports & Analytics</div>
-            <button className="flex items-center gap-2 bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-[#1877cc] transition"><Download size={18}/> Generate Report</button>
+            <div className="font-bold text-lg text-[#1E90FF]">Reports & Analytics</div>
           </div>
           <main className="flex-1 p-8 overflow-y-auto">
-            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-8 animate-fade-in max-w-6xl mx-auto">
-              {/* KPI Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                {kpis.map((kpi, i) => (
-                  <div key={i} className="bg-gray-50 dark:bg-[#23272F]/60 rounded-2xl shadow p-6 flex flex-col items-start gap-2">
-                    <div className="flex items-center gap-2 text-2xl">{kpi.icon} <span className="font-bold">{kpi.value}</span></div>
-                    <div className="text-xs text-gray-500">{kpi.label}</div>
+            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-4 animate-fade-in max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold text-[#1E90FF] mb-2">Your Analytics</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {mockAnalytics.map((item, i) => (
+                  <div key={i} className="bg-white dark:bg-[#23272F] rounded-xl shadow p-4 flex flex-col items-center">
+                    <PieChart className="text-[#1E90FF] mb-2" />
+                    <div className="text-lg font-bold">{item.value}</div>
+                    <div className="text-xs text-gray-500">{item.label}</div>
                   </div>
                 ))}
-              </div>
-              {/* Filters */}
-              <div className="flex flex-wrap gap-4 items-center mb-4">
-                <div className="flex items-center gap-2">
-                  <Filter className="text-[#1E90FF]" />
-                  <select className="border rounded-lg px-3 py-2 text-sm" value={selectedProject} onChange={e => setSelectedProject(e.target.value)}>
-                    {projects.map(p => <option key={p} value={p}>{p}</option>)}
-                  </select>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-gray-500">Timeframe:</span>
-                  {timeframes.map(tf => (
-                    <button key={tf} className={`px-3 py-1 rounded-full text-xs font-semibold border transition ${selectedTimeframe === tf ? 'bg-[#1E90FF] text-white border-[#1E90FF]' : 'bg-gray-100 dark:bg-[#23272F]/60 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 hover:bg-[#1E90FF]/10'}`} onClick={() => setSelectedTimeframe(tf)}>{tf}</button>
-                  ))}
-                </div>
-              </div>
-              {/* Charts Section (mocked) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Progress Over Time (Line Chart) */}
-                <div className="bg-gray-50 dark:bg-[#23272F]/60 rounded-2xl shadow p-6 flex flex-col gap-2">
-                  <div className="font-semibold mb-2">Progress Over Time</div>
-                  <div className="h-48 flex items-center justify-center text-gray-400">[Line Chart Placeholder with hover tooltips]</div>
-                </div>
-                {/* Budget vs Spend (Bar Chart) */}
-                <div className="bg-gray-50 dark:bg-[#23272F]/60 rounded-2xl shadow p-6 flex flex-col gap-2">
-                  <div className="font-semibold mb-2">Budget vs Spend</div>
-                  <div className="h-48 flex items-center justify-center text-gray-400">[Bar Chart Placeholder with hover tooltips]</div>
-                </div>
-                {/* Time Tracking (Pie/Donut) */}
-                <div className="bg-gray-50 dark:bg-[#23272F]/60 rounded-2xl shadow p-6 flex flex-col gap-2 md:col-span-2">
-                  <div className="font-semibold mb-2">Time Tracking</div>
-                  <div className="h-48 flex items-center justify-center text-gray-400">[Pie/Donut Chart Placeholder with hover tooltips]</div>
-                </div>
               </div>
             </div>
           </main>
