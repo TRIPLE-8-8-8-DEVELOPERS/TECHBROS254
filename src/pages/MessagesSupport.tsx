@@ -104,9 +104,9 @@ const MessagesSupport = () => {
             </button>
           </div>
           <main className="flex-1 p-8 overflow-y-auto">
-            <div className="flex gap-6 h-[70vh]">
+            <div className="flex gap-6 h-[70vh] flex-col md:flex-row">
               {/* Left: Threads List */}
-              <div className="w-72 bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 flex flex-col">
+              <div className="w-full md:w-72 bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-[#1E90FF]">Threads</h3>
                   <button className="text-[#1E90FF] hover:underline flex items-center gap-1 text-xs"><PlusCircle size={16}/> New</button>
@@ -128,7 +128,7 @@ const MessagesSupport = () => {
                 </div>
               </div>
               {/* Right: Chat Window */}
-              <div className="flex-1 bg-white dark:bg-[#23272F] rounded-2xl shadow flex flex-col">
+              <div className="flex-1 bg-white dark:bg-[#23272F] rounded-2xl shadow flex flex-col mt-4 md:mt-0">
                 <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 px-6 py-4">
                   <div className="flex items-center gap-2">
                     <MessageCircle className="text-[#1E90FF]" />

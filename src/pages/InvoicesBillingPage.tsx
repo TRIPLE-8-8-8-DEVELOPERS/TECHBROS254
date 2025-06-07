@@ -98,13 +98,14 @@ const InvoicesBillingPage = () => {
                 ))}
               </div>
               {/* Invoices Table */}
-              <div className="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-800">
-                <table className="min-w-full text-sm">
+              <div className="rounded-xl border border-gray-100 dark:border-gray-800 overflow-x-auto">
+                <div className="overflow-x-auto">
+                  <table className="min-w-[600px] text-sm max-w-full w-full table-fixed">
                   <thead>
                     <tr className="bg-gray-50 dark:bg-[#23272F]/60">
                       <th className="p-3 cursor-pointer" onClick={() => { setSortBy('id'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Invoice ID</th>
-                      <th className="p-3">Project</th>
-                      <th className="p-3 cursor-pointer" onClick={() => { setSortBy('date'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Date</th>
+                      <th className="p-3 hidden md:table-cell">Project</th>
+                      <th className="p-3 cursor-pointer hidden md:table-cell" onClick={() => { setSortBy('date'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Date</th>
                       <th className="p-3 cursor-pointer" onClick={() => { setSortBy('amount'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Amount</th>
                       <th className="p-3 cursor-pointer" onClick={() => { setSortBy('status'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Status</th>
                       <th className="p-3">Action</th>
@@ -114,8 +115,8 @@ const InvoicesBillingPage = () => {
                     {sortedInvoices.map((inv, i) => (
                       <tr key={inv.id} className="border-b border-gray-100 dark:border-gray-800 hover:bg-[#F5F5F5] dark:hover:bg-[#23272F]/40 transition">
                         <td className="p-3 font-mono font-bold">{inv.id}</td>
-                        <td className="p-3">{inv.project}</td>
-                        <td className="p-3">{inv.date}</td>
+                        <td className="p-3 hidden md:table-cell">{inv.project}</td>
+                        <td className="p-3 hidden md:table-cell">{inv.date}</td>
                         <td className="p-3">${inv.amount.toLocaleString()}</td>
                         <td className="p-3">
                           {inv.status === 'Paid' && <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800"><CheckCircle size={14}/> Paid</span>}
@@ -132,6 +133,7 @@ const InvoicesBillingPage = () => {
                   </tbody>
                 </table>
               </div>
+            
               {/* Billing Settings */}
               <div className="mt-8">
                 <h3 className="text-lg font-bold mb-2 text-[#1E90FF]">Billing Settings</h3>
