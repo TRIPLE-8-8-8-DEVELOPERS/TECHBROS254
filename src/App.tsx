@@ -77,6 +77,7 @@ import DocumentsFilesPage from "./pages/DocumentsFilesPage";
 import AccountSettingsPage from "./pages/AccountSettingsPage";
 
 function App() {
+  console.log("App component mounted");
   return (
     <ThemeProvider defaultTheme="light">
       <SupabaseProvider>
