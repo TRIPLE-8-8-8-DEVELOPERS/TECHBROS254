@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "@/components/AuthContext";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, Paperclip, Send, User, Tag, PlusCircle, X } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -19,7 +19,7 @@ const navItems = [
 // Mock data for threads and messages
 const mockThreads = [
   { id: 1, name: "Website Redesign", lastMessage: "Can you review the new homepage?", unread: 2 },
-  { id: 2, name: "Mobile App", lastMessage: "Bug found in login flow.", unread: 0 },
+  { id: 2, name: "Mobile App", lastMessage: "Bug found in login flow.", time: "10:00" },
   { id: 3, name: "Billing", lastMessage: "Invoice #1234 paid.", unread: 0 },
   { id: 4, name: "General Support", lastMessage: "How do I reset my password?", unread: 1 },
 ];
@@ -65,38 +65,22 @@ const MessagesSupport = () => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-        <Sidebar className="bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-800 shadow-lg min-h-screen" style={{ minWidth: 220 }}>
-          <SidebarHeader className="flex flex-col items-center py-6">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-10 h-10 bg-[#1E90FF] rounded-full flex items-center justify-center text-white font-bold text-2xl">T</div>
-              <span className="font-bold text-lg text-[#1E90FF]">TechBros</span>
-            </div>
-            <div className="text-xs text-gray-500 mb-2">Messages & Support</div>
-          </SidebarHeader>
+        <Sidebar>
+          <SidebarHeader />
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton isActive={item.label === "Messages/Support"} onClick={() => navigate(item.path)}>
+                <SidebarMenuButton onClick={() => navigate(item.path)}>
                   {item.icon}
                   <span>{item.label}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
-            <SidebarSeparator />
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => navigate('/auth')}>
-                <LogOut />
-                <span>Logout</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           </SidebarMenu>
-          <SidebarFooter className="mt-auto p-4">
-            <button onClick={() => setShowSupportModal(true)} className="flex items-center gap-2 text-xs text-[#1E90FF] hover:underline">
-              <HelpCircle size={16} /> Need Help?
-            </button>
-          </SidebarFooter>
+          <SidebarFooter />
         </Sidebar>
-        <div className="flex-1 flex flex-col min-h-screen">
+        <div className="flex flex-col flex-1">
+          {/* Top Navbar or header if needed */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
             <div className="font-bold text-lg text-[#1E90FF]">Messages & Support</div>
             <button onClick={() => setShowSupportModal(true)} className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#1877cc] transition">
@@ -104,9 +88,9 @@ const MessagesSupport = () => {
             </button>
           </div>
           <main className="flex-1 p-8 overflow-y-auto">
-            <div className="flex gap-6 h-[70vh] flex-col md:flex-row">
+            <div className="flex gap-6 h-[70vh]">
               {/* Left: Threads List */}
-              <div className="w-full md:w-72 bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 flex flex-col">
+              <div className="w-72 bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-[#1E90FF]">Threads</h3>
                   <button className="text-[#1E90FF] hover:underline flex items-center gap-1 text-xs"><PlusCircle size={16}/> New</button>
@@ -128,7 +112,7 @@ const MessagesSupport = () => {
                 </div>
               </div>
               {/* Right: Chat Window */}
-              <div className="flex-1 bg-white dark:bg-[#23272F] rounded-2xl shadow flex flex-col mt-4 md:mt-0">
+              <div className="flex-1 bg-white dark:bg-[#23272F] rounded-2xl shadow flex flex-col">
                 <div className="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 px-6 py-4">
                   <div className="flex items-center gap-2">
                     <MessageCircle className="text-[#1E90FF]" />
@@ -199,28 +183,28 @@ const MessagesSupport = () => {
             </div>
           </main>
           <Footer />
-        </div>
-        {/* Support Modal */}
-        {showSupportModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow-xl p-8 w-full max-w-md relative animate-fade-in">
-              <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-700" onClick={() => setShowSupportModal(false)}><X size={24} /></button>
-              <h3 className="text-xl font-bold text-[#1E90FF] mb-2">Contact TechBros Support</h3>
-              <p className="text-sm text-gray-500 mb-4">How can we help you? Start a live chat or submit a ticket below.</p>
-              <form className="flex flex-col gap-3">
-                <input className="border rounded-lg px-3 py-2 text-sm" placeholder="Subject" />
-                <textarea className="border rounded-lg px-3 py-2 text-sm" placeholder="Describe your issue..." rows={4} />
-                <button className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition">Submit Ticket</button>
-              </form>
-              <div className="mt-4">
-                <div className="font-semibold text-xs mb-1">FAQ Suggestions:</div>
-                <ul className="list-disc list-inside text-xs text-gray-500">
-                  {faqSuggestions.map((faq, i) => <li key={i}>{faq}</li>)}
-                </ul>
+          {/* Support Modal */}
+          {showSupportModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow-xl p-8 w-full max-w-md relative animate-fade-in">
+                <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-700" onClick={() => setShowSupportModal(false)}><X size={24} /></button>
+                <h3 className="text-xl font-bold text-[#1E90FF] mb-2">Contact TechBros Support</h3>
+                <p className="text-sm text-gray-500 mb-4">How can we help you? Start a live chat or submit a ticket below.</p>
+                <form className="flex flex-col gap-3">
+                  <input className="border rounded-lg px-3 py-2 text-sm" placeholder="Subject" />
+                  <textarea className="border rounded-lg px-3 py-2 text-sm" placeholder="Describe your issue..." rows={4} />
+                  <button className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition">Submit Ticket</button>
+                </form>
+                <div className="mt-4">
+                  <div className="font-semibold text-xs mb-1">FAQ Suggestions:</div>
+                  <ul className="list-disc list-inside text-xs text-gray-500">
+                    {faqSuggestions.map((faq, i) => <li key={i}>{faq}</li>)}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </SidebarProvider>
   );

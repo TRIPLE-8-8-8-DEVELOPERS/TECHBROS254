@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 import { Folder, Home, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, Search, PlusCircle, LayoutGrid, List, Users, Calendar as CalendarIcon, FileText as FileIcon, MessageCircle as MessageIcon, Eye } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/components/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import ProjectCard from "@/components/ProjectCard";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -87,38 +87,22 @@ const MyProjects = () => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-        <Sidebar className="bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-800 shadow-lg min-h-screen" style={{ minWidth: 220 }}>
-          <SidebarHeader className="flex flex-col items-center py-6">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-10 h-10 bg-[#1E90FF] rounded-full flex items-center justify-center text-white font-bold text-2xl">T</div>
-              <span className="font-bold text-lg text-[#1E90FF]">TechBros</span>
-            </div>
-            <div className="text-xs text-gray-500 mb-2">My Projects</div>
-          </SidebarHeader>
+        <Sidebar>
+          <SidebarHeader />
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton isActive={item.label === "My Projects"} onClick={() => navigate(item.path)}>
+                <SidebarMenuButton onClick={() => navigate(item.path)}>
                   {item.icon}
                   <span>{item.label}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
-            <SidebarSeparator />
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => navigate('/auth')}>
-                <LogOut />
-                <span>Logout</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           </SidebarMenu>
-          <SidebarFooter className="mt-auto p-4">
-            <a href="#support" className="flex items-center gap-2 text-xs text-[#1E90FF] hover:underline">
-              <HelpCircle size={16} /> Need Help?
-            </a>
-          </SidebarFooter>
+          <SidebarFooter />
         </Sidebar>
-        <div className="flex-1 flex flex-col min-h-screen">
+        <div className="flex flex-col flex-1">
+          {/* Top Navbar or header if needed */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
             <div className="font-bold text-lg text-[#1E90FF]">My Projects</div>
             <button className="flex items-center gap-2 bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-[#1877cc] transition animate-bounce">
@@ -126,7 +110,7 @@ const MyProjects = () => {
             </button>
           </div>
           <main className="flex-1 p-8 overflow-y-auto">
-            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-6 animate-fade-in max-w-7xl mx-auto">
+            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-6 animate-fade-in mx-auto">
               {/* Top Controls */}
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
                 <div className="flex gap-2 flex-wrap">
@@ -250,7 +234,7 @@ const MyProjects = () => {
                         </div>
                       </div>
                       <div className="flex gap-2 min-w-[220px]">
-                        <button onClick={() => navigate(`/projects/${project.slug}`)} className="flex-1 flex items-center gap-1 px-3 py-1 rounded-lg bg-[#1E90FF] text-white text-xs font-semibold hover:bg-[#1877cc] transition"><Eye size={14}/> View</button>
+                        <button onClick={() => navigate(`/my-projects/${project.slug}`)} className="flex-1 flex items-center gap-1 px-3 py-1 rounded-lg bg-[#1E90FF] text-white text-xs font-semibold hover:bg-[#1877cc] transition"><Eye size={14}/> View</button>
                         <button onClick={() => navigate(`/messages?project=${project.id}`)} className="flex-1 flex items-center gap-1 px-3 py-1 rounded-lg bg-gray-100 dark:bg-[#23272F]/60 text-[#1E90FF] text-xs font-semibold border border-[#1E90FF] hover:bg-[#1E90FF] hover:text-white transition"><MessageIcon size={14}/> Messages</button>
                         <button onClick={() => navigate(`/documents?project=${project.id}`)} className="flex-1 flex items-center gap-1 px-3 py-1 rounded-lg bg-gray-100 dark:bg-[#23272F]/60 text-[#1E90FF] text-xs font-semibold border border-[#1E90FF] hover:bg-[#1E90FF] hover:text-white transition"><FileIcon size={14}/> Files</button>
                       </div>

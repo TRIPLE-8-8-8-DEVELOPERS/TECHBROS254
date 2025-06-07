@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "@/components/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
-import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, User, Bell, Moon, Sun, Plus, Upload, Users, FileCheck, PieChart } from "lucide-react";
 import Footer from "@/components/Footer";
+import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, User, Bell, Moon, Sun, Plus, Upload, Users, FileCheck, PieChart } from "lucide-react";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -41,59 +41,33 @@ const mockDocuments = [
 const DashboardPage = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
-  const [sidebarOpen] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
-  const [aiInput, setAiInput] = useState("");
-  const [aiResponse, setAiResponse] = useState("");
+  const [aiResponse] = useState("");
 
   if (!user) return null;
 
-  // Simulate AI assistant response
-  const handleAiAsk = () => {
-    setAiResponse("I'm your TechBros AI Assistant! This is a placeholder response. (Integrate OpenAI API for real answers.)");
-  };
-
   return (
-    <SidebarProvider>
-      <div className={darkMode ? "dark" : ""}>
+    <div className={darkMode ? "dark" : ""}>
+      <SidebarProvider>
         <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-          {/* Sidebar */}
-          <Sidebar className="bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-800 shadow-lg min-h-screen" style={{ minWidth: sidebarOpen ? 220 : 64 }}>
-            <SidebarHeader className="flex flex-col items-center py-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-10 h-10 bg-[#1E90FF] rounded-full flex items-center justify-center text-white font-bold text-2xl">T</div>
-                {sidebarOpen && <span className="font-bold text-lg text-[#1E90FF]">TechBros</span>}
-              </div>
-              {sidebarOpen && <div className="text-xs text-gray-500 mb-2">Welcome, {user.email}</div>}
-            </SidebarHeader>
+          <Sidebar>
+            <SidebarHeader />
             <SidebarMenu>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.label}>
-                  <SidebarMenuButton isActive={item.label === "Dashboard"} onClick={() => navigate(item.path)}>
+                  <SidebarMenuButton onClick={() => navigate(item.path)}>
                     {item.icon}
-                    {sidebarOpen && <span>{item.label}</span>}
+                    <span>{item.label}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <SidebarSeparator />
-              <SidebarMenuItem>
-                <SidebarMenuButton onClick={signOut}>
-                  <LogOut />
-                  {sidebarOpen && <span>Logout</span>}
-                </SidebarMenuButton>
-              </SidebarMenuItem>
             </SidebarMenu>
-            <SidebarFooter className="mt-auto p-4">
-              <a href="#support" className="flex items-center gap-2 text-xs text-[#1E90FF] hover:underline">
-                <HelpCircle size={16} /> Need Help?
-              </a>
-            </SidebarFooter>
+            <SidebarFooter />
           </Sidebar>
-          {/* Main Content */}
-          <div className="flex-1 flex flex-col min-h-screen h-full border-2 border-red-500" style={{ width: '100%' }}>
+          <div className="flex flex-col flex-1">
             {/* Top Navbar */}
             <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800" style={{ minHeight: '4rem' }}>
-              <SidebarTrigger className="md:hidden" />
+              
               <div className="flex items-center gap-3 w-1/2">
                 <input type="text" placeholder="Search projects, invoices..." className="w-full px-4 py-2 rounded-lg bg-[#F5F5F5] dark:bg-[#181A1B] border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E90FF]" />
               </div>
@@ -115,7 +89,7 @@ const DashboardPage = () => {
               </div>
             </div>
             {/* Main Dashboard Panel */}
-            <main className="flex-1 p-8 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto">
               {/* Overview Cards */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col items-start gap-2 animate-fade-in">
@@ -205,11 +179,7 @@ const DashboardPage = () => {
               <div className="mb-8 grid md:grid-cols-2 gap-6">
                 <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-3">
                   <h2 className="text-lg font-bold mb-2 text-[#1E90FF]">💡 Smart AI Assistant</h2>
-                  <div className="bg-[#F5F5F5] dark:bg-[#181A1B] rounded-lg p-4 text-sm text-gray-600 dark:text-gray-300 min-h-[48px]">{aiResponse || "How can I help you today?"}</div>
-                  <div className="flex gap-2 mt-2">
-                    <input type="text" value={aiInput} onChange={e => setAiInput(e.target.value)} placeholder="Ask me anything..." className="flex-1 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#181A1B] text-sm focus:outline-none focus:ring-2 focus:ring-[#1E90FF]" />
-                    <button onClick={handleAiAsk} className="px-4 py-2 rounded-lg bg-[#1E90FF] text-white font-medium hover:bg-[#1877cc] transition">Ask</button>
-                  </div>
+                  <div className="bg-[#F5F5F5] dark:bg-[#181A1B] rounded-lg p-4 text-sm text-gray-600 dark:text-gray-300 min-h-[48px]">How can I help you today?</div>
                 </div>
                 <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-3">
                   <h2 className="text-lg font-bold mb-2 text-[#1E90FF]">📈 Project Analytics</h2>
@@ -232,8 +202,8 @@ const DashboardPage = () => {
             <Footer />
           </div>
         </div>
-      </div>
-    </SidebarProvider>
+      </SidebarProvider>
+    </div>
   );
 };
 

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useAuth } from "@/components/AuthContext";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, ChevronLeft, ChevronRight, Video, Link as LinkIcon, Users, Plus, X } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -51,39 +51,22 @@ const MeetingsPage = () => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-        <Sidebar className="bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-800 shadow-lg min-h-screen" style={{ minWidth: 220 }}>
-          <SidebarHeader className="flex flex-col items-center py-6">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-10 h-10 bg-[#1E90FF] rounded-full flex items-center justify-center text-white font-bold text-2xl">T</div>
-              <span className="font-bold text-lg text-[#1E90FF]">TechBros</span>
-            </div>
-            <div className="text-xs text-gray-500 mb-2">Meetings / Book a Call</div>
-          </SidebarHeader>
+        <Sidebar>
+          <SidebarHeader />
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton isActive={item.label === "Meetings / Book a Call"} onClick={() => navigate(item.path)}>
+                <SidebarMenuButton onClick={() => navigate(item.path)}>
                   {item.icon}
                   <span>{item.label}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
-            <SidebarSeparator />
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => navigate('/auth')}>
-                <LogOut />
-                <span>Logout</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           </SidebarMenu>
-          <SidebarFooter className="mt-auto p-4">
-            <a href="#support" className="flex items-center gap-2 text-xs text-[#1E90FF] hover:underline">
-              <HelpCircle size={16} /> Need Help?
-            </a>
-          </SidebarFooter>
+          <SidebarFooter />
         </Sidebar>
-        <div className="flex-1 flex flex-col min-h-screen">
-          {/* Sticky Top Header - always visible */}
+        <div className="flex flex-col flex-1">
+          {/* Top Navbar or header if needed */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
             <div className="font-bold text-lg text-[#1E90FF]">Meetings / Book a Call</div>
             <button onClick={() => setShowModal(true)} className="flex items-center gap-2 bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-[#1877cc] transition animate-bounce">
@@ -91,7 +74,7 @@ const MeetingsPage = () => {
             </button>
           </div>
           <main className="flex-1 p-8 overflow-y-auto">
-            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-6 animate-fade-in max-w-4xl mx-auto">
+            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-6 animate-fade-in mx-auto">
               {/* Calendar View */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex gap-2">
@@ -157,53 +140,53 @@ const MeetingsPage = () => {
             </div>
           </main>
           <Footer />
-        </div>
-        {/* Book a Call Modal - overlays but does not hide header */}
-        {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow-xl p-8 w-full max-w-md relative animate-fade-in">
-              <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-700" onClick={() => setShowModal(false)}><X size={24} /></button>
-              <h3 className="text-xl font-bold text-[#1E90FF] mb-2">Book a Call</h3>
-              <form className="flex flex-col gap-4" onSubmit={e => { e.preventDefault(); setShowModal(false); }}>
-                {step === 1 && (
-                  <>
-                    <label className="text-sm font-semibold">Pick a Service</label>
-                    <select className="border rounded-lg px-3 py-2 text-sm" value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} required>
-                      <option value="">Select...</option>
-                      {services.map(s => <option key={s} value={s}>{s}</option>)}
-                    </select>
-                    <button type="button" className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" onClick={() => setStep(2)} disabled={!form.service}>Next</button>
-                  </>
-                )}
-                {step === 2 && (
-                  <>
-                    <label className="text-sm font-semibold">Pick a Team Member</label>
-                    <select className="border rounded-lg px-3 py-2 text-sm" value={form.team} onChange={e => setForm(f => ({ ...f, team: e.target.value }))} required>
-                      <option value="">Select...</option>
-                      {teamMembers.map(t => <option key={t} value={t}>{t}</option>)}
-                    </select>
-                    <button type="button" className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" onClick={() => setStep(3)} disabled={!form.team}>Next</button>
-                  </>
-                )}
-                {step === 3 && (
-                  <>
-                    <label className="text-sm font-semibold">Pick a Time Slot</label>
-                    <input type="date" className="border rounded-lg px-3 py-2 text-sm" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} required />
-                    <select className="border rounded-lg px-3 py-2 text-sm" value={form.time} onChange={e => setForm(f => ({ ...f, time: e.target.value }))} required>
-                      <option value="">Select time...</option>
-                      {timeSlots.map(t => <option key={t} value={t}>{t}</option>)}
-                    </select>
-                    <button type="submit" className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" disabled={!form.date || !form.time}>Book</button>
-                  </>
-                )}
-              </form>
-              <div className="mt-4 text-xs text-gray-500">
-                <span>Sync with:</span>
-                <a href="#" className="ml-2 text-[#1E90FF] hover:underline">Google Calendar</a> | <a href="#" className="text-[#1E90FF] hover:underline">Outlook</a>
+          {/* Book a Call Modal - overlays but does not hide header */}
+          {showModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow-xl p-8 w-full max-w-md relative animate-fade-in">
+                <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-700" onClick={() => setShowModal(false)}><X size={24} /></button>
+                <h3 className="text-xl font-bold text-[#1E90FF] mb-2">Book a Call</h3>
+                <form className="flex flex-col gap-4" onSubmit={e => { e.preventDefault(); setShowModal(false); }}>
+                  {step === 1 && (
+                    <>
+                      <label className="text-sm font-semibold">Pick a Service</label>
+                      <select className="border rounded-lg px-3 py-2 text-sm" value={form.service} onChange={e => setForm(f => ({ ...f, service: e.target.value }))} required>
+                        <option value="">Select...</option>
+                        {services.map(s => <option key={s} value={s}>{s}</option>)}
+                      </select>
+                      <button type="button" className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" onClick={() => setStep(2)} disabled={!form.service}>Next</button>
+                    </>
+                  )}
+                  {step === 2 && (
+                    <>
+                      <label className="text-sm font-semibold">Pick a Team Member</label>
+                      <select className="border rounded-lg px-3 py-2 text-sm" value={form.team} onChange={e => setForm(f => ({ ...f, team: e.target.value }))} required>
+                        <option value="">Select...</option>
+                        {teamMembers.map(t => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                      <button type="button" className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" onClick={() => setStep(3)} disabled={!form.team}>Next</button>
+                    </>
+                  )}
+                  {step === 3 && (
+                    <>
+                      <label className="text-sm font-semibold">Pick a Time Slot</label>
+                      <input type="date" className="border rounded-lg px-3 py-2 text-sm" value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))} required />
+                      <select className="border rounded-lg px-3 py-2 text-sm" value={form.time} onChange={e => setForm(f => ({ ...f, time: e.target.value }))} required>
+                        <option value="">Select time...</option>
+                        {timeSlots.map(t => <option key={t} value={t}>{t}</option>)}
+                      </select>
+                      <button type="submit" className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" disabled={!form.date || !form.time}>Book</button>
+                    </>
+                  )}
+                </form>
+                <div className="mt-4 text-xs text-gray-500">
+                  <span>Sync with:</span>
+                  <a href="#" className="ml-2 text-[#1E90FF] hover:underline">Google Calendar</a> | <a href="#" className="text-[#1E90FF] hover:underline">Outlook</a>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </SidebarProvider>
   );

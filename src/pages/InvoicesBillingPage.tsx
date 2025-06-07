@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { CreditCard, Bitcoin, Download, CheckCircle, XCircle, Clock, Plus, Edit, AlertCircle, FileText } from "lucide-react";
+import { CreditCard, Bitcoin, Download, CheckCircle, XCircle, Clock, Plus, Edit, AlertCircle, FileText, Home, Folder, MessageCircle, Calendar, BarChart2, File, Settings } from "lucide-react";
 import Footer from "@/components/Footer";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
+import { useNavigate } from "react-router-dom";
 
 const mockInvoices = [
   { id: "INV-1234", project: "Website Redesign", date: "2025-06-01", amount: 2500, status: "Paid" },
@@ -15,12 +16,24 @@ const paymentMethods = [
   { type: "Crypto", address: "0x1234...abcd" },
 ];
 
+const navItems = [
+  { icon: <FileText />, label: "Invoices & Billing", path: "/billing" },
+  { icon: <Home />, label: "Dashboard", path: "/dashboard" },
+  { icon: <Folder />, label: "My Projects", path: "/my-projects" },
+  { icon: <MessageCircle />, label: "Messages/Support", path: "/messages" },
+  { icon: <Calendar />, label: "Meetings / Book a Call", path: "/meetings" },
+  { icon: <BarChart2 />, label: "Reports & Analytics", path: "/analytics" },
+  { icon: <File />, label: "Documents & Files", path: "/documents" },
+  { icon: <Settings />, label: "Account Settings", path: "/settings" },
+];
+
 const InvoicesBillingPage = () => {
   const [filter, setFilter] = useState("All");
   const [showCardModal, setShowCardModal] = useState(false);
   const [sortBy, setSortBy] = useState("date");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
   const [subscriptionActive] = useState(true);
+  const navigate = useNavigate();
 
   const filteredInvoices = mockInvoices.filter(inv => filter === "All" || inv.status === filter);
   const sortedInvoices = [...filteredInvoices].sort((a, b) => {
@@ -37,14 +50,27 @@ const InvoicesBillingPage = () => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-        {/* ...existing sidebar code... */}
-        <div className="flex-1 flex flex-col min-h-screen">
+        <Sidebar>
+          <SidebarHeader />
+          <SidebarMenu>
+            {navItems.map((item) => (
+              <SidebarMenuItem key={item.label}>
+                <SidebarMenuButton onClick={() => navigate(item.path)}>
+                  {item.icon}
+                  <span>{item.label}</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+          <SidebarFooter />
+        </Sidebar>
+        <div className="flex flex-col flex-1">
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
             <div className="font-bold text-lg text-[#1E90FF] flex items-center gap-2"><FileText /> Invoices & Billing</div>
             <button className="flex items-center gap-2 bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-[#1877cc] transition"><Download size={18}/> Download Statement</button>
           </div>
           <main className="flex-1 p-8 overflow-y-auto">
-            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-8 animate-fade-in max-w-5xl mx-auto">
+            <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-8 animate-fade-in mx-auto">
               {/* Recurring Billing Alert */}
               {subscriptionActive && (
                 <div className="flex items-center gap-2 bg-yellow-100 text-yellow-800 rounded-lg px-4 py-2 text-sm mb-2"><AlertCircle size={18}/> Recurring billing is active for your subscription.</div>

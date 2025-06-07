@@ -1,16 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "@/components/AuthContext";
 import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarFooter,
-  SidebarSeparator,
-} from "@/components/ui/sidebar";
-import {
   Home,
   Folder,
   MessageCircle,
@@ -37,6 +27,7 @@ import {
 } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -168,7 +159,7 @@ const DocumentsFilesPage = () => {
             <div className="w-10 h-10 flex items-center justify-center bg-[#F0F6FF] dark:bg-[#1E293B] rounded-lg">
               {file.preview}
             </div>
-            <div className="flex-1">
+            <div className="">
               <div className="font-semibold text-sm truncate">{file.name}</div>
               <div className="text-xs text-gray-500">{file.size} • {file.updated}</div>
             </div>
@@ -215,38 +206,22 @@ const DocumentsFilesPage = () => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-        <Sidebar className="bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-800 shadow-lg min-h-screen" style={{ minWidth: 220 }}>
-          <SidebarHeader className="flex flex-col items-center py-6">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-10 h-10 bg-[#1E90FF] rounded-full flex items-center justify-center text-white font-bold text-2xl">T</div>
-              <span className="font-bold text-lg text-[#1E90FF]">TechBros</span>
-            </div>
-            <div className="text-xs text-gray-500 mb-2">Documents & Files</div>
-          </SidebarHeader>
+        <Sidebar>
+          <SidebarHeader />
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton isActive={item.label === "Documents & Files"} onClick={() => navigate(item.path)}>
+                <SidebarMenuButton onClick={() => navigate(item.path)}>
                   {item.icon}
                   <span>{item.label}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
-            <SidebarSeparator />
-            <SidebarMenuItem>
-              <SidebarMenuButton onClick={() => navigate('/auth')}>
-                <LogOut />
-                <span>Logout</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
           </SidebarMenu>
-          <SidebarFooter className="mt-auto p-4">
-            <a href="#support" className="flex items-center gap-2 text-xs text-[#1E90FF] hover:underline">
-              <HelpCircle size={16} /> Need Help?
-            </a>
-          </SidebarFooter>
+          <SidebarFooter />
         </Sidebar>
-        <div className="flex-1 flex flex-col min-h-screen">
+        <div className="flex flex-col flex-1">
+          {/* Top Navbar or header if needed */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
             <div className="font-bold text-lg text-[#1E90FF]">Documents & Files</div>
             <button
@@ -256,7 +231,7 @@ const DocumentsFilesPage = () => {
               <Plus size={18} /> Add Document
             </button>
           </div>
-          <main className="flex-1 flex flex-col md:flex-row gap-6 p-8 overflow-y-auto">
+          <main className="flex-1 flex flex-col md:flex-row gap-6 p-8 overflow-y-auto w-full">
             {/* Left: Folder Navigation */}
             <aside className="w-full md:w-56 min-w-[180px] max-w-[220px] bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 h-fit self-start">
               <div className="font-semibold text-gray-700 dark:text-gray-200 mb-2">Folders</div>

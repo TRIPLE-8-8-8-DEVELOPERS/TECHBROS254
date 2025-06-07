@@ -10,7 +10,7 @@ import { supabase } from "@/lib/supabase";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
-  { icon: <Folder />, label: "My Projects", path: "/projects" },
+  { icon: <Folder />, label: "My Projects", path: "/my-projects" },
   { icon: <MessageCircle />, label: "Messages/Support", path: "/messages" },
   { icon: <Calendar />, label: "Meetings / Book a Call", path: "/meetings" },
   { icon: <FileText />, label: "Invoices & Billing", path: "/billing" },
@@ -87,6 +87,7 @@ const ProfilePage = () => {
   }
 
   return (
+    
     <SidebarProvider>
       <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
         {/* Sidebar */}
@@ -125,7 +126,6 @@ const ProfilePage = () => {
         <div className="flex-1 flex flex-col min-h-screen">
           {/* Top Navbar */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
-            <SidebarTrigger className="md:hidden" />
             <div className="font-bold text-lg text-[#1E90FF]">Profile</div>
             <div className="flex items-center gap-4">
               <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
