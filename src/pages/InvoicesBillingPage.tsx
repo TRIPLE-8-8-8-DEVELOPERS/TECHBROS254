@@ -103,22 +103,22 @@ const InvoicesBillingPage = () => {
                   <table className="min-w-[600px] text-sm max-w-full w-full table-fixed">
                   <thead>
                     <tr className="bg-gray-50 dark:bg-[#23272F]/60">
-                      <th className="p-3 cursor-pointer" onClick={() => { setSortBy('id'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Invoice ID</th>
-                      <th className="p-3 hidden md:table-cell">Project</th>
-                      <th className="p-3 cursor-pointer hidden md:table-cell" onClick={() => { setSortBy('date'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Date</th>
-                      <th className="p-3 cursor-pointer" onClick={() => { setSortBy('amount'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Amount</th>
-                      <th className="p-3 cursor-pointer" onClick={() => { setSortBy('status'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Status</th>
-                      <th className="p-3">Action</th>
+                      <th className="p-3 cursor-pointer w-24" onClick={() => { setSortBy('id'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Invoice ID</th>
+                      <th className="p-3 hidden md:table-cell w-48">Project</th>
+                      <th className="p-3 cursor-pointer hidden md:table-cell w-32" onClick={() => { setSortBy('date'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Date</th>
+                      <th className="p-3 cursor-pointer w-32" onClick={() => { setSortBy('amount'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Amount</th>
+                      <th className="p-3 cursor-pointer w-24" onClick={() => { setSortBy('status'); setSortDir(sortDir === 'asc' ? 'desc' : 'asc'); }}>Status</th>
+                      <th className="p-3 w-24">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {sortedInvoices.map((inv, i) => (
                       <tr key={inv.id} className="border-b border-gray-100 dark:border-gray-800 hover:bg-[#F5F5F5] dark:hover:bg-[#23272F]/40 transition">
-                        <td className="p-3 font-mono font-bold">{inv.id}</td>
-                        <td className="p-3 hidden md:table-cell">{inv.project}</td>
-                        <td className="p-3 hidden md:table-cell">{inv.date}</td>
-                        <td className="p-3">${inv.amount.toLocaleString()}</td>
-                        <td className="p-3">
+                        <td className="p-3 font-mono font-bold w-24">{inv.id}</td>
+                        <td className="p-3 hidden md:table-cell w-48">{inv.project}</td>
+                        <td className="p-3 hidden md:table-cell w-32">{inv.date}</td>
+                        <td className="p-3 w-32">${inv.amount.toLocaleString()}</td>
+                        <td className="p-3 w-24">
                           {inv.status === 'Paid' && <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800"><CheckCircle size={14}/> Paid</span>}
                           {inv.status === 'Pending' && <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800"><Clock size={14}/> Pending</span>}
                           {inv.status === 'Overdue' && <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800"><XCircle size={14}/> Overdue</span>}

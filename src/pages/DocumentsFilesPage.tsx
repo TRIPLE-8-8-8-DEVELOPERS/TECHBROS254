@@ -256,9 +256,9 @@ const DocumentsFilesPage = () => {
               <Plus size={18} /> Add Document
             </button>
           </div>
-          <main className="flex-1 flex flex-row gap-6 p-8 overflow-y-auto">
+          <main className="flex-1 flex flex-col md:flex-row gap-6 p-8 overflow-y-auto">
             {/* Left: Folder Navigation */}
-            <aside className="w-56 min-w-[180px] max-w-[220px] bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 h-fit self-start">
+            <aside className="w-full md:w-56 min-w-[180px] max-w-[220px] bg-white dark:bg-[#23272F] rounded-2xl shadow p-4 h-fit self-start">
               <div className="font-semibold text-gray-700 dark:text-gray-200 mb-2">Folders</div>
               {renderFolders(mockFolders)}
               <div className="mt-6">
@@ -276,7 +276,7 @@ const DocumentsFilesPage = () => {
               </div>
             </aside>
             {/* Right: File Explorer */}
-            <section className="flex-1 flex flex-col gap-6">
+            <section className="flex-1 flex flex-col gap-6 mt-4 md:mt-0">
               {/* Drag & Drop Upload */}
               <div
                 className={`border-2 border-dashed rounded-xl p-6 flex flex-col items-center justify-center transition ${dragActive ? "border-[#1E90FF] bg-[#F0F6FF] dark:bg-[#232B3B]" : "border-gray-200 dark:border-gray-700 bg-white dark:bg-[#23272F]"}`}
