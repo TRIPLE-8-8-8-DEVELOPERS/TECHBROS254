@@ -68,6 +68,13 @@ import HealthWellnessPage from './pages/perks/HealthWellnessPage';
 import FoodRefreshmentsPage from './pages/perks/FoodRefreshmentsPage';
 import FlexibleWorkPage from './pages/perks/FlexibleWorkPage';
 import FinancialWellnessPage from './pages/perks/FinancialWellnessPage';
+import MyProjects from "./pages/MyProjects";
+import MessagesSupport from "./pages/MessagesSupport";
+import MeetingsPage from "./pages/MeetingsPage";
+import InvoicesBillingPage from "./pages/InvoicesBillingPage";
+import ReportsAnalyticsPage from "./pages/ReportsAnalyticsPage";
+import DocumentsFilesPage from "./pages/DocumentsFilesPage";
+import AccountSettingsPage from "./pages/AccountSettingsPage";
 
 function App() {
   return (
@@ -146,6 +153,13 @@ function App() {
                 <Route path="/perks/food-refreshments" element={<FoodRefreshmentsPage />} />
                 <Route path="/perks/flexible-work" element={<FlexibleWorkPage />} />
                 <Route path="/perks/financial-wellness" element={<FinancialWellnessPage />} />
+                <Route path="/my-projects" element={<MyProjects />} />
+                <Route path="/messages" element={<MessagesSupport />} />
+                <Route path="/meetings" element={<MeetingsPage />} />
+                <Route path="/billing" element={<InvoicesBillingPage />} />
+                <Route path="/analytics" element={<ReportsAnalyticsPage />} />
+                <Route path="/documents" element={<DocumentsFilesPage />} />
+                <Route path="/settings" element={<AccountSettingsPage />} />
 
                 {/* Catch-all for unknown routes */}
                 <Route path="*" element={<NotFound />} />

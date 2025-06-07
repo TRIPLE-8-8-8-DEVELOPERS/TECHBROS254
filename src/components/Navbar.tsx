@@ -77,6 +77,20 @@ const Navbar = () => {
 
   const navbarRef = React.useRef<HTMLElement>(null);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      setActiveCategory(null);
+      setActiveService(null);
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   React.useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 80) {
@@ -103,10 +117,22 @@ const Navbar = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
+    setActiveCategory(null);
+    setActiveService(null);
+  };
+
+  // Keyboard accessibility for services dropdown (desktop)
+  const handleServicesKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      setServicesMenuOpen((open) => !open);
+    } else if (e.key === 'Escape') {
+      setServicesMenuOpen(false);
+    }
   };
 
   return (
     <header
+      ref={navbarRef}
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${
         scrolled
           ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-sm"
@@ -127,13 +153,21 @@ const Navbar = () => {
           {/* Services mega dropdown */}
           <div 
             className="relative group"
+            tabIndex={0}
+            aria-haspopup="true"
+            aria-expanded={servicesMenuOpen}
             onMouseEnter={() => setServicesMenuOpen(true)}
             onMouseLeave={() => setServicesMenuOpen(false)}
+            onFocus={() => setServicesMenuOpen(true)}
+            onBlur={() => setServicesMenuOpen(false)}
+            onKeyDown={handleServicesKeyDown}
           >
             <Button 
               variant="ghost" 
               className="font-medium flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 dark:from-blue-900 dark:via-purple-950 dark:to-pink-950 hover:from-blue-200 hover:to-purple-200 dark:hover:from-blue-800 dark:hover:to-purple-900 shadow-md border border-primary/20 transition-all duration-300"
               style={{ boxShadow: servicesMenuOpen ? '0 8px 32px 0 rgba(80, 0, 200, 0.15)' : undefined }}
+              aria-haspopup="true"
+              aria-expanded={servicesMenuOpen}
             >
               <span className="text-lg font-semibold tracking-wide text-primary">Services</span>
               <ChevronDown className="h-4 w-4 opacity-60 ml-1 transition-transform duration-200 group-hover:rotate-180" />
@@ -142,6 +176,8 @@ const Navbar = () => {
             <div 
               className={`absolute left-0 top-full ${servicesMenuOpen ? 'block' : 'hidden'} w-[760px] bg-white/95 dark:bg-gray-900/95 shadow-2xl rounded-3xl p-8 border border-primary/20 z-50 animate-fade-in`}
               style={{ minHeight: '340px' }}
+              tabIndex={-1}
+              onMouseLeave={() => setServicesMenuOpen(false)}
             >
               <div className="grid grid-cols-12 gap-x-8">
                 {/* Popular services section */}
