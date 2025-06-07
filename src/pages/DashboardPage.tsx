@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "@/components/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
 import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, User, Bell, Moon, Sun, Plus, Upload, Users, FileCheck, PieChart } from "lucide-react";
 import Footer from "@/components/Footer";
 
@@ -93,6 +93,7 @@ const DashboardPage = () => {
           <div className="flex-1 flex flex-col min-h-screen">
             {/* Top Navbar */}
             <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
+              <SidebarTrigger className="md:hidden" />
               <div className="flex items-center gap-3 w-1/2">
                 <input type="text" placeholder="Search projects, invoices..." className="w-full px-4 py-2 rounded-lg bg-[#F5F5F5] dark:bg-[#181A1B] border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E90FF]" />
               </div>
