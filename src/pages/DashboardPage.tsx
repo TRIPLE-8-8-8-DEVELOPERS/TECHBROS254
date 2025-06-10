@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useAuth } from "@/components/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, User, Bell, Moon, Sun, Plus, Upload, Users, FileCheck, PieChart } from "lucide-react";
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
 
 const navItems = [
+  { icon: <Home />, label: "Home", path: "/" },
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
   { icon: <Folder />, label: "My Projects", path: "/my-projects" },
   { icon: <MessageCircle />, label: "Messages/Support", path: "/messages" },
@@ -69,6 +70,7 @@ const DashboardPage = () => {
             <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800" style={{ minHeight: '4rem' }}>
               
               <div className="flex items-center gap-3 w-1/2">
+                
                 <input type="text" placeholder="Search projects, invoices..." className="w-full px-4 py-2 rounded-lg bg-[#F5F5F5] dark:bg-[#181A1B] border border-gray-200 dark:border-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E90FF]" />
               </div>
               <div className="flex items-center gap-4">
@@ -189,7 +191,7 @@ const DashboardPage = () => {
               {/* Bonus: Document Vault */}
               <div className="mb-8">
                 <h2 className="text-lg font-bold mb-4 text-[#1E90FF]">📁 Document Vault</h2>
-                <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-3">
+                <div className="bg-white dark:abg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-3">
                   {mockDocuments.map((doc, i) => (
                     <div className="flex items-center gap-2" key={i}>
                       <File className="text-[#1E90FF]" />

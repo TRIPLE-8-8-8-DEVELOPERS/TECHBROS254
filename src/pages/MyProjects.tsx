@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/components/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import ProjectCard from "@/components/ProjectCard";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
+import { useToast, toast } from "@/components/ui/use-toast";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -25,12 +26,6 @@ const statusOptions = [
   { label: "Cancelled", value: "cancelled" },
 ];
 
-const mockTeam = [
-  { name: "Alice", avatar: "https://randomuser.me/api/portraits/women/44.jpg" },
-  { name: "Bob", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
-  { name: "Carol", avatar: "https://randomuser.me/api/portraits/women/68.jpg" },
-];
-
 const statusPill = (status: string) => {
   switch (status) {
     case "in_progress":
@@ -47,12 +42,16 @@ const statusPill = (status: string) => {
 const MyProjects = () => {
   const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
+  const { toast } = useToast();
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState("all");
   const [search, setSearch] = useState("");
   const [view, setView] = useState<"grid" | "list">("grid");
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [newProject, setNewProject] = useState({ title: "", description: "" });
 
   useEffect(() => {
     if (!user) {
@@ -84,9 +83,45 @@ const MyProjects = () => {
     return matchesStatus && matchesSearch;
   });
 
+  const handleCreateProject = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newProject.title) return;
+    setCreating(true);
+    try {
+      const { data, error } = await supabase.from("projects").insert({
+        title: newProject.title,
+        description: newProject.description,
+        author_id: user.id,
+        status: "in_progress",
+        created_at: new Date().toISOString(),
+      }).select();
+      if (error) throw error;
+      setProjects([...(data || []), ...projects]);
+      setShowCreateModal(false);
+      setNewProject({ title: "", description: "" });
+      toast({ title: "Project created", description: newProject.title });
+    } catch (err: any) {
+      toast({ title: "Error creating project", description: err.message, variant: "destructive" });
+    } finally {
+      setCreating(false);
+    }
+  };
+
+  const handleDeleteProject = async (id: string) => {
+    if (!window.confirm("Delete this project?")) return;
+    try {
+      const { error } = await supabase.from("projects").delete().eq("id", id);
+      if (error) throw error;
+      setProjects(projects.filter((p) => p.id !== id));
+      toast({ title: "Project deleted" });
+    } catch (err: any) {
+      toast({ title: "Error deleting project", description: err.message, variant: "destructive" });
+    }
+  };
+
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
+      <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans overflow-x-hidden max-w-full">
         <Sidebar>
           <SidebarHeader />
           <SidebarMenu>
@@ -101,14 +136,31 @@ const MyProjects = () => {
           </SidebarMenu>
           <SidebarFooter />
         </Sidebar>
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 min-w-0 max-w-full overflow-x-hidden">
           {/* Top Navbar or header if needed */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
-            <div className="font-bold text-lg text-[#1E90FF]">My Projects</div>
-            <button className="flex items-center gap-2 bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-[#1877cc] transition animate-bounce">
-              <PlusCircle size={18} /> Start New Project
+            <div className="flex items-center gap-3">
+              <SidebarTrigger className="md:hidden mr-2" />
+              <div className="font-bold text-lg text-[#1E90FF]">My Projects</div>
+            </div>
+            <button onClick={() => setShowCreateModal(true)} className="flex items-center gap-2 bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold shadow hover:bg-[#1877cc] transition">
+              <PlusCircle size={18} /> New Project
             </button>
           </div>
+          {/* Create Project Modal */}
+          {showCreateModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+              <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow-xl p-8 w-full max-w-md relative animate-fade-in">
+                <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-700" onClick={() => setShowCreateModal(false)}>&times;</button>
+                <h3 className="text-xl font-bold text-[#1E90FF] mb-2">Start New Project</h3>
+                <form className="flex flex-col gap-3" onSubmit={handleCreateProject}>
+                  <input className="border rounded-lg px-3 py-2 text-sm" placeholder="Project Title" value={newProject.title} onChange={e => setNewProject({ ...newProject, title: e.target.value })} required />
+                  <textarea className="border rounded-lg px-3 py-2 text-sm" placeholder="Description (optional)" value={newProject.description} onChange={e => setNewProject({ ...newProject, description: e.target.value })} />
+                  <button className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#1877cc] transition" type="submit" disabled={creating}>{creating ? "Creating..." : "Create Project"}</button>
+                </form>
+              </div>
+            </div>
+          )}
           <main className="flex-1 p-8 overflow-y-auto">
             <div className="bg-white dark:bg-[#23272F] rounded-2xl shadow p-6 flex flex-col gap-6 animate-fade-in mx-auto">
               {/* Top Controls */}
@@ -181,11 +233,11 @@ const MyProjects = () => {
                       <div className="flex items-center gap-2 mb-2">
                         <Users size={16} className="text-gray-400" />
                         <div className="flex -space-x-2">
-                          {(project.team || mockTeam).slice(0, 4).map((member: any, i: number) => (
+                          {(project.team || []).slice(0, 4).map((member: any, i: number) => (
                             <img key={i} src={member.avatar} alt={member.name} className="w-7 h-7 rounded-full border-2 border-white dark:border-[#23272F]" title={member.name} />
                           ))}
-                          {(project.team || mockTeam).length > 4 && (
-                            <span className="w-7 h-7 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold border-2 border-white dark:border-[#23272F]">+{(project.team || mockTeam).length - 4}</span>
+                          {(project.team || []).length > 4 && (
+                            <span className="w-7 h-7 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold border-2 border-white dark:border-[#23272F]">+{(project.team || []).length - 4}</span>
                           )}
                         </div>
                       </div>
@@ -224,11 +276,11 @@ const MyProjects = () => {
                         <div className="flex items-center gap-2">
                           <Users size={16} className="text-gray-400" />
                           <div className="flex -space-x-2">
-                            {(project.team || mockTeam).slice(0, 4).map((member: any, i: number) => (
+                            {(project.team || []).slice(0, 4).map((member: any, i: number) => (
                               <img key={i} src={member.avatar} alt={member.name} className="w-7 h-7 rounded-full border-2 border-white dark:border-[#23272F]" title={member.name} />
                             ))}
-                            {(project.team || mockTeam).length > 4 && (
-                              <span className="w-7 h-7 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold border-2 border-white dark:border-[#23272F]">+{(project.team || mockTeam).length - 4}</span>
+                            {(project.team || []).length > 4 && (
+                              <span className="w-7 h-7 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs font-bold border-2 border-white dark:border-[#23272F]">+{(project.team || []).length - 4}</span>
                             )}
                           </div>
                         </div>

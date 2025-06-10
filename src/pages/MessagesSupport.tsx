@@ -3,7 +3,7 @@ import { useAuth } from "@/components/AuthContext";
 import { Home, Folder, MessageCircle, Calendar, FileText, BarChart2, File, Settings, LogOut, HelpCircle, Paperclip, Send, User, Tag, PlusCircle, X } from "lucide-react";
 import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarFooter, SidebarSeparator, SidebarTrigger } from "@/components/ui/sidebar";
 
 const navItems = [
   { icon: <Home />, label: "Dashboard", path: "/dashboard" },
@@ -64,7 +64,7 @@ const MessagesSupport = () => {
   if (!user) return null;
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
+      <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans overflow-x-hidden max-w-full">
         <Sidebar>
           <SidebarHeader />
           <SidebarMenu>
@@ -79,10 +79,13 @@ const MessagesSupport = () => {
           </SidebarMenu>
           <SidebarFooter />
         </Sidebar>
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 min-w-0 max-w-full overflow-x-hidden">
           {/* Top Navbar or header if needed */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
-            <div className="font-bold text-lg text-[#1E90FF]">Messages & Support</div>
+            <div className="flex items-center gap-3">
+              <SidebarTrigger className="md:hidden mr-2" />
+              <div className="font-bold text-lg text-[#1E90FF]">Messages & Support</div>
+            </div>
             <button onClick={() => setShowSupportModal(true)} className="bg-[#1E90FF] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#1877cc] transition">
               <HelpCircle size={18} /> Contact TechBros Support
             </button>

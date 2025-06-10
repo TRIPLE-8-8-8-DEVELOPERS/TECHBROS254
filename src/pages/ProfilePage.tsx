@@ -87,10 +87,8 @@ const ProfilePage = () => {
   }
 
   return (
-    
     <SidebarProvider>
-      <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans">
-        {/* Sidebar */}
+      <div className="flex min-h-screen bg-[#F5F5F5] dark:bg-[#181A1B] font-sans overflow-x-hidden max-w-full">
         <Sidebar className="bg-white dark:bg-[#23272F] border-r border-gray-200 dark:border-gray-800 shadow-lg min-h-screen" style={{ minWidth: 220 }}>
           <SidebarHeader className="flex flex-col items-center py-6">
             <div className="flex items-center gap-2 mb-2">
@@ -123,14 +121,12 @@ const ProfilePage = () => {
           </SidebarFooter>
         </Sidebar>
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-h-screen">
+        <div className="flex flex-col flex-1 min-w-0 max-w-full overflow-x-hidden">
           {/* Top Navbar */}
           <div className="sticky top-0 z-30 bg-white dark:bg-[#23272F] shadow flex items-center justify-between px-6 h-16 border-b border-gray-100 dark:border-gray-800">
-            <div className="font-bold text-lg text-[#1E90FF]">Profile</div>
-            <div className="flex items-center gap-4">
-              <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                <User className="text-[#1E90FF]" />
-              </button>
+            <div className="flex items-center gap-3">
+              <SidebarTrigger className="md:hidden mr-2" />
+              <div className="font-bold text-lg text-[#1E90FF]">Profile</div>
             </div>
           </div>
           {/* Profile Card */}

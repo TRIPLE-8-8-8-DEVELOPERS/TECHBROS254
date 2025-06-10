@@ -2,6 +2,7 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
 import { PanelLeft, Menu } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -19,7 +20,7 @@ import {
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = "10rem"
+const SIDEBAR_WIDTH = "15rem"
 const SIDEBAR_WIDTH_MOBILE = "14rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
@@ -191,17 +192,20 @@ const Sidebar = React.forwardRef<
 
     if (isMobile) {
       return (
-        <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
+        <Sheet open={openMobile} onOpenChange={setOpenMobile}>
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
             className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
-            style={
-              {
-                "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-              } as React.CSSProperties
-            }
+            style={{
+              "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+            } as React.CSSProperties}
           >
+            {/* Brand/Logo area for mobile sidebar */}
+            <Link to="/" className="flex items-center gap-2 px-6 py-6 mb-2 border-b border-white/10 dark:border-white/10 bg-gradient-to-r from-[#1E90FF]/80 to-[#1E90FF]/30 text-white dark:text-[#1E90FF] font-bold text-xl tracking-tight shadow-sm">
+              <img src="/logo.svg" alt="TechBros" className="h-8" />
+              <span className="hidden md:inline">TechBros</span>
+            </Link>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
@@ -217,7 +221,7 @@ const Sidebar = React.forwardRef<
         data-variant="sidebar"
         data-side="left"
       >
-        {/* This is what handles the sidebar gap on desktop */}
+        {/* Sidebar gap for layout */}
         <div
           className={cn(
             "duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear",
@@ -228,9 +232,11 @@ const Sidebar = React.forwardRef<
         />
         <div
           className={cn(
-            "duration-200 fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] ease-linear md:flex",
+            // Glassmorphism + shadow + accent border
+            "duration-200 fixed inset-y-0 z-20 hidden h-svh w-[--sidebar-width] transition-[left,right,width] ease-linear md:flex",
+            "backdrop-blur-md bg-white/70 dark:bg-[#181A1B]/80 border-r border-[#1E90FF]/30 shadow-xl",
+            "rounded-r-2xl md:rounded-none md:rounded-r-2xl overflow-hidden",
             `data-side === left ? left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] : right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]`,
-            // Adjust the padding for floating and inset variants.
             `data-variant === floating || data-variant === inset ? p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)] : group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l`,
             className
           )}
@@ -238,9 +244,18 @@ const Sidebar = React.forwardRef<
         >
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex h-full w-full flex-col bg-sidebar/80 group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-lg"
           >
-            {children}
+            {/* Brand/Logo area */}
+            <Link to="/" className="flex items-center gap-2 px-6 py-6 mb-2 border-b border-white/10 dark:border-white/10 bg-gradient-to-r from-[#1E90FF]/80 to-[#1E90FF]/30 text-white dark:text-[#1E90FF] font-bold text-xl tracking-tight shadow-sm">
+              <img src="/logo.svg" alt="TechBros" className="h-8" />
+              <span className="hidden md:inline">TechBros</span>
+            </Link>
+            {/* Sidebar children (menu, etc) */}
+            <div className="flex-1 flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-[#1E90FF]/30 scrollbar-track-transparent">
+              {children}
+            </div>
+            {/* Optional: Add a soft footer or user info here */}
           </div>
         </div>
       </div>
@@ -501,19 +516,20 @@ const SidebarMenuItem = React.forwardRef<
 ))
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
+// Enhance menu item hover/focus
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-lg p-2 text-left text-sm outline-none ring-sidebar-ring transition-all duration-150 hover:bg-[#E6F0FA] hover:text-[#1E90FF] focus-visible:ring-2 focus-visible:ring-[#1E90FF] active:bg-[#D0E8FF] active:text-[#1E90FF] disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-[#E6F0FA] data-[active=true]:font-semibold data-[active=true]:text-[#1E90FF] data-[state=open]:hover:bg-[#E6F0FA] data-[state=open]:hover:text-[#1E90FF] group-data-[collapsible=icon]:!size-8 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-5 [&>svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        default: "hover:bg-[#E6F0FA] hover:text-[#1E90FF]",
         outline:
-          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-[#E6F0FA] hover:text-[#1E90FF] hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },
       size: {
-        default: "h-8 text-sm",
-        sm: "h-7 text-xs",
-        lg: "h-12 text-sm group-data-[collapsible=icon]:!p-0",
+        default: "h-10 text-base",
+        sm: "h-8 text-sm",
+        lg: "h-12 text-base group-data-[collapsible=icon]:!p-0",
       },
     },
     defaultVariants: {
