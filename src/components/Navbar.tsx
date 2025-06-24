@@ -242,9 +242,9 @@ const Navbar = () => {
                                     <Link
                                       key={sub.label}
                                       to={sub.href}
-                                      className="block text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
+                                      className="block text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-1"
                                     >
-                                      {sub.label}
+                                      <span className="text-primary font-bold">-</span> {sub.label}
                                     </Link>
                                   ))}
                                 </div>
@@ -403,10 +403,10 @@ const Navbar = () => {
                                   <Link
                                     key={sub.label}
                                     to={sub.href}
-                                    className="block py-1 text-gray-600 dark:text-gray-300 text-xs hover:text-vibrant-purple dark:hover:text-vibrant-purple/90"
+                                    className="block py-1 text-gray-600 dark:text-gray-300 text-xs hover:text-vibrant-purple dark:hover:text-vibrant-purple/90 flex items-center gap-1"
                                     onClick={closeMenu}
                                   >
-                                    {sub.label}
+                                    <span className="text-primary font-bold">-</span> {sub.label}
                                   </Link>
                                 ))}
                               </div>
