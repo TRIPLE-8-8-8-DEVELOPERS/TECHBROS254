@@ -164,120 +164,94 @@ const Navbar = () => {
           >
             <Button 
               variant="ghost" 
-              className="font-medium flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 dark:from-blue-900 dark:via-purple-950 dark:to-pink-950 hover:from-blue-200 hover:to-purple-200 dark:hover:from-blue-800 dark:hover:to-purple-900 shadow-md border border-primary/20 transition-all duration-300"
-              style={{ boxShadow: servicesMenuOpen ? '0 8px 32px 0 rgba(80, 0, 200, 0.15)' : undefined }}
+              className="font-medium flex items-center gap-1 px-4 py-2 rounded-lg bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800 shadow-sm border border-primary/10 hover:border-primary/30 transition-all duration-300"
+              style={{ boxShadow: servicesMenuOpen ? '0 8px 24px 0 rgba(80, 0, 200, 0.12)' : undefined }}
               aria-haspopup="true"
               aria-expanded={servicesMenuOpen}
             >
-              <span className="text-lg font-semibold tracking-wide text-primary">Services</span>
+              <span className="text-base font-medium tracking-wide text-primary">Services</span>
               <ChevronDown className="h-4 w-4 opacity-60 ml-1 transition-transform duration-200 group-hover:rotate-180" />
             </Button>
 
             <div 
-              className={`absolute left-0 top-full ${servicesMenuOpen ? 'block' : 'hidden'} w-[760px] bg-white/95 dark:bg-gray-900/95 shadow-2xl rounded-3xl p-8 border border-primary/20 z-50 animate-fade-in`}
-              style={{ minHeight: '340px' }}
+              className={`absolute left-0 top-full ${servicesMenuOpen ? 'block' : 'hidden'} w-[480px] bg-white/95 dark:bg-gray-900/95 shadow-xl rounded-2xl border border-primary/10 z-50 animate-in fade-in-0 duration-200`}
+              style={{ minHeight: '220px' }}
               tabIndex={-1}
               onMouseLeave={() => setServicesMenuOpen(false)}
             >
-              <div className="grid grid-cols-12 gap-x-8">
-                {/* Popular services section */}
-                <div className="col-span-12 mb-6 bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 dark:from-blue-950 dark:via-purple-950 dark:to-pink-950 p-6 rounded-2xl flex items-center gap-6 shadow-inner">
-                  <div className="flex flex-col gap-2 w-full">
-                    <h3 className="uppercase text-xs font-bold text-primary mb-2 tracking-widest">Popular Services</h3>
-                    <div className="flex gap-4">
-                      {serviceDetails.slice(0, 3).map((service) => (
-                        <Link 
-                          key={service.id} 
-                          to={`/services/${service.slug}`}
-                          className="flex items-center gap-3 bg-white dark:bg-neutral-900 px-4 py-3 rounded-xl shadow hover:shadow-lg border border-primary/10 hover:border-primary/40 transition-all group"
-                        >
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-400 dark:from-blue-800 dark:to-purple-800 rounded-full flex items-center justify-center text-white shadow">
-                            <service.icon size={20} />
-                          </div>
-                          <span className="font-semibold text-primary group-hover:text-purple-700 transition-colors text-base">{service.title}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* All service categories list */}
-                <div className="col-span-5 border-r border-primary/10 pr-8">
-                  <div className="space-y-2">
-                    {serviceCategories.map((category) => (
-                      <button
-                        key={category.label}
-                        className={`flex items-center justify-between w-full p-3 rounded-xl text-left hover:bg-primary/10 dark:hover:bg-primary/20 transition-all ${activeCategory === category.label ? 'bg-primary/10 dark:bg-primary/20' : ''}`}
-                        onMouseEnter={() => setActiveCategory(category.label)}
+              <div className="grid grid-cols-12 gap-4 p-6">
+                {/* Quick access section */}
+                <div className="col-span-12 mb-4">
+                  <div className="grid grid-cols-3 gap-3">
+                    {serviceDetails.slice(0, 3).map((service) => (
+                      <Link 
+                        key={service.id} 
+                        to={`/services/${service.slug}`}
+                        className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 transition-colors group"
                       >
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-gradient-to-br from-blue-200 to-purple-200 dark:from-blue-900 dark:to-purple-900 rounded-full flex items-center justify-center">
-                            <div className="w-4 h-4 bg-primary rounded-full"></div>
-                          </div>
-                          <div>
-                            <span className="font-semibold text-primary text-base">{category.label}</span>
-                            <div className="text-xs text-neutral-500 dark:text-neutral-400">{category.services.length} services</div>
-                          </div>
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-lg flex items-center justify-center text-primary shadow-sm">
+                          <service.icon size={16} />
                         </div>
-                        <ChevronRight size={18} className="text-primary/40" />
-                      </button>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary">{service.title}</span>
+                      </Link>
                     ))}
                   </div>
-                  <div className="mt-8 text-center">
-                    <Link 
-                      to="/services" 
-                      className="text-primary font-bold hover:underline text-base"
-                    >
-                      View All Services
-                    </Link>
-                  </div>
                 </div>
 
-                {/* Subcategories list with background image on hover */}
-                <div className="col-span-7 pl-8 relative min-h-[340px]">
+                {/* Categories grid */}
+                <div className="col-span-5 border-r border-primary/10 pr-4 space-y-1">
+                  {serviceCategories.map((category) => (
+                    <button
+                      key={category.label}
+                      className={`flex items-center justify-between w-full p-2 rounded-lg text-left hover:bg-primary/5 transition-all text-sm ${activeCategory === category.label ? 'bg-primary/5' : ''}`}
+                      onMouseEnter={() => setActiveCategory(category.label)}
+                    >
+                      <span className="font-medium text-gray-700 dark:text-gray-300">{category.label}</span>
+                      <ChevronRight size={14} className="text-primary/40" />
+                    </button>
+                  ))}
+                </div>
+
+                {/* Subcategories with dynamic background */}
+                <div className="col-span-7 pl-4 relative">
                   {activeCategory && (
                     <>
-                      {/* Background image for the active category */}
                       <div
-                        className="absolute inset-0 rounded-2xl overflow-hidden z-0 transition-opacity duration-300"
+                        className="absolute inset-0 rounded-xl overflow-hidden z-0 opacity-[0.07] transition-opacity duration-300"
                         style={{
                           backgroundImage: serviceCategoryBackgrounds[activeCategory]
                             ? `url(${serviceCategoryBackgrounds[activeCategory]})`
                             : undefined,
                           backgroundSize: 'cover',
                           backgroundPosition: 'center',
-                          opacity: 0.18,
-                          pointerEvents: 'none',
-                          backgroundColor: serviceCategoryBackgrounds[activeCategory]
-                            ? undefined
-                            : '#f3f4f6', // fallback color (tailwind gray-100)
                         }}
                       />
                       <div className="relative z-10">
-                        <h3 className="font-bold mb-4 text-primary text-lg">{activeCategory} Services</h3>
-                        {(serviceCategories.find(cat => cat.label === activeCategory)?.services || []).map((svc) => (
-                          <div key={svc.label} className="mb-5">
-                            <Link 
-                              to={svc.href}
-                              className="font-semibold text-base text-primary hover:text-purple-700 transition-colors"
-                            >
-                              {svc.label}
-                            </Link>
-                            {svc.subcategories.length > 0 && (
-                              <div className="grid grid-cols-2 gap-2 mt-2 pl-3">
-                                {svc.subcategories.map(sub => (
-                                  <Link
-                                    key={sub.label}
-                                    to={sub.href}
-                                    className="text-sm text-neutral-600 dark:text-neutral-300 hover:text-primary dark:hover:text-purple-400 transition-colors py-1"
-                                  >
-                                    {sub.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ))}
+                        <div className="grid grid-cols-2 gap-2">
+                          {(serviceCategories.find(cat => cat.label === activeCategory)?.services || []).map((svc) => (
+                            <div key={svc.label} className="mb-3">
+                              <Link 
+                                to={svc.href}
+                                className="block font-medium text-sm text-primary hover:text-purple-700 transition-colors mb-1"
+                              >
+                                {svc.label}
+                              </Link>
+                              {svc.subcategories.length > 0 && (
+                                <div className="space-y-1 pl-2">
+                                  {svc.subcategories.map(sub => (
+                                    <Link
+                                      key={sub.label}
+                                      to={sub.href}
+                                      className="block text-xs text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
+                                    >
+                                      {sub.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </>
                   )}

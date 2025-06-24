@@ -145,11 +145,35 @@ const ProfilePage = () => {
                   <p className="text-lg font-medium">{user.email}</p>
                   {profile.full_name && <p>Full Name: <span className="font-semibold">{profile.full_name}</span></p>}
                   {profile.username && <p>Username: <span className="font-semibold">{profile.username}</span></p>}
+                  {/* Key Features */}
+                  {profile.bio && <p>Bio: <span className="font-normal">{profile.bio}</span></p>}
+                  {profile.phone && <p>Phone: <span className="font-normal">{profile.phone}</span></p>}
+                  {profile.location && <p>Location: <span className="font-normal">{profile.location}</span></p>}
+                  {profile.website && <p>Website: <a href={profile.website} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">{profile.website}</a></p>}
+                  {profile.created_at && <p className="text-xs text-gray-400">Joined: {new Date(profile.created_at).toLocaleDateString()}</p>}
                 </div>
                 <div className="w-full">
                   <input type="file" className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer" onChange={(e) => setSelectedFile(e.target.files?.[0] || null)} />
                   <button onClick={handleFileUpload} disabled={loading} className={`mt-4 w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-white font-medium transition ${loading ? "bg-blue-400 cursor-not-allowed" : "bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-600"}`}>{loading ? <Loader2 className="animate-spin w-5 h-5" /> : <Upload className="w-5 h-5" />}{loading ? "Uploading..." : "Upload Avatar"}</button>
                 </div>
+              </div>
+              {/* Additional Features Section */}
+              <div className="mt-8 space-y-4">
+                <h2 className="text-xl font-bold text-[#1E90FF] mb-2">Account Details</h2>
+                <ul className="text-gray-700 dark:text-gray-300 space-y-1">
+                  <li><span className="font-semibold">Account Type:</span> {profile.account_type || 'Standard'}</li>
+                  <li><span className="font-semibold">Status:</span> {profile.status || 'Active'}</li>
+                  <li><span className="font-semibold">Last Login:</span> {profile.last_login ? new Date(profile.last_login).toLocaleString() : 'N/A'}</li>
+                  <li><span className="font-semibold">Email Verified:</span> {profile.email_verified ? 'Yes' : 'No'}</li>
+                </ul>
+              </div>
+              <div className="mt-8 space-y-4">
+                <h2 className="text-xl font-bold text-[#1E90FF] mb-2">Preferences</h2>
+                <ul className="text-gray-700 dark:text-gray-300 space-y-1">
+                  <li><span className="font-semibold">Theme:</span> {profile.theme_preference || 'System'}</li>
+                  <li><span className="font-semibold">Language:</span> {profile.language || 'English'}</li>
+                  <li><span className="font-semibold">Notifications:</span> {profile.notifications_enabled ? 'Enabled' : 'Disabled'}</li>
+                </ul>
               </div>
             </div>
           </main>

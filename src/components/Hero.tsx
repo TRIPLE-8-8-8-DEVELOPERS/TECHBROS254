@@ -53,15 +53,14 @@ const Hero = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&w=1920&q=80')",
+          backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&w=1920&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.1,
+          opacity: 1.9,
           transform: `translateY(${parallaxY}px)`
         }}
       ></div>
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <canvas id="particleCanvas" className="w-full h-full"></canvas>
+      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-white/80 to-tech-50/90 dark:from-gray-900/90 dark:to-gray-800/95">
       </div>
 
       {/* Geometric shapes with animated gradients */}
