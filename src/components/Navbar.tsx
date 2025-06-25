@@ -398,7 +398,7 @@ const Navbar = () => {
                             </Link>
                             
                             {service.subcategories.length > 0 && (
-                              <div className="ml-4 space-y-1 mt-1">
+                              <div className="ml-4 space-y-1 mt-1 max-h-48 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700">
                                 {service.subcategories.map(sub => (
                                   <Link
                                     key={sub.label}
