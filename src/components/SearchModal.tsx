@@ -1,25 +1,37 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { useNavigate } from "react-router-dom";
+import { serviceDetails } from "../data/services";
 
-// Mock search results for demo - in a real implementation you would fetch these
-const mockResults = [
-  { id: 1, title: "Web Development", url: "/services/web-development" },
-  { id: 2, title: "Mobile App Development", url: "/services/mobile-app-development" },
-  { id: 3, title: "AI & Data Analytics", url: "/services/ai-data" },
-  { id: 4, title: "About Our Team", url: "/team" },
-  { id: 5, title: "Career Opportunities", url: "/careers" },
-  { id: 6, title: "Contact Us", url: "/#contact" },
+// Build a flat list of all services and subcategories for search
+const allSearchItems = [
+  // Services
+  ...serviceDetails.map(service => ({
+    id: service.id,
+    title: service.title,
+    url: `/services/${service.slug}`,
+    type: "service",
+    category: service.category
+  })),
+  // Subcategories
+  ...serviceDetails.flatMap(service =>
+    (service.subcategories || []).map(subcat => ({
+      id: `${service.id}--${subcat.id}`,
+      title: subcat.title,
+      url: `/services/${service.slug}#${subcat.slug}`,
+      type: "subcategory",
+      category: service.category
+    }))
+  )
 ];
 
 export function SearchModal() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<typeof mockResults>([]);
+  const [results, setResults] = useState<typeof allSearchItems>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -50,8 +62,8 @@ export function SearchModal() {
       return;
     }
 
-    // Simple search implementation - filter mock results based on query
-    const filtered = mockResults.filter(item => 
+    // Search all services and subcategories
+    const filtered = allSearchItems.filter(item =>
       item.title.toLowerCase().includes(query.toLowerCase())
     );
     
